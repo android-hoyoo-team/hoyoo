@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">newhooyo</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_settings">Settings</string>
+    <string name="progressBar_pref_key">progressBar_pref_key</string>
+    <string name="progressBar_pref_defValue">0</string>
+    <string name="pref_colors_header_title">ProgressBar colors</string>
+    <string name="firstcolor_pref_key">firstcolor_pref_key</string>
+    <string name="secondcolor_pref_key">secondcolor_pref_key</string>
+    <string name="thirdcolor_pref_key">thirdcolor_pref_key</string>
+    <string name="fourthcolor_pref_key">fourthcolor_pref_key</string>
+
+    <!-- 下拉刷新，上拉加载更多 -->
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="title_activity_official_guide">OfficialGuideActivity</string>
+    <string name="title_activity_official_organization">OfficialOrganization</string>
+    <string name="title_activity_official_policy">OfficialPolicy</string>
+    <string name="title_activity_official_business">OfficialBusiness</string>
+    <string name="title_activity_restlife">RestlifeActivity</string>
+    <string name="menu_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="library_name">HoloEverywhere</string>
+    <string name="other">Other</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
+    <string name="mixed">Mixed</string>
+
+    <!-- login所需的string -->
+    <string name="defualt_username">your telephone number</string>
+    <string name="defualt_password">your password</string>
+
+    <!-- 成就页面 -->
+    <string name="achievement_title1">最新完成</string>
+    <string name="achievement_title2">成就推荐</string>
+
+    <!-- 成就 -->
+    <string name="achievement1">再用脸滚键盘啊!</string>
+    <string name="achievement2">一盏明灯</string>
+    <string name="achievement3">有车有房</string>
+    <string name="achievement4">行万里路</string>
+
+    <!-- 用户信息 -->
+    <string name="user_name">莫小千</string>
+    <!-- 公会信息 -->
+    <string name="union_name">TOWERS</string>
+    <string name="title_activity_union_info">UnionInfo</string>
+    <string name="title_activity_union_news_list">UnionNewsList</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_union_news_detail">UnionNewsDetail</string>
+    <string name="title_activity_pinglun">Pinglun</string>
+    <string name="title_activity_invent_zhuanfa">Invent_zhuanfa</string>
+
+    <!-- 公会新闻 -->
+    <string name="union_news_title">公会新闻</string>
+    <string name="union_news_author_name">ENzo</string>
+    <string name="union_news_time">5个小时前</string>
+
+    <!-- 编辑邀请 -->
+    <string name="edit_invite">编辑邀请</string>
+    <string name="button_style_2_text"></string>
+    
+    <!-- 公会邀请 -->
+    <string name="invite_list_title">公会邀请</string>
+
+</resources>

@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="20dp" >
+
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent" >
+
+		<ImageView
+		    android:layout_width="16dp"
+		    android:layout_height="16dp"
+		    android:layout_marginLeft="15dp"
+		    android:layout_marginTop="2dp"
+		    android:scaleType="fitXY"
+		    android:background="@drawable/near_icon4" />
+
+		<TextView
+		    android:id="@+id/Pname_item"
+		    android:layout_width="wrap_content"
+		    android:layout_height="fill_parent"
+		    android:layout_marginLeft="7dp"
+		    android:gravity="center_vertical"
+		    android:text="无人生还"
+		    android:textColor="#000000"
+		    android:textSize="12sp" />
+
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="fill_parent"
+		    android:gravity="center_vertical"
+		    android:text="完成了"
+		    android:textSize="12sp" />
+		<TextView
+		    android:id="@+id/Pachieve_item"
+		    android:layout_width="wrap_content"
+		    android:layout_height="fill_parent"
+		    android:layout_marginLeft="2dp"
+		    android:gravity="center_vertical"
+		    android:textColor="@color/yellow"
+		    android:textSize="12sp" />
+		<TextView
+		    android:id="@+id/describe_item"
+		    android:layout_width="wrap_content"
+		    android:layout_height="fill_parent"
+		    android:layout_marginLeft="2dp"
+		    android:gravity="center_vertical"
+		    android:text="成就"
+		    android:textSize="12sp" />
+
+	</LinearLayout>
+    
+</RelativeLayout>
+<!-- android:layout_below="@+id/imageview_item"
+    	android:layout_marginTop="4dp" -->

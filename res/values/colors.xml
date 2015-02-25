@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="darkblue">#FF0099CC</color>
+    <color name="darkpurple">#FF9933CC</color>
+    <color name="darkgreen">#FF669900</color>
+    <color name="darkorange">#FFFF8800</color>
+    <color name="blue">#FF0000FF</color>
+    <color name="yellow">#FFFFFF00</color>
+    <color name="green">#FF00FF00</color>
+    <color name="white">#FFFFFF</color>
+    <color name="title_bg">#dc291e</color>
+    <color name="bule">#43a7bf</color>
+    <color name="transparent">#00000000</color>
+    <color name="buttonEffect">#80666666</color>
+    <color name="buttonEffect_null">#00FF0000</color>
+    <color name="lucensy">#00000001</color>
+    <color name="translucency">#e0000000</color>
+    <color name="orange">#ffa500</color>
+    <color name="black">#000000</color>
+    <!-- <color name="red">#bf242a</color> -->
+    <color name="light_orange">#fcb75c</color>
+    <color name="alpha_00">#00000000</color>
+    <color name="LightGray">#D3D3D3</color>
+    <color name="trans">#50000000</color>
+    <color name="red">#e94745</color>
+    <color name="background">#e5e5e5</color>
+    <color name="transparent_background">#50000000</color>
+    <color name="Grey">#BEBEBE</color>
+
+    <drawable name="titleRed">#e94745</drawable>
+    <drawable name="red">#e94745</drawable>
+    <drawable name="darkgreen">#008B00</drawable>
+    <drawable name="darkred">#c01920</drawable>
+
+    <color name="black_overlay">#66000000</color>
+
+</resources>

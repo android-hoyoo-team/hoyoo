@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+<!--     <RelativeLayout -->
+<!--         android:layout_width="fill_parent" -->
+<!--         android:layout_height="48dp" -->
+<!--         android:layout_alignParentTop="true" -->
+<!--         android:layout_centerHorizontal="true" -->
+<!--         android:layout_marginTop="0dp" -->
+<!--         android:layout_marginBottom="0dp" -->
+<!--         android:layout_marginLeft="0dp" -->
+<!--         android:layout_marginRight="0dp" -->
+<!--         android:background="#ffffff" > -->
+
+<!--         <ImageButton -->
+<!--         android:id="@+id/daohang_line" -->
+<!--         android:layout_width="fill_parent" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignParentTop="true" -->
+<!--         android:layout_marginTop="47dp" -->
+<!--         android:background="#00000000" -->
+<!--         android:src="@drawable/d25" />  -->
+            
+<!--         <ImageButton -->
+<!--             android:id="@+id/yaoqing_write" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="40dp" -->
+<!--             android:layout_alignParentRight="true" -->
+<!--             android:layout_centerVertical="true" -->
+<!--             android:layout_marginRight="8dp" -->
+<!--             android:background="#00000000" -->
+<!--             android:src="@drawable/d26" /> -->
+
+<!--         <ImageButton -->
+<!--             android:id="@+id/yaoqing_back" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="40dp" -->
+<!--             android:layout_alignParentLeft="true" -->
+<!--             android:layout_centerVertical="true" -->
+<!--             android:layout_marginLeft="8dp" -->
+<!--             android:background="#00000000" -->
+<!--             android:src="@drawable/d12" /> -->
+
+<!--     </RelativeLayout> -->
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#f0f0f0"
+        android:orientation="vertical" >
+
+        <com.viewflow.xlistviewfresh.XListView
+            android:id="@+id/android:list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+			android:footerDividersEnabled="true"
+            android:cacheColorHint="#00000000" >
+        </com.viewflow.xlistviewfresh.XListView>
+    </LinearLayout>
+
+</LinearLayout>

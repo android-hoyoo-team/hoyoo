@@ -1,0 +1,14 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="drawable_ring_size">2dip</dimen>
+	
+    <!-- 字体大小 -->
+    <dimen name="textsize1">25dp</dimen>
+    
+    <dimen name="benifit_item_height">48dp</dimen>
+    <dimen name="child_achievement_height">56dp</dimen>
+    <dimen name="hoyoo_item_height">72dp</dimen>
+</resources>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/red"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/image_button_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bt_02_nor" 
+                android:src="@drawable/left_image_button"/>
+
+            <TextView
+                android:id="@+id/title_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/union_news_image"
+                android:layout_width="match_parent"
+                android:layout_height="148dp"
+                android:background="@drawable/union_news_image"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/union_news_topic_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/union_news_image"
+                android:background="@color/transparent_background"
+                android:padding="5dp"
+                android:singleLine="true"
+                android:text="源于几个青年对于世界的热爱-TOWERS第一次宣讲会专访"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"  
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"         
+            android:orientation="horizontal" >
+
+            <ImageView 
+                android:id="@+id/union_news_author_image"
+                android:src="@drawable/union_news_author"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                />
+            <TextView 
+                android:id="@+id/union_news_author_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_horizontal"
+                android:text="@string/union_news_author_name"/>
+            <TextView 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="5dp"
+                android:text="发表于"
+                android:textSize="9sp"
+                />
+            <TextView 
+                android:id="@+id/union_news_time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="5dp"
+                android:text="@string/union_news_time"
+                />
+        </LinearLayout>
+        <TextView 
+            android:id="@+id/union_news_content_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="10sp"
+            />"
+    </LinearLayout>
+
+</ScrollView>

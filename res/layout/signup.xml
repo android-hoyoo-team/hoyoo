@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+	
+	<FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+
+    </FrameLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+     <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_full_01" /> 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/wr_phone_1_01" >
+
+            <TextView
+                android:id="@+id/blankView"
+                android:layout_width="72dp"
+                android:layout_height="match_parent" />
+
+            <EditText
+                android:id="@+id/phonenumsign"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:cursorVisible="true"
+                android:ems="10"
+                android:textSize="15sp"
+                android:hint="your phonenumber"
+                android:inputType="phone" ><!-- 输入电话号码 -->
+
+                <requestFocus />
+            </EditText>
+
+             <ImageButton
+                android:id="@+id/phonesign"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="41dp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:src="@drawable/bt_19_nor_01"
+                android:background="@null" />
+        </LinearLayout>
+
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/wr_code_1_01" >
+
+            <TextView
+                android:id="@+id/blankView2"
+                android:layout_width="72dp"
+                android:layout_height="match_parent" />
+
+            <EditText
+                android:id="@+id/passwordsign_text"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:cursorVisible="true"
+                android:ems="10"
+                android:textSize="15sp"
+                android:hint="your password"
+                android:inputType="textPassword" ><!-- 输入密码 -->
+            </EditText>
+
+             <ImageButton
+                android:id="@+id/pwdsign"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="41dp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:src="@drawable/bt_19_nor_01"
+                android:background="@null" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/wr_num_1_01" ><!-- 输入验证码 -->
+
+            <TextView
+                android:id="@+id/blankView3"
+                android:layout_width="72dp"
+                android:layout_height="match_parent" />
+
+            <EditText
+                android:id="@+id/security_code"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:cursorVisible="true"
+                android:ems="10"
+                android:textSize="15sp"
+                android:hint="your securitycode"
+                android:inputType="text" >
+            </EditText>
+
+            <ImageButton
+                android:id="@+id/security_codesign"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="41dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/bt_28_press_01"
+                android:gravity="center"
+               android:background="@null"
+                 />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/signaccount"
+            android:layout_width="224dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/b05" />
+
+        <LinearLayout
+            android:layout_width="224dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical" >
+
+            <CheckBox
+                android:id="@+id/agree_checkbox"
+                style="@style/MyCheckBox"
+                android:layout_width="84dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:checked="true"
+                android:layout_gravity="left|top"
+                android:paddingLeft="5dip"
+                android:text="I agree with this protocol ."
+                android:textSize="6sp" />
+
+            <TextView
+                android:id="@+id/testtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.23"
+                android:text="TextView" />
+
+        </LinearLayout> 
+    </LinearLayout>
+
+</RelativeLayout>

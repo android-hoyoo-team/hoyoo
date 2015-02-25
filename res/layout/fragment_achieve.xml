@@ -1,0 +1,194 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ADADAD"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="fill_parent"
+            android:layout_height="16dp"
+            android:background="#FFFFFF"
+            android:paddingLeft="10dp"
+            android:textSize="10sp"
+            android:gravity="center_vertical"
+            android:text="@string/achievement_title1"
+            android:textColor="#ADADAD" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/imageView11"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/d06a" />
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:text="@string/achievement1"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/imageView12"
+                             android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/d06a" />
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:text="@string/achievement2"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/imageView13"
+                             android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/d06a" />
+
+                        <TextView
+                            android:id="@+id/textView13"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:text="@string/achievement3"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical" >
+                        <ImageView
+                            android:id="@+id/imageView14"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/d06a" />
+                        <TextView
+                            android:id="@+id/textView14"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:text="@string/achievement4"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/imageView15"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="@drawable/more_achievement" />
+
+                        <TextView
+                            android:id="@+id/textView15"
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:text="更多"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="fill_parent"
+            android:layout_height="16dp"
+            android:layout_marginTop="1dp"
+            android:background="#FFFFFF"
+            android:textSize="10sp"
+            android:text="@string/achievement_title2"
+            android:textColor="#ADADAD" />
+
+        <ListView
+            android:id="@+id/main_list2"
+            android:layout_width="fill_parent"
+            android:layout_height="195dp"
+            android:layout_gravity="start"
+            android:background="#FFFFFF"
+            android:cacheColorHint="#00000000"
+            android:choiceMode="singleChoice"
+            android:divider="#ADADAD"
+            android:dividerHeight="1dp" />
+        <LinearLayout
+            android:layout_height="190dp"
+            android:layout_width="match_parent"
+            android:id="@+id/id1">
+        <com.ryg.expandable.ui.PinnedHeaderExpandableListView
+            android:id="@+id/expandablelist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:cacheColorHint="@null"
+            android:childDivider="@color/Grey"
+            android:childIndicatorLeft="0dp"
+            android:divider="@color/Grey"
+            android:dividerHeight="1dp"
+            android:groupIndicator="@null"
+            android:scrollbarAlwaysDrawHorizontalTrack="false" >
+        </com.ryg.expandable.ui.PinnedHeaderExpandableListView>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

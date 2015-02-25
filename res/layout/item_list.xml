@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:orientation="horizontal" android:background="#ffffff"  android:layout_marginBottom="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="100"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="#ffffff"
+            android:descendantFocusability="blocksDescendants" >
+
+            <ImageView
+                android:id="@+id/image_us_photo"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="0dp"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:id="@+id/text_us_name"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_alignTop="@+id/image_us_photo"
+                android:layout_marginLeft="2dp"
+                android:layout_toRightOf="@+id/image_us_photo"
+                android:text="他亲生父亲"
+                android:textColor="#000000"
+                android:textSize="11dip" />
+
+            <TextView
+                android:id="@+id/cheng_jiu"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:layout_alignBottom="@+id/image_us_photo"
+                android:layout_alignLeft="@+id/text_us_name"
+                android:layout_marginBottom="0dp"
+                android:text="成就大师"
+                android:textSize="8dip" />
+
+            <TextView
+                android:id="@+id/text_fabu_date"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:layout_alignBottom="@+id/image_us_photo"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="0dp"
+                android:text="2014年11月11日   11:11"
+                android:textSize="8dip" />
+
+            <TextView
+                android:id="@+id/textv_fabu_date"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:layout_alignBottom="@+id/image_us_photo"
+                android:layout_marginBottom="0dp"
+                android:layout_toLeftOf="@+id/text_fabu_date"
+                android:text="发布于："
+                android:textSize="8dip" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:layout_alignLeft="@+id/image_us_photo"
+                android:layout_below="@+id/image_us_photo"
+                android:layout_marginTop="3dp"
+                android:text="邀请信息:"
+                android:textColor="#000000"
+                android:textSize="8dip" />
+
+            <TextView
+                android:id="@+id/text_yaoq_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView3"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/textView3"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="2dp"
+                android:text="周六晚上小伙伴们来蜗牛咖啡厅打狼人！有妹子！饮料免费，快快来呦~"
+                android:textColor="#000000"
+                android:textSize="12dip" />
+
+            <TextView
+                android:id="@+id/textv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_alignLeft="@+id/text_yaoq_info"
+                android:layout_below="@+id/text_yaoq_info"
+                android:layout_marginTop="3dp"
+                android:text="日期:"
+                android:textSize="9dip" />
+
+            <TextView
+                android:id="@+id/text_yaoq_date"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_below="@+id/text_yaoq_info"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@+id/textv_date"
+                android:text="2014年10月20日 星期日   "
+                android:textSize="9dp" />
+
+            <TextView
+                android:id="@+id/text_yaoq_time"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/text_yaoq_info"
+                android:layout_marginTop="3dp"
+                android:text="18:30-20:30"
+                android:textSize="9dp" />
+
+            <TextView
+                android:id="@+id/textv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_below="@+id/text_yaoq_info"
+                android:layout_marginTop="3dp"
+                android:layout_toLeftOf="@+id/text_yaoq_time"
+                android:text="时间:"
+                android:textSize="9dp" />
+
+            <TextView
+                android:id="@+id/textv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_alignLeft="@+id/text_yaoq_info"
+                android:layout_below="@+id/textv_date"
+                android:layout_marginTop="3dp"
+                android:text="地址:"
+                android:textSize="9dip" />
+
+            <TextView
+                android:id="@+id/text_yaoq_address"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_below="@+id/textv_date"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@+id/textv_address"
+                android:text="南门"
+                android:textSize="9dp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="256"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/canjia_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="100dp" />
+        <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="14dp"
+                android:gravity="center_horizontal"
+              	android:textColor="@color/red"
+                android:text="点击参与" 
+                android:textSize="11dp" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="14dp"
+                android:gravity="center_horizontal"
+                android:textColor="@color/red"
+                android:text="10/20"
+                android:textSize="11dp" />
+    </LinearLayout>
+
+</LinearLayout>
