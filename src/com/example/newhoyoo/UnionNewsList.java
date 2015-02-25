@@ -58,13 +58,8 @@ public class UnionNewsList extends Activity {
 		/*布局文件listitem.xml中组件的id    ,R.id.itemContent布局文件的各组件分别映射到HashMap的各元素上，完成适配*/   
 
 		newsListView.setAdapter(mySimpleAdapter); 
-		
-		 android.view.ViewGroup.LayoutParams lp = newsListView.getLayoutParams();
-	        int height = getResources().getDimensionPixelSize(R.dimen.hoyoo_item_height);
-	        int divider = newsListView.getDividerHeight();
-	        lp.height = (height+divider)*unionNewsList.size();
-	        
-	    newsListView.setOnItemClickListener(new OnItemClickListener(){
+
+		newsListView.setOnItemClickListener(new OnItemClickListener(){
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,

@@ -54,11 +54,6 @@ public class unionInfo extends Activity {
            
 		ListView benifitListView = (ListView)findViewById(R.id.benifit_list);
 		benifitListView.setAdapter(mySimpleAdapter);   
-		
-        android.view.ViewGroup.LayoutParams lp =benifitListView.getLayoutParams();
-        int height = getResources().getDimensionPixelSize(R.dimen.benifit_item_height);
-        int divider = benifitListView.getDividerHeight();
-        lp.height = (height+divider)*benifitList.size();
 	}
 	public void back(){
 		this.finish();

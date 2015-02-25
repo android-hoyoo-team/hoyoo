@@ -32,21 +32,10 @@ public class comment extends Activity {
 
 		this.aq.id(R.id.button1).background(R.drawable.buttoneffect_red);
 		this.aq.id(R.id.button1).clicked(this, "edit");
-		/*
-    	this.aq.id(R.id.changeMyPic).background(R.drawable.layerbuttoneffect);
+		
+    /*	this.aq.id(R.id.changeMyPic).background(R.drawable.layerbuttoneffect);
     	this.aq.id(R.id.changeMyPic).clicked(this, "changemypic");
-
-    	this.aq.id(R.id.text_name).text("liuzheng");
-    	this.aq.id(R.id.text_sex).text("male");
-    	this.aq.id(R.id.text_school).text("digitalmedia");
-    	this.aq.id(R.id.text_birthday).text("XXXX");
-    	this.aq.id(R.id.text_phonenum).text("XXXXXXXXXX");
-
-    	this.aq.id(R.id.text_union).text("singingsong");
-    	this.aq.id(R.id.text_unionlvl).text("99");
-    	this.aq.id(R.id.text_unionrole).text("boss");
-    	this.aq.id(R.id.text_achievelvl).text("top");
-		 */
+*/
 	}
 
 	public void edit()

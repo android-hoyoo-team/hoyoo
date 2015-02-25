@@ -1,296 +1,283 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true" >
+    android:background="#ADADAD"
+    android:orientation="vertical" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#ADADAD"
-        android:orientation="vertical" >
+        android:layout_height="48dp"
+        android:background="@color/red"
+        android:gravity="center_vertical" >
 
-        <RelativeLayout
+        <ImageButton
+            android:id="@+id/imageButton_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bt_02_nor" />
+
+        <TextView
+            android:id="@+id/textView1"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="详细信息"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
             android:background="@color/red"
-            android:gravity="center_vertical" >
+            android:text="编辑"
+            android:textColor="@color/white" />
+    </RelativeLayout>
 
-            <ImageButton
-                android:id="@+id/imageButton_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bt_02_nor" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true" >
 
-            <TextView
-                android:id="@+id/textView1"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="详细信息"
-                android:textSize="17sp"
-                android:textColor="@color/white" />
-			
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@color/red"
-                android:text="编辑"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
+                android:layout_height="30dp"
+                android:background="@color/white" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="@color/white" >
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="姓名"
+                    android:textColor="#ADADAD" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:text="姓名"
-                android:textColor="#ADADAD"
-                 />
+                <TextView
+                    android:id="@+id/text_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.84"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textColor="#ADADAD" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/text_name"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.84"
-                android:gravity="center_vertical"
-                android:text="TextView"
-                android:textColor="#ADADAD"
-                 />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/white" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="性别"
+                    android:textColor="#ADADAD" />
+
+                <TextView
+                    android:id="@+id/text_sex"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.84"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textColor="#ADADAD" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/white" >
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="所在院系"
+                    android:textColor="#ADADAD" />
+
+                <TextView
+                    android:id="@+id/text_school"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.84"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textColor="#ADADAD" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/white" >
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="生日"
+                    android:textColor="#ADADAD" />
+
+                <TextView
+                    android:id="@+id/text_birthday"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.84"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textColor="#ADADAD" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/white" >
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="联系方式"
+                    android:textColor="#ADADAD" />
+
+                <TextView
+                    android:id="@+id/text_phonenum"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.84"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textColor="#ADADAD" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="7dp"
+                android:background="@color/white" >
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="所在公会"
+                    android:textColor="#ADADAD" />
+
+                <TextView
+                    android:id="@+id/text_union"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.84"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textColor="#ADADAD" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/white" >
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="公会等级"
+                    android:textColor="#ADADAD" />
+
+                <TextView
+                    android:id="@+id/text_unionlvl"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.84"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textColor="#ADADAD" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/white" >
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="担任职位"
+                    android:textColor="#ADADAD" />
+
+                <TextView
+                    android:id="@+id/text_unionrole"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.84"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textColor="#ADADAD" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/white" >
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="15dp"
+                    android:text="成就等级"
+                    android:textColor="#ADADAD" />
+
+                <TextView
+                    android:id="@+id/text_achievelvl"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.84"
+                    android:gravity="center_vertical"
+                    android:text="TextView"
+                    android:textColor="#ADADAD" />
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="1dp"
-            android:background="@color/white" >
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:text="性别"
-                android:textColor="#ADADAD"
-                 />
-
-            <TextView
-                android:id="@+id/text_sex"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.84"
-                android:gravity="center_vertical"
-                android:text="TextView"
-                android:textColor="#ADADAD"
-                 />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="1dp"
-            android:background="@color/white" >
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:text="所在院系"
-                android:textColor="#ADADAD"
-                 />
-
-            <TextView
-                android:id="@+id/text_school"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.84"
-                android:gravity="center_vertical"
-                android:text="TextView"
-                android:textColor="#ADADAD"
-                 />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="1dp"
-            android:background="@color/white" >
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:text="生日"
-                android:textColor="#ADADAD"
-                 />
-
-            <TextView
-                android:id="@+id/text_birthday"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.84"
-                android:gravity="center_vertical"
-                android:text="TextView"
-                android:textColor="#ADADAD"
-                 />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="1dp"
-            android:background="@color/white" >
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:text="联系方式"
-                android:textColor="#ADADAD"
-                 />
-
-            <TextView
-                android:id="@+id/text_phonenum"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.84"
-                android:gravity="center_vertical"
-                android:text="TextView"
-                android:textColor="#ADADAD"
-                 />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="7dp"
-            android:background="@color/white" >
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:text="所在公会"
-                android:textColor="#ADADAD"
-                 />
-
-            <TextView
-                android:id="@+id/text_union"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.84"
-                android:gravity="center_vertical"
-                android:text="TextView"
-                android:textColor="#ADADAD"
-                 />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="1dp"
-            android:background="@color/white" >
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:text="公会等级"
-                android:textColor="#ADADAD"
-                 />
-
-            <TextView
-                android:id="@+id/text_unionlvl"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.84"
-                android:gravity="center_vertical"
-                android:text="TextView"
-                android:textColor="#ADADAD"
-                 />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="1dp"
-            android:background="@color/white" >
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:text="担任职位"
-                android:textColor="#ADADAD"
-                 />
-
-            <TextView
-                android:id="@+id/text_unionrole"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.84"
-                android:gravity="center_vertical"
-                android:text="TextView"
-                android:textColor="#ADADAD"
-                 />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="1dp"
-            android:background="@color/white" >
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:paddingLeft="15dp"
-                android:text="成就等级"
-                android:textColor="#ADADAD"
-                 />
-
-            <TextView
-                android:id="@+id/text_achievelvl"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2.84"
-                android:gravity="center_vertical"
-                android:text="TextView"
-                android:textColor="#ADADAD"
-                 />
-        </LinearLayout>
-    </LinearLayout>
-
-</ScrollView>
+    </ScrollView>
+</LinearLayout>
