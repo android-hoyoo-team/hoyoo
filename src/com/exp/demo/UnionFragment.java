@@ -26,7 +26,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-public class NeaerFragment extends Fragment {
+public class UnionFragment extends Fragment {
     
 	AQuery aq;
 	/************************************************************/
@@ -39,7 +39,7 @@ public class NeaerFragment extends Fragment {
     /************************************************************/
    
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_near, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_union, container, false);
 		this.aq = new AQuery(this.getActivity(),rootView);
 		return rootView;
 	}

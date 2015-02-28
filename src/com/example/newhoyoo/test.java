@@ -35,7 +35,7 @@ public class test extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.fragment_near);
+        setContentView(R.layout.fragment_union);
         this.aq = new AQuery(this);
         
         ListView mylist;

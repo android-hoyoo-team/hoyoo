@@ -29,7 +29,7 @@ import android.widget.Toast;
 import com.exp.demo.AchieveFragment;
 import com.exp.demo.InviteFragment;
 import com.exp.demo.MineFragment;
-import com.exp.demo.NeaerFragment;
+import com.exp.demo.UnionFragment;
 import com.exp.demo.ResideMenu;
 import com.exp.demo.ResideMenuItem;
 import com.exp.demo.SettingFragment;
@@ -47,7 +47,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 
 	private hooyoFragment hooyofragment;
 	private SettingFragment settingFragment;
-	private NeaerFragment nearFragment;
+	private UnionFragment nearFragment;
 	private MineFragment mineFragment;
 
 	private InviteFragment invitefragment;
@@ -261,7 +261,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 			tx.setText("TOWERS");
 			itemAssociation.setBackgroundResource(R.drawable.left_item_selected_bg);
 			if (nearFragment == null) {
-				nearFragment = new NeaerFragment();
+				nearFragment = new UnionFragment();
 				transaction.add(R.id.main_fragment, nearFragment);
 			} else {
 				transaction.show(nearFragment);

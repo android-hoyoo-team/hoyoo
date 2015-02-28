@@ -36,7 +36,7 @@
 		    android:layout_height="fill_parent"
 		    android:layout_marginLeft="2dp"
 		    android:gravity="center_vertical"
-		    android:textColor="@color/yellow"
+		    android:textColor="@color/orange"
 		    android:textSize="12sp" />
 		<TextView
 		    android:id="@+id/describe_item"

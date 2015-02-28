@@ -22,7 +22,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity 
-            android:name="com.example.newhoyoo.MainActivity"
+            android:name="com.example.newhoyoo.Main"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.newhoyoo.Main">
+            android:name="com.example.newhoyoo.MainActivity">
             
         </activity>
         <activity android:name="com.example.newhoyoo.signup" >
@@ -60,7 +60,7 @@
             android:label="@string/title_activity_pinglun" >
         </activity>
         <activity
-            android:name="com.example.newhoyoo.Invent_zhuanfa"
+            android:name="com.example.newhoyoo.InventTranspond"
             android:label="@string/title_activity_invent_zhuanfa" >
         </activity>
         <activity 

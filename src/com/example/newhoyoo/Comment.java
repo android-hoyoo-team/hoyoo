@@ -14,13 +14,13 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.os.Build;
 
-public class Pinglun extends Activity {
+public class Comment extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_pinglun);
+		setContentView(R.layout.activity_comment);
 		AQuery aq = new AQuery(this);
 		aq.id(R.id.pinglun_back).clicked(this,"back");
 		aq.id(R.id.fabu_button).clicked(this, "fabu");

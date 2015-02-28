@@ -128,7 +128,7 @@ public class YaoqingActivity extends Activity {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			Intent intent=new Intent();
-			intent.setClass(YaoqingActivity.this, Invent_zhuanfa.class);
+			intent.setClass(YaoqingActivity.this, InventTranspond.class);
 			YaoqingActivity.this.startActivity(intent);
 		}
     	
@@ -139,10 +139,9 @@ public class YaoqingActivity extends Activity {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			Intent intent=new Intent();
-			intent.setClass(YaoqingActivity.this, Pinglun.class);
+			intent.setClass(YaoqingActivity.this, Comment.class);
 			YaoqingActivity.this.startActivity(intent);
 		}
-    	
     }
 /*
     @Override

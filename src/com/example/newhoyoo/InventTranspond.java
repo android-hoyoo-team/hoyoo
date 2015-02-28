@@ -14,21 +14,21 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.os.Build;
 
-public class Invent_zhuanfa extends Activity {
+public class InventTranspond extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.invent_zhuanfa);
+		setContentView(R.layout.invent_transpond);
 		AQuery aq = new AQuery(this);
 		aq.id(R.id.invent_back).clicked(this, "back");
-		aq.id(R.id.fabu_button).clicked(this, "fabu");
+		aq.id(R.id.release_button).clicked(this, "release");
 	}
 	public void back(){
 		this.finish();
 	}
-	public void fabu(){
+	public void release(){
 		
 	}
 }
