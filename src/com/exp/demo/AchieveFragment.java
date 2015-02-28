@@ -1,38 +1,30 @@
 package com.exp.demo;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import com.example.newhoyoo.R;
 import com.exp.demo.Group;
-import com.exp.demo.People;
-import com.huyoo.utils.StringHelper;
 import com.ryg.expandable.ui.PinnedHeaderExpandableListView;
 import com.ryg.expandable.ui.StickyLayout;
 import com.ryg.expandable.ui.PinnedHeaderExpandableListView.OnHeaderUpdateListener;
 import com.ryg.expandable.ui.StickyLayout.OnGiveUpTouchEventListener;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 //import android.widget.AbsListView.LayoutParams;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -49,7 +41,6 @@ public class AchieveFragment extends Fragment implements
     private ArrayList<Group> groupList;
     private ArrayList<List<Achievement>> childList;
 
-    private static float  density=1.0f;
     private MyexpandableListAdapter adapter;
     /************************************************************/
 	/** Called when the activity is first created. */   
@@ -61,14 +52,8 @@ public class AchieveFragment extends Fragment implements
     /************************************************************/
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    	//屏幕密度初始化，以后要单独列出
-    	DisplayMetrics metrics = new DisplayMetrics();
-		getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		this.density = metrics.density;
-    	
-    	
-		View rootView = inflater.inflate(R.layout.fragment_achieve, container, false);
 		
+		View rootView = inflater.inflate(R.layout.fragment_achieve, container, false);
 		return rootView;
 	}
     @Override
