@@ -2,36 +2,36 @@ package com.huyoo.entity;
 
 public class Application {
 	
-	private String id;
+	private int id;
 	
-	private String applicantId;
+	private Person applicant;
 	
-	private String unionId;
+	private Union union;
 	
 	private boolean isPassed;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getApplicantId() {
-		return applicantId;
+	public Person getApplicant() {
+		return applicant;
 	}
 
-	public void setApplicantId(String applicantId) {
-		this.applicantId = applicantId;
+	public void setApplicant(Person applicant) {
+		this.applicant = applicant;
 	}
 
-	public String getUnionId() {
-		return unionId;
+	public Union getUnion() {
+		return union;
 	}
 
-	public void setUnionId(String unionId) {
-		this.unionId = unionId;
+	public void setUnion(Union union) {
+		this.union = union;
 	}
 
 	public boolean isPassed() {
