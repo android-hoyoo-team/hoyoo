@@ -49,12 +49,6 @@
                             android:textStyle="bold"
                            />
 
-                  <!--  <ImageView
-                            android:id="@+id/imageView2"
-                            android:layout_width="20dp"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/left_icon_man" />  -->
                           <TextView
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
@@ -120,7 +114,6 @@
                     android:background="@color/white"
                     android:orientation="vertical" >
 
-                    <!-- android:background="@color/white" -->
 
                     <TextView
                         android:id="@+id/textView1"

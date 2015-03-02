@@ -55,25 +55,31 @@
             		    	android:scaleType="fitXY"
 	            		    android:src="@drawable/head_portrait_02" />
 	
-			            <LinearLayout
+			            <RelativeLayout
     		        	    android:layout_width="wrap_content"
-        			        android:layout_height="match_parent"
-        			        android:layout_marginTop="48dp"
-            		    	android:orientation="vertical" >
+        			        android:layout_height="60dp"
+        			        android:layout_marginLeft="7dp"
+        			        android:layout_marginTop="48dp">
 
 		               		<TextView
         	        		    android:id="@+id/textView1"
             	        		android:layout_width="wrap_content"
                 	    		android:layout_height="wrap_content"
+                	    		android:textSize="25sp"
+                	    		android:textColor="@color/white"
                     			android:text="莫小千" />
-
-			              <!--   <ImageView
-    		        	        android:id="@+id/imageView4"
-        		        	    android:layout_width="wrap_content"
-            		        	android:layout_height="wrap_content"
-                		    	android:src="@drawable/abc_ab_transparent_dark_holo" /> -->
-
-			            </LinearLayout>
+		               		
+		               		<TextView 
+		               		    android:id="@+id/achievement_title"
+		               		    android:layout_height="12dp"
+		               		    android:layout_width="72dp"
+		               		    android:layout_below="@id/textView1"
+		               		    android:layout_marginTop="10dp"
+		               		    android:background="@drawable/di_001"
+		               		    android:gravity="center"
+		               		    android:textSize="6sp"
+		               		    android:text="成就大师"/>
+			            </RelativeLayout>
 
         			</LinearLayout>
 
@@ -84,12 +90,33 @@
         				android:layout_marginTop="7dp"
         				android:layout_marginLeft="40dp"
         				android:src="#c0c0c0" />
-
+			        <LinearLayout 
+			            android:layout_height="wrap_content"
+			            android:layout_width="206dp"
+			            android:layout_marginLeft="40dp"
+			            android:paddingLeft="10dp"
+			            android:paddingTop="5dp"
+			            android:paddingBottom="5dp"
+			            android:gravity="center_horizontal"
+			            android:orientation="horizontal">
+					<TextView 
+					    android:layout_height="wrap_content"
+					    android:layout_width="wrap_content"
+					    android:textColor="@color/white"
+					    android:textSize="12sp"
+					    android:text="所属公会："/>
+					<TextView 
+					    android:id="@+id/union_name"
+					    android:layout_height="wrap_content"
+					    android:layout_width="match_parent"
+					    android:textColor="@color/white"
+					     android:textSize="12sp"
+					    android:text="TOWERS"/>
+					</LinearLayout>
 			        <ImageView
         				android:id="@+id/imageView2"
         				android:layout_width="206dp"
         				android:layout_height="wrap_content"
-        				android:layout_marginTop="24dp"
         				android:layout_marginLeft="40dp"
         				android:src="#c0c0c0" />
 
