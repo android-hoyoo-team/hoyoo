@@ -80,7 +80,7 @@ public class Application {
 	 *            如果true则重新登陆，如果false：loginInfo不为空则返回且不重新登陆，否则从新登陆过
 	 * @return
 	 */
-	public static LoginInfo getLoginInfo(Map<String, Object> param,
+	public static LoginInfo login(Map<String, Object> param,
 			boolean reLogin) {
 		if (reLogin || loginInfo == null) {
 			/*
@@ -98,7 +98,7 @@ public class Application {
 	 * @return
 	 */
 	public static LoginInfo getLoginInfo() {
-		return getLoginInfo(null, false);
+		return login(null, false);
 	}
 	/**
 	 * 根据用户号码登陆，如果用户已经登陆则返回已登录信息，如果用户没有登陆则执行登陆操作后返回登陆信息
@@ -107,10 +107,10 @@ public class Application {
 	 *            用户电话号码
 	 * @return
 	 */
-	public static LoginInfo getLoginInfo(String PhoneNum) {
+	public static LoginInfo login(String PhoneNum) {
 		Map<String, Object> p = new HashMap<String, Object>();
 		p.put("phoneNum", PhoneNum);
-		return getLoginInfo(p, false);
+		return login(p, false);
 	}
 
 	private static LoginInfo _login(Map<String, Object> param) {
