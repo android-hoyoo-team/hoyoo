@@ -15,7 +15,22 @@ public class ELevelService {
 	
 	public ELevel getELevelByID(int id)
 	{
-		return null;
+		ELevel level = null;
+		if(id == 1)
+		{
+			level = new ELevel();
+			level.setName("成就大魔导师");
+			level.setUpgradeExp(3000);
+			level.setType("person");
+		}
+		if(id == 2)
+		{
+			level = new ELevel();
+			level.setName("超级工会");
+			level.setUpgradeExp(13000);
+			level.setType("union");
+		}
+		return level;
 	}
 	public List<ELevel> getAllELevels()
 	{

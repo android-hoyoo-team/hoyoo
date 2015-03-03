@@ -1,6 +1,12 @@
 package com.huyoo.entity;
 
-public class EComment {
+import java.io.Serializable;
+
+public class EComment implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1518955685602466137L;
 	private int id;
 	private int personId;
 	private long time;

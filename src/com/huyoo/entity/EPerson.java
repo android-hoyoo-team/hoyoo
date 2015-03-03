@@ -1,12 +1,21 @@
 package com.huyoo.entity;
 
-public class EPerson {
+import java.io.Serializable;
+
+public class EPerson implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7180444110491055392L;
+
 	private int id;
 	
 	private String name;
 	
 	private String sex;
+	
+	private String school;
 	
 	private String department;
 	
@@ -130,6 +139,14 @@ public class EPerson {
 
 	public void setCurrentExp(int currentExp) {
 		this.currentExp = currentExp;
+	}
+
+	public String getSchool() {
+		return school;
+	}
+
+	public void setSchool(String school) {
+		this.school = school;
 	}
 	
 }

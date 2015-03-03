@@ -1,6 +1,12 @@
 package com.huyoo.entity;
 
-public class EUnion {
+import java.io.Serializable;
+
+public class EUnion implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 752411840091735415L;
 	private int id;
 	private String name;
 	private int chairmanId;

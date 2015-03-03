@@ -1,6 +1,12 @@
 package com.huyoo.entity;
 
-public class EAchievement {
+import java.io.Serializable;
+
+public class EAchievement implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3786417390498109919L;
 	private int id;
 	private String name;
 	private int exp;

@@ -1,7 +1,14 @@
 package com.huyoo.entity;
 
-public class ELetter {
+import java.io.Serializable;
+
+public class ELetter implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3896479489057896238L;
+
 	private int id;
 	
 	private int personIdFrom;

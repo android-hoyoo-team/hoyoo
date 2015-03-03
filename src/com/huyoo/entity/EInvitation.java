@@ -1,6 +1,12 @@
 package com.huyoo.entity;
 
-public class EInvitation {
+import java.io.Serializable;
+
+public class EInvitation implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4185529794547215472L;
 	private int id;
 	private int personId;
 	private long activityTime;

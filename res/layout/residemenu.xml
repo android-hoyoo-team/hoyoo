@@ -47,13 +47,13 @@
         	    		android:layout_height="wrap_content" >
 		
 	    		        <ImageView
-    	    		        android:id="@+id/imageView3"
+    	    		        android:id="@+id/head_imageview"
         	    		    android:layout_width="60dp"
             		    	android:layout_height="60dp"
             		    	android:layout_marginTop="48dp"
             		    	android:layout_marginLeft="40dp"
             		    	android:scaleType="fitXY"
-	            		    android:src="@drawable/head_portrait_02" />
+	            		    android:src="@drawable/head_portrait_01" />
 	
 			            <RelativeLayout
     		        	    android:layout_width="wrap_content"
@@ -62,18 +62,18 @@
         			        android:layout_marginTop="48dp">
 
 		               		<TextView
-        	        		    android:id="@+id/textView1"
-            	        		android:layout_width="wrap_content"
+        	        		    android:id="@+id/name_textview"
+            	        		android:layout_width="72dp"
                 	    		android:layout_height="wrap_content"
                 	    		android:textSize="25sp"
                 	    		android:textColor="@color/white"
                     			android:text="莫小千" />
 		               		
 		               		<TextView 
-		               		    android:id="@+id/achievement_title"
+		               		    android:id="@+id/title_textview"
 		               		    android:layout_height="12dp"
 		               		    android:layout_width="72dp"
-		               		    android:layout_below="@id/textView1"
+		               		    android:layout_below="@id/name_textview"
 		               		    android:layout_marginTop="10dp"
 		               		    android:background="@drawable/di_001"
 		               		    android:gravity="center"
@@ -106,7 +106,7 @@
 					    android:textSize="12sp"
 					    android:text="所属公会："/>
 					<TextView 
-					    android:id="@+id/union_name"
+					    android:id="@+id/union_textview"
 					    android:layout_height="wrap_content"
 					    android:layout_width="match_parent"
 					    android:textColor="@color/white"

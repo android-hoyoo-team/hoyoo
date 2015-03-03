@@ -21,7 +21,7 @@
                 android:background="@color/white" >
 
                 <ImageView
-                    android:id="@+id/imageView1"
+                    android:id="@+id/head_imageview"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:layout_marginLeft="12dp"
@@ -42,7 +42,7 @@
                         android:layout_height="wrap_content" >
 
                         <TextView
-                            android:id="@+id/textView7"
+                            android:id="@+id/name_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/user_name"
@@ -50,6 +50,7 @@
                            />
 
                           <TextView
+                              android:id="@+id/sex_textview"
                               android:layout_width="wrap_content"
                               android:layout_height="wrap_content"
                               android:textColor="@color/red"
@@ -59,7 +60,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/title_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="成就大师"
@@ -70,8 +71,7 @@
 				    android:layout_width="wrap_content"
 				    android:layout_height="match_parent"
 				    android:layout_weight="1"
-				    android:layout_marginTop="6dp"
-				    >
+				    android:layout_marginTop="6dp">
                 <TextView
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
@@ -80,13 +80,13 @@
                     android:text="公会:" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/union_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/union_name" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/union_position_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="7dp"	
@@ -94,7 +94,7 @@
                     android:text="会长" />
 			</LinearLayout>
                 <ImageView
-                    android:id="@+id/imageView3"
+                    android:id="@+id/skip_to_detail_imageview"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:scaleType="centerInside"
@@ -116,7 +116,7 @@
 
 
                     <TextView
-                        android:id="@+id/textView1"
+                        android:id="@+id/attention_textview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
@@ -143,7 +143,7 @@
                     <!-- android:background="@color/white" -->
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/fans_textview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
@@ -170,7 +170,7 @@
                     <!-- android:background="@color/white" -->
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/achievement_textview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
@@ -230,7 +230,7 @@
                         android:thumb="@drawable/seekbar_thumb_01" />
 
                     <TextView
-                        android:id="@+id/textView14"
+                        android:id="@+id/achievement_progress_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/blue"
@@ -276,7 +276,7 @@
                         android:thumb="@drawable/seekbar_thumb_02" />
 
                     <TextView
-                        android:id="@+id/textView15"
+                        android:id="@+id/vp_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/red"
@@ -292,48 +292,43 @@
             android:orientation="vertical" >
 
             <ImageButton
-                android:id="@+id/button1"
+                android:id="@+id/invitation_imagebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                  android:scaleType="fitXY"
                 android:background="@drawable/bt_22_nor_01" />
-            <!-- android:src="@drawable/bt_22_nor_01"	android:background="#00000000" -->
 
             <ImageButton
-                android:id="@+id/button2"
+                android:id="@+id/response_imagebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                  android:scaleType="fitXY"
                 android:background="@drawable/bt_21_nor_01" />
-            <!-- android:src="@drawable/bt_21_nor_01"	android:background="#00000000" -->
 
             <ImageButton
-                android:id="@+id/button3"
+                android:id="@+id/comment_imagebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                  android:scaleType="fitXY"
                 android:background="@drawable/bt_23_nor_01" />
-            <!-- android:src="@drawable/bt_23_nor_01"	android:background="#00000000" -->
 
             <ImageButton
-                android:id="@+id/button4"
+                android:id="@+id/good_imagebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 android:scaleType="fitXY"
                 android:background="@drawable/bt_24_nor_01" />
-            <!-- android:src="@drawable/bt_24_nor_01"	android:background="#00000000" -->
 
             <ImageButton
-                android:id="@+id/button5"
+                android:id="@+id/letter_imagebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 android:scaleType="fitXY"
                 android:background="@drawable/bt_25_nor_01" />
-            <!-- android:src="@drawable/bt_25_nor_01"	android:background="#00000000" -->
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

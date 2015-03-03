@@ -1,7 +1,14 @@
 package com.huyoo.entity;
 
-public class ETitle {
+import java.io.Serializable;
+
+public class ETitle implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8549044066607481500L;
+
 	private int id;
 	
 	private int personId;

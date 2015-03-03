@@ -1,6 +1,12 @@
 package com.huyoo.entity;
 
-public class ELevel {
+import java.io.Serializable;
+
+public class ELevel implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9096784576815875038L;
 	private int id;
 	private String name;
 	private int upgradeExp;

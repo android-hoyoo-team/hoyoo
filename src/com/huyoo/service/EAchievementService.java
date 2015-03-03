@@ -11,4 +11,15 @@ public class EAchievementService {
 	{
 		return null;
 	}
+	
+	public EAchievement getEAchievementById(int id)
+	{
+		return null;
+	}
+	
+	public	List<EAchievement> getEAchievementsByPersonId(int personId)
+	{
+		return null;
+	}
+	
 }

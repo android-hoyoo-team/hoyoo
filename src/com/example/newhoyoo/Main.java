@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidquery.AQuery;
 import com.exp.demo.AchieveFragment;
 import com.exp.demo.InviteFragment;
 import com.exp.demo.MineFragment;
@@ -34,6 +35,12 @@ import com.exp.demo.ResideMenu;
 import com.exp.demo.ResideMenuItem;
 import com.exp.demo.SettingFragment;
 import com.exp.demo.hooyoFragment;
+import com.huyoo.entity.ELevel;
+import com.huyoo.entity.EPerson;
+import com.huyoo.entity.EUnion;
+import com.huyoo.service.ELevelService;
+import com.huyoo.service.EPersonService;
+import com.huyoo.service.EUnionService;
 
 public class Main extends FragmentActivity implements OnClickListener {
 
@@ -57,22 +64,27 @@ public class Main extends FragmentActivity implements OnClickListener {
 
 	ActionBar actionBar;
 	TextView tx;
-
+	
+	public EPersonService personService;
+	public ELevelService levelService;
+	EUnionService unionService;
+	public EPerson person;
+	public ELevel level;
+	public EUnion union;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-//		setActionBarLayout(R.layout.custom_actionbar);
-	Resources  res = getBaseContext().getResources();
+		Resources  res = getBaseContext().getResources();
 		Drawable d = res.getDrawable(R.drawable.red);
 		actionBar = getActionBar();  
-//		actionBar.setTitle("公会");
 		actionBar.setDisplayHomeAsUpEnabled(true);//点击action的Home后，返回前一个activity
-			actionBar.setBackgroundDrawable(d);  
+		actionBar.setBackgroundDrawable(d);  
 		initView();
-//		//Toast.makeText(getApplicationContext(),(actionBar.getSelectedTab()==null)+"", Toast.LENGTH_LONG).show();
 		fragmentManager = getSupportFragmentManager();
 		setTabSelection(itemHome);
+		loadData();
 	}
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
@@ -141,6 +153,25 @@ public class Main extends FragmentActivity implements OnClickListener {
 		itemSetting.setOnClickListener(this);
 	}
 
+	public void loadData()
+	{
+		personService = new EPersonService();
+		levelService = new ELevelService();
+		unionService = new EUnionService();
+		person = personService.getEPersonByPhoneNum("18888888888");
+		level = levelService.getELevelByID(person.getLevelId());
+		union = unionService.getEUnionByID(person.getUnionId());
+		AQuery aq = new AQuery(resideMenu);
+		String url = "http://d.pcs.baidu.com/thumbnail/3b290259706e6121f86758c54f7472c6?fid=2151049481-250528-285158885884961&time=1425362400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-Y8L6Kf7jcXKYxc4H2Y1lUYV%2FeNo%3D&rt=sh&expires=2h&r=465472984&sharesign=unknown&size=c710_u500&quality=100";
+		aq.id(R.id.head_imageview).image(url);
+		TextView name_textview = (TextView)resideMenu.findViewById(R.id.name_textview);
+		name_textview.setText(person.getName());
+		TextView title_textview = (TextView)resideMenu.findViewById(R.id.title_textview);
+		title_textview.setText(level.getName());
+		TextView union_textview = (TextView)resideMenu.findViewById(R.id.union_textview);
+		union_textview.setText(union.getName());
+	}
+	
 	
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -192,10 +223,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		hideFragments(transaction);
 		if (view == itemHome) {
-
-			//actionBar.setSubtitle("主页"); 
 			actionBar.setIcon(R.drawable.bt_01_nor);
-//			actionBar.setCustomView(R.layout.null_actionbar);
 			itemHome.setBackgroundResource(R.drawable.left_item_selected_bg);
 			if (hooyofragment == null) {
 				hooyofragment = new hooyoFragment();
