@@ -9,9 +9,13 @@ public class LoginInfo {
 	private EPerson person;
 	private EUnion union;
 	private ELevel level;
-
+	
+	/**
+	 * 当公会为空(还未查出公会信息)或者个人的公会id改变(更换公会)时，需要查询公会信息。
+	 * @return
+	 */
 	public EUnion getUnion() {
-		if(union==null)
+		if(union==null ||getPerson().getUnionId()!=union.getId())
 			union=Application.getUnionService().getEUnionByID(this.getPerson().getUnionId());
 		return union;
 	}
@@ -29,5 +33,4 @@ public class LoginInfo {
 			level = Application.getLevelService().getELevelByID(this.person.getLevelId());
 		return level;
 	}
-	
 }
