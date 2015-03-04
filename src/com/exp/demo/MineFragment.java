@@ -2,6 +2,10 @@ package com.exp.demo;
 
 import java.util.HashMap;
 
+import per.cz.event1_0.DEvent;
+import per.cz.event1_0.DispatchEvent;
+import per.cz.event1_0.IMethod;
+
 import com.androidquery.AQuery;
 import com.example.newhoyoo.*;
 import com.huyoo.entity.ELevel;
@@ -37,6 +41,13 @@ public class MineFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_mine, container,
 				false);
+		DispatchEvent.addEventListener("personUpdateEvent", new IMethod<String>() {
+
+			@Override
+			public void excute(DEvent<String> event) {
+				init();
+			}
+		});
 		return rootView;
 	}
 
@@ -44,10 +55,20 @@ public class MineFragment extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		this.aq = new AQuery(view);
+		init();
+		this.aq.id(R.id.focus).clicked(this, "skiptofocus");
+		this.aq.id(R.id.fans).clicked(this, "skiptofans");
+		this.aq.id(R.id.achieve).clicked(this, "skiptoachieve");
+
+		this.aq.id(R.id.skip_to_detail_imageview).image(R.drawable.skip_to_detail_image);
+		this.aq.id(R.id.skip_to_detail_imageview).clicked(this, "skiptodetail");
+	}
+
+	public void init(){
 		person = Application.getLoginInfo().getPerson();
 		level = Application.getLoginInfo().getLevel();
 		union = Application.getLoginInfo().getUnion();
-		
+
 		this.aq.id(R.id.head_imageview).image(person.getIcon());
 		this.aq.id(R.id.name_textview).text(person.getName());
 		this.aq.id(R.id.sex_textview).text(person.getSex().equals("男")?"♂":"♀");
@@ -59,7 +80,7 @@ public class MineFragment extends Fragment {
 		this.aq.id(R.id.achievement_textview).text(person.getCurrentExp()+"");
 		this.aq.id(R.id.achievement_progress_textview).text(person.getCurrentExp()+"/"+level.getUpgradeExp());
 		this.aq.id(R.id.vp_textview).text(person.getVp()+"/"+150);
-		
+
 		seekbar1 = (SeekBar) getActivity().findViewById(R.id.seekBar1);
 		seekbar1.setEnabled(false);
 		seekbar1.setMax(level.getUpgradeExp());
@@ -68,7 +89,7 @@ public class MineFragment extends Fragment {
 		seekbar2.setEnabled(false);
 		seekbar2.setMax(150);
 		seekbar2.setProgress(person.getVp());
-		
+
 		this.aq.id(R.id.invitation_imagebutton).background(R.drawable.image1);
 		this.aq.id(R.id.invitation_imagebutton).clicked(this, "myinvited");
 		this.aq.id(R.id.response_imagebutton).background(R.drawable.image2);
@@ -79,15 +100,7 @@ public class MineFragment extends Fragment {
 		this.aq.id(R.id.good_imagebutton).clicked(this, "good");
 		this.aq.id(R.id.letter_imagebutton).background(R.drawable.image5);
 		this.aq.id(R.id.letter_imagebutton).clicked(this, "letter");
-
-		this.aq.id(R.id.focus).clicked(this, "skiptofocus");
-		this.aq.id(R.id.fans).clicked(this, "skiptofans");
-		this.aq.id(R.id.achieve).clicked(this, "skiptoachieve");
-		
-		this.aq.id(R.id.skip_to_detail_imageview).image(R.drawable.skip_to_detail_image);
-		this.aq.id(R.id.skip_to_detail_imageview).clicked(this, "skiptodetail");
 	}
-
 	public void skiptodetail() {
 		Intent intent = new Intent();
 		intent.setClass(getActivity(), PersonInfo.class);

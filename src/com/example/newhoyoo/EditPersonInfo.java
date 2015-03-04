@@ -1,9 +1,13 @@
 package com.example.newhoyoo;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+
+import per.cz.event1_0.DEvent;
+import per.cz.event1_0.DispatchEvent;
 
 import com.androidquery.AQuery;
 import com.huyoo.entity.ELevel;
@@ -24,6 +28,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -55,9 +60,9 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 	Button btStyle2;
 
 	Animator currentAnimation;
-	
+
 	EditText birthday_edittext;
-	long birthday;
+	long birthday = 0l;
 	EPerson person;
 	EUnion union;
 	ELevel level;
@@ -71,29 +76,36 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 		this.aq.id(R.id.imageButton_1).clicked(this, "back");
 		this.aq.id(R.id.finish_edit_btn).clicked(this, "edit");
 		this.aq.id(R.id.imageView2).clicked(this, "changemypic");
-		
+
 		person = Application.getLoginInfo().getPerson();
 		union = Application.getLoginInfo().getUnion();
 		level = Application.getLoginInfo().getLevel();
+		this.aq.id(R.id.name_edittext).text(person.getName());
+		this.aq.id(R.id.male_radio).checked("男".equals(person.getSex()));
+		this.aq.id(R.id.female_radio).checked("女".equals(person.getSex()));
+		this.aq.id(R.id.school_edittext).text(person.getDepartment());
+		this.aq.id(R.id.birthday_edittext).text(new SimpleDateFormat("yyyy-MM-dd").format(new Date(person.getBirthday())));
+		this.aq.id(R.id.phonenum_edittext).text(person.getPhoneNum());
+
 		this.aq.id(R.id.union_textview).text(union.getName());
 		this.aq.id(R.id.unionlvl_textview).text(Application.getLevelService().getELevelByID(union.getLevelId()).getName());
 		this.aq.id(R.id.union_role_textview).text(person.getId() == union.getChairmanId()?"会长":"会员");
 		this.aq.id(R.id.achievelvl_textview).text(level.getName());
-		
+
 		RadioGroup sex_radiogroup = (RadioGroup)findViewById(R.id.sex_radiogroup);
 		sex_radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-			
+
 			@Override
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				// TODO Auto-generated method stub
-				sexId = checkedId;
+				sexId = group.getCheckedRadioButtonId();
 			}
 		});
-		
+
 		birthday_edittext = (EditText)findViewById(R.id.birthday_edittext);
 		birthday_edittext.setOnTouchListener(this);
 	}
-	
+
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		// TODO Auto-generated method stub
@@ -103,50 +115,46 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 			View view = View.inflate(this, R.layout.date_picker_dialog, null);
 			final DatePicker datePicker = (DatePicker)view.findViewById(R.id.date_picker);
 			builder.setView(view);
-			
+
 			Calendar cal = Calendar.getInstance();
 			cal.setTimeInMillis(System.currentTimeMillis());
 			datePicker.init(cal.get(Calendar.YEAR),cal.get( Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), null);
 			datePicker.setMaxDate(new Date().getTime());
 			if(v.getId() == R.id.birthday_edittext)
 			{
-				 final int inType = birthday_edittext.getInputType(); 
-	                birthday_edittext.setInputType(InputType.TYPE_NULL); 
-	                birthday_edittext.onTouchEvent(event); 
-	                birthday_edittext.setInputType(inType); 
-	                birthday_edittext.setSelection(birthday_edittext.getText().length()); 
-	                   
-	                builder.setTitle("请选择日期"); 
-	                builder.setPositiveButton("确  定", new DialogInterface.OnClickListener() { 
-	   
-	                    @Override 
-	                    public void onClick(DialogInterface dialog, int which) { 
-	                        Calendar c = Calendar.getInstance();
-	                        c.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
-	                    	birthday = c.getTime().getTime();
-	                        StringBuffer sb = new StringBuffer(); 
-	                        sb.append(String.format("%d-%02d-%02d",  
-	                                datePicker.getYear(),  
-	                                datePicker.getMonth() + 1, 
-	                                datePicker.getDayOfMonth())); 
-	                        birthday_edittext.setText(sb.toString());
-	                        dialog.cancel(); 
-	                    } 
-	                }); 
+				final int inType = birthday_edittext.getInputType(); 
+				birthday_edittext.setInputType(InputType.TYPE_NULL); 
+				birthday_edittext.onTouchEvent(event); 
+				birthday_edittext.setInputType(inType); 
+				birthday_edittext.setSelection(birthday_edittext.getText().length()); 
+
+				builder.setTitle("请选择日期"); 
+				builder.setPositiveButton("确  定", new DialogInterface.OnClickListener() { 
+
+					@Override 
+					public void onClick(DialogInterface dialog, int which) { 
+						Calendar c = Calendar.getInstance();
+						c.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+						birthday = c.getTime().getTime();
+						StringBuffer sb = new StringBuffer(); 
+						sb.append(String.format("%d-%02d-%02d",  
+								datePicker.getYear(),  
+								datePicker.getMonth() + 1, 
+								datePicker.getDayOfMonth())); 
+						birthday_edittext.setText(sb.toString());
+						dialog.cancel(); 
+					} 
+				}); 
 			}
 			Dialog dialog = builder.create();
 			dialog.show();
 		}
-		
+
 		return true;
 	}
-	
+
 	public void edit()
 	{
-		String name = this.aq.id(R.id.name_edittext).getText().toString().trim();
-		String sex = (sexId == R.id.male_radio) ? "男" : "女";
-		String department = this.aq.id(R.id.school_edittext).getText().toString();
-		
 		new AlertDialog.Builder(this).setTitle("提示").setMessage("您确定保存更改吗？")
 		.setNegativeButton("取消",new DialogInterface.OnClickListener(){
 			@Override
@@ -157,10 +165,22 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 		.setPositiveButton("确定",new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-			   //保存修改
-				
+				//保存修改
+				String name = aq.id(R.id.name_edittext).getText().toString().trim();
+				String sex = (sexId == 0) ? "男" : "女";
+				Toast.makeText(getApplicationContext(), sexId+":"+R.id.male_radio, Toast.LENGTH_LONG).show();
+				String department = aq.id(R.id.school_edittext).getText().toString();
+				String phoneNum = aq.id(R.id.phonenum_edittext).getText().toString();
+				person.setName(name);
+				person.setSex(sex);
+				person.setDepartment(department);
+				if(birthday!=0l)person.setBirthday(birthday);
+				person.setPhoneNum(phoneNum);
+				Application.getLoginInfo().setPerson(person);
+				DispatchEvent.dispatchEvent(new DEvent("personUpdateEvent","message"));
 			}
 		}).show();
+		
 	}
 	public void back()
 	{
