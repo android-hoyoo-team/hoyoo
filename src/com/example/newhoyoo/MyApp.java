@@ -2,7 +2,7 @@ package com.example.newhoyoo;
 
 import android.app.Application;  
   
-public class myApp extends Application{  
+public class MyApp extends Application{  
     public String accesstoken;  
     public CharSequence username;
     

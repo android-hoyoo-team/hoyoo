@@ -24,9 +24,9 @@ import android.widget.Toast;
 
 import com.huyoo.middle.*;
 
-public class login extends Activity {
+public class Login extends Activity {
 	AQuery aq;
-	private loginloadingfragment loginloadingfragment;
+	private Loginloadingfragment loginloadingfragment;
 	private FragmentManager fragmentManager;
 	private String username;	//用来保存电话号码
 	@Override
@@ -67,8 +67,8 @@ public class login extends Activity {
 			public void onSuccess() {
 				Toast.makeText(getApplicationContext(), "登陆成功",Toast.LENGTH_LONG).show();
 				Intent intent = getIntent();
-				intent.setClass(login.this, Main.class);
-				login.this.startActivity(intent);
+				intent.setClass(Login.this, Main.class);
+				Login.this.startActivity(intent);
 			}
 			@Override
 			public void onFailure(int code, String msg) {

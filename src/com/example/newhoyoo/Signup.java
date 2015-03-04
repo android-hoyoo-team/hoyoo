@@ -28,9 +28,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class signup extends Activity {
+public class Signup extends Activity {
 	AQuery aq=new AQuery(this);
-	private loginloadingfragment loginloadingfragment;
+	private Loginloadingfragment loginloadingfragment;
 	private FragmentManager fragmentManager;
 	private static String security_code=null;
 	
@@ -65,7 +65,7 @@ public class signup extends Activity {
        // String pwd = this.aq.id(R.id.password_text).getText().toString();
         //String url = myApp.web("api/user?username=" + pwd);
         String username=this.aq.id(R.id.phonenumsign).getText().toString();
-        String url = myApp.web("api/user?username=" + username);
+        String url = MyApp.web("api/user?username=" + username);
         aq.ajax(url,JSONObject.class, this, "loginloadingCallback");
     }
     
@@ -96,8 +96,8 @@ public class signup extends Activity {
 				// TODO Auto-generated method stub
 				Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
 				Intent intent = getIntent();
-		    	intent.setClass(signup.this, Main.class);
-		    	signup.this.startActivity(intent);
+		    	intent.setClass(Signup.this, Main.class);
+		    	Signup.this.startActivity(intent);
 		    	security_code=null;
 			}
 			

@@ -6,6 +6,7 @@ import com.androidquery.AQuery;
 import com.huyoo.entity.ELevel;
 import com.huyoo.entity.EPerson;
 import com.huyoo.entity.EUnion;
+import com.huyoo.global.Application;
 import com.huyoo.service.ELevelService;
 
 import android.animation.Animator;
@@ -14,22 +15,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.Toast;
 
 /**
  * Circular progress drawable demonstration
  *
  * @author Saul Diaz <sefford@gmail.com>
  */
-public class personInfo extends Activity {
+public class PersonInfo extends Activity {
 	AQuery aq ;
 
 	Button btStyle2;
 
 	Animator currentAnimation;
-	
-	ELevelService levelService;
+
 	EPerson person;
+	EUnion union;
+	ELevel level;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -44,10 +45,9 @@ public class personInfo extends Activity {
 		this.aq.id(R.id.button1).background(R.drawable.buttoneffect_red);
 		this.aq.id(R.id.button1).clicked(this, "edit");
 
-		EPerson person = (EPerson)(getIntent().getSerializableExtra("person"));
-		EUnion union = (EUnion)(getIntent().getSerializableExtra("union"));
-		ELevel level = (ELevel)(getIntent().getSerializableExtra("level"));
-		levelService = new ELevelService();
+		person = Application.getLoginInfo().getPerson();
+		union = Application.getLoginInfo().getUnion();
+		level = Application.getLoginInfo().getLevel();
 		this.aq.id(R.id.text_name).text(person.getName());
 		this.aq.id(R.id.text_sex).text(person.getSex());
 		this.aq.id(R.id.text_school).text(person.getSchool());
@@ -55,7 +55,7 @@ public class personInfo extends Activity {
 		this.aq.id(R.id.text_phonenum).text(person.getPhoneNum());
 
 		this.aq.id(R.id.text_union).text(union.getName());
-		this.aq.id(R.id.text_unionlvl).text(levelService.getELevelByID(union.getLevelId())+"");
+		this.aq.id(R.id.text_unionlvl).text(Application.getLevelService().getELevelByID(union.getLevelId())+"");
 		this.aq.id(R.id.text_unionrole).text((union.getChairmanId()==person.getId())?"会长":"会员");
 		this.aq.id(R.id.text_achievelvl).text(level.getName());
 	}
@@ -63,9 +63,7 @@ public class personInfo extends Activity {
 	public void edit()
 	{
 		Intent intent = getIntent();
-		intent.setClass(personInfo.this,editPersonInfo.class);
-		Bundle bundle = new Bundle();
-		bundle.putSerializable("person", person);
+		intent.setClass(PersonInfo.this,EditPersonInfo.class);
 		this.startActivity(intent);
 	}
 	public void back()

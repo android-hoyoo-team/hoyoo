@@ -2,9 +2,6 @@ package com.example.newhoyoo;
 
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
-import android.app.ActionBar.Tab;
-import android.app.ActionBar.TabListener;
-import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -15,14 +12,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,10 +27,12 @@ import com.exp.demo.UnionFragment;
 import com.exp.demo.ResideMenu;
 import com.exp.demo.ResideMenuItem;
 import com.exp.demo.SettingFragment;
-import com.exp.demo.hooyoFragment;
+import com.exp.demo.HooyoFragment;
+import com.huyoo.bean.LoginInfo;
 import com.huyoo.entity.ELevel;
 import com.huyoo.entity.EPerson;
 import com.huyoo.entity.EUnion;
+import com.huyoo.global.Application;
 import com.huyoo.service.ELevelService;
 import com.huyoo.service.EPersonService;
 import com.huyoo.service.EUnionService;
@@ -52,7 +47,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 	private ResideMenuItem itemMyself;
 	private ResideMenuItem itemSetting;
 
-	private hooyoFragment hooyofragment;
+	private HooyoFragment hooyofragment;
 	private SettingFragment settingFragment;
 	private UnionFragment nearFragment;
 	private MineFragment mineFragment;
@@ -64,14 +59,15 @@ public class Main extends FragmentActivity implements OnClickListener {
 
 	ActionBar actionBar;
 	TextView tx;
-	
+
 	public EPersonService personService;
 	public ELevelService levelService;
 	EUnionService unionService;
 	public EPerson person;
 	public ELevel level;
 	public EUnion union;
-	
+	public LoginInfo loginInfo;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -92,27 +88,27 @@ public class Main extends FragmentActivity implements OnClickListener {
 		case android.R.id.home:
 			resideMenu.openMenu(ResideMenu.DIRECTION_LEFT);
 			break;
-			default:
-				Toast.makeText(this, featureId+""+item,Toast.LENGTH_LONG).show();
+		default:
+			Toast.makeText(this, featureId+""+item,Toast.LENGTH_LONG).show();
 		}
 		return false;
 	}
-	
+
 	@Override
-	 public boolean onOptionsItemSelected(MenuItem item)
-	 {
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
 		Toast.makeText(getApplicationContext(), item+"", Toast.LENGTH_LONG).show();
 		resideMenu.openMenu(ResideMenu.DIRECTION_LEFT);
 		return false;
-	 }
-		
+	}
+
 	/**
 	 * 
 	 * @param layoutId
 	 * 
 	 * */
 	public void setActionBarLayout( int layoutId ){
-	     actionBar = getActionBar( );
+		actionBar = getActionBar( );
 		if( null != actionBar ){
 			//actionBar.setDisplayShowHomeEnabled( true );
 			actionBar.setDisplayShowCustomEnabled(true);
@@ -155,24 +151,18 @@ public class Main extends FragmentActivity implements OnClickListener {
 
 	public void loadData()
 	{
-		personService = new EPersonService();
-		levelService = new ELevelService();
-		unionService = new EUnionService();
-		person = personService.getEPersonByPhoneNum("18888888888");
-		level = levelService.getELevelByID(person.getLevelId());
-		union = unionService.getEUnionByID(person.getUnionId());
+		loginInfo = Application.getLoginInfo();
+		person = loginInfo.getPerson();
+		union = loginInfo.getUnion();
+		level = loginInfo.getLevel();
 		AQuery aq = new AQuery(resideMenu);
-		String url = "http://d.pcs.baidu.com/thumbnail/3b290259706e6121f86758c54f7472c6?fid=2151049481-250528-285158885884961&time=1425362400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-Y8L6Kf7jcXKYxc4H2Y1lUYV%2FeNo%3D&rt=sh&expires=2h&r=465472984&sharesign=unknown&size=c710_u500&quality=100";
-		aq.id(R.id.head_imageview).image(url);
-		TextView name_textview = (TextView)resideMenu.findViewById(R.id.name_textview);
-		name_textview.setText(person.getName());
-		TextView title_textview = (TextView)resideMenu.findViewById(R.id.title_textview);
-		title_textview.setText(level.getName());
-		TextView union_textview = (TextView)resideMenu.findViewById(R.id.union_textview);
-		union_textview.setText(union.getName());
+		aq.id(R.id.head_imageview).image(person.getIcon());
+		aq.id(R.id.name_textview).text(person.getName());
+		aq.id(R.id.title_textview).text(level.getName());
+		aq.id(R.id.union_textview).text(union.getName());
 	}
-	
-	
+
+
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
 		return resideMenu.dispatchTouchEvent(ev);
@@ -226,7 +216,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 			actionBar.setIcon(R.drawable.bt_01_nor);
 			itemHome.setBackgroundResource(R.drawable.left_item_selected_bg);
 			if (hooyofragment == null) {
-				hooyofragment = new hooyoFragment();
+				hooyofragment = new HooyoFragment();
 				transaction.add(R.id.main_fragment, hooyofragment);
 			} else {
 				transaction.show(hooyofragment);
@@ -255,7 +245,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 			fayige.setClickable(true);
 			final FragmentActivity target=this;
 			fayige.setOnClickListener(new OnClickListener() {
-				
+
 				@Override
 				public void onClick(View v) {
 					target.startActivity(new Intent(target,EditInvite.class));  
@@ -388,8 +378,8 @@ public class Main extends FragmentActivity implements OnClickListener {
 	}
 
 	private void clearSelection() {
-//		tx.setText("");
-		
+		//		tx.setText("");
+
 		itemHome.setBackgroundResource(android.R.color.transparent);
 		itemHome.setIcon(R.drawable.c001);
 

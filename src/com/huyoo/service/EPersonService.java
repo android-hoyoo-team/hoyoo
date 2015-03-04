@@ -28,6 +28,7 @@ public class EPersonService {
 			person.setId(1);
 			person.setName("王昆");
 			person.setLevelId(1);
+			person.setIcon("http://d.pcs.baidu.com/thumbnail/3b290259706e6121f86758c54f7472c6?fid=2151049481-250528-285158885884961&time=1425362400&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-Y8L6Kf7jcXKYxc4H2Y1lUYV%2FeNo%3D&rt=sh&expires=2h&r=465472984&sharesign=unknown&size=c710_u500&quality=100");
 			person.setSex("男");
 			person.setSchool("蚌埠学院");
 			person.setDepartment("计算机");
@@ -36,7 +37,6 @@ public class EPersonService {
 			person.setPosition("学生会主席");
 			person.setUnionId(1);
 			person.setVp(80);
-			person.setIcon("");
 			person.setCurrentExp(2730);
 			persons.add(person);
 		}

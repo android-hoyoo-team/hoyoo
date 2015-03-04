@@ -21,31 +21,28 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity 
+        <activity
             android:name="com.example.newhoyoo.Main"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.example.newhoyoo.MainActivity">
-            
+        <activity android:name="com.example.newhoyoo.MainActivity" >
         </activity>
-        <activity android:name="com.example.newhoyoo.signup" >
+        <activity android:name="com.example.newhoyoo.Signup" >
         </activity>
-        <activity android:name="com.example.newhoyoo.login" >
-            
+        <activity android:name="com.example.newhoyoo.Login" >
         </activity>
-        <activity android:name="com.example.newhoyoo.personInfo" >
+        <activity android:name="com.example.newhoyoo.PersonInfo" >
         </activity>
-        <activity android:name="com.example.newhoyoo.editPersonInfo" >
+        <activity android:name="com.example.newhoyoo.EditPersonInfo" >
         </activity>
         <activity
-            android:name="com.example.newhoyoo.unionInfo"
+            android:name="com.example.newhoyoo.UnionInfo"
             android:label="@string/title_activity_union_info" >
         </activity>
         <!-- <activity android:name="main"/> -->
@@ -63,12 +60,16 @@
             android:name="com.example.newhoyoo.InventTranspond"
             android:label="@string/title_activity_invent_zhuanfa" >
         </activity>
-        <activity 
-            android:name="com.example.newhoyoo.UnionNewsActivity"></activity>
-        <activity 
-            android:name="com.example.newhoyoo.EditInvite"></activity>
-        <activity 
-            android:name="com.example.newhoyoo.YaoqingActivity"></activity>
+        <activity android:name="com.example.newhoyoo.UnionNewsActivity" >
+        </activity>
+        <activity android:name="com.example.newhoyoo.EditInvite" >
+        </activity>
+        <activity android:name="com.example.newhoyoo.YaoqingActivity" >
+        </activity>
+        <activity
+            android:name="com.example.newhoyoo.DatePickerDialog"
+            android:label="@string/title_activity_date_picker_dialog" >
+        </activity>
     </application>
 
 </manifest>

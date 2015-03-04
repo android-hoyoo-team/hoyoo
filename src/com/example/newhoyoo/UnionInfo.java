@@ -23,7 +23,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import android.os.Build;
 
-public class unionInfo extends Activity {
+public class UnionInfo extends Activity {
 	 HashMap<String, Object> map1=new HashMap<String,Object>(); 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

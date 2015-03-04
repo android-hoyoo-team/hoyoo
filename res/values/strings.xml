@@ -66,8 +66,9 @@
     <!-- 编辑邀请 -->
     <string name="edit_invite">编辑邀请</string>
     <string name="button_style_2_text"></string>
-    
+
     <!-- 公会邀请 -->
     <string name="invite_list_title">公会邀请</string>
+    <string name="title_activity_date_picker_dialog">DatePickerDialog</string>
 
 </resources>

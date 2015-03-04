@@ -9,6 +9,7 @@ import com.huyoo.entity.EPerson;
 import com.huyoo.service.EAchievementService;
 import com.huyoo.service.ECommentService;
 import com.huyoo.service.EInvitationService;
+import com.huyoo.service.ELevelService;
 import com.huyoo.service.EPersonService;
 import com.huyoo.service.EUnionService;
 
@@ -18,10 +19,12 @@ public class Application {
 	private static EAchievementService achievementService;
 	private static ECommentService commentService;
 	private static EUnionService unionService;
+	private static ELevelService levelService;
 
-	private static EInvitationService eInvitationService;
+	private static EInvitationService invitationService;
 	private static LoginInfo loginInfo;
 
+	
 	/**
 	 * 获取EUnionService单例
 	 * 
@@ -31,6 +34,11 @@ public class Application {
 		if(unionService==null)
 			unionService=new EUnionService();
 		return unionService;
+	}
+	public static ELevelService getLevelService() {
+		if(levelService==null)
+			levelService = new ELevelService();
+		return levelService;
 	}
 	/**
 	 * 获取EPersonService单例
@@ -68,9 +76,9 @@ public class Application {
 	 * @return
 	 */
 	public static EInvitationService getInvitationService() {
-		if (eInvitationService == null)
-			eInvitationService = new EInvitationService();
-		return eInvitationService;
+		if (invitationService == null)
+			invitationService = new EInvitationService();
+		return invitationService;
 	}
 
 	/**
@@ -98,7 +106,9 @@ public class Application {
 	 * @return
 	 */
 	public static LoginInfo getLoginInfo() {
-		return login(null, false);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("phoneNum", "18888888888");
+		return login(map, false);
 	}
 	/**
 	 * 根据用户号码登陆，如果用户已经登陆则返回已登录信息，如果用户没有登陆则执行登陆操作后返回登陆信息

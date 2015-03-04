@@ -6,7 +6,7 @@ import java.util.HashMap;
 import com.androidquery.AQuery;
 import com.example.newhoyoo.R;
 import com.example.newhoyoo.UnionNewsList;
-import com.example.newhoyoo.unionInfo;
+import com.example.newhoyoo.UnionInfo;
 import com.huyoo.utils.StringHelper;
 
 import android.app.Activity;
@@ -117,7 +117,7 @@ public class UnionFragment extends Fragment {
     public void unionInfo()
     {
     	Intent intent = getActivity().getIntent();
-    	intent.setClass(getActivity(),unionInfo.class);
+    	intent.setClass(getActivity(),UnionInfo.class);
     	getActivity().startActivity(intent);
     }
     public void unionNews()

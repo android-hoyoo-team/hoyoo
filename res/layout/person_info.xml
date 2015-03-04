@@ -15,7 +15,7 @@
             android:id="@+id/imageButton_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bt_02_nor" />
+            android:background="@drawable/back_image_button" />
 
         <TextView
             android:id="@+id/textView1"
@@ -59,7 +59,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="姓名"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
 
                 <TextView
                     android:id="@+id/text_name"
@@ -68,7 +68,7 @@
                     android:layout_weight="2.84"
                     android:gravity="center_vertical"
                     android:text="TextView"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
             </LinearLayout>
 
             <LinearLayout
@@ -85,7 +85,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="性别"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
 
                 <TextView
                     android:id="@+id/text_sex"
@@ -94,7 +94,7 @@
                     android:layout_weight="2.84"
                     android:gravity="center_vertical"
                     android:text="TextView"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
             </LinearLayout>
 
             <LinearLayout
@@ -111,7 +111,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="所在院系"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
 
                 <TextView
                     android:id="@+id/text_school"
@@ -120,7 +120,7 @@
                     android:layout_weight="2.84"
                     android:gravity="center_vertical"
                     android:text="TextView"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
             </LinearLayout>
 
             <LinearLayout
@@ -137,7 +137,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="生日"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
 
                 <TextView
                     android:id="@+id/text_birthday"
@@ -146,7 +146,7 @@
                     android:layout_weight="2.84"
                     android:gravity="center_vertical"
                     android:text="TextView"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
             </LinearLayout>
 
             <LinearLayout
@@ -163,7 +163,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="联系方式"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
 
                 <TextView
                     android:id="@+id/text_phonenum"
@@ -172,7 +172,7 @@
                     android:layout_weight="2.84"
                     android:gravity="center_vertical"
                     android:text="TextView"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
             </LinearLayout>
 
             <LinearLayout
@@ -189,7 +189,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="所在公会"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
 
                 <TextView
                     android:id="@+id/text_union"
@@ -198,7 +198,7 @@
                     android:layout_weight="2.84"
                     android:gravity="center_vertical"
                     android:text="TextView"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
             </LinearLayout>
 
             <LinearLayout
@@ -215,7 +215,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="公会等级"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
 
                 <TextView
                     android:id="@+id/text_unionlvl"
@@ -224,7 +224,7 @@
                     android:layout_weight="2.84"
                     android:gravity="center_vertical"
                     android:text="TextView"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
             </LinearLayout>
 
             <LinearLayout
@@ -241,7 +241,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="担任职位"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
 
                 <TextView
                     android:id="@+id/text_unionrole"
@@ -250,7 +250,7 @@
                     android:layout_weight="2.84"
                     android:gravity="center_vertical"
                     android:text="TextView"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
             </LinearLayout>
 
             <LinearLayout
@@ -267,7 +267,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="成就等级"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
 
                 <TextView
                     android:id="@+id/text_achievelvl"
@@ -276,7 +276,7 @@
                     android:layout_weight="2.84"
                     android:gravity="center_vertical"
                     android:text="TextView"
-                    android:textColor="@color/background_grey" />
+                    android:textColor="@color/Grey" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

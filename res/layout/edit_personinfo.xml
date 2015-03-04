@@ -15,7 +15,7 @@
             android:id="@+id/imageButton_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bt_02_nor" />
+            android:background="@drawable/back_image_button" />
 
         <TextView
             android:id="@+id/textView1"
@@ -32,10 +32,10 @@
             android:gravity="right" >
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/finish_edit_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="@color/red"
+                android:background="@drawable/buttoneffect_red"
                 android:text="完成"
                 android:textColor="@color/white" />
         </LinearLayout>
@@ -57,7 +57,7 @@
                 android:background="@color/white" >
 
                 <ImageView
-                    android:id="@+id/imageView1"
+                    android:id="@+id/head_imageview"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:layout_marginLeft="10dp"
@@ -79,7 +79,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.12"
                     android:scaleType="centerInside"
-                    android:src="@drawable/bt_17_nor_01" />
+                    android:src="@drawable/skip_to_detail_image" />
             </LinearLayout>
 
             <LinearLayout
@@ -96,17 +96,17 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="姓名"
-                    android:textColor="#ADADAD" />
+                    android:textColor="@color/Grey" />
 
                 <EditText
-                    android:id="@+id/text_name"
+                    android:id="@+id/name_edittext"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.84"
                     android:background="@null"
                     android:ems="10"
                     android:gravity="center_vertical"
-                    android:textColor="#ADADAD" >
+                    android:textColor="@color/Grey" >
                 </EditText>
             </LinearLayout>
 
@@ -124,18 +124,42 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="性别"
-                    android:textColor="#ADADAD" />
+                    android:textColor="@color/Grey" />
 
+                <RadioGroup
+                    android:id="@+id/sex_radiogroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.84"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/male_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="男"
+                        android:textColor="@color/Grey" />
+
+                    <RadioButton
+                        android:id="@+id/female_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="女"
+                        android:textColor="@color/Grey" />
+                </RadioGroup>
+                <!--
                 <EditText
-                    android:id="@+id/text_sex"
+                    android:id="@+id/sex_edittext"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.84"
                     android:background="@null"
                     android:ems="10"
                     android:gravity="center_vertical"
-                    android:textColor="#ADADAD" >
+                    android:textColor="@color/Grey" >
                 </EditText>
+                -->
             </LinearLayout>
 
             <LinearLayout
@@ -152,17 +176,17 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="所在院系"
-                    android:textColor="#ADADAD" />
+                    android:textColor="@color/Grey" />
 
                 <EditText
-                    android:id="@+id/text_school"
+                    android:id="@+id/school_edittext"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.84"
                     android:background="@null"
                     android:ems="10"
                     android:gravity="center_vertical"
-                    android:textColor="#ADADAD" >
+                    android:textColor="@color/Grey" >
                 </EditText>
             </LinearLayout>
 
@@ -180,17 +204,17 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="生日"
-                    android:textColor="#ADADAD" />
+                    android:textColor="@color/Grey" />
 
                 <EditText
-                    android:id="@+id/text_birthday"
+                    android:id="@+id/birthday_edittext"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.84"
                     android:background="@null"
                     android:ems="10"
                     android:gravity="center_vertical"
-                    android:textColor="#ADADAD" >
+                    android:textColor="@color/Grey" >
                 </EditText>
             </LinearLayout>
 
@@ -208,17 +232,17 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="联系方式"
-                    android:textColor="#ADADAD" />
+                    android:textColor="@color/Grey" />
 
                 <EditText
-                    android:id="@+id/text_phonenum"
+                    android:id="@+id/phonenum_edittext"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.84"
                     android:background="@null"
-                    android:ems="10"
                     android:gravity="center_vertical"
-                    android:textColor="#ADADAD" >
+                    android:inputType="phone"
+                    android:textColor="@color/Grey" >
                 </EditText>
             </LinearLayout>
 
@@ -236,18 +260,16 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="所在公会"
-                    android:textColor="#ADADAD" />
+                    android:textColor="@color/Grey" />
 
-                <EditText
-                    android:id="@+id/text_union"
+                <TextView
+                    android:id="@+id/union_textview"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.84"
                     android:background="@null"
-                    android:ems="10"
                     android:gravity="center_vertical"
-                    android:textColor="#ADADAD" >
-                </EditText>
+                    android:textColor="@color/Grey" />
             </LinearLayout>
 
             <LinearLayout
@@ -264,18 +286,16 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="公会等级"
-                    android:textColor="#ADADAD" />
+                    android:textColor="@color/Grey" />
 
-                <EditText
-                    android:id="@+id/text_unionlvl"
+                <TextView
+                    android:id="@+id/unionlvl_textview"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.84"
                     android:background="@null"
-                    android:ems="10"
                     android:gravity="center_vertical"
-                    android:textColor="#ADADAD" >
-                </EditText>
+                    android:textColor="@color/Grey" />
             </LinearLayout>
 
             <LinearLayout
@@ -292,18 +312,17 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="担任职位"
-                    android:textColor="#ADADAD" />
+                    android:textColor="@color/Grey" />
 
-                <EditText
-                    android:id="@+id/text_unionrole"
+                <TextView
+                    android:id="@+id/union_role_textview"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.84"
                     android:background="@null"
                     android:ems="10"
                     android:gravity="center_vertical"
-                    android:textColor="#ADADAD" >
-                </EditText>
+                    android:textColor="@color/Grey" />
             </LinearLayout>
 
             <LinearLayout
@@ -320,19 +339,18 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15dp"
                     android:text="成就等级"
-                    android:textColor="#ADADAD" />
+                    android:textColor="@color/Grey" />
 
-                <EditText
-                    android:id="@+id/text_achievelvl"
+                <TextView
+                    android:id="@+id/achievelvl_textview"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2.84"
                     android:background="@null"
-                    android:ems="10"
                     android:gravity="center_vertical"
-                    android:textColor="#ADADAD" >
-                </EditText>
+                    android:textColor="@color/Grey" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

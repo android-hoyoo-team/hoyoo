@@ -42,13 +42,13 @@ public class MainActivity extends Activity {
 		    public void onSuccess(int count) {
 		    	if(count == 0){	//不存在
 			    	Toast.makeText(getApplicationContext(), "新用户,来注册吧",Toast.LENGTH_SHORT).show();
-		    		Intent myIntent = new Intent(MainActivity.this, signup.class);
+		    		Intent myIntent = new Intent(MainActivity.this, Signup.class);
 		    		myIntent.putExtra("username",username); 
 		    		MainActivity.this.startActivity(myIntent);
 		    	}else{	//存在
 			    	Toast.makeText(getApplicationContext(), "老用户,快登陆",Toast.LENGTH_SHORT).show();
 			    	
-			    	Intent myIntent = new Intent(MainActivity.this, login.class);
+			    	Intent myIntent = new Intent(MainActivity.this, Login.class);
 		    		myIntent.putExtra("username",username); 
 		    		MainActivity.this.startActivity(myIntent);
 		    	}
@@ -76,12 +76,12 @@ public class MainActivity extends Activity {
     
     private void skip_login()//返回主界面
     {
-    	startActivity(new Intent(this,login.class));  
+    	startActivity(new Intent(this,Login.class));  
         finish();  
     }
     private void skip_signup()//返回主界面
     {
-    	startActivity(new Intent(this,signup.class));  
+    	startActivity(new Intent(this,Signup.class));  
         finish();  
     }
     

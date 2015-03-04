@@ -15,7 +15,7 @@ import com.jpardogo.android.googleprogressbar.library.FoldingCirclesDrawable;
 import com.jpardogo.android.googleprogressbar.library.GoogleMusicDicesDrawable;
 import com.jpardogo.android.googleprogressbar.library.NexusRotationCrossDrawable;
 
-public class loginloading extends Activity {
+public class Loginloading extends Activity {
 	/*Dynamically*/
 	ProgressBar mProgressBar;
 	@Override

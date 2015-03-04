@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-public class loginloadingfragment extends Fragment {
+public class Loginloadingfragment extends Fragment {
 	/*Dynamically*/
 	ProgressBar mProgressBar;
 

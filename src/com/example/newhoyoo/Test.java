@@ -19,7 +19,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-public class test extends Activity {
+public class Test extends Activity {
     
 	AQuery aq;
 	/************************************************************/

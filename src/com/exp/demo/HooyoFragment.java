@@ -24,7 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class hooyoFragment extends Fragment {
+public class HooyoFragment extends Fragment {
 	AQuery aq=new AQuery(getActivity());
 	/************************************************************/
 	/** Called when the activity is first created. */   
