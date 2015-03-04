@@ -1,5 +1,8 @@
 package com.example.newhoyoo;
 
+import per.cz.event1_0.DEvent;
+import per.cz.event1_0.DispatchEvent;
+import per.cz.event1_0.IMethod;
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
 import android.content.Context;
@@ -83,6 +86,14 @@ public class Main extends FragmentActivity implements OnClickListener {
 		//savedInstanceState.containsKey("residemenu")
 		setTabSelection(itemHome);
 		loadData();
+		DispatchEvent.addEventListener("personUpdateEvent", new IMethod<String>() {
+
+			@Override
+			public void excute(DEvent<String> event) {
+				// TODO Auto-generated method stub
+				loadData();
+			}
+		});
 	}
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
@@ -114,7 +125,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 		if( null != actionBar ){
 			//actionBar.setDisplayShowHomeEnabled( true );
 			actionBar.setDisplayShowCustomEnabled(true);
-			LayoutInflater inflator = (LayoutInflater)   this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			LayoutInflater inflator = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View v = inflator.inflate(layoutId, null);
 			ActionBar.LayoutParams layout = new ActionBar.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 			actionBar.setCustomView(v,layout);
