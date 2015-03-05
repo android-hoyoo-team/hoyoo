@@ -19,11 +19,14 @@ import android.animation.Animator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -48,12 +51,8 @@ public class PersonInfo extends FragmentActivity {
 		aq = new AQuery(this);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.person_info);
-		//CustomActionbar actionbar = new CustomActionbar();
-		//getSupportFragmentManager().beginTransaction().replace(R.id.actionbar, new )
 		this.aq.id(R.id.imageButton_1).background(R.drawable.backbuttoneffect);
 		this.aq.id(R.id.imageButton_1).clicked(this, "back");
-
-		this.aq.id(R.id.button1).background(R.drawable.buttoneffect_red);
 		this.aq.id(R.id.button1).clicked(this, "edit");
 
 		init();

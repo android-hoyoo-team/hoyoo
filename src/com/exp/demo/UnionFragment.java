@@ -7,6 +7,9 @@ import com.androidquery.AQuery;
 import com.example.newhoyoo.R;
 import com.example.newhoyoo.UnionNewsList;
 import com.example.newhoyoo.UnionInfo;
+import com.huyoo.entity.ELevel;
+import com.huyoo.entity.EUnion;
+import com.huyoo.global.Application;
 import com.huyoo.utils.StringHelper;
 
 import android.app.Activity;
@@ -37,7 +40,10 @@ public class UnionFragment extends Fragment {
     HashMap<String, Object> pMap2_1=new HashMap<String,Object>(); 
     HashMap<String, Object> pMap3_1=new HashMap<String,Object>();
     /************************************************************/
-   
+    /**************************************************************/
+    EUnion union;
+    ELevel level;
+    /**************************************************************/
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_union, container, false);
 		this.aq = new AQuery(this.getActivity(),rootView);
@@ -48,7 +54,7 @@ public class UnionFragment extends Fragment {
     	  super.onViewCreated(view, savedInstanceState);
         
         ListView mylist;
-        mylist = (ListView)getActivity().findViewById(R.id.list_achieve);
+        mylist = (ListView)getActivity().findViewById(R.id.union_news_listview);
         mylist.setDividerHeight(0);
         
         this.aq.id(R.id.union_invite).background(R.drawable.buttoneffect);
@@ -63,7 +69,7 @@ public class UnionFragment extends Fragment {
   	  	this.aq.id(R.id.union_manager).clicked(this, "unionManager");
         /******************************11111111111111111111111******************************/
 	      //生成ListView对象   
-	    myListView1=(ListView)getActivity().findViewById(R.id.list_achieve);
+	    myListView1=(ListView)getActivity().findViewById(R.id.union_news_listview);
 	    ArrayList<HashMap<String,Object>> programeList=new ArrayList<HashMap<String,Object>>();  
 	    for(int i=0;i<5;i++) 
 	    { 
@@ -107,6 +113,19 @@ public class UnionFragment extends Fragment {
 	        myListView1.setAdapter(mySimpleAdapter);      
 	    /************************************************************/
     }
+    
+    public void init(){
+    	union = Application.getLoginInfo().getUnion();
+    	level = Application.getLevelService().getELevelByID(union.getId());
+    	
+    	this.aq.id(R.id.union_icon_imageview).image(union.getIcon());
+    	this.aq.id(R.id.union_name_textview).text(union.getName());
+    	this.aq.id(R.id.unionlvl_textview).text(level.getName());
+    	this.aq.id(R.id.union_type_textview).text(union.getType());
+    	this.aq.id(R.id.unionnum_textview).text(Application.getUnionService().getUnionMemberNum(union.getId()));
+    	//this.aq.id(R.id.)
+    }
+    
     
     public void unionInvite()
     {

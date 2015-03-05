@@ -31,4 +31,13 @@ public class EUnionService {
 	{
 		return null;
 	}
+	/**
+	 * 获取公会人数
+	 * @param id
+	 * @return
+	 */
+	public int getUnionMemberNum(int id)
+	{
+		return 200;
+	}
 }

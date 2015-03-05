@@ -4,13 +4,12 @@
     android:layout_height="match_parent"
     android:background="@color/background_grey"
     android:orientation="vertical" >
-	
     <FrameLayout 
         android:id="@+id/actionbar"
         android:layout_height="48dp"
         android:layout_width="match_parent"
         android:visibility="gone"/>
-    <RelativeLayout
+     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@color/red"
@@ -39,7 +38,7 @@
             android:background="@color/red"
             android:text="编辑"
             android:textColor="@color/white" />
-    </RelativeLayout>
+    </RelativeLayout> 
 
     <ScrollView
         android:layout_width="match_parent"

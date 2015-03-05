@@ -253,7 +253,6 @@ public class Main extends FragmentActivity implements OnClickListener {
 
 			actionBar.setIcon(R.drawable.bt_08_nor_01);
 			actionBar.setCustomView(R.layout.yaoqing_actionbar);
-			View customView = actionBar.getCustomView();
 			TextView fayige=(TextView)findViewById(R.id.yaoqing_fayige);
 			fayige.setClickable(true);
 			final FragmentActivity target=this;
@@ -289,7 +288,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 		} else if (view == itemAssociation) {
 
 			actionBar.setIcon(R.drawable.bt_15_nor_01);
-			tx.setText("TOWERS");
+			tx.setText(union.getName());
 			itemAssociation.setBackgroundResource(R.drawable.left_item_selected_bg);
 			if (nearFragment == null) {
 				nearFragment = new UnionFragment();

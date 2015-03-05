@@ -80,7 +80,7 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 		person = Application.getLoginInfo().getPerson();
 		union = Application.getLoginInfo().getUnion();
 		level = Application.getLoginInfo().getLevel();
-		
+
 		this.aq.id(R.id.head_imageview).image(person.getIcon());
 		this.aq.id(R.id.name_edittext).text(person.getName());
 		if("男".equals(person.getSex()))
@@ -101,7 +101,7 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 		this.aq.id(R.id.unionlvl_textview).text(Application.getLevelService().getELevelByID(union.getLevelId()).getName());
 		this.aq.id(R.id.union_role_textview).text(person.getId() == union.getChairmanId()?"会长":"会员");
 		this.aq.id(R.id.achievelvl_textview).text(level.getName());
-		
+
 		RadioGroup sex_radiogroup = (RadioGroup)findViewById(R.id.sex_radiogroup);
 		sex_radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
@@ -119,7 +119,7 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		// TODO Auto-generated method stub
-		if(event.getAction() == MotionEvent.ACTION_DOWN)
+		if(event.getAction() == MotionEvent.ACTION_DOWN && v.getId() == R.id.birthday_edittext)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			View view = View.inflate(this, R.layout.date_picker_dialog, null);
@@ -130,32 +130,29 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 			cal.setTimeInMillis(System.currentTimeMillis());
 			datePicker.init(cal.get(Calendar.YEAR),cal.get( Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), null);
 			datePicker.setMaxDate(new Date().getTime());
-			if(v.getId() == R.id.birthday_edittext)
-			{
-				final int inType = birthday_edittext.getInputType(); 
-				birthday_edittext.setInputType(InputType.TYPE_NULL); 
-				birthday_edittext.onTouchEvent(event); 
-				birthday_edittext.setInputType(inType); 
-				birthday_edittext.setSelection(birthday_edittext.getText().length()); 
+			final int inType = birthday_edittext.getInputType(); 
+			birthday_edittext.setInputType(InputType.TYPE_NULL); 
+			birthday_edittext.onTouchEvent(event); 
+			birthday_edittext.setInputType(inType); 
+			birthday_edittext.setSelection(birthday_edittext.getText().length()); 
 
-				builder.setTitle("请选择日期"); 
-				builder.setPositiveButton("确  定", new DialogInterface.OnClickListener() { 
+			builder.setTitle("请选择日期"); 
+			builder.setPositiveButton("确  定", new DialogInterface.OnClickListener() { 
 
-					@Override 
-					public void onClick(DialogInterface dialog, int which) { 
-						Calendar c = Calendar.getInstance();
-						c.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
-						birthday = c.getTime().getTime();
-						StringBuffer sb = new StringBuffer(); 
-						sb.append(String.format("%d-%02d-%02d",  
-								datePicker.getYear(),  
-								datePicker.getMonth() + 1, 
-								datePicker.getDayOfMonth())); 
-						birthday_edittext.setText(sb.toString());
-						dialog.cancel(); 
-					} 
-				}); 
-			}
+				@Override 
+				public void onClick(DialogInterface dialog, int which) { 
+					Calendar c = Calendar.getInstance();
+					c.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
+					birthday = c.getTime().getTime();
+					StringBuffer sb = new StringBuffer(); 
+					sb.append(String.format("%d-%02d-%02d",  
+							datePicker.getYear(),  
+							datePicker.getMonth() + 1, 
+							datePicker.getDayOfMonth())); 
+					birthday_edittext.setText(sb.toString());
+					dialog.cancel(); 
+				} 
+			}); 
 			Dialog dialog = builder.create();
 			dialog.show();
 		}
@@ -189,7 +186,7 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 				DispatchEvent.dispatchEvent(new DEvent("personUpdateEvent","message"));
 			}
 		}).show();
-		
+
 	}
 	public void back()
 	{

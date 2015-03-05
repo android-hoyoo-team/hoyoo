@@ -21,7 +21,7 @@
                 android:background="@color/white" >
 
                 <ImageView
-                    android:id="@+id/imageView6"
+                    android:id="@+id/union_icon_imageview"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginLeft="7dp"
@@ -41,7 +41,7 @@
                         android:layout_weight="1" >
 
                         <TextView
-                            android:id="@+id/textView2"
+                            android:id="@+id/union_name_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="TOWERS"
@@ -61,7 +61,7 @@
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/textView8"
+                            android:id="@+id/unionlvl_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="10级公会"
@@ -81,7 +81,7 @@
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/textView9"
+                            android:id="@+id/union_type_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="综合类"
@@ -113,7 +113,7 @@
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/textView10"
+                        android:id="@+id/unionnum_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
@@ -135,7 +135,7 @@
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/textView11"
+                        android:id="@+id/president_name_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
@@ -157,7 +157,7 @@
                         android:textSize="12dp" />
 
                     <TextView
-                        android:id="@+id/textView12"
+                        android:id="@+id/union_achievement_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
@@ -183,7 +183,7 @@
             android:orientation="vertical" >
 
             <ListView
-                android:id="@+id/list_achieve"
+                android:id="@+id/union_news_listview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"

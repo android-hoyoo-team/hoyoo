@@ -1,24 +1,33 @@
 package com.ryg.expandable.ui;
 
-import com.androidquery.AQuery;
-import com.example.newhoyoo.R;
 
-import android.app.Fragment;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.view.LayoutInflater;
+import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-public class CustomActionbar extends FragmentActivity {
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.custom_actionbar_01, container, false);
-		return rootView;
+public class CustomActionbar extends View implements View.OnClickListener{
+	
+	private ImageView leftImage;
+	
+	private TextView centerText;
+	
+	private Button rightBtn;
+
+	public CustomActionbar(Context context) {
+		super(context);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
 	}
 	
-//	public void setActionbar(int img)
-//	{
-//		AQuery aq = new AQuery(this);
-//		aq.id()
-//	}
+	public void  init() {
+		
+	}
+	
 }
