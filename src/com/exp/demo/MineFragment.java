@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.content.Intent;
+import android.graphics.Color;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -68,10 +69,13 @@ public class MineFragment extends Fragment {
 		person = Application.getLoginInfo().getPerson();
 		level = Application.getLoginInfo().getLevel();
 		union = Application.getLoginInfo().getUnion();
-
+		
 		this.aq.id(R.id.head_imageview).image(person.getIcon());
 		this.aq.id(R.id.name_textview).text(person.getName());
-		this.aq.id(R.id.sex_textview).text(person.getSex().equals("男")?"♂":"♀");
+		if("男".equals(person.getSex()))
+			this.aq.id(R.id.sex_textview).text("♂").textColorId(R.color.blue);
+		else
+			this.aq.id(R.id.sex_textview).text("♀").textColorId(R.color.red);
 		this.aq.id(R.id.title_textview).text(level.getName());;
 		this.aq.id(R.id.union_textview).text(union.getName());
 		this.aq.id(R.id.union_position_textview).text((union.getChairmanId() == person.getId()) ? "会长" : "会员");

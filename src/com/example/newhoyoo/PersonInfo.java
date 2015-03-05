@@ -13,11 +13,14 @@ import com.huyoo.entity.EPerson;
 import com.huyoo.entity.EUnion;
 import com.huyoo.global.Application;
 import com.huyoo.service.ELevelService;
+import com.ryg.expandable.ui.CustomActionbar;
 
 import android.animation.Animator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.KeyEvent;
 import android.view.Window;
 import android.widget.Button;
@@ -28,7 +31,7 @@ import android.widget.Toast;
  *
  * @author Saul Diaz <sefford@gmail.com>
  */
-public class PersonInfo extends Activity {
+public class PersonInfo extends FragmentActivity {
 	AQuery aq ;
 
 	Button btStyle2;
@@ -45,7 +48,8 @@ public class PersonInfo extends Activity {
 		aq = new AQuery(this);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.person_info);
-
+		//CustomActionbar actionbar = new CustomActionbar();
+		//getSupportFragmentManager().beginTransaction().replace(R.id.actionbar, new )
 		this.aq.id(R.id.imageButton_1).background(R.drawable.backbuttoneffect);
 		this.aq.id(R.id.imageButton_1).clicked(this, "back");
 

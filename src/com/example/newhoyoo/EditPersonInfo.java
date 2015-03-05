@@ -80,9 +80,19 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 		person = Application.getLoginInfo().getPerson();
 		union = Application.getLoginInfo().getUnion();
 		level = Application.getLoginInfo().getLevel();
+		
+		this.aq.id(R.id.head_imageview).image(person.getIcon());
 		this.aq.id(R.id.name_edittext).text(person.getName());
-		this.aq.id(R.id.male_radio).checked("男".equals(person.getSex()));
-		this.aq.id(R.id.female_radio).checked("女".equals(person.getSex()));
+		if("男".equals(person.getSex()))
+		{
+			this.aq.id(R.id.male_radio).checked(true);
+			sexId = R.id.male_radio;
+		}
+		else
+		{
+			this.aq.id(R.id.female_radio).checked(true);
+			sexId = R.id.female_radio;
+		}
 		this.aq.id(R.id.school_edittext).text(person.getDepartment());
 		this.aq.id(R.id.birthday_edittext).text(new SimpleDateFormat("yyyy-MM-dd").format(new Date(person.getBirthday())));
 		this.aq.id(R.id.phonenum_edittext).text(person.getPhoneNum());
@@ -91,7 +101,7 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 		this.aq.id(R.id.unionlvl_textview).text(Application.getLevelService().getELevelByID(union.getLevelId()).getName());
 		this.aq.id(R.id.union_role_textview).text(person.getId() == union.getChairmanId()?"会长":"会员");
 		this.aq.id(R.id.achievelvl_textview).text(level.getName());
-
+		
 		RadioGroup sex_radiogroup = (RadioGroup)findViewById(R.id.sex_radiogroup);
 		sex_radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
@@ -167,8 +177,7 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 			public void onClick(DialogInterface dialog, int which) {
 				//保存修改
 				String name = aq.id(R.id.name_edittext).getText().toString().trim();
-				String sex = (sexId == 0) ? "男" : "女";
-				Toast.makeText(getApplicationContext(), sexId+":"+R.id.male_radio, Toast.LENGTH_LONG).show();
+				String sex = (sexId == R.id.male_radio) ? "男" : "女";
 				String department = aq.id(R.id.school_edittext).getText().toString();
 				String phoneNum = aq.id(R.id.phonenum_edittext).getText().toString();
 				person.setName(name);
