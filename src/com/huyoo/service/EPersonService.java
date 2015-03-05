@@ -1,5 +1,6 @@
 package com.huyoo.service;
 
+import java.io.ObjectOutputStream.PutField;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,8 +23,8 @@ public class EPersonService {
 	public List<EPerson> getPersons(Map<String,Object> params)
 	{
 		List<EPerson> persons = new ArrayList<EPerson>();
-		if(params.containsKey("phoneNum"))
-		{
+//		if(params.containsKey("phoneNum"))
+//		{
 			EPerson person = new EPerson();
 			person.setId(1);
 			person.setName("王昆");
@@ -39,7 +40,7 @@ public class EPersonService {
 			person.setVp(80);
 			person.setCurrentExp(2730);
 			persons.add(person);
-		}
+//		}
 		return persons;
 	}
 
@@ -50,7 +51,8 @@ public class EPersonService {
 	 */
 	public EPerson getEPersonById(int id)
 	{
-		return null;
+		
+		return getPersons(null).get(0);
 	}
 
 	/**

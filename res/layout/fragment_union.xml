@@ -176,20 +176,11 @@
             android:gravity="center"
             android:text="公会新闻" />
 
-        <LinearLayout
+        <WebView
+            android:id="@+id/union_news_webview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:orientation="vertical" >
-
-            <ListView
-                android:id="@+id/union_news_listview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:listSelector="@android:color/transparent" >
-            </ListView>
-        </LinearLayout>
+            android:background="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -213,12 +204,12 @@
 
                 <TextView
                     android:id="@+id/textView13"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="0.15"
                     android:gravity="center_vertical"
-                    android:text="公众邀请"
+                    android:text="公会邀请"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -239,7 +230,7 @@
 
                 <TextView
                     android:id="@+id/textView14"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="0.15"
@@ -265,7 +256,7 @@
 
                 <TextView
                     android:id="@+id/textView15"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="0.15"
@@ -291,7 +282,7 @@
 
                 <TextView
                     android:id="@+id/textView16"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="0.15"
@@ -317,7 +308,7 @@
 
                 <TextView
                     android:id="@+id/textView17"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="0.15"

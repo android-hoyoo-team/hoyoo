@@ -22,15 +22,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="公会信息"
+            android:text="公会新闻"
             android:textColor="@color/white"
             android:textSize="17sp" />
     </RelativeLayout>
 
     <ListView
-        android:id="@+id/union_news_list"
+        android:id="@+id/union_news_listview"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
         android:layout_marginBottom="10dp"
         android:layout_weight="1"
         android:dividerHeight="1dp" >

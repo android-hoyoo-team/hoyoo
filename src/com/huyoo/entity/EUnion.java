@@ -16,6 +16,7 @@ public class EUnion implements Serializable{
 	private String icon;
 	private long time;
 	private int currentExp;
+	private int activityNum;
 	public int getId() {
 		return id;
 	}
@@ -70,5 +71,10 @@ public class EUnion implements Serializable{
 	public void setCurrentExp(int currentExp) {
 		this.currentExp = currentExp;
 	}
-	
+	public int getActivityNum() {
+		return activityNum;
+	}
+	public void setActivityNum(int activityNum) {
+		this.activityNum = activityNum;
+	}
 }
