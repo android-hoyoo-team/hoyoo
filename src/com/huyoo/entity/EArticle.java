@@ -2,7 +2,7 @@ package com.huyoo.entity;
 
 import java.io.Serializable;
 
-public class ETitle implements Serializable{
+public class EArticle implements Serializable{
 	
 	/**
 	 * 

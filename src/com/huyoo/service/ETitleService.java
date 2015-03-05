@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.huyoo.entity.ELevel;
 import com.huyoo.entity.EPerson;
-import com.huyoo.entity.ETitle;
+import com.huyoo.entity.EArticle;
 
 /**
  * 
@@ -13,11 +13,11 @@ import com.huyoo.entity.ETitle;
  */
 public class ETitleService {
 	
-	public ETitle getETitleByID(int id)
+	public EArticle getEArticleByID(int id)
 	{
 		return null;
 	}
-	public List<ETitle> getAllETitle()
+	public List<EArticle> getAllEArticle()
 	{
 		return null;
 	}
