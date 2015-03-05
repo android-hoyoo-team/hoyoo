@@ -4,20 +4,20 @@ import java.util.List;
 
 import com.huyoo.entity.ELevel;
 import com.huyoo.entity.EPerson;
-import com.huyoo.entity.ETitle;
+import com.huyoo.entity.EArticle;
 
 /**
  * 
  * @author HJL 20150302
  *
  */
-public class ETitleService {
+public class EArticleService {
 	
-	public ETitle getETitleByID(int id)
+	public EArticle getEArticleByID(int id)
 	{
 		return null;
 	}
-	public List<ETitle> getAllETitle()
+	public List<EArticle> getAllEArticle()
 	{
 		return null;
 	}

@@ -3,7 +3,7 @@ package com.huyoo.service;
 import java.util.List;
 
 import com.huyoo.entity.EPerson;
-import com.huyoo.entity.ETitle;
+import com.huyoo.entity.EArticle;
 import com.huyoo.entity.EUnion;
 
 /**
