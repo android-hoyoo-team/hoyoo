@@ -11,7 +11,7 @@ import com.huyoo.entity.EArticle;
  * @author HJL 20150302
  *
  */
-public class ETitleService {
+public class EArticleService {
 	
 	public EArticle getEArticleByID(int id)
 	{
