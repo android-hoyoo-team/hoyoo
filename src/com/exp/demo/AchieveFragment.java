@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.example.newhoyoo.R;
+import com.example.newhoyoo.adapter.CustomListViewAdapter;
 import com.huyoo.entity.EAchievement;
 import com.huyoo.entity.EPerson;
 import com.huyoo.global.Application;
@@ -267,6 +268,8 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		@Override
 		public View getChildView(int groupPosition, int childPosition,
 				boolean isLastChild, View convertView, ViewGroup parent) {
+			
+			
 //			ChildHolder childHolder = null;
 //			if (convertView == null) {
 //				childHolder = new ChildHolder();
@@ -384,64 +387,5 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		return false;
 	}
 
-	class CustomListViewAdapter extends SimpleAdapter{
-
-		private LayoutInflater inflater = null;
-		private List<HashMap<String,Object>> data;
-		private String[] from;
-		private int[] to;
-		private String[] operation;
-		private int resource;
-
-		public CustomListViewAdapter(Context context,
-				List<HashMap<String, Object>> d, int res,
-				String[] f, int[] t,String[] op) {
-			super(context, d, res, f, t);
-			data = d;
-			from = f;
-			to = t;
-			operation = op;
-			resource = res;
-			inflater = LayoutInflater.from(context);
-		}
-
-		@Override
-		public int getCount() {
-			// TODO Auto-generated method stub
-			return data.size();
-		}
-
-		@Override
-		public Object getItem(int position) {
-			// TODO Auto-generated method stub
-			return position;
-		}
-
-		@Override
-		public long getItemId(int position) {
-			// TODO Auto-generated method stub
-			return position;
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
-			View v= inflater.inflate(resource, null);
-			AQuery aq = new AQuery(v);
-			HashMap<String,Object> d = new HashMap<String, Object>();
-			d = data.get(position);
-			for(int i = 0 ; i < to.length ; i++){
-				switch(operation[i])
-				{
-				case "image":
-					aq.id(to[i]).image(d.get(from[i]).toString(),false,true);
-					break;
-				case "text":
-					aq.id(to[i]).text(d.get(from[i]).toString());
-					break;
-				}
-			}
-			return v;
-		}
-	}
+	
 }
