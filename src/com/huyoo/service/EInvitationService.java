@@ -11,9 +11,30 @@ public class EInvitationService {
 
 	public List<EInvitation> getInvitations(Map<String,Object> params)
 	{
-		return null;
+		List<EInvitation> list=new ArrayList<>();
+		EInvitation i = new EInvitation();
+		i.setActivityTime(1425546750006l);
+		i.setAddress("无锡 南长区 N1955南下塘文化创意园9号楼");
+		i.setContent("2015 痛仰乐队《愿爱无忧》全国巡演 无锡站");
+		i.setCurrentNum(15);
+//		i.setForwardIdFrom();
+		i.setIcons("");
+		i.setId(1);
+		i.setIssueTime(1425545750006l);
+		i.setMaxNum(50);
+//		i.setOriginalId();
+//		i.setOriginalId();
+		i.setPersonId(1);
+//		i.setStatus();
+//		i.setTitle();
+		list.add(i);
+		return list;
 	}
-	public List<Map<String,Object>> getInvitationsMapByUnionId(int UnionId)
+	public EInvitation getInvitationById(int id)
+	{
+		return getInvitations(null).get(0);
+	}
+	public List<Map<String,Object>> getInvitationsMapByUnionId(int UnionId,int from ,int size)
 	{
 		/*
 		personName
