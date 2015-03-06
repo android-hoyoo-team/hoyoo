@@ -4,25 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.example.newhoyoo.R;
-import com.exp.demo.Group;
-import com.ryg.expandable.ui.PinnedHeaderExpandableListView;
-import com.ryg.expandable.ui.StickyLayout;
-import com.ryg.expandable.ui.PinnedHeaderExpandableListView.OnHeaderUpdateListener;
-import com.ryg.expandable.ui.StickyLayout.OnGiveUpTouchEventListener;
-
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-//import android.widget.AbsListView.LayoutParams;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
@@ -31,6 +24,15 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.androidquery.AQuery;
+import com.example.newhoyoo.R;
+import com.huyoo.entity.EAchievement;
+import com.huyoo.global.Application;
+import com.ryg.expandable.ui.HorizontalListView;
+import com.ryg.expandable.ui.PinnedHeaderExpandableListView;
+import com.ryg.expandable.ui.PinnedHeaderExpandableListView.OnHeaderUpdateListener;
+import com.ryg.expandable.ui.StickyLayout.OnGiveUpTouchEventListener;
 
 public class AchieveFragment extends Fragment implements
 ExpandableListView.OnChildClickListener,
@@ -44,12 +46,13 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 	/************************************************************/
 	/** Called when the activity is first created. */   
 	ListView myListView; 
+
 	HashMap<String, Object> pMap=new HashMap<String,Object>(); 
 	HashMap<String, Object> pMap1=new HashMap<String,Object>(); 
 	HashMap<String, Object> pMap2=new HashMap<String,Object>(); 
 	HashMap<String, Object> pMap3=new HashMap<String,Object>();
 	/************************************************************/
-	
+
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		super.onCreateView(inflater, container, savedInstanceState);
 		View rootView = inflater.inflate(R.layout.fragment_achieve, container, false);
@@ -58,9 +61,25 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		
-		
-		
+
+		//List<EAchievement> latestData = Application.getAchievementService().getLastestEAchievements(personId, num)
+		HorizontalListView latestAchievement = (HorizontalListView)getActivity().findViewById(R.id.horizon_listview);
+		ArrayList<HashMap<String,Object>> latestList=new ArrayList<HashMap<String,Object>>();  
+		for(int i = 0;i < 5;i++)
+		{
+			HashMap<String, Object> mMap=new HashMap<String,Object>(); 
+			mMap.put("image", "http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/9855C5331E004040B1A5D6C9D8483108");
+			mMap.put("text", "有车有房还有什么呢");
+			latestList.add(mMap);
+		}
+		final HorizontalListViewAdapter simpleAdapter = new HorizontalListViewAdapter(getActivity(), 
+				latestList,
+				new String[]{"image","text"},
+				new int[]{R.id.img_list_item,R.id.text_list_item},
+				new String[]{"image","text"}
+				);
+		latestAchievement.setAdapter(simpleAdapter);
+
 		/************************************************************/
 		//生成ListView对象   
 		myListView=(ListView)getActivity().findViewById(R.id.main_list2);
@@ -178,6 +197,16 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		// stickyLayout.setOnGiveUpTouchEventListener(this);
 
 	}
+	/**
+	 * @return *************************************************************/
+	/*加载数据*/
+	public void initLatest(){
+		
+	}
+	
+	
+	
+	
 	/**************************************************************/
 	private void skip_quanshiyaoqing()
 	{
@@ -269,6 +298,8 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 
 	}
 
+
+
 	/**** 数据源   ** @author Administrator **/
 	class MyexpandableListAdapter extends BaseExpandableListAdapter {
 		private Context context;
@@ -337,7 +368,7 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 			groupHolder.textView.setText(((Group) getGroup(groupPosition))
 					.getTitle());
 			if (isExpanded)// true is Expanded or false is not isExpanded
-			groupHolder.imageView.setImageResource(R.drawable.bt_02_nor_up);
+				groupHolder.imageView.setImageResource(R.drawable.bt_02_nor_up);
 			else
 				groupHolder.imageView.setImageResource(R.drawable.bt_02_nor_down);
 			return convertView;
@@ -462,4 +493,65 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		return false;
 	}
 
+	class HorizontalListViewAdapter extends BaseAdapter{
+
+		private Activity activity;
+		private ArrayList<HashMap<String,Object>> data;
+		private LayoutInflater inflater = null;
+		private String[] from;
+		private int[] to;
+		private String[] operation;
+
+		public HorizontalListViewAdapter(Activity a, ArrayList<HashMap<String, Object>> d,String[] f,int[] t,String [] op) {  
+			activity = a;  
+			data=d;  
+			from = f;
+			to = t;
+			operation  = op;
+			inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
+		}  
+
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return data.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			// TODO Auto-generated method stub
+
+			View v = inflater.inflate(R.layout.horizontal_list_item, null);
+			AQuery aq = new AQuery(v);
+			HashMap<String,Object> d = new HashMap<String, Object>();
+			d = data.get(position);
+
+			for(int i = 0 ; i < to.length ; i++){
+				switch(operation[i])
+				{
+				case "image":
+					aq.id(to[i]).image(d.get(from[i]).toString());
+					break;
+				case "text":
+					aq.id(to[i]).text(d.get(from[i]).toString());
+					break;
+				default:
+					aq.id(to[i]).text(d.get(from[i]).toString());
+				}
+			}
+			return v;
+		}
+	}
 }

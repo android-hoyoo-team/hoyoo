@@ -140,7 +140,7 @@ public class YaoqingActivity extends Activity {
 			// TODO Auto-generated method stub
 			Intent intent=new Intent();
 			intent.setClass(YaoqingActivity.this, Comment.class);
-			YaoqingActivity.this.startActivity(intent);
+			startActivity(intent);
 		}
     }
 /*

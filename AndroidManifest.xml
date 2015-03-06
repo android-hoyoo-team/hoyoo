@@ -66,6 +66,8 @@
         </activity>
         <activity android:name="com.example.newhoyoo.YaoqingActivity" >
         </activity>
+        <activity android:name="com.example.newhoyoo.Comment" >
+        </activity>
         <activity
             android:name="com.example.newhoyoo.DatePickerDialog"
             android:label="@string/title_activity_date_picker_dialog" >
