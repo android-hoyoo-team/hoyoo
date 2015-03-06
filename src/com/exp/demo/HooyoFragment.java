@@ -10,6 +10,7 @@ import com.example.newhoyoo.R;
 import com.example.newhoyoo.UnionNewsActivity;
 import com.example.newhoyoo.UnionNewsDetail;
 import com.example.newhoyoo.YaoqingActivity;
+import com.example.newhoyoo.adapter.CustomListViewAdapter;
 import com.example.newhoyoo.adapter.NewsListAdapter;
 import com.huyoo.entity.EArticle;
 import com.huyoo.global.Application;
@@ -33,6 +34,7 @@ public class HooyoFragment extends Fragment {
 	AQuery aq=new AQuery(getActivity());
 	NewsListAdapter mAdapter1;
 	NewsListAdapter mAdapter3;
+	CustomListViewAdapter mAdapter2;
 //	/************************************************************/
 //	/** Called when the activity is first created. */   
 //	ListView myListView1; 
@@ -53,11 +55,11 @@ public class HooyoFragment extends Fragment {
 	/** Called when the activity is first created. */   
 	//澹版槑ListView瀵硅薄   
 	ListView myListView3; 
-	HashMap<String, Object> pMap_3=new HashMap<String,Object>(); 
-	HashMap<String, Object> pMap1_3=new HashMap<String,Object>(); 
-	HashMap<String, Object> pMap2_3=new HashMap<String,Object>(); 
-	HashMap<String, Object> pMap3_3=new HashMap<String,Object>();
-	/************************************************************/
+//	HashMap<String, Object> pMap_3=new HashMap<String,Object>(); 
+//	HashMap<String, Object> pMap1_3=new HashMap<String,Object>(); 
+//	HashMap<String, Object> pMap2_3=new HashMap<String,Object>(); 
+//	HashMap<String, Object> pMap3_3=new HashMap<String,Object>();
+//	/************************************************************/
 	ListView myListView1;
 	
 
@@ -74,7 +76,7 @@ public class HooyoFragment extends Fragment {
 		//生成ListView对象   
 		myListView1=(ListView)getActivity().findViewById(R.id.listView_news);
 		List<Map<String,Object>> programeList=new ArrayList<Map<String,Object>>();  
-		List<EArticle> list1=Application.getArticleSercice().getTopUnionNews(4, 0);
+		List<EArticle> list1=Application.getArticleSercice().getTopUnionNews(4, Application.getLoginInfo().getUnion().getId());
 		programeList=Application.getArticleSercice().convertFromList(list1);
 		mAdapter1=new NewsListAdapter(this.getActivity());
 		mAdapter1.setNewsList(programeList);
@@ -195,44 +197,52 @@ public class HooyoFragment extends Fragment {
 		/******************************222222222222222222222222222******************************/
 		//生成ListView对象   
 		myListView2=(ListView)getActivity().findViewById(R.id.listView_invite);
-		ArrayList<HashMap<String,Object>> programeList2=new ArrayList<HashMap<String,Object>>();  
-		for(int i=0;i<5;i++) 
-		{ 
-			switch(i){
-			case 0:
-
-				pMap_2.put("picture",R.drawable.d05); 
-				pMap_2.put("name", "全是邀请");  
-				pMap_2.put("time", "发布于今天");
-				pMap_2.put("readers", "没人看");
-				programeList2.add(pMap_2);
-				break;
-			case 1:
-
-				pMap1_2.put("picture",R.drawable.d06); 
-				pMap1_2.put("name", "我的公会");  
-				pMap1_2.put("time", "发布于今天");
-				pMap1_2.put("readers", "没人看");
-				programeList2.add(pMap1_2);
-				break;
-			case 2:
-
-				pMap2_2.put("picture",R.drawable.d07); 
-				pMap2_2.put("name", "我的成就");  
-				pMap2_2.put("time", "发布于今天");
-				pMap2_2.put("readers", "没人看");
-				programeList2.add(pMap2_2);
-				break;
-			case 3:
-
-				pMap3_2.put("picture",R.drawable.d08); 
-				pMap3_2.put("name", "我的信息");  
-				pMap3_2.put("time", "发布于今天");
-				pMap3_2.put("readers", "没人看");
-				programeList2.add(pMap3_2);
-				break;
-			}
-		} 
+		List<Map<String,Object>> programeList2=new ArrayList<Map<String,Object>>();
+		programeList2=Application.getInvitationService().getTopInvitation(4, 
+				Application.getLoginInfo().getUnion().getId());
+		 mAdapter2=new CustomListViewAdapter(getActivity(), programeList2,R.layout.item_hoyoo, 
+				 new String[]{"picture","title","name","issueTime","hits" }, 
+				 t, 
+				 op)
+//		ArrayList<HashMap<String,Object>> programeList2=new ArrayList<HashMap<String,Object>>();
+		
+//		for(int i=0;i<5;i++) 
+//		{ 
+//			switch(i){
+//			case 0:
+//
+//				pMap_2.put("picture",R.drawable.d05); 
+//				pMap_2.put("name", "全是邀请");  
+//				pMap_2.put("time", "发布于今天");
+//				pMap_2.put("readers", "没人看");
+//				programeList2.add(pMap_2);
+//				break;
+//			case 1:
+//
+//				pMap1_2.put("picture",R.drawable.d06); 
+//				pMap1_2.put("name", "我的公会");  
+//				pMap1_2.put("time", "发布于今天");
+//				pMap1_2.put("readers", "没人看");
+//				programeList2.add(pMap1_2);
+//				break;
+//			case 2:
+//
+//				pMap2_2.put("picture",R.drawable.d07); 
+//				pMap2_2.put("name", "我的成就");  
+//				pMap2_2.put("time", "发布于今天");
+//				pMap2_2.put("readers", "没人看");
+//				programeList2.add(pMap2_2);
+//				break;
+//			case 3:
+//
+//				pMap3_2.put("picture",R.drawable.d08); 
+//				pMap3_2.put("name", "我的信息");  
+//				pMap3_2.put("time", "发布于今天");
+//				pMap3_2.put("readers", "没人看");
+//				programeList2.add(pMap3_2);
+//				break;
+//			}
+//		} 
 
 		//生成SimpleAdapter适配器对象   
 		final SimpleAdapter mySimpleAdapter2=new SimpleAdapter(this.getActivity(),   
@@ -298,7 +308,7 @@ public class HooyoFragment extends Fragment {
 		//生成ListView对象   
 		myListView3=(ListView)getActivity().findViewById(R.id.listView_success);
 		List<Map<String,Object>> programeList3=new ArrayList<Map<String,Object>>();  
-		List<EArticle> list3=Application.getArticleSercice().getTopTips(4, 0);
+		List<EArticle> list3=Application.getArticleSercice().getTopTips(4, Application.getLoginInfo().getUnion().getId());
 		programeList3=Application.getArticleSercice().convertFromList(list3);
 		mAdapter3=new NewsListAdapter(this.getActivity());
 		mAdapter3.setNewsList(programeList3);
@@ -360,7 +370,7 @@ public class HooyoFragment extends Fragment {
 					long arg3) {   
 				Map<String,Object> currentMap=(Map<String, Object>)myListView3.getItemAtPosition(arg2);
 				Intent intent=new Intent();
-				intent.putExtra("title", "成功秘笈");
+				intent.putExtra("type", "成功秘笈");
 				intent.putExtra("id", currentMap.get("id").toString());
 				intent.setClass(getActivity(), UnionNewsActivity.class);
 				getActivity().startActivity(intent);

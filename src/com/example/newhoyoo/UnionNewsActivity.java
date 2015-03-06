@@ -54,6 +54,7 @@ public class UnionNewsActivity extends Activity {
 		if("公会新闻".equals(type)){
 			//根据传入的id获取新闻
 			EArticle news=Application.getArticleSercice().getNewsById(id);
+			
 			//根据获得的personId获取EPerson
 			EPerson person=Application.getPersonService().getEPersonById(news.getPersonId());
 			//绑定数据
@@ -61,6 +62,7 @@ public class UnionNewsActivity extends Activity {
 			aq.id(R.id.union_news_topic_text).text(news.getTitle());			
 			aq.id(R.id.union_news_author_image).image(person.getIcon());
 			aq.id(R.id.union_news_author_text).text(person.getName());
+			
 			String time=DateUtil.getTimeBeforeNow(new Date().getTime()-news.getTime());
 			aq.id(R.id.union_news_time_text).text(time);
 //			aq.id(R.id.union_news_content_text).text(news.getContent());
