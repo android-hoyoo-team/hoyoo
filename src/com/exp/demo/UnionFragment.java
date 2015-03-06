@@ -1,34 +1,22 @@
 package com.exp.demo;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import com.androidquery.AQuery;
 import com.example.newhoyoo.R;
-import com.example.newhoyoo.R.id;
 import com.example.newhoyoo.UnionNewsList;
 import com.example.newhoyoo.UnionInfo;
 import com.huyoo.entity.ELevel;
 import com.huyoo.entity.EUnion;
 import com.huyoo.global.Application;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-import android.view.Window;
 import android.webkit.WebView;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 public class UnionFragment extends Fragment {

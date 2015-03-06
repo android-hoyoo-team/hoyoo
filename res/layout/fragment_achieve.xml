@@ -28,11 +28,12 @@
             android:background="@color/white"
             android:orientation="horizontal" >
 
-           <!--  <com.ryg.expandable.ui.HorizontalListView
+            <com.ryg.expandable.ui.HorizontalListView
                 android:id="@+id/horizon_listview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-            </com.ryg.expandable.ui.HorizontalListView> -->
+                android:layout_height="72dp" >
+            </com.ryg.expandable.ui.HorizontalListView>
+            <!--
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
@@ -156,6 +157,7 @@
                     </LinearLayout>
                 </LinearLayout>
             </HorizontalScrollView>
+            -->
         </LinearLayout>
 
         <TextView

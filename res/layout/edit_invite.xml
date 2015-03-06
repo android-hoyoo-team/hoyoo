@@ -165,6 +165,7 @@
             android:textSize="17sp"
             android:layout_centerVertical="true"/>                 
         <EditText 
+            android:id="@+id/date_editview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="12sp"          
