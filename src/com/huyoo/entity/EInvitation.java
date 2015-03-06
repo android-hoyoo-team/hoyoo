@@ -20,6 +20,7 @@ public class EInvitation implements Serializable{
 	private String status;
 	private long issueTime;
 	private String icons;
+	private String hits;
 	public int getId() {
 		return id;
 	}
@@ -97,6 +98,12 @@ public class EInvitation implements Serializable{
 	}
 	public void setIcons(String icons) {
 		this.icons = icons;
+	}
+	public String getHits() {
+		return hits;
+	}
+	public void setHits(String hits) {
+		this.hits = hits;
 	}
 	
 }
