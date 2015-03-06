@@ -50,7 +50,22 @@ public class EPersonService {
 	 */
 	public EPerson getEPersonById(int id)
 	{
-		return null;
+		EPerson person = new EPerson();
+		person.setId(1);
+		person.setName("王昆");
+		person.setLevelId(1);
+		person.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/9855C5331E004040B1A5D6C9D8483108");
+		person.setSex("男");
+		person.setSchool("蚌埠学院");
+		person.setDepartment("计算机");
+		person.setBirthday(10000000000l);
+		person.setPhoneNum("18888888888");
+		person.setPosition("学生会主席");
+		person.setUnionId(1);
+		person.setVp(80);
+		person.setCurrentExp(2730);
+//		persons.add(person);
+		return person;
 	}
 
 	/**
