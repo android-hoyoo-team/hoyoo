@@ -107,6 +107,7 @@
                 android:layout_below="@+id/text_yaoq_info"
                 android:layout_marginTop="3dp"
                 android:text="日期:"
+                 android:textColor="@color/darkgrey"
                 android:textSize="9dip" />
 
             <TextView
@@ -117,6 +118,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_toRightOf="@+id/textv_date"
                 android:text="2014年10月20日 星期日   "
+                 android:textColor="@color/darkgrey"
                 android:textSize="9dp" />
 
             <TextView
@@ -127,6 +129,7 @@
                 android:layout_below="@+id/text_yaoq_info"
                 android:layout_marginTop="3dp"
                 android:text="18:30-20:30"
+                 android:textColor="@color/darkgrey"
                 android:textSize="9dp" />
 
             <TextView
@@ -137,6 +140,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_toLeftOf="@+id/text_yaoq_time"
                 android:text="时间:"
+                 android:textColor="@color/darkgrey"
                 android:textSize="9dp" />
 
             <TextView
@@ -147,6 +151,7 @@
                 android:layout_below="@+id/textv_date"
                 android:layout_marginTop="3dp"
                 android:text="地址:"
+                 android:textColor="@color/darkgrey"
                 android:textSize="9dip" />
 
             <TextView
@@ -157,6 +162,7 @@
                 android:layout_marginTop="3dp"
                 android:layout_toRightOf="@+id/textv_address"
                 android:text="南门"
+                 android:textColor="@color/darkgrey"
                 android:textSize="9dp" />
         </RelativeLayout>
     </LinearLayout>
