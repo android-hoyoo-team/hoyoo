@@ -221,7 +221,7 @@ public class CircularProgressDrawable extends Drawable {
 		float old = this.getProgress();
 
 		ObjectAnimator progressAnimation = ObjectAnimator.ofFloat(this, CircularProgressDrawable.PROGRESS_PROPERTY, old, progress);//0f1f
-		progressAnimation.setDuration(1800);
+		progressAnimation.setDuration(800);
 		progressAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
 
 		//          Animator innerCircleAnimation = ObjectAnimator.ofFloat(drawable, CircularProgressDrawable.CIRCLE_FILL_PROPERTY, empty, full);//0f1.2f
@@ -265,7 +265,7 @@ public class CircularProgressDrawable extends Drawable {
 		//		progressAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
 
 		ObjectAnimator innerCircleAnimation = ObjectAnimator.ofFloat(this, CircularProgressDrawable.CIRCLE_FILL_PROPERTY,old, circleScale);//0f1.2f
-		innerCircleAnimation.setDuration(1800);
+		innerCircleAnimation.setDuration(800);
 		innerCircleAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
 
 

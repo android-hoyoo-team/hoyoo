@@ -171,7 +171,7 @@ public class EInvitationService {
 	 */
 	public List<Map<String,Object>> getTopInvitation(int num,int unionId){
 		List<Map<String,Object>> resultList=new ArrayList<Map<String,Object>>();
-		List<Map<String,Object>> list=getInvitationsMapByUnionId(unionId);
+		List<Map<String,Object>> list=getInvitationsMapByUnionId(unionId,0,num);
 		Collections.sort(list,new Comparator<Map<String,Object>>() {
 
 			@Override

@@ -15,7 +15,19 @@
  */
 package com.example.newhoyoo;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import per.cz.event1_0.DEvent;
+import per.cz.event1_0.DispatchEvent;
+
 import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxCallback;
+import com.example.newhoyoo.adapter.InvitationListAdapter;
+import com.example.newhoyoo.adapter.InvitationListAdapter.ViewHolder;
+import com.huyoo.entity.EPerson;
+import com.huyoo.global.Application;
+import com.huyoo.service.EPersonService;
 
 import main.java.com.sefford.circularprogressdrawable.sample.CircularProgressDrawable;
 import android.animation.Animator;
@@ -24,6 +36,9 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,6 +50,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Circular progress drawable demonstration
@@ -49,7 +65,8 @@ public class YaoqingActivity extends Activity {
 	ImageView img0,img1,img2,img3,img4,back;
 	ImageButton imgB1,imgB2,imgB3,imgB4;
 	Button button1,button2,button3;
-	
+	private EPerson person;
+	private ViewHolder holder;
     // Views
     ImageView ivDrawable;
     Button btStyle2;
@@ -74,8 +91,69 @@ public class YaoqingActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_yaoqing_list);
-        
-        back=(ImageView)findViewById(R.id.yaoqing_back);
+        Intent intent=getIntent();
+		HashMap<String,Object> item=(HashMap<String,Object>)intent.getSerializableExtra("item");
+		person = Application.getPersonService().getEPersonById(Integer.parseInt(item.get("id").toString()));
+		Map<String, Object> res = InvitationListAdapter.changeItem(item);
+		holder =new ViewHolder();
+		holder.personName = (TextView) findViewById(R.id.personName);
+		holder.personLevel = (TextView) findViewById(R.id.textView6);
+		holder.issueTime = (TextView) findViewById(R.id.textView3);
+		holder.content = (TextView) findViewById(R.id.textView8);
+		holder.activityTime_date = (TextView) findViewById(R.id.textView10);
+		holder.activityTime_time = (TextView) findViewById(R.id.textView14);
+		holder.address = (TextView) findViewById(R.id.textView12);
+		holder.info1 = (TextView) findViewById(R.id.textView15);
+		holder.info2 = (TextView) findViewById(R.id.textView16);
+		holder.progress = (ImageView) findViewById(R.id.iv_drawable);
+		holder.image_us_photo = (ImageView) findViewById(R.id.imageView7);
+		
+		aq = new AQuery(this);
+//		Map<String,Object> res=InvitationListAdapter.changeItem(item);
+		String url = res.get("personUrl").toString();
+		//			aq.id(R.id.image_us_photo).image(url);
+		aq.ajax(url, Bitmap.class, new AjaxCallback<Bitmap>() {
+			@Override
+			public void callback(String url, Bitmap object, com.androidquery.callback.AjaxStatus status) {
+				Drawable drawable = new BitmapDrawable(object);  
+				holder.image_us_photo.setImageDrawable(drawable);
+			}
+		});
+		holder.personName.setText(res.get("personName").toString());
+		holder.personLevel.setText(res.get("personLevel").toString());
+		holder.address.setText(res.get("address").toString());
+		holder.issueTime.setText(res.get("issueTime").toString());
+		holder.content.setText(item.get("content").toString());
+		holder.activityTime_date.setText(item.get("activityTime_date").toString());
+		holder.activityTime_time.setText(item.get("activityTime_time").toString());
+		int isJoin = Integer.parseInt(res.get("isJoin").toString());
+
+		holder.info1.setText(res.get("info1").toString());
+		holder.info2.setText(res.get("info2").toString());
+		int currentNum =Integer.parseInt(res.get("currentNum").toString());
+		final int maxNum =Integer.parseInt(res.get("maxNum").toString());
+
+		final CircularProgressDrawable  drawable = new CircularProgressDrawable(getResources().getDimensionPixelSize(R.dimen.drawable_ring_size),
+				getResources().getColor(android.R.color.darker_gray),
+				getResources().getColor(android.R.color.holo_red_dark),
+				getResources().getColor(android.R.color.holo_red_dark));
+		float p=(float) (currentNum/(maxNum+0.0));
+		drawable.setProgress(p);
+		drawable.setCircleScale(p);
+//		final Map<String,Integer> tag=new HashMap<String, Integer>();
+//		tag.put("progress", drawable);
+//		tag.put("isJoin", isJoin);
+//		holder.progress.setTag(tag);
+		holder.progress.setImageDrawable(drawable);
+		if(currentNum<maxNum||isJoin==1)
+		{
+			InvitationListAdapter.addProgressListener(holder,drawable,this,item);
+		}
+		
+		
+		
+		
+		back=(ImageView)findViewById(R.id.yaoqing_back);
         final YaoqingActivity target=this;
         back.setOnClickListener(new OnClickListener() {
 			
@@ -108,15 +186,15 @@ public class YaoqingActivity extends Activity {
 
         button1=(Button)findViewById(R.id.button1);
         button2=(Button)findViewById(R.id.button2);
-        drawable = new CircularProgressDrawable(getResources().getDimensionPixelSize(R.dimen.drawable_ring_size),
-                getResources().getColor(android.R.color.darker_gray),
-                getResources().getColor(android.R.color.holo_red_dark),
-                getResources().getColor(android.R.color.holo_red_dark));
-        
-        drawable.setProgress(0.5f);
-        drawable.setCircleScale(0.5f);
-        ivDrawable.setImageDrawable(drawable);
-        ivDrawable.setOnClickListener(listener);
+//        drawable = new CircularProgressDrawable(getResources().getDimensionPixelSize(R.dimen.drawable_ring_size),
+//                getResources().getColor(android.R.color.darker_gray),
+//                getResources().getColor(android.R.color.holo_red_dark),
+//                getResources().getColor(android.R.color.holo_red_dark));
+//        
+//        drawable.setProgress(0.5f);
+//        drawable.setCircleScale(0.5f);
+//        ivDrawable.setImageDrawable(drawable);
+//        ivDrawable.setOnClickListener(listener);
         button1.setOnClickListener(new Button1Listener());
         button2.setOnClickListener(new Button2Listener());
 //        btStyle2.setOnClickListener(listener);
@@ -225,5 +303,20 @@ public class YaoqingActivity extends Activity {
     	img3.setImageResource(0);
     	img4.setImageResource(0);
     }
+//	public final class ViewHolder{
+//		public ImageView image_us_photo;
+//		public TextView personName;
+//		public TextView personLevel;
+//		public TextView issueTime;
+//		public TextView content;
+//		public TextView activityTime_date;
+//		public TextView activityTime_time;
+//		public TextView address;
+//		public TextView info1;
+//		public TextView info2;
+//		public ImageView progress;
+//
+//		
+//	}
 }
 

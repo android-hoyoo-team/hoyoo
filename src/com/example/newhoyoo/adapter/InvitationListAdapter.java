@@ -2,6 +2,7 @@ package com.example.newhoyoo.adapter;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,9 +28,12 @@ import com.androidquery.callback.AjaxCallback;
 import com.example.newhoyoo.R;
 import com.huyoo.global.Application;
 import com.huyoo.utils.DateUtil;
+import com.huyoo.utils.GsonUtil;
 
 public class InvitationListAdapter extends BaseAdapter{
-
+	public final static String HAS_JOIN="已参加";
+	public final static String HAS_FULL="人数已满";
+	public final static String TO_JOIN="点击参与";
 	private List<Map<String,Object>> invitationList=new ArrayList<Map<String,Object>>();
 	private LayoutInflater mInflater;//得到一个LayoutInfalter对象用来导入布局
 	private Object mFilter;
@@ -96,66 +100,29 @@ public class InvitationListAdapter extends BaseAdapter{
 		isJoin 0:1(join)
 		 * */
 		aq = new AQuery(context);
-		Object personUrl = item.get("personUrl");
-		if(personUrl!=null&&!personUrl.toString().trim().equals(""))
-		{
-			String url = personUrl.toString();
-			aq.id(R.id.image_us_photo).image(url);
-//			aq.ajax(url, Bitmap.class, new AjaxCallback<Bitmap>() {
-//				
-//				@Override
-//				public void callback(String url, Bitmap object, com.androidquery.callback.AjaxStatus status) {
-//					Drawable drawable = new BitmapDrawable(object);  
-//					_holder.image_us_photo.setImageDrawable(drawable);
-//				}
-//			});
-		}
-		holder.personName.setText(item.get("personName")==null?"":item.get("personName").toString());
-		holder.personLevel.setText(item.get("personLevel")==null?"":item.get("personLevel").toString());
-		holder.address.setText(item.get("address")==null?"":item.get("address").toString());
-		Object  _issueTime = item.get("issueTime");
-		if(_issueTime==null)
-		{
-			_issueTime="";
-		}
-		else
-		{
-			_issueTime = DateUtil.date2Str(new Date(Long.parseLong(_issueTime.toString())),"yyyy年MM月dd日 HH:mm:ss");
-		}
-		holder.issueTime.setText(_issueTime.toString());
-		holder.content.setText(item.get("content")==null?"":item.get("content").toString());
-		Object  _activityTime = item.get("activityTime");
-		String _activityTime_date,_activityTime_time;
-		if(_activityTime==null)
-		{
-			_activityTime_date="";
-			_activityTime_time="";
-		}
-		else
-		{
-			_activityTime_date = DateUtil.date2Str(new Date(Long.parseLong(_activityTime.toString())),"yyyy年MM月dd日");
-			_activityTime_time = DateUtil.date2Str(new Date(Long.parseLong(_activityTime.toString())),"HH:mm:ss");
-		}
-		holder.activityTime_date.setText(_activityTime_date);
-		holder.activityTime_time.setText(_activityTime_time);
-		int isJoin = item.get("isJoin")==null?0:Integer.parseInt(item.get("isJoin").toString());
+		Map<String,Object> res=changeItem(item);
+		String url = res.get("personUrl").toString();
+		//			aq.id(R.id.image_us_photo).image(url);
+		aq.ajax(url, Bitmap.class, new AjaxCallback<Bitmap>() {
+			@Override
+			public void callback(String url, Bitmap object, com.androidquery.callback.AjaxStatus status) {
+				Drawable drawable = new BitmapDrawable(object);  
+				_holder.image_us_photo.setImageDrawable(drawable);
+			}
+		});
+		holder.personName.setText(res.get("personName").toString());
+		holder.personLevel.setText(res.get("personLevel").toString());
+		holder.address.setText(res.get("address").toString());
+		holder.issueTime.setText(res.get("issueTime").toString());
+		holder.content.setText(item.get("content").toString());
+		holder.activityTime_date.setText(item.get("activityTime_date").toString());
+		holder.activityTime_time.setText(item.get("activityTime_time").toString());
+		int isJoin = Integer.parseInt(res.get("isJoin").toString());
 
-		final int currentNum=item.get("currentNum")==null?0:Integer.parseInt(item.get("currentNum").toString());
-		final int maxNum=item.get("maxNum")==null?0:Integer.parseInt(item.get("maxNum").toString());
-		if(isJoin==1)
-		{
-			holder.info1.setText("已参与");
-		}
-		else if(currentNum==maxNum)
-		{
-			holder.info1.setText("人数已满");
-		}
-		else if(currentNum==maxNum)
-		{
-			holder.info1.setText("点击参与");
-		}
-		holder.info2.setText(currentNum+"/"+maxNum);
-
+		holder.info1.setText(res.get("info1").toString());
+		holder.info2.setText(res.get("info2").toString());
+		int currentNum =Integer.parseInt(res.get("currentNum").toString());
+		final int maxNum =Integer.parseInt(res.get("maxNum").toString());
 
 		final CircularProgressDrawable  drawable = new CircularProgressDrawable(convertView.getResources().getDimensionPixelSize(R.dimen.drawable_ring_size),
 				convertView.getResources().getColor(android.R.color.darker_gray),
@@ -179,51 +146,9 @@ public class InvitationListAdapter extends BaseAdapter{
 				}
 			}
 		});
-		if(currentNum<maxNum)
+		if(currentNum<maxNum||isJoin==1)
 		{
-//			holder.progress.setOnHoverListener(l);
-			holder.progress.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					int vid=v.getId();
-					if(vid==_holder.progress.getId())
-					{
-//					Map<String,Object> tag = (Map<String,Object>) holder.progress.getTag();
-						int jo=item.get("isJoin")==null?0:Integer.parseInt(item.get("isJoin").toString());
-						if(jo==1)
-						{
-							new AlertDialog.Builder(context).setTitle("提示").setMessage("是否取消参与？")
-							.setNegativeButton("取消",new DialogInterface.OnClickListener(){
-								@Override
-								public void onClick(DialogInterface dialog, int which) {
-									//不变
-								}
-							})
-							.setPositiveButton("确定",new DialogInterface.OnClickListener() {
-								@Override
-								public void onClick(DialogInterface dialog, int which) {
-									//保存修改
-									item.put("isJoin", 0);
-									item.put("currentNum", Integer.parseInt(item.get("currentNum").toString())-1);
-									drawable.setCircleScale_(drawable.getCircleScale()-0.1f);
-									drawable.setProgress_(drawable.getProgress()-0.1f);
-									_holder.info1.setText("点击参与");
-									_holder.info2.setText(item.get("currentNum")+"/"+maxNum);
-								}
-							}).show();
-						}
-						else
-						{
-							drawable.setCircleScale_(drawable.getCircleScale()+0.1f);
-							drawable.setProgress_(drawable.getProgress()+0.1f);
-							item.put("isJoin", 1);
-							item.put("currentNum", Integer.parseInt(item.get("currentNum").toString())+1);
-							_holder.info1.setText("已参与");
-							_holder.info2.setText(item.get("currentNum")+"/"+maxNum);
-						}
-					}
-				}
-			});
+			addProgressListener(holder,drawable,context,item);
 		}
 		/**为Button添加点击事件*/             
 		//        holder.bt.setOnClickListener(new OnClickListener() {
@@ -234,11 +159,7 @@ public class InvitationListAdapter extends BaseAdapter{
 		//        });
 		return convertView;
 	}
-	private void getInfo1(Object info1)
-	{
-
-	}
-	public final class ViewHolder{
+	public final static class ViewHolder{
 		public TextView personName;
 		public TextView personLevel;
 		public TextView issueTime;
@@ -252,6 +173,118 @@ public class InvitationListAdapter extends BaseAdapter{
 		public ImageView image_us_photo;
 
 		
+	}
+	public static void addProgressListener(final ViewHolder _holder,final CircularProgressDrawable  drawable,final Context context,final Map<String,Object> item)
+	{
+		_holder.progress.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				int vid=v.getId();
+				if(vid==_holder.progress.getId())
+				{
+//				Map<String,Object> tag = (Map<String,Object>) holder.progress.getTag();
+					int jo=item.get("isJoin")==null?0:Integer.parseInt(item.get("isJoin").toString());
+					if(jo==1)
+					{
+						new AlertDialog.Builder(context).setTitle("提示").setMessage("是否取消参与？")
+						.setNegativeButton("取消",new DialogInterface.OnClickListener(){
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								//不变
+							}
+						})
+						.setPositiveButton("确定",new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog, int which) {
+								//保存修改
+								item.put("isJoin", 0);
+								item.put("currentNum", Integer.parseInt(item.get("currentNum").toString())-1);
+								drawable.setCircleScale_(drawable.getCircleScale()-0.1f);
+								drawable.setProgress_(drawable.getProgress()-0.1f);
+								_holder.info1.setText(TO_JOIN);
+								_holder.info2.setText(item.get("currentNum")+"/"+item.get("maxNum"));
+							}
+						}).show();
+					}
+					else
+					{
+						drawable.setCircleScale_(drawable.getCircleScale()+0.1f);
+						drawable.setProgress_(drawable.getProgress()+0.1f);
+						item.put("isJoin", 1);
+						item.put("currentNum", Integer.parseInt(item.get("currentNum").toString())+1);
+						_holder.info1.setText(HAS_JOIN);
+						_holder.info2.setText(item.get("currentNum")+"/"+item.get("maxNum"));
+					}
+				}
+			}
+		});
+	}
+	public static void setHolder(Map<String,Object> res)
+	{
+		
+	}
+	public static Map<String,Object> changeItem(Map<String,Object> item)
+	{
+		Map<String,Object> res=new HashMap<String,Object>();
+		res.put("personUrl", item.get("personUrl"));
+		res.put("personName", item.get("personName")==null?"":item.get("personName").toString());
+		res.put("personLevel", item.get("personLevel")==null?"":item.get("personLevel").toString());
+		res.put("address", item.get("address")==null?"":item.get("address").toString());
+		Object  _issueTime = item.get("issueTime");
+		if(_issueTime==null)
+		{
+			_issueTime="";
+		}
+		else
+		{
+			_issueTime = DateUtil.date2Str(new Date(Long.parseLong(_issueTime.toString())),"yyyy年MM月dd日 HH:mm:ss");
+		}
+		res.put("issueTime",_issueTime.toString());
+		res.put("content",item.get("content")==null?"":item.get("content").toString() );
+		Object  _activityTime = item.get("activityTime");
+		String _activityTime_date,_activityTime_time;
+		if(_activityTime==null)
+		{
+			_activityTime_date="";
+			_activityTime_time="";
+		}
+		else
+		{
+			_activityTime_date = DateUtil.date2Str(new Date(Long.parseLong(_activityTime.toString())),"yyyy年MM月dd日");
+			_activityTime_time = DateUtil.date2Str(new Date(Long.parseLong(_activityTime.toString())),"HH:mm:ss");
+		}
+		res.put("activityTime_date", _activityTime_date);
+		res.put("activityTime_time", _activityTime_time);
+		int isJoin = item.get("isJoin")==null?0:Integer.parseInt(item.get("isJoin").toString());
+		res.put("isJoin", isJoin);
+
+		int currentNum=item.get("currentNum")==null?0:Integer.parseInt(item.get("currentNum").toString());
+		int maxNum=item.get("maxNum")==null?0:Integer.parseInt(item.get("maxNum").toString());
+		if(isJoin==1)
+		{
+			res.put("info1", HAS_JOIN);
+		}
+		else if(currentNum>=maxNum)
+		{
+			res.put("info1", HAS_FULL);
+		}
+		else
+		{
+			res.put("info1", TO_JOIN);
+		}
+		res.put("info2", currentNum+"/"+maxNum);
+		res.put("currentNum",currentNum );
+		res.put("maxNum", maxNum);
+		Object icons = item.get("icons");
+		List<String> ls=null;
+		if(icons!=null)
+		{
+			ls = (List<String>) GsonUtil.jsonToList(icons.toString());
+		}
+		if(ls==null)
+			ls=new ArrayList<String>();
+		res.put("icons", ls);
+		return res;
 	}
 //	@Override
 //	public Filter getFilter() {
