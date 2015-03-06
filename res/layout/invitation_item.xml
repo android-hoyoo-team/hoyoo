@@ -24,7 +24,7 @@
             android:background="#ffffff"
             android:descendantFocusability="blocksDescendants" >
 
-            <ImageView
+            <com.example.newhoyoo.widget.FilterImageView
                 android:id="@+id/image_us_photo"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
@@ -173,7 +173,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="256"
         android:orientation="vertical">
-        <ImageView
+        <com.example.newhoyoo.widget.FilterImageView
             android:id="@+id/canjia_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

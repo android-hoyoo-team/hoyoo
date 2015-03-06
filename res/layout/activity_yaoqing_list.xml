@@ -239,6 +239,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="日期："
+                        android:textColor="@color/darkgrey"
                         android:textSize="10sp" />
 
                     <TextView
@@ -246,6 +247,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2014-12-1"
+                        android:textColor="@color/darkgrey"
                         android:textSize="10sp" />
                 </LinearLayout>
 
@@ -258,6 +260,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="地址："
+                        android:textColor="@color/darkgrey"
                         android:textSize="10sp" />
 
                     <TextView
@@ -265,6 +268,7 @@
                         android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:text="学校西门的说，在哪里你自己看看"
+                        android:textColor="@color/darkgrey"
                         android:textSize="10sp" />
 
                     <TextView
@@ -273,6 +277,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:text="时间："
+                        android:textColor="@color/darkgrey"
                         android:textSize="10sp" />
 
                     <TextView
@@ -280,6 +285,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="12:00:00"
+                        android:textColor="@color/darkgrey"
                         android:textSize="11sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -297,7 +303,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="top" >
 
-                <ImageView
+                <com.example.newhoyoo.widget.FilterImageView
                     android:id="@+id/iv_drawable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

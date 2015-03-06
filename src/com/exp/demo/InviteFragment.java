@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import per.cz.event1_0.DEvent;
+import per.cz.event1_0.DispatchEvent;
+import per.cz.event1_0.IMethod;
 import main.java.com.sefford.circularprogressdrawable.sample.CircularProgressDrawable;
 import android.content.Context;
 import android.content.Intent;
@@ -73,6 +76,12 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 							   								R.id.text_yaoq_address,R.id.canjia_progress});//0-18为普通布局//19~35为转发布局*/
 		
 		mListView.setAdapter(mAdapter2);
+		DispatchEvent.addEventListener("invitationListContentClick", new IMethod<Map<String,Object>>() {
+
+			public void excute(DEvent<Map<String,Object>> event) {
+				startActivity(new Intent(getActivity(),YaoqingActivity.class));  
+			}
+		});
 		mListView.setXListViewListener(this);
 		mHandler = new Handler();
 	}

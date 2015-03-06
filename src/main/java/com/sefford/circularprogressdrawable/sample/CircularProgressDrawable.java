@@ -172,6 +172,7 @@ public class CircularProgressDrawable extends Drawable {
 
 	@Override
 	public void setColorFilter(ColorFilter cf) {
+		paint.setColorFilter(cf);
 		// Empty
 	}
 
