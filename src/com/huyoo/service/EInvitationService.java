@@ -1,6 +1,9 @@
 package com.huyoo.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,6 +64,7 @@ public class EInvitationService {
 		m.put("currentNum", 15);
 		m.put("maxNum", 50);
 		m.put("isJoin", 1);
+		m.put("hits", 123);
 		Map<String ,Object> m1=new HashMap<String, Object>();
 		m1.put("id", 2);
 		m1.put("personUrl", "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/67B095895879445986C90C1A6FB74136");
@@ -73,6 +77,7 @@ public class EInvitationService {
 		m1.put("currentNum", 14);
 		m1.put("maxNum", 30);
 		m1.put("isJoin", 0);
+		m1.put("hits", 234);
 		Map<String ,Object> m2=new HashMap<String, Object>();
 		m2.put("id", 3);
 		m2.put("personUrl", "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/B5F4A17929EF4A9A86C0EB697FC0F1EE");
@@ -85,6 +90,7 @@ public class EInvitationService {
 		m2.put("currentNum", 15);
 		m2.put("maxNum", 15);
 		m2.put("isJoin", 0);
+		m2.put("hits", 345);
 		Map<String ,Object> m3=new HashMap<String, Object>();
 		m3.put("id", 4);
 		m3.put("personName", "李木木的世界");
@@ -96,6 +102,7 @@ public class EInvitationService {
 		m3.put("currentNum", 10);
 		m3.put("maxNum", 10);
 		m3.put("isJoin", 1);
+		m3.put("hits", 456);
 		Map<String ,Object> m4=new HashMap<String, Object>();
 		m4.put("id", 5);
 		m4.put("personUrl", "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/D0AC385AAC114722A5AD76FC92DB82F4");
@@ -108,6 +115,7 @@ public class EInvitationService {
 		m4.put("currentNum", 15);
 		m4.put("maxNum", 50);
 		m4.put("isJoin", 1);
+		m4.put("hits", 567);
 		Map<String ,Object> m5=new HashMap<String, Object>();
 		m5.put("id", 6);
 		m5.put("personName", "张三");
@@ -119,6 +127,7 @@ public class EInvitationService {
 		m5.put("currentNum", 15);
 		m5.put("maxNum", 50);
 		m5.put("isJoin", 1);
+		m5.put("hits", 678);
 		Map<String ,Object> m6=new HashMap<String, Object>();
 		m6.put("id", 7);
 		m6.put("personName", "张三");
@@ -130,6 +139,7 @@ public class EInvitationService {
 		m6.put("currentNum", 15);
 		m6.put("maxNum", 50);
 		m6.put("isJoin", 1);
+		m6.put("hits", 789);
 		Map<String ,Object> m7=new HashMap<String, Object>();
 		m7.put("id", 1);
 		m7.put("personName", "张三");
@@ -141,6 +151,7 @@ public class EInvitationService {
 		m7.put("currentNum", 15);
 		m7.put("maxNum", 50);
 		m7.put("isJoin", 1);
+		m7.put("hits", 890);
 		list.add(m);
 		list.add(m1);
 		list.add(m2);
@@ -151,4 +162,52 @@ public class EInvitationService {
 //		list.add(m7);
 		return list;
 	}
+	/**
+	 * @author clu
+	 * 获取最新的邀请
+	 * @param num
+	 * @param unionId
+	 * @return
+	 */
+	public List<Map<String,Object>> getTopInvitation(int num,int unionId){
+		List<Map<String,Object>> resultList=new ArrayList<Map<String,Object>>();
+		List<Map<String,Object>> list=getInvitationsMapByUnionId(unionId);
+		Collections.sort(list,new Comparator<Map<String,Object>>() {
+
+			@Override
+			public int compare(Map<String, Object> lhs, Map<String, Object> rhs) {
+				// TODO Auto-generated method stub
+				Long lhsTime=Long.parseLong(lhs.get("issueTime").toString());
+				Long rhsTime=Long.parseLong(rhs.get("issueTime").toString());
+				if(lhsTime<rhsTime)
+					return 1;
+				else if(lhsTime>rhsTime)
+					return -1;
+				return 0;
+			}
+			
+		});
+		for(int i=0;i<num;i++){
+			Map<String, Object> map=new HashMap<String, Object>();
+			map=list.get(i);
+			resultList.add(map);
+		}		
+		return resultList;
+	}
+//	/**
+//	 * @author clu
+//	 * 获取list中第fromNum到toNum的数据（不包含toNum）
+//	 * @param fromNum
+//	 * @param toNum
+//	 * @param list
+//	 * @return
+//	 */
+//	public List<Map<String,Object>> getInvitationFromTo(int fromNum,int toNum,List<Map<String, Object>> list){
+//		List<Map<String,Object>> resultList=new ArrayList<Map<String,Object>>();
+//		for(;fromNum<toNum;fromNum++){
+//			Map<String,Object> map=new HashMap<String, Object>();
+//			resultList.add(map);
+//		}
+//		return resultList;
+//	}
 }

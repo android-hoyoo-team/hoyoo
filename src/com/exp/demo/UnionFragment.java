@@ -22,14 +22,6 @@ import android.widget.Toast;
 public class UnionFragment extends Fragment {
 
 	AQuery aq;
-	/************************************************************/
-	/** Called when the activity is first created. */   
-	//	ListView myListView1; 
-	//	HashMap<String, Object> pMap_1=new HashMap<String,Object>(); 
-	//	HashMap<String, Object> pMap1_1=new HashMap<String,Object>(); 
-	//	HashMap<String, Object> pMap2_1=new HashMap<String,Object>(); 
-	//	HashMap<String, Object> pMap3_1=new HashMap<String,Object>();
-	/************************************************************/
 	/**************************************************************/
 	EUnion union;
 	ELevel level;
@@ -54,49 +46,6 @@ public class UnionFragment extends Fragment {
 		this.aq.id(R.id.union_member).clicked(this, "unionMember");
 		this.aq.id(R.id.union_manager).background(R.drawable.buttoneffect);
 		this.aq.id(R.id.union_manager).clicked(this, "unionManager");
-		/******************************11111111111111111111111******************************/
-		//	    ArrayList<HashMap<String,Object>> programeList=new ArrayList<HashMap<String,Object>>();  
-		//	    for(int i=0;i<5;i++) 
-		//	    { 
-		//	        	switch(i){
-		//	        	case 0:
-		//	        		
-		//	            	pMap_1.put("Pname","李汇泽"); 
-		//	            	pMap_1.put("Pachieve", StringHelper.FormatAchievement("24缺1,来的密")); 
-		//	            	programeList.add(pMap_1);
-		//	            	break;
-		//	        	case 1:
-		//	        		
-		//	            	pMap1_1.put("Pname","李汇泽"); 
-		//	            	pMap1_1.put("Pachieve",  StringHelper.FormatAchievement("24缺1,来的密"));  
-		//	            	programeList.add(pMap1_1);
-		//	            	break;
-		//	        	case 2:
-		//	        		
-		//	            	pMap2_1.put("Pname","李汇泽"); 
-		//	            	pMap2_1.put("Pachieve",  StringHelper.FormatAchievement("24缺1,来的密")); 
-		//	            	programeList.add(pMap2_1);
-		//	            	break;
-		//	        	case 3:
-		//	        		
-		//	            	pMap3_1.put("Pname","李汇泽"); 
-		//	            	pMap3_1.put("Pachieve",  StringHelper.FormatAchievement("24缺1,来的密"));  
-		//	            	programeList.add(pMap3_1);
-		//	            	break;
-		//	            }
-		//	        } 
-		//	           
-		//	        //生成SimpleAdapter适配器对象   
-		//	        final SimpleAdapter mySimpleAdapter=new SimpleAdapter(this.getActivity(),   
-		//	        		programeList,
-		//	        		//myArrayList,//数据源   
-		//	                R.layout.item_union,//ListView内部数据展示形式的布局文件listitem.xml   
-		//	                new String[]{"Pname","Pachieve" },//HashMap中的两个key值 itemTitle和itemContent   ,"itemContent"
-		//	                new int[]{R.id.Pname_item,R.id.Pachieve_item });
-		//	        /*布局文件listitem.xml中组件的id    ,R.id.itemContent布局文件的各组件分别映射到HashMap的各元素上，完成适配*/   
-		//	           
-		//	        myListView1.setAdapter(mySimpleAdapter);      
-		//	    /************************************************************/
 	}
 
 	public void init(){
