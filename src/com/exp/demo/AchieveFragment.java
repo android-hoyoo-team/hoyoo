@@ -3,6 +3,8 @@ package com.exp.demo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.zip.Inflater;
 
 import android.app.Activity;
 import android.content.Context;
@@ -28,6 +30,7 @@ import android.widget.Toast;
 import com.androidquery.AQuery;
 import com.example.newhoyoo.R;
 import com.huyoo.entity.EAchievement;
+import com.huyoo.entity.EPerson;
 import com.huyoo.global.Application;
 import com.ryg.expandable.ui.HorizontalListView;
 import com.ryg.expandable.ui.PinnedHeaderExpandableListView;
@@ -40,13 +43,17 @@ ExpandableListView.OnGroupClickListener,
 OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 	private PinnedHeaderExpandableListView expandableListView;
 	private ArrayList<Group> groupList;
-	private ArrayList<List<Achievement>> childList;
+	private ArrayList<List<EAchievement>> childList;
 
+	CustomListViewAdapter latestListViewAdapter;
+	CustomListViewAdapter recommendListViewAdapter;
 	private MyexpandableListAdapter adapter;
+	CustomListViewAdapter listViewAdapter;
+
 	/************************************************************/
 	/** Called when the activity is first created. */   
 	ListView myListView; 
-
+	private EPerson person;
 	HashMap<String, Object> pMap=new HashMap<String,Object>(); 
 	HashMap<String, Object> pMap1=new HashMap<String,Object>(); 
 	HashMap<String, Object> pMap2=new HashMap<String,Object>(); 
@@ -61,152 +68,83 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
+		person = Application.getLoginInfo().getPerson();
+		initLatest();
 
-		//List<EAchievement> latestData = Application.getAchievementService().getLastestEAchievements(personId, num)
-		HorizontalListView latestAchievement = (HorizontalListView)getActivity().findViewById(R.id.horizon_listview);
-		ArrayList<HashMap<String,Object>> latestList=new ArrayList<HashMap<String,Object>>();  
-		for(int i = 0;i < 5;i++)
-		{
-			HashMap<String, Object> mMap=new HashMap<String,Object>(); 
-			mMap.put("image", "http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/9855C5331E004040B1A5D6C9D8483108");
-			mMap.put("text", "有车有房还有什么呢");
-			latestList.add(mMap);
-		}
-		final HorizontalListViewAdapter simpleAdapter = new HorizontalListViewAdapter(getActivity(), 
-				latestList,
-				new String[]{"image","text"},
-				new int[]{R.id.img_list_item,R.id.text_list_item},
-				new String[]{"image","text"}
-				);
-		latestAchievement.setAdapter(simpleAdapter);
+		initRecommend();
 
-		/************************************************************/
-		//生成ListView对象   
-		myListView=(ListView)getActivity().findViewById(R.id.main_list2);
-		ArrayList<HashMap<String,Object>> programeList=new ArrayList<HashMap<String,Object>>();  
-		for(int i=0;i<5;i++) 
-		{ 
-			switch(i){
-			case 0:
-				pMap.put("picture",R.drawable.d05); 
-				pMap.put("name", "全是邀请");  
-				pMap.put("describe", "全是邀请 qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");  
-				programeList.add(pMap);
-				break;
-			case 1:
-
-				pMap1.put("picture",R.drawable.d06); 
-				pMap1.put("name", "我的公会");  
-				pMap1.put("describe", "全是邀请全是邀请全是邀请全是邀请全是邀请全是邀请全是邀请全是邀请全是邀请"); 
-				programeList.add(pMap1);
-				break;
-			case 2:
-
-				pMap2.put("picture",R.drawable.d07); 
-				pMap2.put("name", "我的成就");  
-				pMap2.put("describe","全是邀请 qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"); 
-				programeList.add(pMap2);
-				break;
-			case 3:
-
-				pMap3.put("picture",R.drawable.d08); 
-				pMap3.put("name", "我的信息");  
-				pMap3.put("describe", "全是邀请 qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"); 
-				programeList.add(pMap3);
-				break;
-			}
-		} 
-
-		//生成SimpleAdapter适配器对象   
-		final SimpleAdapter mySimpleAdapter=new SimpleAdapter(this.getActivity(),   
-				programeList,
-				//myArrayList,//数据源   
-				R.layout.item_achieve,//ListView内部数据展示形式的布局文件listitem.xml   
-				//	R.layout.child,
-				new String[]{"picture","name","describe"  },//HashMap中的两个key值 itemTitle和itemContent   ,"itemContent"
-				new int[]{R.id.achievement_imageview_item,R.id.achievement_name_item,R.id.achievement_describe_item	});
-		/*布局文件listitem.xml中组件的id    ,R.id.itemContent布局文件的各组件分别映射到HashMap的各元素上，完成适配*/   
-
-		myListView.setAdapter(mySimpleAdapter);   
-		//添加点击事件   
-		myListView.setOnItemClickListener(new OnItemClickListener(){   
-			@Override   
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,   
-					long arg3) {   
-				//获得选中项的HashMap对象   
-				HashMap<String,String> map=(HashMap<String,String>)myListView.getItemAtPosition(arg2);   
-				String title=map.get("itemTitle");   
-				String content=map.get("itemContent");  
-
-				switch(arg2){
-				case 0:
-					pMap.put("picture",R.drawable.d05a);
-					myListView.setAdapter(mySimpleAdapter);
-					Toast.makeText(getActivity().getApplicationContext(),    
-							"你选择了第"+arg2+"个Item，itemTitle的值是："+title+"itemContent的值是:"+content,   
-							Toast.LENGTH_SHORT).show();	        		
-					break;
-				case 1:
-					pMap1.put("picture",R.drawable.d06a);
-					myListView.setAdapter(mySimpleAdapter);
-					Toast.makeText(getActivity().getApplicationContext(),    
-							"你选择了第"+arg2+"个Item，itemTitle的值是："+title+"itemContent的值是:"+content,   
-							Toast.LENGTH_SHORT).show();
-					break;
-				case 2:
-					pMap2.put("picture",R.drawable.d07a);
-					myListView.setAdapter(mySimpleAdapter);
-					Toast.makeText(getActivity().getApplicationContext(),    
-							"你选择了第"+arg2+"个Item，itemTitle的值是："+title+"itemContent的值是:"+content,   
-							Toast.LENGTH_SHORT).show(); 
-					break;
-				case 3:
-					pMap3.put("picture",R.drawable.d08a);
-					myListView.setAdapter(mySimpleAdapter);
-					Toast.makeText(getActivity().getApplicationContext(),    
-							"你选择了第"+arg2+"个Item，itemTitle的值是："+title+"itemContent的值是:"+content,   
-							Toast.LENGTH_SHORT).show(); 
-					break;
-				}
-
-			}   
-
-		});   
-		/************************************************************/
-		expandableListView = (PinnedHeaderExpandableListView) getActivity().findViewById(R.id.expandablelist);
-		// stickyLayout = (StickyLayout)getActivity().findViewById(R.id.sticky_layout);
-		initData();
-
-		adapter = new MyexpandableListAdapter(getActivity());
-
-
-
-		expandableListView.setAdapter(adapter);
-
-		//getActivity().findViewById(R.id.id1).setLayoutParams(new LayoutParams(400, 800));
-		// expandableListView.setLayoutParams(new LayoutParams(400, 800));
-
-		// 展开所有group
-		for (int i = 0, count = expandableListView.getCount(); i < count; i++) {
-			//expandableListView.expandGroup(i);
-		}
-
-		expandableListView.setOnHeaderUpdateListener(this);
-		expandableListView.setOnChildClickListener(this);
-		expandableListView.setOnGroupClickListener(this);
-		// stickyLayout.setOnGiveUpTouchEventListener(this);
+		initExpandableListView();
 
 	}
 	/**
 	 * @return *************************************************************/
 	/*加载数据*/
+	/**
+	 * 加载最新完成成就 HorizontalListView中的数据
+	 */
 	public void initLatest(){
-		
+
+		List<EAchievement> achievements = Application.getAchievementService().getLastestEAchievements(person.getId(), 4);
+		HorizontalListView latestAchievement = (HorizontalListView)getActivity().findViewById(R.id.horizon_listview);
+		ArrayList<HashMap<String,Object>> latestList=new ArrayList<HashMap<String,Object>>();  
+		for(int i = 0;i < achievements.size();i++)
+		{
+			HashMap<String, Object> map=new HashMap<String,Object>(); 
+			map.put("image", achievements.get(i).getIcon());
+			map.put("text", achievements.get(i).getName());
+			latestList.add(map);
+		}
+		latestListViewAdapter = new CustomListViewAdapter(getActivity(), 
+				latestList,
+				R.layout.horizontal_list_item,
+				new String[]{"image","text"},
+				new int[]{R.id.img_list_item,R.id.text_list_item},
+				new String[]{"image","text"}
+				);
+		latestAchievement.setAdapter(latestListViewAdapter);
 	}
-	
-	
-	
-	
+	/**
+	 * 加载成就推荐的listview
+	 */
+	public void initRecommend(){
+		myListView=(ListView)getActivity().findViewById(R.id.recommend_achievement_listview);
+		ArrayList<HashMap<String,Object>> recommendList=new ArrayList<HashMap<String,Object>>();  
+		List<EAchievement> achievements = Application.getAchievementService().getRecommendEAchievements(person.getId(), 4);
+		for (EAchievement achievement : achievements) {
+			HashMap<String,Object> map = new HashMap<String, Object>();
+			map.put("image", achievement.getIcon());
+			map.put("name", achievement.getName());
+			map.put("description", achievement.getDescription());
+			recommendList.add(map);
+		}
+
+		recommendListViewAdapter = new CustomListViewAdapter(getActivity(), 
+				recommendList, 
+				R.layout.item_achieve, 
+				new String[]{"image","name","description"},
+				new int[]{R.id.achievement_imageview_item,R.id.achievement_name_item,R.id.achievement_describe_item}, 
+				new String[]{"image","text","text"});
+
+		myListView.setAdapter(recommendListViewAdapter);   
+		//添加点击事件   
+		myListView.setOnItemClickListener(new OnItemClickListener(){   
+			@Override   
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,   
+					long arg3) {
+			}
+		});
+	}
+
+	public void initExpandableListView(){
+		expandableListView = (PinnedHeaderExpandableListView) getActivity().findViewById(R.id.expandablelist);
+		initData();
+		adapter = new MyexpandableListAdapter(getActivity());
+		expandableListView.setAdapter(adapter);
+		expandableListView.setOnHeaderUpdateListener(this);
+		expandableListView.setOnChildClickListener(this);
+		expandableListView.setOnGroupClickListener(this);
+	}
+
 	/**************************************************************/
 	private void skip_quanshiyaoqing()
 	{
@@ -243,59 +181,11 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 			group.setTitle(titles[i]);
 			groupList.add(group);
 		}
-
-		childList = new ArrayList<List<Achievement>>();
+		childList = new ArrayList<List<EAchievement>>();
 		for (int i = 0; i < groupList.size(); i++) {
-			ArrayList<Achievement> childTemp;
-			if (i == 0) {
-				childTemp = new ArrayList<Achievement>();
-				for (int j = 0; j < 13; j++) {
-					Achievement ac = new Achievement();
-					ac.setName("社交成就"+j);
-					ac.setDescription("这是第"+j+"个社交成就.");
-					ac.setImageId(R.drawable.d05);
-					childTemp.add(ac);
-				}
-			} else if (i == 1) {
-				childTemp = new ArrayList<Achievement>();
-				for (int j = 0; j < 8; j++) {
-					Achievement ac = new Achievement();
-					ac.setName("娱乐成就"+j);
-					ac.setDescription("这是第"+j+"个娱乐成就.");
-					ac.setImageId(R.drawable.d06);
-					childTemp.add(ac);
-				}
-			} else if(i == 2){
-				childTemp = new ArrayList<Achievement>();
-				for (int j = 0; j < 8; j++) {
-					Achievement ac = new Achievement();
-					ac.setName("竞技成就"+j);
-					ac.setDescription("这是第"+j+"个竞技成就.竞技成就竞技成就竞技成就竞技成就竞技成就竞技成就竞技成就竞技成就竞技成就竞技成就竞技成就竞技成就竞技成就竞技成就竞技成就竞技成就");
-					ac.setImageId(R.drawable.d07);
-					childTemp.add(ac);
-				}
-			} else if(i == 3){
-				childTemp = new ArrayList<Achievement>();
-				for (int j = 0; j < 8; j++) {
-					Achievement ac = new Achievement();
-					ac.setName("探索成就"+j);
-					ac.setDescription("这是第"+j+"个探索成就.");
-					ac.setImageId(R.drawable.d08);
-					childTemp.add(ac);
-				}
-			} else {
-				childTemp = new ArrayList<Achievement>();
-				for (int j = 0; j < 8; j++) {
-					Achievement ac = new Achievement();
-					ac.setName("综合成就"+j);
-					ac.setDescription("这是第"+j+"个综合成就.");
-					ac.setImageId(R.drawable.d07);
-					childTemp.add(ac);
-				}
-			}
+			List<EAchievement> childTemp = Application.getAchievementService().getEAchievementsByType(person.getId(), titles[i]);
 			childList.add(childTemp);
 		}
-
 	}
 
 
@@ -377,28 +267,29 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		@Override
 		public View getChildView(int groupPosition, int childPosition,
 				boolean isLastChild, View convertView, ViewGroup parent) {
-			ChildHolder childHolder = null;
-			if (convertView == null) {
-				childHolder = new ChildHolder();
-				convertView = inflater.inflate(R.layout.child, null);
-
-				childHolder.textName = (TextView) convertView
-						.findViewById(R.id.name);
-				childHolder.textDiscription= (TextView) convertView
-						.findViewById(R.id.discription);
-				childHolder.imageView = (ImageView) convertView
-						.findViewById(R.id.image);
-				convertView.setTag(childHolder);
-			} else {
-				childHolder = (ChildHolder) convertView.getTag();
-			}
-
-			childHolder.textName.setText(((Achievement) getChild(groupPosition,
-					childPosition)).getName());
-			childHolder.textDiscription.setText(((Achievement) getChild(groupPosition,
-					childPosition)).getDescription());
-			childHolder.imageView.setImageResource(((Achievement)getChild(groupPosition,
-					childPosition)).getImageId());
+//			ChildHolder childHolder = null;
+//			if (convertView == null) {
+//				childHolder = new ChildHolder();
+//				convertView = inflater.inflate(R.layout.child, null);
+//
+//				childHolder.textName = (TextView) convertView
+//						.findViewById(R.id.name);
+//				childHolder.textDiscription= (TextView) convertView
+//						.findViewById(R.id.discription);
+//				childHolder.imageView = (ImageView) convertView
+//						.findViewById(R.id.image);
+//				convertView.setTag(childHolder);
+//			} else {
+//				childHolder = (ChildHolder) convertView.getTag();
+//			}
+//
+//			childHolder.textName.setText(((EAchievement) getChild(groupPosition,
+//					childPosition)).getName());
+//			childHolder.textDiscription.setText(((EAchievement) getChild(groupPosition,
+//					childPosition)).getDescription());
+//			AQuery aq = new AQuery(childHolder.imageView);
+//			childHolder.imageView.setImageResource(((EAchievement)getChild(groupPosition,
+//					childPosition)).getIcon());
 			return convertView;
 		}
 
@@ -493,23 +384,26 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		return false;
 	}
 
-	class HorizontalListViewAdapter extends BaseAdapter{
+	class CustomListViewAdapter extends SimpleAdapter{
 
-		private Activity activity;
-		private ArrayList<HashMap<String,Object>> data;
 		private LayoutInflater inflater = null;
+		private List<HashMap<String,Object>> data;
 		private String[] from;
 		private int[] to;
 		private String[] operation;
+		private int resource;
 
-		public HorizontalListViewAdapter(Activity a, ArrayList<HashMap<String, Object>> d,String[] f,int[] t,String [] op) {  
-			activity = a;  
-			data=d;  
+		public CustomListViewAdapter(Context context,
+				List<HashMap<String, Object>> d, int res,
+				String[] f, int[] t,String[] op) {
+			super(context, d, res, f, t);
+			data = d;
 			from = f;
 			to = t;
-			operation  = op;
-			inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
-		}  
+			operation = op;
+			resource = res;
+			inflater = LayoutInflater.from(context);
+		}
 
 		@Override
 		public int getCount() {
@@ -532,23 +426,19 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
-
-			View v = inflater.inflate(R.layout.horizontal_list_item, null);
+			View v= inflater.inflate(resource, null);
 			AQuery aq = new AQuery(v);
 			HashMap<String,Object> d = new HashMap<String, Object>();
 			d = data.get(position);
-
 			for(int i = 0 ; i < to.length ; i++){
 				switch(operation[i])
 				{
 				case "image":
-					aq.id(to[i]).image(d.get(from[i]).toString());
+					aq.id(to[i]).image(d.get(from[i]).toString(),false,true);
 					break;
 				case "text":
 					aq.id(to[i]).text(d.get(from[i]).toString());
 					break;
-				default:
-					aq.id(to[i]).text(d.get(from[i]).toString());
 				}
 			}
 			return v;
