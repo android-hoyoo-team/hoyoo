@@ -39,7 +39,7 @@ public class UnionNewsList extends Activity {
 	}
 	public void initUnionNewsList(){
 		ArrayList<HashMap<String,Object>> unionNewsList = new ArrayList<HashMap<String,Object>>();
-		ListView newsListView = (ListView)findViewById(R.id.union_news_list);
+		ListView newsListView = (ListView)findViewById(R.id.union_news_listview);
 		for(int i=0;i<10;i++)
 		{
 			map1.put("picture", R.drawable.picture1);

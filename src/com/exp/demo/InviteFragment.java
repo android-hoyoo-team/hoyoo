@@ -1,70 +1,46 @@
 package com.exp.demo;
 
-import com.example.newhoyoo.Main;
-import com.example.newhoyoo.YaoqingActivity;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import main.java.com.sefford.circularprogressdrawable.sample.CircularProgressDrawable;
-
-import com.viewflow.xlistviewfresh.XListView;
-import com.viewflow.xlistviewfresh.XListView.IXListViewListener;
-
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Debug;
 import android.os.Handler;
-import android.os.Message;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
-
-import com.example.newhoyoo.R;
-import com.exp.demo.MultiLayoutSimpleAdapter;
-import com.exp.demo.MultiLayoutSimpleAdapter.ViewBinder;
-import com.exp.demo.MultiLayoutSimpleAdapter.lvButtonListener;
-
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.Checkable;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.newhoyoo.Main;
+import com.example.newhoyoo.R;
+import com.example.newhoyoo.YaoqingActivity;
+import com.example.newhoyoo.adapter.InvitationListAdapter;
+import com.exp.demo.MultiLayoutSimpleAdapter.ViewBinder;
+import com.huyoo.global.Application;
+import com.viewflow.xlistviewfresh.XListView;
+import com.viewflow.xlistviewfresh.XListView.IXListViewListener;
 
 
 public class InviteFragment extends ListFragment implements IXListViewListener {
 
 	private XListView mListView;
 //  SimpleAdapter mAdapter1;
-	private MultiLayoutSimpleAdapter mAdapter2;
+	private InvitationListAdapter mAdapter2;
 	private Handler mHandler;
 //	private ArrayList<HashMap<String, Object>> dlist;
 	private ArrayList<Map<String, Object>> dlist;
@@ -84,14 +60,17 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 		mListView = (XListView) getActivity().findViewById(android.R.id.list);// 你这个listview是在这个layout里面
 		mListView.setPullLoadEnable(true);// 设置让它上拉，FALSE为不让上拉，便不加载更多数据
 		
-		mAdapter2 = new MultiLayoutSimpleAdapter(InviteFragment.this.getActivity(), 
+		mAdapter2 =new InvitationListAdapter(this.getActivity());
+		
+		mAdapter2.setInvitationList(Application.getInvitationService().getInvitationsMapByUnionId(Application.getLoginInfo().getLevel().getId()));
+				/*new MultiLayoutSimpleAdapter(InviteFragment.this.getActivity(), 
 												 getData(),
-												 new int[]{R.layout.item_list}, 
+												 new int[]{R.layout.invitation_item}, 
 												 new String[] {"touxiang","name","faburiqi",
 								  				 			   "neirong","riqi","shijian","dizhi","jindu"}, //0-18为普通布局 //19为判断布局标记 //20-36为转发布局变量
 								  				 new int[] {R.id.image_us_photo, R.id.text_us_name,R.id.text_fabu_date,
 							   								R.id.text_yaoq_info,R.id.text_yaoq_date,R.id.text_yaoq_time,
-							   								R.id.text_yaoq_address,R.id.canjia_progress});//0-18为普通布局//19~35为转发布局
+							   								R.id.text_yaoq_address,R.id.canjia_progress});//0-18为普通布局//19~35为转发布局*/
 		
 		mListView.setAdapter(mAdapter2);
 		mListView.setXListViewListener(this);
@@ -99,33 +78,33 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 	}
 	
 	/** 初始化本地数据 */
-	String data[] = new String[] { "唐嫣  江南大学LIE桌游公会  会长  等级：大神", "10月18日", "周六晚上小伙伴们来蜗牛咖啡厅打狼人！有妹子！饮料免费，快快来呦~",
-			"日期:2014年10月20日    星期日    时间:18:30-20:30", "地址:江南大学南门外-锦江之心-渔远庭2楼" ,"20","100","Y","30" };
+//	String data[] = new String[] { "唐嫣  江南大学LIE桌游公会  会长  等级：大神", "10月18日", "周六晚上小伙伴们来蜗牛咖啡厅打狼人！有妹子！饮料免费，快快来呦~",
+//			"日期:2014年10月20日    星期日    时间:18:30-20:30", "地址:江南大学南门外-锦江之心-渔远庭2楼" ,"20","100","Y","30" };
 	
-	private ArrayList<Map<String, Object>> getData() {
-//...........之后用从网络上获取的信息
-		for (int i = 0; i < 6; i++) {
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("touxiang", R.drawable.near_icon2);
-			map.put("name", "唐嫣");
-			map.put("faburiqi", "2014年10月18日 12:21");
-			map.put("neirong", "周六晚上小伙伴们来蜗牛咖啡厅打狼人！有妹子！饮料免费，快快来呦~");
-			map.put("riqi", "2014年11月11日");
-			map.put("shijian", "11:11");
-			map.put("dizhi", "江南大学南门外-锦江之心-渔远庭2楼");
-//			ImageView ivDrawable = (ImageView)getActivity().findViewById(R.id.canjia_progress);
-
-		      
-//		    ivDrawable.setImageDrawable(drawable);
-		        Map jind=new HashMap<String, Object>();
-		        jind.put("total", 20);
-		        jind.put("comp", 10);
-			map.put("jindu", jind);
-		
-			dlist.add(map);
-		}
-		return dlist;
-	}
+//	private ArrayList<Map<String, Object>> getData() {
+////...........之后用从网络上获取的信息
+//		for (int i = 0; i < 6; i++) {
+//			Map<String, Object> map = new HashMap<String, Object>();
+//			map.put("touxiang", R.drawable.near_icon2);
+//			map.put("name", "唐嫣");
+//			map.put("faburiqi", "2014年10月18日 12:21");
+//			map.put("neirong", "周六晚上小伙伴们来蜗牛咖啡厅打狼人！有妹子！饮料免费，快快来呦~");
+//			map.put("riqi", "2014年11月11日");
+//			map.put("shijian", "11:11");
+//			map.put("dizhi", "江南大学南门外-锦江之心-渔远庭2楼");
+////			ImageView ivDrawable = (ImageView)getActivity().findViewById(R.id.canjia_progress);
+//
+//		      
+////		    ivDrawable.setImageDrawable(drawable);
+//		        Map jind=new HashMap<String, Object>();
+//		        jind.put("total", 20);
+//		        jind.put("comp", 10);
+//			map.put("jindu", jind);
+//		
+//			dlist.add(map);
+//		}
+//		return dlist;
+//	}
 
 	/** 停止刷新， */
 	private void onLoad() {
@@ -141,7 +120,7 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 
 			@Override
 			public void run() {
-				getData();
+//				getData();
 //				mListView.setAdapter(mAdapter1);
 				mListView.setAdapter(mAdapter2);
 				onLoad();
@@ -156,7 +135,7 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 
 			@Override
 			public void run() {
-				getData();
+				//getData();
 //				mAdapter1.notifyDataSetChanged();
 				mAdapter2.notifyDataSetChanged();
 				onLoad();
@@ -441,113 +420,7 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 	            	tag.setCircleScale_(tag.getCircleScale()+0.1f);
 	            	tag.setProgress_(tag.getProgress()+0.1f);
 	            	Log.i("xxxx", "xxxx:"+tag.getProgress());
-	            	//skip_tupian();
 	            }
-//	            else if(vid==holder.tupian2.getId())
-//	            {
-//	            	skip_tupian();
-//	            }else if(vid==holder.tupian3.getId())
-//	            {
-//	            	skip_tupian();
-//	            }else if(vid==holder.tupian4.getId())
-//	            {
-//	            	skip_tupian();
-//	            }else if(vid==holder.zhuanfa.getId())
-//	            {
-//	            	skip_zhuanfa();
-//	            }else if(vid==holder.pinglun.getId())
-//	            {
-//	            	skip_pinglun();
-//	            }else if(vid==holder.canjia.getId())
-//	            {
-//	            	Map<String, Object> dataSet = mData.get(position2);
-//		            int renshujindutiao2 =(Integer) dataSet.get(mFrom[6]);
-//		            String canjia2 = (String) dataSet.get(mFrom[15]);
-//		            String renshu2 = (String)dataSet.get(mFrom[7]);
-//		            int renshu2_1= Integer.parseInt(renshu2);
-//		            
-//	            	Map<String, Object> mp = mData.get(position2);
-//	                if(mp.containsKey("renshujindutiao")){  
-//	                    mp.remove("renshujindutiao"); 
-//	                    mp.remove("canjia");
-//	                    mp.remove("renshu");
-//	                    if(canjia2=="参加")
-//	                    {
-//	                    	renshu2=Integer.toString(renshu2_1+1);
-//	                    	mp.put("renshujindutiao", renshujindutiao2+1);
-//	                    	mp.put("canjia","已参加");
-//	                    	mp.put("renshu", renshu2);
-//	                    }else
-//	                    {
-//	                    	renshu2=Integer.toString(renshu2_1-1);
-//	                    	mp.put("renshujindutiao", renshujindutiao2-1);
-//	                    	mp.put("canjia","参加");
-//	                    	mp.put("renshu", renshu2);
-//	                    }
-//	                }  
-//	                mData.remove(position2);//清除此行对应数据集中的数据  
-//	                
-//	                mData.add(position2, mp);//增加修改后的数据行  
-//	                gengxin();//更新  
-//	            }else if(vid==holder.dianzan.getId())
-//	            {
-//	 //           	holder.dianzan.setImageResource(R.drawable.d20a);
-//	            	Map<String, Object> mp = mData.get(position2);
-//	            	Map<String, Object> dataSet = mData.get(position2);
-//		            String dianzan2 = (String) dataSet.get(mFrom[16]);
-//		            String dianzan_renshu = (String) dataSet.get(mFrom[18]);
-//		            int dianzan_renshu2=Integer.parseInt(dianzan_renshu);
-//		            
-//	                if(mp.containsKey("dianzan")){  
-//	                    mp.remove("dianzan");  
-//	                    mp.remove("dianzan_renshu");
-//	                    
-//	                    if(dianzan2=="Y")
-//	                    {
-//	                    	dianzan_renshu=Integer.toString(dianzan_renshu2+1);
-//	                    	mp.put("dianzan", "N");
-//	                    	mp.put("dianzan_renshu", dianzan_renshu);
-//	                    }else
-//	                    {
-//	                    	dianzan_renshu=Integer.toString(dianzan_renshu2-1);
-//	                    	mp.put("dianzan", "Y");
-//	                    	mp.put("dianzan_renshu", dianzan_renshu);
-//	                    }
-//	                }  
-//	                mData.remove(position2);//清除此行对应数据集中的数据  
-//	                
-//	                mData.add(position2, mp);//增加修改后的数据行  
-//	                gengxin();//更新  
-//	            }else if(vid==holder.dianzan2.getId())
-//	            {
-//	            	Map<String, Object> mp = mData.get(position2);
-//	            	Map<String, Object> dataSet = mData.get(position2);
-//		            String dianzan2 = (String) dataSet.get(mFrom[16]);
-//		            String dianzan_renshu = (String) dataSet.get(mFrom[18]);
-//		            int dianzan_renshu2=Integer.parseInt(dianzan_renshu);
-//		            
-//	                if(mp.containsKey("dianzan")){  
-//	                    mp.remove("dianzan");  
-//	                    mp.remove("dianzan_renshu");
-//	                    
-//	                    if(dianzan2=="Y")
-//	                    {
-//	                    	dianzan_renshu=Integer.toString(dianzan_renshu2+1);
-//	                    	mp.put("dianzan", "N");
-//	                    	mp.put("dianzan_renshu", dianzan_renshu);
-//	                    }else
-//	                    {
-//	                    	dianzan_renshu=Integer.toString(dianzan_renshu2-1);
-//	                    	mp.put("dianzan", "Y");
-//	                    	mp.put("dianzan_renshu", dianzan_renshu);
-//	                    }
-//	                }  
-//	                mData.remove(position2);//清除此行对应数据集中的数据  
-//	                
-//	                mData.add(position2, mp);//增加修改后的数据行  
-//	                gengxin();//更新  
-//	            }
-
 	        }
 	    }
 	    

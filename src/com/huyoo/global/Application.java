@@ -7,6 +7,7 @@ import java.util.Map;
 import com.huyoo.bean.LoginInfo;
 import com.huyoo.entity.EPerson;
 import com.huyoo.service.EAchievementService;
+import com.huyoo.service.EArticleService;
 import com.huyoo.service.ECommentService;
 import com.huyoo.service.EInvitationService;
 import com.huyoo.service.ELevelService;
@@ -23,6 +24,8 @@ public class Application {
 
 	private static EInvitationService invitationService;
 	private static LoginInfo loginInfo;
+	
+	private static EArticleService articleService;
 
 	
 	/**
@@ -79,6 +82,15 @@ public class Application {
 		if (invitationService == null)
 			invitationService = new EInvitationService();
 		return invitationService;
+	}
+	/**
+	 * 获取EArticleService单例
+	 * @return
+	 */
+	public static EArticleService getArticleSercice(){
+		if(articleService==null)
+			articleService=new EArticleService();
+		return articleService;
 	}
 
 	/**

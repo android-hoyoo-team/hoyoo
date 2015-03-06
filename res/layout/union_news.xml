@@ -2,7 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true" >
+    android:fillViewport="true" 
+    android:background="@color/background_grey"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -93,15 +95,26 @@
                 android:text="@string/union_news_time"
                 />
         </LinearLayout>
-        <TextView 
+        <WebView            
             android:id="@+id/union_news_content_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:scrollbars="none"
+            
+            />
+        <TextView 
+            android:id="@+id/union_news_content_text3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:textSize="10sp"
-            />"
+            
+            />
     </LinearLayout>
 
 </ScrollView>

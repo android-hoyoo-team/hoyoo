@@ -1,10 +1,15 @@
 package com.example.newhoyoo;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import com.androidquery.AQuery;
 import com.exp.demo.AchieveFragment;
+import com.huyoo.entity.ELevel;
+import com.huyoo.entity.EUnion;
+import com.huyoo.global.Application;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -24,15 +29,36 @@ import android.widget.Toast;
 import android.os.Build;
 
 public class UnionInfo extends Activity {
+	
+	AQuery aq;
+	EUnion union;
+	ELevel level;
 	 HashMap<String, Object> map1=new HashMap<String,Object>(); 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.union_info);
+		this.aq = new AQuery(this);
+		init();
 		initBenifitList();
-		AQuery aq = new AQuery(this);
-		aq.id(R.id.unioninfo_back).clicked(this, "back");
+		this.aq.id(R.id.unioninfo_back).clicked(this, "back");
+	}
+	
+	public void init(){
+		union = Application.getLoginInfo().getUnion();
+		level = Application.getLevelService().getELevelByID(union.getLevelId());
+		
+		this.aq.id(R.id.union_icon_imageview).image(union.getIcon());
+		this.aq.id(R.id.union_name_textview).text(union.getName());
+		this.aq.id(R.id.unionlvl_textview).text(level.getName());
+		this.aq.id(R.id.union_type_textview).text(union.getType());
+		this.aq.id(R.id.unionlvl1_textview).text(level.getName());
+		this.aq.id(R.id.exp_textview).text(union.getCurrentExp()+"/"+level.getUpgradeExp());
+		this.aq.id(R.id.unionnum_textview).text(union.getTotalNum()+"");
+		this.aq.id(R.id.union_exp_textview).text(union.getCurrentExp()+"/"+level.getUpgradeExp());
+		this.aq.id(R.id.union_birthday_textview).text(new SimpleDateFormat("yyyy.MM.dd").format(new Date(union.getTime())));
+		this.aq.id(R.id.activitynum_textview).text(union.getActivityNum()+"个");
 	}
 	
 	public void initBenifitList(){
@@ -52,7 +78,7 @@ public class UnionInfo extends Activity {
                 new int[]{R.id.benifit_name,R.id.benifit_discription });
         /*布局文件listitem.xml中组件的id    ,R.id.itemContent布局文件的各组件分别映射到HashMap的各元素上，完成适配*/   
            
-		ListView benifitListView = (ListView)findViewById(R.id.benifit_list);
+		ListView benifitListView = (ListView)findViewById(R.id.benifit_listview);
 		benifitListView.setAdapter(mySimpleAdapter);   
 	}
 	public void back(){
