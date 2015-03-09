@@ -84,19 +84,19 @@ public class UnionFragment extends Fragment {
 	}
 	public void unionInfo()
 	{
-		Intent intent = getActivity().getIntent();
+		Intent intent = new Intent();
 		intent.setClass(getActivity(),UnionInfo.class);
 		getActivity().startActivity(intent);
 	}
 	public void unionNews()
 	{
-		Intent intent = getActivity().getIntent();
+		Intent intent = new Intent();
 		intent.setClass(getActivity(), UnionNewsList.class);
 		getActivity().startActivity(intent);
 	}
 	public void unionMember()//返回主界面
 	{
-		Intent intent = getActivity().getIntent();
+		Intent intent = new Intent();
 		intent.setClass(getActivity(), UnionMemberList.class);
 		getActivity().startActivity(intent);
 	}
