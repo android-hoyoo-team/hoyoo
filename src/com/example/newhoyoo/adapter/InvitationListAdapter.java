@@ -226,7 +226,12 @@ public class InvitationListAdapter extends BaseAdapter{
 	public static Map<String,Object> changeItem(Map<String,Object> item)
 	{
 		Map<String,Object> res=new HashMap<String,Object>();
-		res.put("personUrl", item.get("personUrl"));
+		 Object personUrl = item.get("personUrl");
+		 if(personUrl==null)
+		 {
+			 personUrl="http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/D7239B770A164485B56175BF5698D2AB";
+		 }
+		res.put("personUrl", personUrl.toString());
 		res.put("personName", item.get("personName")==null?"":item.get("personName").toString());
 		res.put("personLevel", item.get("personLevel")==null?"":item.get("personLevel").toString());
 		res.put("address", item.get("address")==null?"":item.get("address").toString());

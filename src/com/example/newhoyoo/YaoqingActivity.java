@@ -123,9 +123,9 @@ public class YaoqingActivity extends Activity {
 		holder.personLevel.setText(res.get("personLevel").toString());
 		holder.address.setText(res.get("address").toString());
 		holder.issueTime.setText(res.get("issueTime").toString());
-		holder.content.setText(item.get("content").toString());
-		holder.activityTime_date.setText(item.get("activityTime_date").toString());
-		holder.activityTime_time.setText(item.get("activityTime_time").toString());
+		holder.content.setText(res.get("content").toString());
+		holder.activityTime_date.setText(res.get("activityTime_date").toString());
+		holder.activityTime_time.setText(res.get("activityTime_time").toString());
 		int isJoin = Integer.parseInt(res.get("isJoin").toString());
 
 		holder.info1.setText(res.get("info1").toString());
