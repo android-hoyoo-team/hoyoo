@@ -65,6 +65,10 @@ public class EInvitationService {
 		m.put("maxNum", 50);
 		m.put("isJoin", 1);
 		m.put("hits", 123);
+		m.put("icons", "[\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\","
+				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
 		Map<String ,Object> m1=new HashMap<String, Object>();
 		m1.put("id", 2);
 		m1.put("personUrl", "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/67B095895879445986C90C1A6FB74136");
@@ -78,6 +82,11 @@ public class EInvitationService {
 		m1.put("maxNum", 30);
 		m1.put("isJoin", 0);
 		m1.put("hits", 234);
+		m1.put("icons","[\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\"]"
+				);
 		Map<String ,Object> m2=new HashMap<String, Object>();
 		m2.put("id", 3);
 		m2.put("personUrl", "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/B5F4A17929EF4A9A86C0EB697FC0F1EE");
@@ -91,6 +100,10 @@ public class EInvitationService {
 		m2.put("maxNum", 15);
 		m2.put("isJoin", 0);
 		m2.put("hits", 345);
+		m2.put("icons","[\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
 		Map<String ,Object> m3=new HashMap<String, Object>();
 		m3.put("id", 4);
 		m3.put("personName", "李木木的世界");
@@ -103,6 +116,10 @@ public class EInvitationService {
 		m3.put("maxNum", 10);
 		m3.put("isJoin", 1);
 		m3.put("hits", 456);
+		m3.put("icons", "[\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+		
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\","
+				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
 		Map<String ,Object> m4=new HashMap<String, Object>();
 		m4.put("id", 5);
 		m4.put("personUrl", "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/D0AC385AAC114722A5AD76FC92DB82F4");
@@ -116,6 +133,10 @@ public class EInvitationService {
 		m4.put("maxNum", 50);
 		m4.put("isJoin", 1);
 		m4.put("hits", 567);
+		m4.put("icons", "[\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\","
+				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
 		Map<String ,Object> m5=new HashMap<String, Object>();
 		m5.put("id", 6);
 		m5.put("personName", "张三");
@@ -128,6 +149,10 @@ public class EInvitationService {
 		m5.put("maxNum", 50);
 		m5.put("isJoin", 1);
 		m5.put("hits", 678);
+		m5.put("icons", "[\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\","
+				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\"]");
 		Map<String ,Object> m6=new HashMap<String, Object>();
 		m6.put("id", 7);
 		m6.put("personName", "张三");
@@ -140,6 +165,10 @@ public class EInvitationService {
 		m6.put("maxNum", 50);
 		m6.put("isJoin", 1);
 		m6.put("hits", 789);
+		m6.put("icons","[\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
 		Map<String ,Object> m7=new HashMap<String, Object>();
 		m7.put("id", 1);
 		m7.put("personName", "张三");
@@ -152,6 +181,10 @@ public class EInvitationService {
 		m7.put("maxNum", 50);
 		m7.put("isJoin", 1);
 		m7.put("hits", 890);
+		m7.put("icons","[\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+ 
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+		
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\","
+				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
 		list.add(m);
 		list.add(m1);
 		list.add(m2);
@@ -173,7 +206,6 @@ public class EInvitationService {
 		List<Map<String,Object>> resultList=new ArrayList<Map<String,Object>>();
 		List<Map<String,Object>> list=getInvitationsMapByUnionId(unionId,0,num);
 		Collections.sort(list,new Comparator<Map<String,Object>>() {
-
 			@Override
 			public int compare(Map<String, Object> lhs, Map<String, Object> rhs) {
 				// TODO Auto-generated method stub

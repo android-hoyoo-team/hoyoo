@@ -7,12 +7,14 @@ import com.huyoo.entity.EArticle;
 import com.huyoo.entity.EPerson;
 import com.huyoo.global.Application;
 import com.huyoo.utils.DateUtil;
+import com.ryg.expandable.ui.CustomActionbar;
 
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Color;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,7 +32,7 @@ import android.widget.TextView;
 import android.os.Build;
 
 public class UnionNewsActivity extends Activity {
-	private ImageButton image_button_left;
+	private ImageButton image_button_back;
 //	private ImageView union_news_imge;
 //	private TextView union_news_topic_text;
 //	private ImageView union_news_author_image;
@@ -39,6 +41,7 @@ public class UnionNewsActivity extends Activity {
 //	private TextView union_news_content_text;
 //	private TextView title_text_view;
 	private AQuery aq=new AQuery(this);
+	private CustomActionbar actionbar;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,10 +51,14 @@ public class UnionNewsActivity extends Activity {
 		String type=intent.getStringExtra("type");
 		int id=Integer.parseInt(intent.getStringExtra("id"));
 		//绑定文章类别控件
-		aq.id(R.id.title_text_view).text(type);
-		image_button_left=(ImageButton)findViewById(R.id.image_button_left);
-		image_button_left.setOnClickListener(new ImageButtonListener());
+		actionbar=(CustomActionbar)findViewById(R.id.news_actionbar);
+		actionbar.setButtonVisibility(View.GONE);
+		actionbar.setTitle(type);
+		aq.id(R.id.actionbar_left).clicked(new ImageButtonListener());
+//		image_button_left=(ImageButton)findViewById(R.id.image_button_left);
+//		image_button_left.setOnClickListener(new ImageButtonListener());
 		if("公会新闻".equals(type)){
+			
 			//根据传入的id获取新闻
 			EArticle news=Application.getArticleSercice().getNewsById(id);
 			

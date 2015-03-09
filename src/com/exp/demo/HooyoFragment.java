@@ -11,6 +11,7 @@ import com.example.newhoyoo.UnionNewsActivity;
 import com.example.newhoyoo.UnionNewsDetail;
 import com.example.newhoyoo.YaoqingActivity;
 import com.example.newhoyoo.adapter.CustomListViewAdapter;
+import com.example.newhoyoo.adapter.InvitationListAdapter02;
 import com.example.newhoyoo.adapter.NewsListAdapter;
 import com.huyoo.entity.EArticle;
 import com.huyoo.global.Application;
@@ -34,6 +35,7 @@ public class HooyoFragment extends Fragment {
 	AQuery aq=new AQuery(getActivity());
 	NewsListAdapter mAdapter1;
 	NewsListAdapter mAdapter3;
+	InvitationListAdapter02 mAdapter02;
 //	CustomListViewAdapter mAdapter2;
 //	/************************************************************/
 //	/** Called when the activity is first created. */   
@@ -46,10 +48,10 @@ public class HooyoFragment extends Fragment {
 //	/************************************************************/
 	/** Called when the activity is first created. */   
 	ListView myListView2; 
-	HashMap<String, Object> pMap_2=new HashMap<String,Object>(); 
-	HashMap<String, Object> pMap1_2=new HashMap<String,Object>(); 
-	HashMap<String, Object> pMap2_2=new HashMap<String,Object>(); 
-	HashMap<String, Object> pMap3_2=new HashMap<String,Object>();
+//	HashMap<String, Object> pMap_2=new HashMap<String,Object>(); 
+//	HashMap<String, Object> pMap1_2=new HashMap<String,Object>(); 
+//	HashMap<String, Object> pMap2_2=new HashMap<String,Object>(); 
+//	HashMap<String, Object> pMap3_2=new HashMap<String,Object>();
 	/************************************************************/
 	/************************************************************/
 	/** Called when the activity is first created. */   
@@ -204,65 +206,70 @@ public class HooyoFragment extends Fragment {
 //				 new String[]{"picture","title","name","issueTime","hits" }, 
 //				 t, 
 //				 op)
-		ArrayList<HashMap<String,Object>> programeList2=new ArrayList<HashMap<String,Object>>();
-		
-		for(int i=0;i<5;i++) 
-		{ 
-			switch(i){
-			case 0:
-
-				pMap_2.put("picture",R.drawable.d05); 
-				pMap_2.put("name", "全是邀请");  
-				pMap_2.put("time", "发布于今天");
-				pMap_2.put("readers", "没人看");
-				programeList2.add(pMap_2);
-				break;
-			case 1:
-
-				pMap1_2.put("picture",R.drawable.d06); 
-				pMap1_2.put("name", "我的公会");  
-				pMap1_2.put("time", "发布于今天");
-				pMap1_2.put("readers", "没人看");
-				programeList2.add(pMap1_2);
-				break;
-			case 2:
-
-				pMap2_2.put("picture",R.drawable.d07); 
-				pMap2_2.put("name", "我的成就");  
-				pMap2_2.put("time", "发布于今天");
-				pMap2_2.put("readers", "没人看");
-				programeList2.add(pMap2_2);
-				break;
-			case 3:
-
-				pMap3_2.put("picture",R.drawable.d08); 
-				pMap3_2.put("name", "我的信息");  
-				pMap3_2.put("time", "发布于今天");
-				pMap3_2.put("readers", "没人看");
-				programeList2.add(pMap3_2);
-				break;
-			}
-		} 
-
-		//生成SimpleAdapter适配器对象   
-		final SimpleAdapter mySimpleAdapter2=new SimpleAdapter(this.getActivity(),   
-				programeList2,
-				//myArrayList,//数据源   
-				R.layout.item_hoyoo,//ListView内部数据展示形式的布局文件listitem.xml   
-				new String[]{"picture","title","name","time","readers" },//HashMap中的两个key值 itemTitle和itemContent   ,"itemContent"
-				new int[]{R.id.imageview_item,R.id.textview_item,R.id.name,R.id.time,R.id.readersnum });
-		/*布局文件listitem.xml中组件的id    ,R.id.itemContent布局文件的各组件分别映射到HashMap的各元素上，完成适配*/   
-
-		myListView2.setAdapter(mySimpleAdapter2);   
+		List<Map<String, Object>> programeList2=new ArrayList<Map<String,Object>>();
+		programeList2=Application.getInvitationService().getTopInvitation(4, Application.getLoginInfo().getUnion().getId());
+		mAdapter02=new InvitationListAdapter02(this.getActivity());
+		mAdapter02.setInvitationList(programeList2);
+		myListView2.setAdapter(mAdapter02);
+//		ArrayList<HashMap<String,Object>> programeList2=new ArrayList<HashMap<String,Object>>();
+//		
+//		for(int i=0;i<5;i++) 
+//		{ 
+//			switch(i){
+//			case 0:
+//
+//				pMap_2.put("picture",R.drawable.d05); 
+//				pMap_2.put("name", "全是邀请");  
+//				pMap_2.put("time", "发布于今天");
+//				pMap_2.put("readers", "没人看");
+//				programeList2.add(pMap_2);
+//				break;
+//			case 1:
+//
+//				pMap1_2.put("picture",R.drawable.d06); 
+//				pMap1_2.put("name", "我的公会");  
+//				pMap1_2.put("time", "发布于今天");
+//				pMap1_2.put("readers", "没人看");
+//				programeList2.add(pMap1_2);
+//				break;
+//			case 2:
+//
+//				pMap2_2.put("picture",R.drawable.d07); 
+//				pMap2_2.put("name", "我的成就");  
+//				pMap2_2.put("time", "发布于今天");
+//				pMap2_2.put("readers", "没人看");
+//				programeList2.add(pMap2_2);
+//				break;
+//			case 3:
+//
+//				pMap3_2.put("picture",R.drawable.d08); 
+//				pMap3_2.put("name", "我的信息");  
+//				pMap3_2.put("time", "发布于今天");
+//				pMap3_2.put("readers", "没人看");
+//				programeList2.add(pMap3_2);
+//				break;
+//			}
+//		} 
+//
+//		//生成SimpleAdapter适配器对象   
+//		final SimpleAdapter mySimpleAdapter2=new SimpleAdapter(this.getActivity(),   
+//				programeList2,
+//				//myArrayList,//数据源   
+//				R.layout.item_hoyoo,//ListView内部数据展示形式的布局文件listitem.xml   
+//				new String[]{"picture","title","name","time","readers" },//HashMap中的两个key值 itemTitle和itemContent   ,"itemContent"
+//				new int[]{R.id.imageview_item,R.id.textview_item,R.id.name,R.id.time,R.id.readersnum });
+//		/*布局文件listitem.xml中组件的id    ,R.id.itemContent布局文件的各组件分别映射到HashMap的各元素上，完成适配*/   
+//
+//		myListView2.setAdapter(mySimpleAdapter2);   
 		//添加点击事件   
 		myListView2.setOnItemClickListener(new OnItemClickListener(){   
 			@Override   
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,   
 					long arg3) {   
 				//获得选中项的HashMap对象   
-				HashMap<String,String> map=(HashMap<String,String>)myListView2.getItemAtPosition(arg2);   
-				String title=map.get("itemTitle");   
-				String content=map.get("itemContent");  
+//				HashMap<String,String> map=(HashMap<String,String>)myListView2.getItemAtPosition(arg2);   
+//				String title=map.get("itemTitle");   
+//				String content=map.get("itemContent");  
 
 //				switch(arg2){
 //				case 0:
