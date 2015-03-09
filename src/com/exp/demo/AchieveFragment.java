@@ -42,23 +42,16 @@ public class AchieveFragment extends Fragment implements
 ExpandableListView.OnChildClickListener,
 ExpandableListView.OnGroupClickListener,
 OnHeaderUpdateListener, OnGiveUpTouchEventListener {
+	/************************************************************/
+	private CustomListViewAdapter latestListViewAdapter;
+	private CustomListViewAdapter recommendListViewAdapter;
+	private MyexpandableListAdapter adapter;
+	private HorizontalListView latestAchievement;
+	private ListView myListView;
 	private PinnedHeaderExpandableListView expandableListView;
+	private EPerson person;
 	private ArrayList<Group> groupList;
 	private ArrayList<List<EAchievement>> childList;
-
-	CustomListViewAdapter latestListViewAdapter;
-	CustomListViewAdapter recommendListViewAdapter;
-	private MyexpandableListAdapter adapter;
-	CustomListViewAdapter listViewAdapter;
-
-	/************************************************************/
-	/** Called when the activity is first created. */   
-	ListView myListView; 
-	private EPerson person;
-	HashMap<String, Object> pMap=new HashMap<String,Object>(); 
-	HashMap<String, Object> pMap1=new HashMap<String,Object>(); 
-	HashMap<String, Object> pMap2=new HashMap<String,Object>(); 
-	HashMap<String, Object> pMap3=new HashMap<String,Object>();
 	/************************************************************/
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,6 +63,7 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		person = Application.getLoginInfo().getPerson();
+		
 		initLatest();
 
 		initRecommend();
@@ -77,8 +71,7 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		initExpandableListView();
 
 	}
-	/**
-	 * @return *************************************************************/
+	/***************************************************************/
 	/*加载数据*/
 	/**
 	 * 加载最新完成成就 HorizontalListView中的数据
@@ -86,7 +79,7 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 	public void initLatest(){
 
 		List<EAchievement> achievements = Application.getAchievementService().getLastestEAchievements(person.getId(), 4);
-		HorizontalListView latestAchievement = (HorizontalListView)getActivity().findViewById(R.id.horizon_listview);
+		latestAchievement = (HorizontalListView)getActivity().findViewById(R.id.horizon_listview);
 		ArrayList<HashMap<String,Object>> latestList=new ArrayList<HashMap<String,Object>>();  
 		for(int i = 0;i < achievements.size();i++)
 		{
@@ -135,10 +128,22 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 			}
 		});
 	}
-
+	/**
+	 * 加载分类成就PinnedHeaderExpandableListView中的数据
+	 */
 	public void initExpandableListView(){
 		expandableListView = (PinnedHeaderExpandableListView) getActivity().findViewById(R.id.expandablelist);
-		initData();
+		groupList = new ArrayList<Group>();
+		childList = new ArrayList<List<EAchievement>>();
+		String [] titles =  getResources().getStringArray(R.array.achievement_type);
+		for(int i =0;i<titles.length;i++)
+		{
+			Group group = new Group();
+			group.setTitle(titles[i]);
+			groupList.add(group);
+			List<EAchievement> childTemp = Application.getAchievementService().getEAchievementsByType(person.getId(), titles[i]);
+			childList.add(childTemp);
+		}
 		adapter = new MyexpandableListAdapter(getActivity());
 		expandableListView.setAdapter(adapter);
 		expandableListView.setOnHeaderUpdateListener(this);
@@ -168,29 +173,7 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		//finish();  
 	}
 	/**************************************************************/
-
-	/***
-	 * InitData
-	 */
-	void initData() {
-		groupList = new ArrayList<Group>();
-		Group group = null;
-		String [] titles =  getResources().getStringArray(R.array.achievement_type);
-		for(int i =0;i<titles.length;i++)
-		{
-			group = new Group();
-			group.setTitle(titles[i]);
-			groupList.add(group);
-		}
-		childList = new ArrayList<List<EAchievement>>();
-		for (int i = 0; i < groupList.size(); i++) {
-			List<EAchievement> childTemp = Application.getAchievementService().getEAchievementsByType(person.getId(), titles[i]);
-			childList.add(childTemp);
-		}
-	}
-
-
-
+	
 	/**** 数据源   ** @author Administrator **/
 	class MyexpandableListAdapter extends BaseExpandableListAdapter {
 		private Context context;
@@ -243,56 +226,24 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		@Override
 		public View getGroupView(int groupPosition, boolean isExpanded,
 				View convertView, ViewGroup parent) {
-			GroupHolder groupHolder = null;
-			if (convertView == null) {
-				groupHolder = new GroupHolder();
-				convertView = inflater.inflate(R.layout.group, null);
-				groupHolder.textView = (TextView) convertView
-						.findViewById(R.id.group);
-				groupHolder.imageView = (ImageView) convertView
-						.findViewById(R.id.image);
-				convertView.setTag(groupHolder);
-			} else {
-				groupHolder = (GroupHolder) convertView.getTag();
-			}
-
-			groupHolder.textView.setText(((Group) getGroup(groupPosition))
-					.getTitle());
+			if (convertView == null) convertView = inflater.inflate(R.layout.group, null);
+			AQuery aq = new AQuery(convertView);
+			aq.id(R.id.group).text(((Group) getGroup(groupPosition)).getTitle());
 			if (isExpanded)// true is Expanded or false is not isExpanded
-				groupHolder.imageView.setImageResource(R.drawable.bt_02_nor_up);
+				aq.id(R.id.image).image(R.drawable.bt_02_nor_up);
 			else
-				groupHolder.imageView.setImageResource(R.drawable.bt_02_nor_down);
+				aq.id(R.id.image).image(R.drawable.bt_02_nor_down);
 			return convertView;
 		}
 
 		@Override
 		public View getChildView(int groupPosition, int childPosition,
 				boolean isLastChild, View convertView, ViewGroup parent) {
-			
-			
-//			ChildHolder childHolder = null;
-//			if (convertView == null) {
-//				childHolder = new ChildHolder();
-//				convertView = inflater.inflate(R.layout.child, null);
-//
-//				childHolder.textName = (TextView) convertView
-//						.findViewById(R.id.name);
-//				childHolder.textDiscription= (TextView) convertView
-//						.findViewById(R.id.discription);
-//				childHolder.imageView = (ImageView) convertView
-//						.findViewById(R.id.image);
-//				convertView.setTag(childHolder);
-//			} else {
-//				childHolder = (ChildHolder) convertView.getTag();
-//			}
-//
-//			childHolder.textName.setText(((EAchievement) getChild(groupPosition,
-//					childPosition)).getName());
-//			childHolder.textDiscription.setText(((EAchievement) getChild(groupPosition,
-//					childPosition)).getDescription());
-//			AQuery aq = new AQuery(childHolder.imageView);
-//			childHolder.imageView.setImageResource(((EAchievement)getChild(groupPosition,
-//					childPosition)).getIcon());
+			if(convertView == null)convertView = inflater.inflate(R.layout.child, null);
+			AQuery aq = new AQuery(convertView);
+			aq.id(R.id.image).image(((EAchievement)getChild(groupPosition, childPosition)).getIcon());
+			aq.id(R.id.name).text(((EAchievement)getChild(groupPosition, childPosition)).getName());
+			aq.id(R.id.discription).text(((EAchievement)getChild(groupPosition, childPosition)).getDescription());
 			return convertView;
 		}
 
@@ -324,19 +275,11 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		}
 	}
 
-	/**
-	 * parent:ExpandableListView
-	 * v:
-	 */
 	@Override
 	public boolean onGroupClick(final ExpandableListView parent, final View v,
 			int groupPosition, final long id) {
-
 		return false;
 	}
-
-
-
 
 	@Override
 	public boolean onChildClick(ExpandableListView parent, View v,
@@ -348,24 +291,11 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		return false;
 	}
 
-	class GroupHolder {
-		TextView textView;
-		ImageView imageView;
-	}
-
-	class ChildHolder {
-		TextView textName;
-		TextView textDiscription;
-		//TextView textAddress;
-		ImageView imageView;
-	}
-
 	@Override
 	public View getPinnedHeader() {
 		View headerView = (ViewGroup) getActivity().getLayoutInflater().inflate(R.layout.group, null);
 		headerView.setLayoutParams(new LayoutParams(
 				0,0));
-		//getResources().getInteger(R.integer.achievement_type_height)
 		return headerView;
 	}
 
@@ -375,7 +305,6 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		TextView textView = (TextView) headerView.findViewById(R.id.group);
 		textView.setText(firstVisibleGroup.getTitle());
 	}
-
 	@Override
 	public boolean giveUpTouchEvent(MotionEvent event) {
 		if (expandableListView.getFirstVisiblePosition() == 0) {
@@ -387,5 +316,5 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		return false;
 	}
 
-	
+
 }

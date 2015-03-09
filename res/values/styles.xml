@@ -19,6 +19,12 @@
         <!-- ActionBar Height -->
         <!-- <item name="@android:attr/actionBarSize">96px</item> -->
     </style>
+   <!--  <style name="NoActionbar" parent="AppBaseTheme">
+        <item name="android:windowNoTitle">true</item>
+        All customizations that are NOT specific to a particular API-level can go here.
+        ActionBar Height
+        <item name="@android:attr/actionBarSize">96px</item>
+    </style> -->
 
     <style name="MyCheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/checkbox_selector</item>

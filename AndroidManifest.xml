@@ -45,7 +45,6 @@
             android:name="com.example.newhoyoo.UnionInfo"
             android:label="@string/title_activity_union_info" >
         </activity>
-        <!-- <activity android:name="main"/> -->
         <activity android:name="com.example.newhoyoo.UnionNewsList" >
         </activity>
         <activity
@@ -72,6 +71,9 @@
             android:name="com.example.newhoyoo.DatePickerDialog"
             android:label="@string/title_activity_date_picker_dialog" >
         </activity>
+        <activity
+            android:name="com.example.newhoyoo.UnionMemberList">
+        </activity> 
     </application>
 
 </manifest>

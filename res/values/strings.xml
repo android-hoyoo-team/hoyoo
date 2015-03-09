@@ -70,5 +70,6 @@
     <!-- 公会邀请 -->
     <string name="invite_list_title">公会邀请</string>
     <string name="title_activity_date_picker_dialog">DatePickerDialog</string>
+    <string name="title_activity_union_member_list">UnionMemberList</string>
 
 </resources>

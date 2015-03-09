@@ -9,6 +9,7 @@
 		    android:id="@+id/actionbar_left"
 		    android:layout_height="match_parent"
 		    android:layout_width="wrap_content"
+		    android:background="@drawable/back_image_button"
 		    />
         
         <TextView
@@ -25,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:background="@color/red"
+            android:background="@drawable/background_red_effect"
             android:text="编辑"
             android:textColor="@color/white" /> 
     </RelativeLayout>

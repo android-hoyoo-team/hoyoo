@@ -23,8 +23,10 @@ public class EPersonService {
 	public List<EPerson> getPersons(Map<String,Object> params)
 	{
 		List<EPerson> persons = new ArrayList<EPerson>();
-//		if(params.containsKey("phoneNum"))
-//		{
+		//		if(params.containsKey("phoneNum"))
+		//		{
+		for(int i = 0;i<10;i++)
+		{
 			EPerson person = new EPerson();
 			person.setId(1);
 			person.setName("王昆");
@@ -40,7 +42,8 @@ public class EPersonService {
 			person.setVp(80);
 			person.setCurrentExp(2730);
 			persons.add(person);
-//		}
+		}
+		//		}
 		return persons;
 	}
 
@@ -61,7 +64,7 @@ public class EPersonService {
 	 */
 	public List<EPerson> getEPersonsByUnionId(int unionId)
 	{
-		return null;
+		return getPersons(null);
 	}
 
 	public EPerson getEPersonByPhoneNum(String phoneNum)
@@ -73,7 +76,7 @@ public class EPersonService {
 			return persons.get(0);
 		return null; 
 	}
-	
+
 	/**
 	 * 通过id获取的关注数，也就是其关注别人的数量
 	 * @param personId
@@ -92,7 +95,7 @@ public class EPersonService {
 	{
 		return 880;
 	}
-	
+
 	/**
 	 * 通过id获取其好友列表，满足好友的条件是，既被他关注，也关注了他的。
 	 * @param id
@@ -102,5 +105,9 @@ public class EPersonService {
 	{
 		return null;
 	}
-	
+
+	public List<EPerson> getPersonsByUnionId(int unionId)
+	{
+		return getPersons(null);
+	}
 }

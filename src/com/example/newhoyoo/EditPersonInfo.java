@@ -56,11 +56,8 @@ import android.widget.AdapterView.OnItemClickListener;
  */
 public class EditPersonInfo extends Activity implements View.OnTouchListener {
 	AQuery aq ;
-
 	Button btStyle2;
-
 	Animator currentAnimation;
-
 	EditText birthday_edittext;
 	long birthday = 0l;
 	EPerson person;

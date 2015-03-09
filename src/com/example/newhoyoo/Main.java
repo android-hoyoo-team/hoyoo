@@ -83,7 +83,6 @@ public class Main extends FragmentActivity implements OnClickListener {
 		actionBar.setBackgroundDrawable(d);  
 		initView();
 		fragmentManager = getSupportFragmentManager();
-		//savedInstanceState.containsKey("residemenu")
 		setTabSelection(itemHome);
 		loadData();
 		DispatchEvent.addEventListener("personUpdateEvent", new IMethod<String>() {

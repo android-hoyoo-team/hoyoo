@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.androidquery.AQuery;
 import com.example.newhoyoo.R;
+import com.example.newhoyoo.UnionMemberList;
 import com.example.newhoyoo.UnionNewsList;
 import com.example.newhoyoo.UnionInfo;
 import com.huyoo.entity.ELevel;
@@ -95,9 +96,9 @@ public class UnionFragment extends Fragment {
 	}
 	public void unionMember()//返回主界面
 	{
-		Toast.makeText(getActivity().getApplicationContext(),    
-				"你选择了第"+5+"个Item，itemTitle的值是："+5+"itemContent的值是:"+5,   
-				Toast.LENGTH_SHORT).show(); 
+		Intent intent = getActivity().getIntent();
+		intent.setClass(getActivity(), UnionMemberList.class);
+		getActivity().startActivity(intent);
 	}
 	public void unionManager()//返回主界面
 	{
