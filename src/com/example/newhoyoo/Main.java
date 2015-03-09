@@ -3,25 +3,16 @@ package com.example.newhoyoo;
 import per.cz.event1_0.DEvent;
 import per.cz.event1_0.DispatchEvent;
 import per.cz.event1_0.IMethod;
-import android.app.ActionBar;
-import android.app.ActionBar.LayoutParams;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.androidquery.AQuery;
 import com.exp.demo.AchieveFragment;
@@ -40,6 +31,7 @@ import com.huyoo.global.Application;
 import com.huyoo.service.ELevelService;
 import com.huyoo.service.EPersonService;
 import com.huyoo.service.EUnionService;
+import com.ryg.expandable.ui.CustomActionbar;
 
 public class Main extends FragmentActivity implements OnClickListener {
 
@@ -61,8 +53,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 
 	private FragmentManager fragmentManager;
 
-	ActionBar actionBar;
-	TextView tx;
+	CustomActionbar actionbar;
 
 	public EPersonService personService;
 	public ELevelService levelService;
@@ -76,12 +67,20 @@ public class Main extends FragmentActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		Resources  res = getBaseContext().getResources();
-		Drawable d = res.getDrawable(R.drawable.red);
-		actionBar = getActionBar();  
-		actionBar.setDisplayHomeAsUpEnabled(true);//点击action的Home后，返回前一个activity
-		actionBar.setBackgroundDrawable(d);  
+		actionbar = (CustomActionbar)findViewById(R.id.main_actionbar);
+		actionbar.setTitleVisibility(View.GONE);
+		ImageView image = (ImageView)findViewById(R.id.actionbar_left);
+		image.setClickable(true);
+
 		initView();
+		image.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				resideMenu.openMenu(ResideMenu.DIRECTION_LEFT);
+			}
+		});
 		fragmentManager = getSupportFragmentManager();
 		setTabSelection(itemHome);
 		loadData();
@@ -93,43 +92,6 @@ public class Main extends FragmentActivity implements OnClickListener {
 				loadData();
 			}
 		});
-	}
-	@Override
-	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			resideMenu.openMenu(ResideMenu.DIRECTION_LEFT);
-			break;
-		default:
-			Toast.makeText(this, featureId+""+item,Toast.LENGTH_LONG).show();
-		}
-		return false;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		Toast.makeText(getApplicationContext(), item+"", Toast.LENGTH_LONG).show();
-		resideMenu.openMenu(ResideMenu.DIRECTION_LEFT);
-		return false;
-	}
-
-	/**
-	 * 
-	 * @param layoutId
-	 * 
-	 * */
-	public void setActionBarLayout( int layoutId ){
-		actionBar = getActionBar( );
-		if( null != actionBar ){
-			//actionBar.setDisplayShowHomeEnabled( true );
-			actionBar.setDisplayShowCustomEnabled(true);
-			LayoutInflater inflator = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			View v = inflator.inflate(layoutId, null);
-			ActionBar.LayoutParams layout = new ActionBar.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-			actionBar.setCustomView(v,layout);
-			tx = (TextView)findViewById(R.id.actionbar_title);
-		}
 	}
 
 	public void initView() {
@@ -220,12 +182,12 @@ public class Main extends FragmentActivity implements OnClickListener {
 	}
 
 	private void setTabSelection(View view) {
-		setActionBarLayout(R.layout.custom_actionbar);
 		clearSelection();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		hideFragments(transaction);
 		if (view == itemHome) {
-			actionBar.setIcon(R.drawable.bt_01_nor);
+			actionbar.setButtonVisibility(View.GONE);
+			actionbar.setImageResource(R.drawable.bt_01_nor);
 			itemHome.setBackgroundResource(R.drawable.left_item_selected_bg);
 			if (hooyofragment == null) {
 				hooyofragment = new HooyoFragment();
@@ -250,12 +212,13 @@ public class Main extends FragmentActivity implements OnClickListener {
 			}
 		} else if (view == itemInvite) {
 
-			actionBar.setIcon(R.drawable.bt_08_nor_01);
-			actionBar.setCustomView(R.layout.yaoqing_actionbar);
-			TextView fayige=(TextView)findViewById(R.id.yaoqing_fayige);
-			fayige.setClickable(true);
+			actionbar.setButtonVisibility(View.VISIBLE);
+			actionbar.setButton("发一个");
+			actionbar.setImageResource(R.drawable.bt_08_nor_01);
+
+			Button btn = (Button)findViewById(R.id.actionbar_right);
 			final FragmentActivity target=this;
-			fayige.setOnClickListener(new OnClickListener() {
+			btn.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
@@ -286,8 +249,8 @@ public class Main extends FragmentActivity implements OnClickListener {
 			}
 		} else if (view == itemAssociation) {
 
-			actionBar.setIcon(R.drawable.bt_15_nor_01);
-			tx.setText(union.getName());
+			actionbar.setButtonVisibility(View.GONE);
+			actionbar.setImageResource(R.drawable.bt_15_nor_01);
 			itemAssociation.setBackgroundResource(R.drawable.left_item_selected_bg);
 			if (nearFragment == null) {
 				nearFragment = new UnionFragment();
@@ -311,7 +274,8 @@ public class Main extends FragmentActivity implements OnClickListener {
 				}
 			}
 		} else if (view == itemAchievements) {
-			actionBar.setIcon(R.drawable.d08);
+			actionbar.setButtonVisibility(View.GONE);
+			actionbar.setImageResource(R.drawable.d08);
 			itemAchievements.setBackgroundResource(R.drawable.left_item_selected_bg);
 			if (achievefragment == null) {
 				achievefragment = new AchieveFragment();
@@ -335,8 +299,8 @@ public class Main extends FragmentActivity implements OnClickListener {
 				}
 			}
 		} else if (view == itemMyself) {
-
-			actionBar.setIcon(R.drawable.bt_14_nor_01);
+			actionbar.setButtonVisibility(View.GONE);
+			actionbar.setImageResource(R.drawable.bt_14_nor_01);
 			itemMyself.setBackgroundResource(R.drawable.left_item_selected_bg);
 			if (mineFragment == null) {
 				mineFragment = new MineFragment();
@@ -361,7 +325,8 @@ public class Main extends FragmentActivity implements OnClickListener {
 			}
 		} else if (view == itemSetting) {
 
-			actionBar.setIcon(R.drawable.bt_16_nor_01);
+			actionbar.setButtonVisibility(View.GONE);
+			actionbar.setImageResource(R.drawable.bt_16_nor_01);
 			itemSetting.setBackgroundResource(R.drawable.left_item_selected_bg);
 			if (settingFragment == null) {
 				settingFragment = new SettingFragment();

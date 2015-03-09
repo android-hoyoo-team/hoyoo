@@ -4,36 +4,12 @@
     android:layout_height="match_parent"
     android:background="@color/background_grey"
     android:orientation="vertical" >
-     <RelativeLayout
+
+    <com.ryg.expandable.ui.CustomActionbar
+        android:id="@+id/personinfo_actionbar"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/red"
-        android:gravity="center_vertical" >
-
-        <ImageButton
-            android:id="@+id/imageButton_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/back_image_button" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="详细信息"
-            android:textColor="@color/white"
-            android:textSize="17sp" />
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:background="@color/red"
-            android:text="编辑"
-            android:textColor="@color/white" />
-    </RelativeLayout> 
+        android:layout_height="48dp" >
+    </com.ryg.expandable.ui.CustomActionbar>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -279,4 +255,5 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

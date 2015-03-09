@@ -4,41 +4,12 @@
     android:layout_height="match_parent"
     android:background="@color/background_grey"
     android:orientation="vertical" >
-    <RelativeLayout
+
+    <com.ryg.expandable.ui.CustomActionbar
+        android:id="@+id/editpersoninfo_actionbar"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/red"
-        android:gravity="center_vertical" >
-
-        <ImageButton
-            android:id="@+id/imageButton_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/back_image_button" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="编辑信息"
-            android:textColor="@color/white"
-            android:textSize="17sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="right" >
-
-            <Button
-                android:id="@+id/finish_edit_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/buttoneffect_red"
-                android:text="完成"
-                android:textColor="@color/white" />
-        </LinearLayout>
-    </RelativeLayout>
+        android:layout_height="48dp" >
+    </com.ryg.expandable.ui.CustomActionbar>
 
     <ScrollView
         android:id="@+id/scrollview_01"
@@ -147,18 +118,6 @@
                         android:text="女"
                         android:textColor="@color/Grey" />
                 </RadioGroup>
-                <!--
-                <EditText
-                    android:id="@+id/sex_edittext"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2.84"
-                    android:background="@null"
-                    android:ems="10"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/Grey" >
-                </EditText>
-                -->
             </LinearLayout>
 
             <LinearLayout

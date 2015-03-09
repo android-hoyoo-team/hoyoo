@@ -31,8 +31,11 @@
     <drawable name="titleRed">#e94745</drawable>
     <drawable name="red">#e94745</drawable>
     <drawable name="darkred">#c01920</drawable>
-
+	
+    
     <color name="black_overlay">#66000000</color>
     <color name="background_grey">#dbdcdc</color>
 	<color name="darkgrey">#888888</color>
+	
+	<color name="red_pressed">#9A3432</color>
 </resources>

@@ -14,6 +14,7 @@ import com.huyoo.entity.ELevel;
 import com.huyoo.entity.EPerson;
 import com.huyoo.entity.EUnion;
 import com.huyoo.global.Application;
+import com.ryg.expandable.ui.CustomActionbar;
 
 import main.java.com.sefford.circularprogressdrawable.sample.CircularProgressDrawable;
 import android.animation.Animator;
@@ -68,10 +69,12 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		aq = new AQuery(this);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.edit_personinfo);
-		this.aq.id(R.id.imageButton_1).clicked(this, "back");
-		this.aq.id(R.id.finish_edit_btn).clicked(this, "edit");
+		CustomActionbar actionbar = (CustomActionbar)findViewById(R.id.editpersoninfo_actionbar);
+		actionbar.setTitle("编辑信息");
+		actionbar.setButton("完成");
+		this.aq.id(R.id.actionbar_left).clicked(this, "back");
+		this.aq.id(R.id.actionbar_right).clicked(this, "edit");
 		this.aq.id(R.id.imageView2).clicked(this, "changemypic");
 
 		person = Application.getLoginInfo().getPerson();

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.androidquery.AQuery;
 import com.example.newhoyoo.util.SystemUiHider;
+import com.ryg.expandable.ui.CustomActionbar;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -31,11 +32,13 @@ public class UnionNewsList extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.union_news_list);
 		initUnionNewsList();
+		CustomActionbar actionbar = (CustomActionbar)findViewById(R.id.newslist_actionbar);
+		actionbar.setTitle("公会新闻");
+		actionbar.setButtonVisibility(View.GONE);
 		AQuery aq = new AQuery(this);
-		aq.id(R.id.unionnewslist_back).clicked(this,"back");
+		aq.id(R.id.actionbar_left).clicked(this,"back");
 	}
 	public void initUnionNewsList(){
 		ArrayList<HashMap<String,Object>> unionNewsList = new ArrayList<HashMap<String,Object>>();

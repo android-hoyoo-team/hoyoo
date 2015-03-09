@@ -49,11 +49,13 @@ public class PersonInfo extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		aq = new AQuery(this);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.person_info);
-		this.aq.id(R.id.imageButton_1).background(R.drawable.backbuttoneffect);
-		this.aq.id(R.id.imageButton_1).clicked(this, "back");
-		this.aq.id(R.id.button1).clicked(this, "edit");
+		
+		CustomActionbar actionbar = (CustomActionbar)findViewById(R.id.personinfo_actionbar);
+		actionbar.setTitle("详细信息");
+		actionbar.setButton("编辑");
+		this.aq.id(R.id.actionbar_left).clicked(this, "back");
+		this.aq.id(R.id.actionbar_right).clicked(this, "edit");
 
 		init();
 		DispatchEvent.addEventListener("personUpdateEvent", new IMethod<String>() {

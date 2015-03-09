@@ -53,7 +53,11 @@ public class CustomActionbar extends LinearLayout implements View.OnClickListene
 	{
 		rightBtn.setText(title);
 	}
-
+	
+	public void setTitleVisibility(int visibility)
+	{
+		centerText.setVisibility(visibility);
+	}
 	public void setButtonVisibility(int visibility)
 	{
 		rightBtn.setVisibility(visibility);

@@ -79,8 +79,7 @@ public class UnionMemberList extends Activity {
 	}
 
 	public void back(){
-		this.openOptionsMenu();
-		//this.finish();
+		this.finish();
 	}
 	
 	class ClickableListViewAdapter extends CustomListViewAdapter{

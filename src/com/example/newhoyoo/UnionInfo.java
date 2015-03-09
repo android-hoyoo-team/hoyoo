@@ -10,6 +10,7 @@ import com.exp.demo.AchieveFragment;
 import com.huyoo.entity.ELevel;
 import com.huyoo.entity.EUnion;
 import com.huyoo.global.Application;
+import com.ryg.expandable.ui.CustomActionbar;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -37,12 +38,14 @@ public class UnionInfo extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.union_info);
 		this.aq = new AQuery(this);
 		init();
 		initBenifitList();
-		this.aq.id(R.id.unioninfo_back).clicked(this, "back");
+		CustomActionbar actionbar = (CustomActionbar)findViewById(R.id.unioninfo_actionbar);
+		actionbar.setTitle("公会信息");
+		actionbar.setButtonVisibility(View.GONE);
+		this.aq.id(R.id.actionbar_left).clicked(this, "back");
 	}
 	
 	public void init(){

@@ -4,28 +4,11 @@
     android:layout_height="match_parent"
     android:background="@color/background_grey"
     android:orientation="vertical" >
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/red"
-        android:gravity="center_vertical" >
-
-        <ImageButton
-            android:id="@+id/unionnewslist_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bt_02_nor" />
-
-        <TextView
-            android:id="@+id/unioninfo_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="公会新闻"
-            android:textColor="@color/white"
-            android:textSize="17sp" />
-    </RelativeLayout>
+	<com.ryg.expandable.ui.CustomActionbar 
+	    android:id="@+id/newslist_actionbar"
+	    android:layout_height="48dp"
+	    android:layout_width="match_parent">
+	</com.ryg.expandable.ui.CustomActionbar>
 
     <ListView
         android:id="@+id/union_news_listview"
