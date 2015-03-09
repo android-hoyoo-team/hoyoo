@@ -31,6 +31,7 @@ import android.widget.TextView;
 
 import com.example.newhoyoo.Main;
 import com.example.newhoyoo.R;
+import com.example.newhoyoo.UnionNewsActivity;
 import com.example.newhoyoo.YaoqingActivity;
 import com.example.newhoyoo.adapter.InvitationListAdapter;
 import com.exp.demo.MultiLayoutSimpleAdapter.ViewBinder;
@@ -65,7 +66,7 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 		
 		mAdapter2 =new InvitationListAdapter(this.getActivity());
 		
-		mAdapter2.setInvitationList(Application.getInvitationService().getInvitationsMapByUnionId(Application.getLoginInfo().getLevel().getId()));
+		mAdapter2.setInvitationList(Application.getInvitationService().getInvitationsMapByUnionId(Application.getLoginInfo().getLevel().getId(),0,5));
 				/*new MultiLayoutSimpleAdapter(InviteFragment.this.getActivity(), 
 												 getData(),
 												 new int[]{R.layout.invitation_item}, 
@@ -79,7 +80,14 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 		DispatchEvent.addEventListener("invitationListContentClick", new IMethod<Map<String,Object>>() {
 
 			public void excute(DEvent<Map<String,Object>> event) {
-				startActivity(new Intent(getActivity(),YaoqingActivity.class));  
+				Intent intent=new Intent();
+//				intent.putExtra("type", "公会新闻");
+				HashMap<String, Object> item = (HashMap<String, Object>) event.getTarget();
+				intent.putExtra("item", item);
+//				intent.setClass(getActivity(), UnionNewsActivity.class);
+				intent.setClass(getActivity(), YaoqingActivity.class);
+				getActivity().startActivity(intent);
+//				startActivity(new Intent(getActivity(),YaoqingActivity.class));  
 			}
 		});
 		mListView.setXListViewListener(this);
