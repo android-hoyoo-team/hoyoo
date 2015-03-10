@@ -104,19 +104,19 @@ public class EArticleService {
 	}
 
 	//获取newsList中第fromNum到toNum的数据（不包含toNum）
-	public List<EArticle> getUnionNewsFromTo(int fromNum, int toNum,List<EArticle> list) {
-		List<EArticle> resultList = new ArrayList<EArticle>();
-		try {
-			for(;fromNum<toNum;fromNum++){
-				EArticle eArticle=list.get(fromNum);
-				resultList.add(eArticle);
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			//超出界限
-		}
-		return resultList;
-	}
+//	public List<EArticle> getUnionNewsFromTo(int fromNum, int toNum,List<EArticle> list) {
+//		List<EArticle> resultList = new ArrayList<EArticle>();
+//		try {
+//			for(;fromNum<toNum;fromNum++){
+//				EArticle eArticle=list.get(fromNum);
+//				resultList.add(eArticle);
+//			}
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			//超出界限
+//		}
+//		return resultList;
+//	}
 	
 //	//获取tipList中第fromNum到toNum的数据（不包含toNum）
 //	public List<EArticle> getTipFromTo(int fromNum,int toNum,List<EArticle> list){
@@ -132,6 +132,9 @@ public class EArticleService {
 //		}
 //		return resultList;
 //	}
+	public List<EArticle> getAllNews(){
+		return newsList;
+	}
 
 	public List<EArticle> getAllEArticle() {
 		return null;
