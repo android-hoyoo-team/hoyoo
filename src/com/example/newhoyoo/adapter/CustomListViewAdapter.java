@@ -41,7 +41,7 @@ public class CustomListViewAdapter extends SimpleAdapter{
 	@Override
 	public Object getItem(int position) {
 		// TODO Auto-generated method stub
-		return position;
+		return data.get(position);
 	}
 
 	@Override

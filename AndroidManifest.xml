@@ -74,6 +74,9 @@
         <activity
             android:name="com.example.newhoyoo.UnionMemberList">
         </activity> 
+        <activity
+            android:name="com.example.newhoyoo.AchievementDetail">
+        </activity>
     </application>
 
 </manifest>
