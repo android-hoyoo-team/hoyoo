@@ -34,8 +34,6 @@ public class CustomActionbar extends LinearLayout implements View.OnClickListene
 		leftImage=(ImageView) findViewById(R.id.actionbar_left);
 		centerText=(TextView)findViewById(R.id.actionbar_center);
 		rightBtn = (Button)findViewById(R.id.actionbar_right);
-		//leftImage.setOnClickListener(this);
-		//rightBtn.setOnClickListener(this);
 	}
 	/**
 	 * 设置图片资源

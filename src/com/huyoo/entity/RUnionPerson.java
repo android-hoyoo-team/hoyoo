@@ -5,6 +5,7 @@ public class RUnionPerson {
 	private int unionId;
 	private int personId;
 	private long time;
+	private String status;
 	public int getId() {
 		return id;
 	}
@@ -28,6 +29,12 @@ public class RUnionPerson {
 	}
 	public void setTime(long time) {
 		this.time = time;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

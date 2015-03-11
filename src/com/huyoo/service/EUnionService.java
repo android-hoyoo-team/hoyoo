@@ -2,12 +2,14 @@ package com.huyoo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import android.webkit.WebView;
 
 import com.huyoo.entity.EPerson;
 import com.huyoo.entity.EArticle;
 import com.huyoo.entity.EUnion;
+import com.huyoo.entity.RUnionPerson;
 
 /**
  * 
@@ -15,9 +17,45 @@ import com.huyoo.entity.EUnion;
  *
  */
 public class EUnionService {
+	
+	public List<EUnion> getUnions(Map<String,Object> params){
+		List<EUnion> unions = new ArrayList<EUnion>();
+		for(int i =0;i<20;i++){
+			EUnion union = new EUnion();
+			union.setName("TOWERS"+i);
+			union.setChairmanId(1);
+			union.setCurrentExp(12100);
+			union.setIcon("http://a2.qpic.cn/psb?/V123gJXv3aiMj6/80WTBdgeP3GoowD3vBhdlA1xmlyksgJQOl.sxKSE99c!/b/dAQAAAAAAAAA&bo=yQDcAAAAAAABBzU!&rf=viewer_4");
+			union.setId(i+1);
+			union.setLevelId(2);
+			union.setTime(1000000000l);
+			union.setTotalNum(570);
+			switch (i%4) {
+			case 0:
+				union.setStatus("normal");
+				break;
+			case 1:
+				union.setStatus("approvalling");
+				break;
+			case 2:
+				union.setStatus("dismissed");
+				break;
+			case 3:
+				union.setStatus("unpassed");
+				break;
+			default:
+				break;
+			}
+			unions.add(union);
+		}
+		return unions;
+	}
+	
+	
 
 	public EUnion getEUnionByID(int id)
 	{
+		
 		EUnion union = new EUnion();
 		union.setName("TOWERS1111111");
 		union.setChairmanId(1);
@@ -27,6 +65,23 @@ public class EUnionService {
 		union.setLevelId(2);
 		union.setTime(1000000000l);
 		union.setTotalNum(570);
+		switch (id%4) {
+		case 0:
+			union.setStatus("normal");
+			break;
+		case 1:
+			union.setStatus("approvalling");
+			break;
+		case 2:
+			union.setStatus("dismissed");
+			break;
+		case 3:
+			union.setStatus("unpassed");
+			break;
+		default:
+			break;
+		}
+		
 		union.setType("综合类");
 		union.setActivityNum(5);
 		return union;
@@ -52,5 +107,23 @@ public class EUnionService {
 			list.add(data);
 		}
 		return list;
+	}
+	public String getApplyUnionNotice(){
+		return "这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。"
+				+ "这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。"
+				+ "这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。这里是建立工会所必须要知道的。";
+	}
+	
+	
+	public int saveUnion(EUnion union){
+		return 10;
+	} 
+	
+	public void saveUnionPerson(List<RUnionPerson> ups){
+		
+	}
+	
+	public List<EUnion> getUnionsByPersonId(int personId){
+		return getUnions(null);
 	}
 }

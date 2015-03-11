@@ -71,9 +71,20 @@
             android:name="com.example.newhoyoo.DatePickerDialog"
             android:label="@string/title_activity_date_picker_dialog" >
         </activity>
+        <activity android:name="com.example.newhoyoo.UnionMemberList" >
+        </activity>
         <activity
-            android:name="com.example.newhoyoo.UnionMemberList">
-        </activity> 
+            android:name="com.example.newhoyoo.CreateUnionCondition"
+            android:label="@string/title_activity_create_union" >
+        </activity>
+        <activity
+            android:name="com.example.newhoyoo.CreateUnion"
+            android:label="@string/title_activity_create_union" >
+        </activity>
+        <activity
+            android:name="com.example.newhoyoo.FinishCreateUnion"
+            android:label="@string/title_activity_finish_create_union" >
+        </activity>
     </application>
 
 </manifest>

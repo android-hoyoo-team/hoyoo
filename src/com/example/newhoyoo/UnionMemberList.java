@@ -16,11 +16,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class UnionMemberList extends Activity {
+public class UnionMemberList extends Activity implements View.OnClickListener{
 	AQuery aq;
 	EUnion union;
 
@@ -105,6 +106,12 @@ public class UnionMemberList extends Activity {
 		{
 			
 		}
+		
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
 		
 	}
 }

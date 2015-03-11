@@ -5,6 +5,7 @@ import per.cz.event1_0.DispatchEvent;
 import per.cz.event1_0.IMethod;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +19,7 @@ import com.androidquery.AQuery;
 import com.exp.demo.AchieveFragment;
 import com.exp.demo.InviteFragment;
 import com.exp.demo.MineFragment;
+import com.exp.demo.NoUnionFragment;
 import com.exp.demo.UnionFragment;
 import com.exp.demo.ResideMenu;
 import com.exp.demo.ResideMenuItem;
@@ -45,12 +47,18 @@ public class Main extends FragmentActivity implements OnClickListener {
 
 	private HooyoFragment hooyofragment;
 	private SettingFragment settingFragment;
-	private UnionFragment nearFragment;
+	private UnionFragment unionFragment;
+	public void setUnionFragment(UnionFragment unionFragment) {
+		this.unionFragment = unionFragment;
+	}
+	public UnionFragment getUnionFragment(){
+		return this.unionFragment;
+	}
 	private MineFragment mineFragment;
-
+	private NoUnionFragment noUnionFragment;
 	private InviteFragment invitefragment;
 	private AchieveFragment achievefragment;
-
+	
 	private FragmentManager fragmentManager;
 
 	CustomActionbar actionbar;
@@ -68,7 +76,6 @@ public class Main extends FragmentActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		actionbar = (CustomActionbar)findViewById(R.id.main_actionbar);
-		actionbar.setTitleVisibility(View.GONE);
 		ImageView image = (ImageView)findViewById(R.id.actionbar_left);
 		image.setClickable(true);
 
@@ -181,11 +188,12 @@ public class Main extends FragmentActivity implements OnClickListener {
 		}
 	}
 
-	private void setTabSelection(View view) {
+	private <T> void setTabSelection(View view) {
 		clearSelection();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		hideFragments(transaction);
 		if (view == itemHome) {
+			actionbar.setTitleVisibility(View.GONE);
 			actionbar.setButtonVisibility(View.GONE);
 			actionbar.setImageResource(R.drawable.bt_01_nor);
 			itemHome.setBackgroundResource(R.drawable.left_item_selected_bg);
@@ -206,12 +214,15 @@ public class Main extends FragmentActivity implements OnClickListener {
 				if (achievefragment != null) {
 					transaction.hide(achievefragment);
 				}
-				if (nearFragment != null) {
-					transaction.hide(nearFragment);
+				if(unionFragment!=null){
+					transaction.hide(unionFragment);
+				}
+				if(noUnionFragment!=null){
+					transaction.hide(noUnionFragment);
 				}
 			}
 		} else if (view == itemInvite) {
-
+			actionbar.setTitleVisibility(View.GONE);
 			actionbar.setButtonVisibility(View.VISIBLE);
 			actionbar.setButton("发一个");
 			actionbar.setImageResource(R.drawable.bt_08_nor_01);
@@ -243,37 +254,90 @@ public class Main extends FragmentActivity implements OnClickListener {
 				if (achievefragment != null) {
 					transaction.hide(achievefragment);
 				}
-				if (nearFragment != null) {
-					transaction.hide(nearFragment);
+				if(unionFragment!=null){
+					transaction.hide(unionFragment);
+				}
+				if(noUnionFragment!=null){
+					transaction.hide(noUnionFragment);
 				}
 			}
 		} else if (view == itemAssociation) {
-
 			actionbar.setButtonVisibility(View.GONE);
 			actionbar.setImageResource(R.drawable.bt_15_nor_01);
 			itemAssociation.setBackgroundResource(R.drawable.left_item_selected_bg);
-			if (nearFragment == null) {
-				nearFragment = new UnionFragment();
-				transaction.add(R.id.main_fragment, nearFragment);
-			} else {
-				transaction.show(nearFragment);
-				if (hooyofragment != null) {
-					transaction.hide(hooyofragment);
+			union = null;
+			if(union != null)
+			{
+				/*************************************/
+				//这里要监听一下所在公会名称修改以后的事件
+				actionbar.setTitleVisibility(View.VISIBLE);
+				actionbar.setTitle(union.getName());
+				DispatchEvent.addEventListener("personUpdateEvent", new IMethod<String>() {
+
+					@Override
+					public void excute(DEvent<String> event) {
+						// TODO Auto-generated method stub
+						actionbar.setTitle(union.getName());
+					}
+				});
+				/****************************************/
+				if (unionFragment == null) {
+					unionFragment = new UnionFragment();
+					transaction.add(R.id.main_fragment, unionFragment);
+					if(noUnionFragment!=null)
+					{
+						transaction.remove(noUnionFragment);
+					}
+				} else {
+					transaction.show(unionFragment);
+					if (hooyofragment != null) {
+						transaction.hide(hooyofragment);
+					}
+					if (invitefragment != null) {
+						transaction.hide(invitefragment);
+					}
+					if (settingFragment != null) {
+						transaction.hide(settingFragment);
+					}
+					if (achievefragment != null) {
+						transaction.hide(achievefragment);
+					}
+					if (mineFragment != null) {
+						transaction.hide(mineFragment);
+					}
 				}
-				if (invitefragment != null) {
-					transaction.hide(invitefragment);
-				}
-				if (settingFragment != null) {
-					transaction.hide(settingFragment);
-				}
-				if (achievefragment != null) {
-					transaction.hide(achievefragment);
-				}
-				if (mineFragment != null) {
-					transaction.hide(mineFragment);
+			}
+			else{
+				actionbar.setTitleVisibility(View.GONE);
+				if(noUnionFragment == null)
+				{
+					noUnionFragment = new NoUnionFragment();
+					transaction.add(R.id.main_fragment, noUnionFragment);
+					if(unionFragment!=null){
+						transaction.remove(unionFragment);
+					}
+				}else
+				{
+					transaction.show(noUnionFragment);
+					if (hooyofragment != null) {
+						transaction.hide(hooyofragment);
+					}
+					if (invitefragment != null) {
+						transaction.hide(invitefragment);
+					}
+					if (settingFragment != null) {
+						transaction.hide(settingFragment);
+					}
+					if (achievefragment != null) {
+						transaction.hide(achievefragment);
+					}
+					if (mineFragment != null) {
+						transaction.hide(mineFragment);
+					}
 				}
 			}
 		} else if (view == itemAchievements) {
+			actionbar.setTitleVisibility(View.GONE);
 			actionbar.setButtonVisibility(View.GONE);
 			actionbar.setImageResource(R.drawable.d08);
 			itemAchievements.setBackgroundResource(R.drawable.left_item_selected_bg);
@@ -294,11 +358,15 @@ public class Main extends FragmentActivity implements OnClickListener {
 				if (mineFragment != null) {
 					transaction.hide(mineFragment);
 				}
-				if (nearFragment != null) {
-					transaction.hide(nearFragment);
+				if(unionFragment!=null){
+					transaction.hide(unionFragment);
+				}
+				if(noUnionFragment!=null){
+					transaction.hide(noUnionFragment);
 				}
 			}
 		} else if (view == itemMyself) {
+			actionbar.setTitleVisibility(View.GONE);
 			actionbar.setButtonVisibility(View.GONE);
 			actionbar.setImageResource(R.drawable.bt_14_nor_01);
 			itemMyself.setBackgroundResource(R.drawable.left_item_selected_bg);
@@ -319,12 +387,12 @@ public class Main extends FragmentActivity implements OnClickListener {
 				if (achievefragment != null) {
 					transaction.hide(achievefragment);
 				}
-				if (nearFragment != null) {
-					transaction.hide(nearFragment);
+				if (unionFragment != null) {
+					transaction.hide(unionFragment);
 				}
 			}
 		} else if (view == itemSetting) {
-
+			actionbar.setTitleVisibility(View.GONE);
 			actionbar.setButtonVisibility(View.GONE);
 			actionbar.setImageResource(R.drawable.bt_16_nor_01);
 			itemSetting.setBackgroundResource(R.drawable.left_item_selected_bg);
@@ -345,8 +413,11 @@ public class Main extends FragmentActivity implements OnClickListener {
 				if (achievefragment != null) {
 					transaction.hide(achievefragment);
 				}
-				if (nearFragment != null) {
-					transaction.hide(nearFragment);
+				if(unionFragment!=null){
+					transaction.hide(unionFragment);
+				}
+				if(noUnionFragment!=null){
+					transaction.hide(noUnionFragment);
 				}
 			}
 		}
@@ -354,8 +425,6 @@ public class Main extends FragmentActivity implements OnClickListener {
 	}
 
 	private void clearSelection() {
-		//		tx.setText("");
-
 		itemHome.setBackgroundResource(android.R.color.transparent);
 		itemHome.setIcon(R.drawable.c001);
 
@@ -392,8 +461,15 @@ public class Main extends FragmentActivity implements OnClickListener {
 		if (achievefragment != null) {
 			transaction.hide(achievefragment);
 		}
-		if (nearFragment != null) {
-			transaction.hide(nearFragment);
+		if (unionFragment != null) {
+			transaction.hide(unionFragment);
+		}
+		if (noUnionFragment != null) {
+			transaction.hide(noUnionFragment);
 		}
 	}
+//	private Fragment getUnionFragment(){
+//		
+//		return unionFragment!=null?unionFragment:noUnionFragment;
+//	}
 }
