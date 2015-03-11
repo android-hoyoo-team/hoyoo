@@ -1,5 +1,6 @@
 package com.exp.demo;
 
+import java.security.acl.LastOwnerException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.zip.Inflater;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -28,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidquery.AQuery;
+import com.example.newhoyoo.AchievementDetail;
 import com.example.newhoyoo.R;
 import com.example.newhoyoo.adapter.CustomListViewAdapter;
 import com.huyoo.entity.EAchievement;
@@ -63,8 +66,12 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		person = Application.getLoginInfo().getPerson();
+		AQuery aq=new AQuery(getActivity());
+		aq.id(R.id.more).image("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/C5BA7EAC764C4E60A2C707AAD40BED37");
+		
 		
 		initLatest();
+		
 
 		initRecommend();
 
@@ -77,7 +84,6 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 	 * 加载最新完成成就 HorizontalListView中的数据
 	 */
 	public void initLatest(){
-
 		List<EAchievement> achievements = Application.getAchievementService().getLastestEAchievements(person.getId(), 4);
 		latestAchievement = (HorizontalListView)getActivity().findViewById(R.id.horizon_listview);
 		ArrayList<HashMap<String,Object>> latestList=new ArrayList<HashMap<String,Object>>();  
@@ -86,6 +92,7 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 			HashMap<String, Object> map=new HashMap<String,Object>(); 
 			map.put("image", achievements.get(i).getIcon());
 			map.put("text", achievements.get(i).getName());
+			map.put("id", achievements.get(i).getId());//用于传递点击id
 			latestList.add(map);
 		}
 		latestListViewAdapter = new CustomListViewAdapter(getActivity(), 
@@ -96,6 +103,23 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 				new String[]{"image","text"}
 				);
 		latestAchievement.setAdapter(latestListViewAdapter);
+		latestAchievement.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				
+				HashMap<String, Object> currentMap=(HashMap<String, Object>)latestAchievement.getItemAtPosition(position);
+				Toast.makeText(getActivity(),position+"" , Toast.LENGTH_LONG).show();
+//				Toast.makeText(getActivity(),currentMap.get("id").toString()+"" , Toast.LENGTH_LONG).show();
+				Intent intent=new Intent();
+				intent.putExtra("id", currentMap.get("id").toString());
+				intent.setClass(getActivity(), AchievementDetail.class);
+				getActivity().startActivity(intent);
+			}
+			
+		});
 	}
 	/**
 	 * 加载成就推荐的listview
@@ -109,6 +133,7 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 			map.put("image", achievement.getIcon());
 			map.put("name", achievement.getName());
 			map.put("description", achievement.getDescription());
+			map.put("id", achievement.getId());
 			recommendList.add(map);
 		}
 
@@ -125,8 +150,16 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 			@Override   
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,   
 					long arg3) {
+				
+				HashMap<String, Object> currentMap=(HashMap<String, Object>)myListView.getItemAtPosition(arg2);
+				
+				Intent intent=new Intent();
+				intent.putExtra("id", currentMap.get("id").toString());
+				intent.setClass(getActivity(), AchievementDetail.class);
+				getActivity().startActivity(intent);
 			}
 		});
+		
 	}
 	/**
 	 * 加载分类成就PinnedHeaderExpandableListView中的数据
@@ -285,8 +318,12 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 	public boolean onChildClick(ExpandableListView parent, View v,
 			int groupPosition, int childPosition, long id) {
 		Toast.makeText(AchieveFragment.this.getActivity(),
-				childList.get(groupPosition).get(childPosition).getName(), 1)
+				childList.get(groupPosition).get(childPosition).getId()+"", 1)
 				.show();
+		Intent intent=new Intent();
+		intent.putExtra("id", childList.get(groupPosition).get(childPosition).getId()+"");
+		intent.setClass(getActivity(), AchievementDetail.class);
+		getActivity().startActivity(intent);
 
 		return false;
 	}

@@ -13,6 +13,7 @@ public class EAchievement implements Serializable{
 	private String type;
 	private String description;
 	private String icon;
+	private String addition;
 	public int getId() {
 		return id;
 	}
@@ -48,6 +49,12 @@ public class EAchievement implements Serializable{
 	}
 	public void setIcon(String icon) {
 		this.icon = icon;
+	}
+	public String getAddition() {
+		return addition;
+	}
+	public void setAddition(String addition) {
+		this.addition = addition;
 	}
 	
 }
