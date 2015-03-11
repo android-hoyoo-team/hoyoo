@@ -71,5 +71,7 @@
     <string name="invite_list_title">公会邀请</string>
     <string name="title_activity_date_picker_dialog">DatePickerDialog</string>
     <string name="title_activity_union_member_list">UnionMemberList</string>
+    <string name="title_activity_create_union">CreateUnion</string>
+    <string name="title_activity_finish_create_union">FinishCreateUnion</string>
 
 </resources>

@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_grey"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <com.ryg.expandable.ui.CustomActionbar
+        android:id="@+id/create_union_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" >
+    </com.ryg.expandable.ui.CustomActionbar>
+
+    <TextView
+        android:layout_width="280dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/di_06"
+        android:gravity="center"
+        android:text="您的创建公会申请已经提交\n将于1个工作日内 得到答复"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/apply_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp" 
+        android:textStyle="bold|italic">
+    </TextView>
+</LinearLayout>

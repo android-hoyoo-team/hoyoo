@@ -61,7 +61,13 @@ public class CustomListViewAdapter extends SimpleAdapter{
 			switch(operation[i])
 			{
 			case "image":
-				aq.id(to[i]).image(d.get(from[i]).toString(),false,true);
+				aq.id(to[i]).image(d.get(from[i]).toString());
+				break;
+			case "imageLocal":
+				aq.id(to[i]).image((Integer)d.get(from[i]));
+				break;
+			case "check":
+				aq.id(to[i]).checked((boolean)d.get(from[i]));
 				break;
 			case "text":
 				aq.id(to[i]).text(d.get(from[i]).toString());
