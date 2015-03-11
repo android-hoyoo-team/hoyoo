@@ -111,7 +111,7 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 				// TODO Auto-generated method stub
 				
 				HashMap<String, Object> currentMap=(HashMap<String, Object>)latestAchievement.getItemAtPosition(position);
-				Toast.makeText(getActivity(),position+"" , Toast.LENGTH_LONG).show();
+//				Toast.makeText(getActivity(),position+"" , Toast.LENGTH_LONG).show();
 //				Toast.makeText(getActivity(),currentMap.get("id").toString()+"" , Toast.LENGTH_LONG).show();
 				Intent intent=new Intent();
 				intent.putExtra("id", currentMap.get("id").toString());
@@ -317,9 +317,9 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 	@Override
 	public boolean onChildClick(ExpandableListView parent, View v,
 			int groupPosition, int childPosition, long id) {
-		Toast.makeText(AchieveFragment.this.getActivity(),
-				childList.get(groupPosition).get(childPosition).getId()+"", 1)
-				.show();
+//		Toast.makeText(AchieveFragment.this.getActivity(),
+//				childList.get(groupPosition).get(childPosition).getId()+"", 1)
+//				.show();
 		Intent intent=new Intent();
 		intent.putExtra("id", childList.get(groupPosition).get(childPosition).getId()+"");
 		intent.setClass(getActivity(), AchievementDetail.class);
