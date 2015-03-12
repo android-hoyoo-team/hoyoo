@@ -44,8 +44,8 @@ public class NoUnionFragment extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
-		//initNoUnion();
-		initInvited();
+		initNoUnion();
+		//initInvited();
 	}
 
 	//没有公会，没有申请，没有邀请

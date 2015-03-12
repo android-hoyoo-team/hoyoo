@@ -1,5 +1,6 @@
 package com.exp.demo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -206,8 +207,7 @@ public class HooyoFragment extends Fragment {
 //				 new String[]{"picture","title","name","issueTime","hits" }, 
 //				 t, 
 //				 op)
-		List<Map<String, Object>> programeList2=new ArrayList<Map<String,Object>>();
-		programeList2=Application.getInvitationService().getTopInvitation(4, Application.getLoginInfo().getUnion().getId());
+		final List<Map<String, Object>> programeList2=Application.getInvitationService().getTopInvitation(4, Application.getLoginInfo().getUnion().getId());
 		mAdapter02=new InvitationListAdapter02(this.getActivity());
 		mAdapter02.setInvitationList(programeList2);
 		myListView2.setAdapter(mAdapter02);
@@ -303,6 +303,7 @@ public class HooyoFragment extends Fragment {
 				case 3:
 					Intent intent=new Intent();
 	        		intent.setClass(getActivity(),YaoqingActivity.class);
+	        		intent.putExtra("item", (Serializable)programeList2.get(arg2));
 	        		getActivity().startActivity(intent);
 	        		break;
 				}

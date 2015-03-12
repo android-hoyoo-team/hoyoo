@@ -37,6 +37,7 @@ public class EInvitationService {
 	{
 		return getInvitations(null).get(0);
 	}
+	private static List<Map<String,Object>> getInvitationsMapByUnionId_list;
 	public List<Map<String,Object>> getInvitationsMapByUnionId(int UnionId,int from ,int size)
 	{
 		/*
@@ -50,7 +51,7 @@ public class EInvitationService {
 		maxNum
 		isJoin 0:1(join)
 		 * */
-		List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
+		getInvitationsMapByUnionId_list=new ArrayList<Map<String,Object>>();
 		
 		Map<String ,Object> m=new HashMap<String, Object>();
 		m.put("id", 1);
@@ -185,15 +186,15 @@ public class EInvitationService {
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+		
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\","
 				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
-		list.add(m);
-		list.add(m1);
-		list.add(m2);
-		list.add(m3);
-		list.add(m4);
+		getInvitationsMapByUnionId_list.add(m);
+		getInvitationsMapByUnionId_list.add(m1);
+		getInvitationsMapByUnionId_list.add(m2);
+		getInvitationsMapByUnionId_list.add(m3);
+		getInvitationsMapByUnionId_list.add(m4);
 //		list.add(m5);
 //		list.add(m6);
 //		list.add(m7);
-		return list;
+		return getInvitationsMapByUnionId_list;
 	}
 	/**
 	 * @author clu

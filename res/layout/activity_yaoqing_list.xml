@@ -179,8 +179,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="26dp"
-                    android:layout_marginLeft="25dp"
-                    android:gravity="bottom"
+                    android:layout_marginLeft="8dp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
                     <TextView
@@ -194,16 +195,17 @@
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2014年11月11日"
+                        android:singleLine="true"
+                        android:text="2014年11月11日  11:11:11"
                         android:textSize="8sp" />
 
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="11:11:11"
-                        android:textSize="8sp" />
+<!--                     <TextView -->
+<!--                         android:id="@+id/textView4" -->
+<!--                         android:layout_width="wrap_content" -->
+<!--                         android:layout_height="wrap_content" -->
+<!--                         android:layout_marginLeft="2dp" -->
+<!--                         android:text="" -->
+<!--                         android:textSize="8sp" /> -->
                 </LinearLayout>
             </LinearLayout>
 
@@ -249,6 +251,22 @@
                         android:text="2014-12-1"
                         android:textColor="@color/darkgrey"
                         android:textSize="10sp" />
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="时间："
+                        android:textColor="@color/darkgrey"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12:00:00"
+                        android:textColor="@color/darkgrey"
+                        android:textSize="11sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -264,29 +282,14 @@
                         android:textSize="10sp" />
 
                     <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="115dp"
+                        android:id="@+id/textView14"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="学校西门的说，在哪里你自己看看"
                         android:textColor="@color/darkgrey"
                         android:textSize="10sp" />
 
-                    <TextView
-                        android:id="@+id/textView13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="时间："
-                        android:textColor="@color/darkgrey"
-                        android:textSize="10sp" />
-
-                    <TextView
-                        android:id="@+id/textView14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="12:00:00"
-                        android:textColor="@color/darkgrey"
-                        android:textSize="11sp" />
+                    
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
