@@ -1,5 +1,6 @@
-package com.exp.demo;
+﻿package com.exp.demo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +58,7 @@ public class HooyoFragment extends Fragment {
 		myListView1=(ListView)getActivity().findViewById(R.id.listView_news);
 		TextView no_union_textview_01 = (TextView)getActivity().findViewById(R.id.no_union_textview_01);
 		myListView2=(ListView)getActivity().findViewById(R.id.listView_invite);
+
 		TextView no_union_textview_02 = (TextView)getActivity().findViewById(R.id.no_union_textview_02);
 		myListView3=(ListView)getActivity().findViewById(R.id.listView_success);
 		TextView no_union_textview_03 = (TextView)getActivity().findViewById(R.id.no_union_textview_03);
@@ -110,7 +112,9 @@ public class HooyoFragment extends Fragment {
 				}   
 
 			});   
-			//生成ListView对象   
+			//生成ListView对象  
+			no_union_textview_03.setVisibility(View.GONE);
+			myListView3.setVisibility(View.VISIBLE);	
 			myListView3=(ListView)getActivity().findViewById(R.id.listView_success);
 			List<Map<String,Object>> programeList3=new ArrayList<Map<String,Object>>();  
 			List<EArticle> list3=Application.getArticleSercice().getTopTips(4, Application.getLoginInfo().getUnion().getId());
@@ -127,13 +131,8 @@ public class HooyoFragment extends Fragment {
 					Intent intent=new Intent();
 					intent.putExtra("type", "成功秘笈");
 					intent.putExtra("id", currentMap.get("id").toString());
-					intent.setClass(getActivity(), UnionNewsActivity.class);
-					getActivity().startActivity(intent);
-
-				}   
-
-			});   
-
+					intent.setClass(getActivity(), UnionNewsActivity.class);		
+		
 		}else{
 			myListView1.setVisibility(View.GONE);
 			no_union_textview_01.setVisibility(View.VISIBLE);
@@ -144,14 +143,6 @@ public class HooyoFragment extends Fragment {
 			
 		}
 
-
-
-
-
-		/************************************************************/
-		/******************************3333333333333333333333333******************************/
-		
-		/************************************************************/      
 	}
 
 	public void sendphonenumClick(View view){

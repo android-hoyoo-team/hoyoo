@@ -11,6 +11,7 @@ import com.huyoo.service.EArticleService;
 import com.huyoo.service.ECommentService;
 import com.huyoo.service.EInvitationService;
 import com.huyoo.service.ELevelService;
+import com.huyoo.service.EMessageService;
 import com.huyoo.service.EPersonService;
 import com.huyoo.service.EUnionService;
 
@@ -21,7 +22,7 @@ public class Application {
 	private static ECommentService commentService;
 	private static EUnionService unionService;
 	private static ELevelService levelService;
-
+	private static EMessageService messageService;
 	private static EInvitationService invitationService;
 	private static LoginInfo loginInfo;
 	
@@ -73,7 +74,13 @@ public class Application {
 			commentService = new ECommentService();
 		return commentService;
 	}
-
+	
+	public static EMessageService getMessageService() {
+		if (messageService == null)
+			messageService = new EMessageService();
+		return messageService;
+	}
+	
 	/**
 	 * 获取EInvitationService 单例
 	 * @return
@@ -118,9 +125,10 @@ public class Application {
 	 * @return
 	 */
 	public static LoginInfo getLoginInfo() {
-		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("phoneNum", "18888888888");
-		return login(map, false);
+//		Map<String,Object> map = new HashMap<String, Object>();
+//		map.put("phoneNum", "18888888888");
+	//	return login(null, false);
+		return loginInfo;
 	}
 	/**
 	 * 根据用户号码登陆，如果用户已经登陆则返回已登录信息，如果用户没有登陆则执行登陆操作后返回登陆信息
@@ -129,13 +137,19 @@ public class Application {
 	 *            用户电话号码
 	 * @return
 	 */
-	public static LoginInfo login(String PhoneNum) {
+	public static void login(String phoneNum) {
 		Map<String, Object> p = new HashMap<String, Object>();
-		p.put("phoneNum", PhoneNum);
-		return login(p, false);
+		p.put("phoneNum", phoneNum);
+		//loginInfo.setPerson(getPersonService().getEPersonByPhoneNum(phoneNum));
+		LoginInfo lInfo = new LoginInfo();
+		EPerson person = getPersonService().getEPersonByPhoneNum(phoneNum);
+		lInfo.setPerson(person);
+		loginInfo = lInfo;
+		//return loginInfo;
+		//return login(p, false);
 	}
 
-	private static LoginInfo _login(Map<String, Object> param) {
+	public static LoginInfo _login(Map<String, Object> param) {
 		List<EPerson> persons = getPersonService().getPersons(param);
 		if (persons.size() > 0) {
 			LoginInfo lInfo = new LoginInfo();

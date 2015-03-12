@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.exp.demo.AchieveFragment;
@@ -44,6 +45,8 @@ public class Main extends FragmentActivity implements OnClickListener {
 	private ResideMenuItem itemAchievements;
 	private ResideMenuItem itemMyself;
 	private ResideMenuItem itemSetting;
+	private ResideMenuItem itemMessage;
+	
 
 	private HooyoFragment hooyofragment;
 	private SettingFragment settingFragment;
@@ -89,8 +92,9 @@ public class Main extends FragmentActivity implements OnClickListener {
 			}
 		});
 		fragmentManager = getSupportFragmentManager();
-		setTabSelection(itemHome);
+		//setTabSelection(itemAssociation);
 		loadData();
+		setTabSelection(itemHome);
 		DispatchEvent.addEventListener("personUpdateEvent", new IMethod<String>() {
 
 			@Override
@@ -114,20 +118,23 @@ public class Main extends FragmentActivity implements OnClickListener {
 		itemAchievements = new ResideMenuItem(this, R.drawable.c004, "成就");
 		itemMyself = new ResideMenuItem(this, R.drawable.c005, "个人");
 		itemSetting = new ResideMenuItem(this, R.drawable.c006, "设置");
-
+		itemMessage = new ResideMenuItem(this,R.drawable.c006,"消息");
+		
 		resideMenu.addMenuItem(itemHome);
 		resideMenu.addMenuItem(itemInvite);
 		resideMenu.addMenuItem(itemAssociation);
 		resideMenu.addMenuItem(itemAchievements);
 		resideMenu.addMenuItem(itemMyself);
 		resideMenu.addMenuItem(itemSetting);
-
+		resideMenu.addMenuItem(itemMessage);
+		
 		itemHome.setOnClickListener(this);
 		itemInvite.setOnClickListener(this);
 		itemAssociation.setOnClickListener(this);
 		itemAchievements.setOnClickListener(this);
 		itemMyself.setOnClickListener(this);
 		itemSetting.setOnClickListener(this);
+		itemMessage.setOnClickListener(this);
 	}
 
 	public void loadData()
@@ -139,8 +146,8 @@ public class Main extends FragmentActivity implements OnClickListener {
 		AQuery aq = new AQuery(resideMenu);
 		aq.id(R.id.head_imageview).image(person.getIcon());
 		aq.id(R.id.name_textview).text(person.getName());
-		aq.id(R.id.title_textview).text(level.getName());
-		aq.id(R.id.union_textview).text(union.getName());
+		aq.id(R.id.title_textview).text(Application.getLevelService().getELevelByID(person.getLevelId()).getName());
+		if(union!=null)aq.id(R.id.union_textview).text(union.getName());
 	}
 
 
@@ -184,6 +191,9 @@ public class Main extends FragmentActivity implements OnClickListener {
 			resideMenu.closeMenu();
 		} else if (arg0 == itemSetting) {
 			setTabSelection(itemSetting);
+			resideMenu.closeMenu();
+		}else if(arg0 == itemMessage){
+			setTabSelection(itemMessage);
 			resideMenu.closeMenu();
 		}
 	}
@@ -265,7 +275,6 @@ public class Main extends FragmentActivity implements OnClickListener {
 			actionbar.setButtonVisibility(View.GONE);
 			actionbar.setImageResource(R.drawable.bt_15_nor_01);
 			itemAssociation.setBackgroundResource(R.drawable.left_item_selected_bg);
-			union = null;
 			if(union != null)
 			{
 				/*************************************/

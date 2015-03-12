@@ -76,9 +76,11 @@ public class MineFragment extends Fragment {
 			this.aq.id(R.id.sex_textview).text("♂").textColorId(R.color.blue);
 		else
 			this.aq.id(R.id.sex_textview).text("♀").textColorId(R.color.red);
-		this.aq.id(R.id.title_textview).text(level.getName());;
-		this.aq.id(R.id.union_textview).text(union.getName());
-		this.aq.id(R.id.union_position_textview).text((union.getChairmanId() == person.getId()) ? "会长" : "会员");
+		this.aq.id(R.id.title_textview).text(level.getName());
+		if(union!=null){
+			this.aq.id(R.id.union_textview).text(union.getName());
+			this.aq.id(R.id.union_position_textview).text((union.getChairmanId() == person.getId()) ? "会长" : "会员");
+		}
 		this.aq.id(R.id.attention_textview).text(Application.getPersonService().getFocusCount(person.getId())+"");
 		this.aq.id(R.id.fans_textview).text(Application.getPersonService().getFansCount(person.getId())+"");
 		this.aq.id(R.id.achievement_textview).text(person.getCurrentExp()+"");

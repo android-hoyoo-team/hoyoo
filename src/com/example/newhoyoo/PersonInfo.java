@@ -76,10 +76,12 @@ public class PersonInfo extends FragmentActivity {
 		this.aq.id(R.id.text_school).text(person.getDepartment());
 		this.aq.id(R.id.text_birthday).text(new SimpleDateFormat("yyyy-MM-dd").format(new Date(person.getBirthday())));
 		this.aq.id(R.id.text_phonenum).text(person.getPhoneNum());
-
-		this.aq.id(R.id.text_union).text(union.getName());
-		this.aq.id(R.id.text_unionlvl).text(Application.getLevelService().getELevelByID(union.getLevelId()).getName());
-		this.aq.id(R.id.text_unionrole).text((union.getChairmanId()==person.getId())?"会长":"会员");
+		
+		if(union!=null){
+			this.aq.id(R.id.text_union).text(union.getName());
+			this.aq.id(R.id.text_unionlvl).text(Application.getLevelService().getELevelByID(union.getLevelId()).getName());
+			this.aq.id(R.id.text_unionrole).text((union.getChairmanId()==person.getId())?"会长":"会员");
+		}
 		this.aq.id(R.id.text_achievelvl).text(level.getName());
 	}
 	

@@ -61,12 +61,12 @@ public class Signup extends Activity {
      */
     public void phonesignClick(View view){
     	//Toast.makeText(getApplicationContext(), "1111111", Toast.LENGTH_LONG).show();
-        this.aq.id(R.id.sendpwd).background(R.color.buttonEffect);
-       // String pwd = this.aq.id(R.id.password_text).getText().toString();
-        //String url = myApp.web("api/user?username=" + pwd);
-        String username=this.aq.id(R.id.phonenumsign).getText().toString();
-        String url = MyApp.web("api/user?username=" + username);
-        aq.ajax(url,JSONObject.class, this, "loginloadingCallback");
+//        this.aq.id(R.id.sendpwd).background(R.color.buttonEffect);
+//       // String pwd = this.aq.id(R.id.password_text).getText().toString();
+//        //String url = myApp.web("api/user?username=" + pwd);
+//        String username=this.aq.id(R.id.phonenumsign).getText().toString();
+//        String url = MyApp.web("api/user?username=" + username);
+//        aq.ajax(url,JSONObject.class, this, "loginloadingCallback");
     }
     
     //向注册手机发送验证码

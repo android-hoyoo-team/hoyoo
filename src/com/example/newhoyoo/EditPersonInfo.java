@@ -96,10 +96,11 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 		this.aq.id(R.id.school_edittext).text(person.getDepartment());
 		this.aq.id(R.id.birthday_edittext).text(new SimpleDateFormat("yyyy-MM-dd").format(new Date(person.getBirthday())));
 		this.aq.id(R.id.phonenum_edittext).text(person.getPhoneNum());
-
-		this.aq.id(R.id.union_textview).text(union.getName());
-		this.aq.id(R.id.unionlvl_textview).text(Application.getLevelService().getELevelByID(union.getLevelId()).getName());
-		this.aq.id(R.id.union_role_textview).text(person.getId() == union.getChairmanId()?"会长":"会员");
+		if(union!=null){
+			this.aq.id(R.id.union_textview).text(union.getName());
+			this.aq.id(R.id.unionlvl_textview).text(Application.getLevelService().getELevelByID(union.getLevelId()).getName());
+			this.aq.id(R.id.union_role_textview).text(person.getId() == union.getChairmanId()?"会长":"会员");
+		}
 		this.aq.id(R.id.achievelvl_textview).text(level.getName());
 
 		RadioGroup sex_radiogroup = (RadioGroup)findViewById(R.id.sex_radiogroup);
