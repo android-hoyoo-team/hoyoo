@@ -131,7 +131,9 @@ public class HooyoFragment extends Fragment {
 					Intent intent=new Intent();
 					intent.putExtra("type", "成功秘笈");
 					intent.putExtra("id", currentMap.get("id").toString());
-					intent.setClass(getActivity(), UnionNewsActivity.class);		
+					intent.setClass(getActivity(), UnionNewsActivity.class);
+				}
+			});
 		
 		}else{
 			myListView1.setVisibility(View.GONE);

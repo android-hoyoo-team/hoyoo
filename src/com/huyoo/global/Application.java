@@ -11,7 +11,7 @@ import com.huyoo.service.EArticleService;
 import com.huyoo.service.ECommentService;
 import com.huyoo.service.EInvitationService;
 import com.huyoo.service.ELevelService;
-import com.huyoo.service.EMessageService;
+//import com.huyoo.service.EMessageService;
 import com.huyoo.service.EPersonService;
 import com.huyoo.service.EUnionService;
 
@@ -22,7 +22,7 @@ public class Application {
 	private static ECommentService commentService;
 	private static EUnionService unionService;
 	private static ELevelService levelService;
-	private static EMessageService messageService;
+//	private static EMessageService messageService;
 	private static EInvitationService invitationService;
 	private static LoginInfo loginInfo;
 	
@@ -75,11 +75,11 @@ public class Application {
 		return commentService;
 	}
 	
-	public static EMessageService getMessageService() {
-		if (messageService == null)
-			messageService = new EMessageService();
-		return messageService;
-	}
+//	public static EMessageService getMessageService() {
+//		if (messageService == null)
+//			messageService = new EMessageService();
+//		return messageService;
+//	}
 	
 	/**
 	 * 获取EInvitationService 单例

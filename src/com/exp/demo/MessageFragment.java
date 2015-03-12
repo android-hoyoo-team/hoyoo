@@ -25,7 +25,7 @@ public class MessageFragment extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 		
-		List<EMessage> list = Application.getMessageService().getMessagesByTarget(Application.getLoginInfo().getPerson().getId());
+//		List<EMessage> list = Application.getMessageService().getMessagesByTarget(Application.getLoginInfo().getPerson().getId());
 		
 		
 	}
