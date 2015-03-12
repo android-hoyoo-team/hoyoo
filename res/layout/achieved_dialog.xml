@@ -28,13 +28,13 @@
                 android:id="@+id/dialog_achievement_icon"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/union_01" />
+                 />
 
             <ImageView
                 android:id="@+id/dialog_frame"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:src="@drawable/di_10_silver" />
+                />
 
             <LinearLayout
                 android:layout_width="wrap_content"
