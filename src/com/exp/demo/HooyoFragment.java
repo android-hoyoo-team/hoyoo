@@ -83,7 +83,7 @@ public class HooyoFragment extends Fragment {
 					getActivity().startActivity(intent); 
 				}  
 			});
-			
+
 			no_union_textview_02.setVisibility(View.GONE);
 			myListView2.setVisibility(View.VISIBLE);
 			List<Map<String, Object>> programeList2=new ArrayList<Map<String,Object>>();
@@ -132,7 +132,8 @@ public class HooyoFragment extends Fragment {
 					intent.putExtra("type", "成功秘笈");
 					intent.putExtra("id", currentMap.get("id").toString());
 					intent.setClass(getActivity(), UnionNewsActivity.class);		
-		
+				}
+			});
 		}else{
 			myListView1.setVisibility(View.GONE);
 			no_union_textview_01.setVisibility(View.VISIBLE);
@@ -140,7 +141,7 @@ public class HooyoFragment extends Fragment {
 			no_union_textview_02.setVisibility(View.VISIBLE);
 			myListView3.setVisibility(View.GONE);
 			no_union_textview_03.setVisibility(View.VISIBLE);
-			
+
 		}
 
 	}
