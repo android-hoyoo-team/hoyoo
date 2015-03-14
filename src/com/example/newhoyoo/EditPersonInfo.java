@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 import per.cz.event1_0.DEvent;
 import per.cz.event1_0.DispatchEvent;
+import per.cz.event1_0.IMethod;
 
 import com.androidquery.AQuery;
 import com.huyoo.entity.ELevel;
@@ -76,7 +77,19 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 		this.aq.id(R.id.actionbar_left).clicked(this, "back");
 		this.aq.id(R.id.actionbar_right).clicked(this, "edit");
 		this.aq.id(R.id.imageView2).clicked(this, "changemypic");
+		init();
+		DispatchEvent.addEventListener("unionStatusChanged", new IMethod<String>() {
 
+			@Override
+			public void excute(DEvent<String> event) {
+				// TODO Auto-generated method stub
+				init();
+			}
+		});
+		
+	}
+	
+	public void init(){
 		person = Application.getLoginInfo().getPerson();
 		union = Application.getLoginInfo().getUnion();
 		level = Application.getLoginInfo().getLevel();
@@ -96,7 +109,7 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 		this.aq.id(R.id.school_edittext).text(person.getDepartment());
 		this.aq.id(R.id.birthday_edittext).text(new SimpleDateFormat("yyyy-MM-dd").format(new Date(person.getBirthday())));
 		this.aq.id(R.id.phonenum_edittext).text(person.getPhoneNum());
-		if(union!=null){
+		if(union!=null&&"normal".equals(union.getStatus())){
 			this.aq.id(R.id.union_textview).text(union.getName());
 			this.aq.id(R.id.unionlvl_textview).text(Application.getLevelService().getELevelByID(union.getLevelId()).getName());
 			this.aq.id(R.id.union_role_textview).text(person.getId() == union.getChairmanId()?"会长":"会员");

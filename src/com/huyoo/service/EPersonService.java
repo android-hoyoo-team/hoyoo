@@ -216,7 +216,7 @@ public class EPersonService {
 			RUnionPerson up3 = new RUnionPerson();
 			up3.setUnionId(3);
 			up3.setPersonId(2);
-			up3.setStatus("in");
+			up3.setStatus("out");
 			ups.add(up1);
 			ups.add(up2);
 			ups.add(up3);
