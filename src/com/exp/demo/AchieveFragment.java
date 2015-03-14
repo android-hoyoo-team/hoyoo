@@ -32,6 +32,7 @@ import android.widget.Toast;
 import com.androidquery.AQuery;
 import com.example.newhoyoo.AchievementDetail;
 import com.example.newhoyoo.R;
+import com.example.newhoyoo.test;
 import com.example.newhoyoo.adapter.CustomListViewAdapter;
 import com.huyoo.entity.EAchievement;
 import com.huyoo.entity.EPerson;
@@ -117,6 +118,7 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 				intent.putExtra("id", currentMap.get("id").toString());
 				intent.setClass(getActivity(), AchievementDetail.class);
 				getActivity().startActivity(intent);
+				
 			}
 			
 		});
