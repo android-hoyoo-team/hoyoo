@@ -14,8 +14,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="8dp" >
+            android:layout_marginTop="8dp"
+            android:orientation="vertical" >
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -31,11 +31,11 @@
                     android:id="@+id/textView1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:gravity="center_vertical"
                     android:layout_marginLeft="24dp"
+                    android:gravity="center_vertical"
+                    android:text="公会新闻"
                     android:textColor="@color/white"
-                    android:text="公会新闻" />
+                    android:textSize="18sp" />
             </RelativeLayout>
 
             <ListView
@@ -43,20 +43,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="291dp"
                 android:layout_gravity="start"
-        		android:background="#FFFFFF"
-        		android:cacheColorHint="#00000000"
-        		android:choiceMode="singleChoice"
-        		android:divider="#ADADAD"
-        		android:dividerHeight="1dp" >
+                android:background="#FFFFFF"
+                android:cacheColorHint="#00000000"
+                android:choiceMode="singleChoice"
+                android:divider="#ADADAD"
+                android:dividerHeight="1dp" >
             </ListView>
 
+            <TextView 
+                android:id="@+id/no_union_textview_01"
+                android:layout_height="291dp" 
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:background="@color/white"
+                android:visibility="gone"
+                android:text="你还没有加入任何公会"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="8dp" >
+            android:layout_marginTop="8dp"
+            android:orientation="vertical" >
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -72,12 +80,11 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                     android:textSize="18sp"
-                    android:gravity="center_vertical"
                     android:layout_marginLeft="24dp"
+                    android:gravity="center_vertical"
+                    android:text="热门邀请"
                     android:textColor="@color/white"
-                    android:text="热门邀请" />
-
+                    android:textSize="18sp" />
             </RelativeLayout>
 
             <ListView
@@ -85,20 +92,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="291dp"
                 android:layout_gravity="start"
-		        android:background="#FFFFFF"
-        		android:cacheColorHint="#00000000"
-        		android:choiceMode="singleChoice"
-        		android:divider="@color/background_grey"
-        		android:dividerHeight="1dp" >
+                android:background="#FFFFFF"
+                android:cacheColorHint="#00000000"
+                android:choiceMode="singleChoice"
+                android:divider="@color/background_grey"
+                android:dividerHeight="1dp" >
             </ListView>
-
+             <TextView 
+                android:id="@+id/no_union_textview_02"
+                android:layout_height="291dp"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:background="@color/white"
+                android:visibility="gone"
+                android:text="你还没有加入任何公会"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="8dp" >
+            android:layout_marginTop="8dp"
+            android:orientation="vertical" >
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -114,12 +128,11 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                     android:textSize="18sp"
-                    android:gravity="center_vertical"
                     android:layout_marginLeft="24dp"
+                    android:gravity="center_vertical"
+                    android:text="成功秘笈"
                     android:textColor="@color/white"
-                    android:text="成功秘笈" />
-
+                    android:textSize="18sp" />
             </RelativeLayout>
 
             <ListView
@@ -127,15 +140,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="291dp"
                 android:layout_gravity="start"
-		        android:background="#FFFFFF"
-    		    android:cacheColorHint="#00000000"
-        		android:choiceMode="singleChoice"
-        		android:divider="@color/background_grey"
-        		android:dividerHeight="1dp" >
+                android:background="#FFFFFF"
+                android:cacheColorHint="#00000000"
+                android:choiceMode="singleChoice"
+                android:divider="@color/background_grey"
+                android:dividerHeight="1dp" >
             </ListView>
-
+             <TextView 
+                android:id="@+id/no_union_textview_03"
+                android:layout_height="291dp" 
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:background="@color/white"
+                android:visibility="gone"
+                android:text="你还没有加入任何公会"/>
         </LinearLayout>
-
     </LinearLayout>
 
 </ScrollView>

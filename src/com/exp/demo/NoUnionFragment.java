@@ -1,9 +1,13 @@
 package com.exp.demo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor.AbortPolicy;
 
+import per.cz.event1_0.DEvent;
+import per.cz.event1_0.DispatchEvent;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -29,6 +33,7 @@ import com.example.newhoyoo.CreateUnionCondition;
 import com.example.newhoyoo.Main;
 import com.example.newhoyoo.R;
 import com.huyoo.entity.EUnion;
+import com.huyoo.entity.RUnionPerson;
 import com.huyoo.global.Application;
 import com.ryg.expandable.ui.CustomActionbar;
 
@@ -44,8 +49,11 @@ public class NoUnionFragment extends Fragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
-		initNoUnion();
-		//initInvited();
+		if(Application.getLoginInfo().getUnion()!=null){
+			initApplying();
+		}else{
+			initNoUnion();
+		}
 	}
 
 	//没有公会，没有申请，没有邀请
@@ -61,8 +69,10 @@ public class NoUnionFragment extends Fragment {
 		this.aq.id(R.id.no_union_linearlayout).visibility(View.GONE);
 		this.aq.id(R.id.invited_linearlayout).visibility(View.GONE);
 		this.aq.id(R.id.applying_linearlayout).visibility(View.VISIBLE);
+		long startTime = Application.getLoginInfo().getUnion().getTime();
+		long totalLeft = new Date().getTime() - startTime - 86400000;
 		long total = 12*60*60*1000;
-		new CountDownTimer(total,1000) {
+		new CountDownTimer(10000,1000) {
 
 			@Override
 			public void onTick(long millisUntilFinished) {
@@ -72,12 +82,27 @@ public class NoUnionFragment extends Fragment {
 				long minute = (left/60)%60;
 				long hour = left/3600;
 				if(getActivity()!=null)
-				((TextView)getActivity().findViewById(R.id.apply_timer_textview)).setText(String.format("%02d:%02d:%02d", hour,minute,second));
+					aq.id(R.id.apply_timer_textview).text(String.format("%02d:%02d:%02d", hour,minute,second));
 			}
 			@Override
 			public void onFinish() {
 				// TODO Auto-generated method stub
-				aq.id(R.id.apply_timer_textview).text("时间到了！");
+				Application.getLoginInfo().setStatus("pass");
+				//申请成功
+				if(Application.getLoginInfo().getUnion()!=null){
+					DispatchEvent.dispatchEvent(new DEvent("unionStatusChanged","message"));
+					Main main = (Main)getActivity();
+					if("itemAssociation".equals(Main.currentFragment)){
+						if(main.getUnionFragment()==null){
+							main.setUnionFragment(new UnionFragment());
+							main.getSupportFragmentManager().beginTransaction().add(R.id.main_fragment, main.getUnionFragment()).commit();
+						}else{
+							main.getSupportFragmentManager().beginTransaction().show(main.getUnionFragment()).commit();
+						}
+					}
+				}else{
+					initNoUnion();
+				}
 			}
 		}.start();
 	}
@@ -158,7 +183,7 @@ public class NoUnionFragment extends Fragment {
 									AlertDialog _dialog = new AlertDialog.Builder(getActivity())
 									.setTitle("该工会审批未通过或者已经被解散")
 									.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-										
+
 										@Override
 										public void onClick(DialogInterface dialog, int which) {
 											// TODO Auto-generated method stub
@@ -168,8 +193,8 @@ public class NoUnionFragment extends Fragment {
 									_dialog.setCanceledOnTouchOutside(false);
 									_dialog.show();
 									break;
-//								case "dismissed":
-//									//如果邀请的公会已经解散了，弹出对话框告知，并刷新邀请列表,如果没有邀请，进入查找和创建公会页面。
+									//								case "dismissed":
+									//									//如果邀请的公会已经解散了，弹出对话框告知，并刷新邀请列表,如果没有邀请，进入查找和创建公会页面。
 								default:
 									break;
 								}
@@ -181,14 +206,14 @@ public class NoUnionFragment extends Fragment {
 					}
 				});
 				convertView.findViewById(R.id.reject_textview).setOnClickListener(new OnClickListener() {
-					
+
 					@Override
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 						AlertDialog dialog = new AlertDialog.Builder(getActivity())
 						.setTitle("你确定拒绝公会： "+selectedUnion.get("uName")+" 的邀请？")
 						.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-							
+
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
 								// TODO Auto-generated method stub

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
@@ -20,10 +20,18 @@
         <!-- <item name="@android:attr/actionBarSize">96px</item> -->
     </style>
 
+    <style name="NobackDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
     <style name="NoActionbar" parent="AppBaseTheme">
         <item name="android:windowNoTitle">true</item>
         All customizations that are NOT specific to a particular API-level can go here.
-        ActionBar Height        <item name="@android:attr/actionBarSize">96px</item>
+        ActionBar Height                                <item name="@android:attr/actionBarSize">96px</item>
     </style>
 
     <style name="MyCheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
@@ -48,5 +56,16 @@
     </style>
 
     <style name="ButtonBarButton" />
+
+    <style name="achievement_detail_dialog">
+        <item name="android:windowFrame">@null</item> <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item> <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">false</item> <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item> <!-- 无标题 -->
+        <item name="android:windowBackground">@color/transparent_background</item> <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">false</item> <!-- 模糊 -->
+        <item name="android:windowAnimationStyle">@+android:style/Animation.Translucent</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
 
 </resources>

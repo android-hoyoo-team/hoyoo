@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.exp.demo.AchieveFragment;
@@ -44,6 +45,8 @@ public class Main extends FragmentActivity implements OnClickListener {
 	private ResideMenuItem itemAchievements;
 	private ResideMenuItem itemMyself;
 	private ResideMenuItem itemSetting;
+	private ResideMenuItem itemMessage;
+
 
 	private HooyoFragment hooyofragment;
 	private SettingFragment settingFragment;
@@ -58,8 +61,10 @@ public class Main extends FragmentActivity implements OnClickListener {
 	private NoUnionFragment noUnionFragment;
 	private InviteFragment invitefragment;
 	private AchieveFragment achievefragment;
-	
+
 	private FragmentManager fragmentManager;
+	
+	public static String currentFragment;
 
 	CustomActionbar actionbar;
 
@@ -89,9 +94,18 @@ public class Main extends FragmentActivity implements OnClickListener {
 			}
 		});
 		fragmentManager = getSupportFragmentManager();
-		setTabSelection(itemHome);
+		//setTabSelection(itemAssociation);
 		loadData();
+		setTabSelection(itemHome);
 		DispatchEvent.addEventListener("personUpdateEvent", new IMethod<String>() {
+
+			@Override
+			public void excute(DEvent<String> event) {
+				// TODO Auto-generated method stub
+				loadData();
+			}
+		});
+		DispatchEvent.addEventListener("unionStatusChanged", new IMethod<String>() {
 
 			@Override
 			public void excute(DEvent<String> event) {
@@ -114,6 +128,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 		itemAchievements = new ResideMenuItem(this, R.drawable.c004, "成就");
 		itemMyself = new ResideMenuItem(this, R.drawable.c005, "个人");
 		itemSetting = new ResideMenuItem(this, R.drawable.c006, "设置");
+		itemMessage = new ResideMenuItem(this,R.drawable.c006,"消息");
 
 		resideMenu.addMenuItem(itemHome);
 		resideMenu.addMenuItem(itemInvite);
@@ -121,6 +136,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 		resideMenu.addMenuItem(itemAchievements);
 		resideMenu.addMenuItem(itemMyself);
 		resideMenu.addMenuItem(itemSetting);
+		resideMenu.addMenuItem(itemMessage);
 
 		itemHome.setOnClickListener(this);
 		itemInvite.setOnClickListener(this);
@@ -128,6 +144,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 		itemAchievements.setOnClickListener(this);
 		itemMyself.setOnClickListener(this);
 		itemSetting.setOnClickListener(this);
+		itemMessage.setOnClickListener(this);
 	}
 
 	public void loadData()
@@ -139,8 +156,8 @@ public class Main extends FragmentActivity implements OnClickListener {
 		AQuery aq = new AQuery(resideMenu);
 		aq.id(R.id.head_imageview).image(person.getIcon());
 		aq.id(R.id.name_textview).text(person.getName());
-		aq.id(R.id.title_textview).text(level.getName());
-		aq.id(R.id.union_textview).text(union.getName());
+		aq.id(R.id.title_textview).text(Application.getLevelService().getELevelByID(person.getLevelId()).getName());
+		if(union!=null&&"normal".equals(union.getStatus()))aq.id(R.id.union_textview).text(union.getName());
 	}
 
 
@@ -185,6 +202,9 @@ public class Main extends FragmentActivity implements OnClickListener {
 		} else if (arg0 == itemSetting) {
 			setTabSelection(itemSetting);
 			resideMenu.closeMenu();
+		}else if(arg0 == itemMessage){
+			setTabSelection(itemMessage);
+			resideMenu.closeMenu();
 		}
 	}
 
@@ -193,6 +213,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		hideFragments(transaction);
 		if (view == itemHome) {
+			this.currentFragment = "itemHome";
 			actionbar.setTitleVisibility(View.GONE);
 			actionbar.setButtonVisibility(View.GONE);
 			actionbar.setImageResource(R.drawable.bt_01_nor);
@@ -222,11 +243,10 @@ public class Main extends FragmentActivity implements OnClickListener {
 				}
 			}
 		} else if (view == itemInvite) {
+			this.currentFragment = "itemInvite";
 			actionbar.setTitleVisibility(View.GONE);
-			actionbar.setButtonVisibility(View.VISIBLE);
-			actionbar.setButton("发一个");
 			actionbar.setImageResource(R.drawable.bt_08_nor_01);
-
+			actionbar.setButton("发一个");
 			Button btn = (Button)findViewById(R.id.actionbar_right);
 			final FragmentActivity target=this;
 			btn.setOnClickListener(new OnClickListener() {
@@ -262,11 +282,11 @@ public class Main extends FragmentActivity implements OnClickListener {
 				}
 			}
 		} else if (view == itemAssociation) {
+			this.currentFragment = "itemAssociation";
 			actionbar.setButtonVisibility(View.GONE);
 			actionbar.setImageResource(R.drawable.bt_15_nor_01);
 			itemAssociation.setBackgroundResource(R.drawable.left_item_selected_bg);
-			union = null;
-			if(union != null)
+			if(union!=null&&"normal".equals(union.getStatus()) )
 			{
 				/*************************************/
 				//这里要监听一下所在公会名称修改以后的事件
@@ -337,6 +357,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 				}
 			}
 		} else if (view == itemAchievements) {
+			this.currentFragment = "itemAchievements";
 			actionbar.setTitleVisibility(View.GONE);
 			actionbar.setButtonVisibility(View.GONE);
 			actionbar.setImageResource(R.drawable.d08);
@@ -366,6 +387,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 				}
 			}
 		} else if (view == itemMyself) {
+			this.currentFragment = "itemMyself";
 			actionbar.setTitleVisibility(View.GONE);
 			actionbar.setButtonVisibility(View.GONE);
 			actionbar.setImageResource(R.drawable.bt_14_nor_01);
@@ -392,6 +414,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 				}
 			}
 		} else if (view == itemSetting) {
+			this.currentFragment = "itemSetting";
 			actionbar.setTitleVisibility(View.GONE);
 			actionbar.setButtonVisibility(View.GONE);
 			actionbar.setImageResource(R.drawable.bt_16_nor_01);
@@ -468,8 +491,8 @@ public class Main extends FragmentActivity implements OnClickListener {
 			transaction.hide(noUnionFragment);
 		}
 	}
-//	private Fragment getUnionFragment(){
-//		
-//		return unionFragment!=null?unionFragment:noUnionFragment;
-//	}
+	//	private Fragment getUnionFragment(){
+	//		
+	//		return unionFragment!=null?unionFragment:noUnionFragment;
+	//	}
 }

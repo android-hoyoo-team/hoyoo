@@ -59,6 +59,12 @@
 			android:footerDividersEnabled="true"
             android:cacheColorHint="#00000000" >
         </com.viewflow.xlistviewfresh.XListView>
+        <TextView  android:id="@+id/no_union__invite_textview"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="很遗憾，您还没有公会！"/>
     </LinearLayout>
 
 </LinearLayout>
