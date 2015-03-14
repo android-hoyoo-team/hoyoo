@@ -245,10 +245,8 @@ public class Main extends FragmentActivity implements OnClickListener {
 		} else if (view == itemInvite) {
 			this.currentFragment = "itemInvite";
 			actionbar.setTitleVisibility(View.GONE);
-			actionbar.setButtonVisibility(View.VISIBLE);
-			actionbar.setButton("发一个");
 			actionbar.setImageResource(R.drawable.bt_08_nor_01);
-
+			actionbar.setButton("发一个");
 			Button btn = (Button)findViewById(R.id.actionbar_right);
 			final FragmentActivity target=this;
 			btn.setOnClickListener(new OnClickListener() {

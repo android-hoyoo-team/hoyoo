@@ -41,16 +41,11 @@ public class HooyoFragment extends Fragment {
 	NewsListAdapter mAdapter1;
 	InvitationListAdapter02 mAdapter02;
 	NewsListAdapter mAdapter3;
-	InvitationListAdapter02 mAdapter02;
 	/** Called when the activity is first created. */   
 
 	ListView myListView1;
 	ListView myListView2; 
-	/************************************************************/
-	/************************************************************/
-	/** Called when the activity is first created. */   
 	ListView myListView3; 
-	ListView myListView1;
 
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,7 +56,7 @@ public class HooyoFragment extends Fragment {
 			@Override
 			public void excute(DEvent<String> event) {
 				// TODO Auto-generated method stub
-					init();
+				init();
 			}
 		});
 		return rootView;
@@ -103,12 +98,10 @@ public class HooyoFragment extends Fragment {
 					getActivity().startActivity(intent); 
 				}  
 			});
-			
+
 
 			no_union_textview_02.setVisibility(View.GONE);
 			myListView2.setVisibility(View.VISIBLE);
-			List<Map<String, Object>> programeList2=new ArrayList<Map<String,Object>>();
-			programeList2=Application.getInvitationService().getTopInvitation(4, Application.getLoginInfo().getUnion().getId());
 			final List<Map<String, Object>> programeList2 = Application.getInvitationService().getTopInvitation(4, Application.getLoginInfo().getUnion().getId());
 			mAdapter02=new InvitationListAdapter02(this.getActivity());
 			mAdapter02.setInvitationList(programeList2);
@@ -117,22 +110,6 @@ public class HooyoFragment extends Fragment {
 				@Override   
 				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,   
 						long arg3) {   
-					switch(arg2){
-					case 0:
-
-					case 1:
-
-					case 2:
-
-					case 3:
-						Intent intent=new Intent();
-						intent.setClass(getActivity(),YaoqingActivity.class);
-						getActivity().startActivity(intent);
-						break;
-					}
-
-				}   
-
 					Intent intent=new Intent();
 					HashMap<String,Object> item = (HashMap<String, Object>)myListView2.getItemAtPosition(arg2);
 					intent.setClass(getActivity(),YaoqingActivity.class);
@@ -160,7 +137,7 @@ public class HooyoFragment extends Fragment {
 					intent.putExtra("type", "成功秘笈");
 					intent.putExtra("id", currentMap.get("id").toString());
 					intent.setClass(getActivity(), UnionNewsActivity.class);		
-		
+
 				}
 			});
 		}else{
@@ -170,7 +147,7 @@ public class HooyoFragment extends Fragment {
 			no_union_textview_02.setVisibility(View.VISIBLE);
 			myListView3.setVisibility(View.GONE);
 			no_union_textview_03.setVisibility(View.VISIBLE);
-			
+
 
 		}
 
