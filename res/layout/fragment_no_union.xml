@@ -67,12 +67,13 @@
         android:visibility="gone" >
 
         <TextView
+            android:id="@+id/apply_tip_textview"
             android:layout_width="280dp"
             android:layout_height="64dp"
             android:layout_marginTop="64dp"
             android:background="@drawable/di_06"
             android:gravity="center"
-            android:text="您的创建公会申请已经提交\n将于1个工作日内 得到答复"
+            android:text="您的公会正在审批中\n敬请期待！"
             android:textColor="@color/white" />
 
         <TextView

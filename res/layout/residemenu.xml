@@ -112,8 +112,7 @@
 					    android:layout_height="wrap_content"
 					    android:layout_width="match_parent"
 					    android:textColor="@color/white"
-					     android:textSize="12sp"
-					    android:text="TOWERS"/>
+					     android:textSize="12sp"/>
 					</LinearLayout>
 			        <ImageView
         				android:id="@+id/imageView2"

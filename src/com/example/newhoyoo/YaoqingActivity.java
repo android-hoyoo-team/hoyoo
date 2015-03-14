@@ -18,16 +18,12 @@ package com.example.newhoyoo;
 import java.util.HashMap;
 import java.util.Map;
 
-import per.cz.event1_0.DEvent;
-import per.cz.event1_0.DispatchEvent;
-
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.example.newhoyoo.adapter.InvitationListAdapter;
 import com.example.newhoyoo.adapter.InvitationListAdapter.ViewHolder;
 import com.huyoo.entity.EPerson;
 import com.huyoo.global.Application;
-import com.huyoo.service.EPersonService;
 
 import main.java.com.sefford.circularprogressdrawable.sample.CircularProgressDrawable;
 import android.animation.Animator;
@@ -44,9 +40,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AnticipateInterpolator;
-import android.view.animation.CycleInterpolator;
-import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -89,7 +82,6 @@ public class YaoqingActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_yaoqing_list);
         Intent intent=getIntent();
 		HashMap<String,Object> item=(HashMap<String,Object>)intent.getSerializableExtra("item");

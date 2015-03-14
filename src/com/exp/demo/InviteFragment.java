@@ -35,7 +35,9 @@ import com.example.newhoyoo.UnionNewsActivity;
 import com.example.newhoyoo.YaoqingActivity;
 import com.example.newhoyoo.adapter.InvitationListAdapter;
 import com.exp.demo.MultiLayoutSimpleAdapter.ViewBinder;
+import com.huyoo.entity.EUnion;
 import com.huyoo.global.Application;
+import com.ryg.expandable.ui.CustomActionbar;
 import com.viewflow.xlistviewfresh.XListView;
 import com.viewflow.xlistviewfresh.XListView.IXListViewListener;
 
@@ -43,6 +45,8 @@ import com.viewflow.xlistviewfresh.XListView.IXListViewListener;
 public class InviteFragment extends ListFragment implements IXListViewListener {
 
 	private XListView mListView;
+	
+	private TextView no_union_textview;
 //  SimpleAdapter mAdapter1;
 	private InvitationListAdapter mAdapter2;
 	private Handler mHandler;
@@ -52,47 +56,74 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_inviteview, container, false);
+		DispatchEvent.addEventListener("unionStatusChanged", new IMethod<String>() {
+
+			@Override
+			public void excute(DEvent<String> event) {
+				// TODO Auto-generated method stub
+				init();
+			}
+			
+		});
 		return rootView;
 	}
 	@Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
     	super.onViewCreated(view, savedInstanceState);
 		
-		/** 下拉刷新，上拉加载 */
-//		dlist = new ArrayList<HashMap<String, Object>>();
-		dlist = new ArrayList<Map<String, Object>>();
-		mListView = (XListView) getActivity().findViewById(android.R.id.list);// 你这个listview是在这个layout里面
-		mListView.setPullLoadEnable(true);// 设置让它上拉，FALSE为不让上拉，便不加载更多数据
-		
-		mAdapter2 =new InvitationListAdapter(this.getActivity());
-		
-		mAdapter2.setInvitationList(Application.getInvitationService().getInvitationsMapByUnionId(Application.getLoginInfo().getLevel().getId(),0,5));
-				/*new MultiLayoutSimpleAdapter(InviteFragment.this.getActivity(), 
-												 getData(),
-												 new int[]{R.layout.invitation_item}, 
-												 new String[] {"touxiang","name","faburiqi",
-								  				 			   "neirong","riqi","shijian","dizhi","jindu"}, //0-18为普通布局 //19为判断布局标记 //20-36为转发布局变量
-								  				 new int[] {R.id.image_us_photo, R.id.text_us_name,R.id.text_fabu_date,
-							   								R.id.text_yaoq_info,R.id.text_yaoq_date,R.id.text_yaoq_time,
-							   								R.id.text_yaoq_address,R.id.canjia_progress});//0-18为普通布局//19~35为转发布局*/
-		
-		mListView.setAdapter(mAdapter2);
-		DispatchEvent.addEventListener("invitationListContentClick", new IMethod<Map<String,Object>>() {
-
-			public void excute(DEvent<Map<String,Object>> event) {
-				Intent intent=new Intent();
-//				intent.putExtra("type", "公会新闻");
-				HashMap<String, Object> item = (HashMap<String, Object>) event.getTarget();
-				intent.putExtra("item", item);
-//				intent.setClass(getActivity(), UnionNewsActivity.class);
-				intent.setClass(getActivity(), YaoqingActivity.class);
-				getActivity().startActivity(intent);
-//				startActivity(new Intent(getActivity(),YaoqingActivity.class));  
-			}
-		});
-		mListView.setXListViewListener(this);
-		mHandler = new Handler();
+    	init();
 	}
+	public void init(){
+		EUnion union = Application.getLoginInfo().getUnion();
+		CustomActionbar actionbar = (CustomActionbar)getActivity().findViewById(R.id.main_actionbar);
+		mListView = (XListView) getActivity().findViewById(android.R.id.list);// 你这个listview是在这个layout里面
+		no_union_textview = (TextView)getActivity().findViewById(R.id.no_union__invite_textview);
+		if(union != null && "normal".equals(union.getStatus())){
+			no_union_textview.setVisibility(View.GONE);
+			actionbar.setButtonVisibility(View.VISIBLE);
+			mListView.setVisibility(View.VISIBLE);
+			
+			/** 下拉刷新，上拉加载 */
+//			dlist = new ArrayList<HashMap<String, Object>>();
+			dlist = new ArrayList<Map<String, Object>>();
+			
+			mListView.setPullLoadEnable(true);// 设置让它上拉，FALSE为不让上拉，便不加载更多数据
+			
+			mAdapter2 =new InvitationListAdapter(this.getActivity());
+			
+			mAdapter2.setInvitationList(Application.getInvitationService().getInvitationsMapByUnionId(Application.getLoginInfo().getLevel().getId(),0,5));
+					/*new MultiLayoutSimpleAdapter(InviteFragment.this.getActivity(), 
+													 getData(),
+													 new int[]{R.layout.invitation_item}, 
+													 new String[] {"touxiang","name","faburiqi",
+									  				 			   "neirong","riqi","shijian","dizhi","jindu"}, //0-18为普通布局 //19为判断布局标记 //20-36为转发布局变量
+									  				 new int[] {R.id.image_us_photo, R.id.text_us_name,R.id.text_fabu_date,
+								   								R.id.text_yaoq_info,R.id.text_yaoq_date,R.id.text_yaoq_time,
+								   								R.id.text_yaoq_address,R.id.canjia_progress});//0-18为普通布局//19~35为转发布局*/
+			
+			mListView.setAdapter(mAdapter2);
+			DispatchEvent.addEventListener("invitationListContentClick", new IMethod<Map<String,Object>>() {
+
+				public void excute(DEvent<Map<String,Object>> event) {
+					Intent intent=new Intent();
+//					intent.putExtra("type", "公会新闻");
+					HashMap<String, Object> item = (HashMap<String, Object>) event.getTarget();
+					intent.putExtra("item", item);
+//					intent.setClass(getActivity(), UnionNewsActivity.class);
+					intent.setClass(getActivity(), YaoqingActivity.class);
+					getActivity().startActivity(intent);
+//					startActivity(new Intent(getActivity(),YaoqingActivity.class));  
+				}
+			});
+			mListView.setXListViewListener(this);
+			mHandler = new Handler();
+		}else{
+			actionbar.setButtonVisibility(View.GONE);
+			mListView.setVisibility(View.GONE);
+			no_union_textview.setVisibility(View.VISIBLE);
+		}
+	}
+	
 	
 	/** 初始化本地数据 */
 //	String data[] = new String[] { "唐嫣  江南大学LIE桌游公会  会长  等级：大神", "10月18日", "周六晚上小伙伴们来蜗牛咖啡厅打狼人！有妹子！饮料免费，快快来呦~",

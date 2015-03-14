@@ -49,6 +49,15 @@ public class MineFragment extends Fragment {
 				init();
 			}
 		});
+		DispatchEvent.addEventListener("unionStatusChanged", new IMethod<String>() {
+
+			@Override
+			public void excute(DEvent<String> event) {
+				// TODO Auto-generated method stub
+				init();
+			}
+		});
+		
 		return rootView;
 	}
 
@@ -77,7 +86,7 @@ public class MineFragment extends Fragment {
 		else
 			this.aq.id(R.id.sex_textview).text("♀").textColorId(R.color.red);
 		this.aq.id(R.id.title_textview).text(level.getName());
-		if(union!=null){
+		if(union!=null&&"normal".equals(union.getStatus())){
 			this.aq.id(R.id.union_textview).text(union.getName());
 			this.aq.id(R.id.union_position_textview).text((union.getChairmanId() == person.getId()) ? "会长" : "会员");
 		}

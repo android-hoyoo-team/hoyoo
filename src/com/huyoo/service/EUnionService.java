@@ -59,7 +59,7 @@ public class EUnionService {
 		switch (id) {
 		case 1:
 			union = new EUnion();
-			union.setName("TOWERS1111111");
+			union.setName("STARS");
 			union.setChairmanId(2);
 			union.setCurrentExp(12100);
 			union.setIcon("http://a2.qpic.cn/psb?/V123gJXv3aiMj6/80WTBdgeP3GoowD3vBhdlA1xmlyksgJQOl.sxKSE99c!/b/dAQAAAAAAAAA&bo=yQDcAAAAAAABBzU!&rf=viewer_4");
@@ -68,55 +68,21 @@ public class EUnionService {
 			union.setTime(1000000000l);
 			union.setTotalNum(570);
 			union.setStatus("normal");
-//			switch (id%4) {
-//			case 0:
-//				union.setStatus("normal");
-//				break;
-//			case 1:
-//				union.setStatus("approvalling");
-//				break;
-//			case 2:
-//				union.setStatus("dismissed");
-//				break;
-//			case 3:
-//				union.setStatus("unpassed");
-//				break;
-//			default:
-//				break;
-//			}
-//			
 			union.setType("综合类");
 			union.setActivityNum(5);
 			break;
 		case 2:
 			union = new EUnion();
-			union.setName("TOWERS1111111");
-			union.setChairmanId(1);
-			union.setCurrentExp(12100);
+			union.setName("BlueSky");
+			union.setChairmanId(2);
+			union.setCurrentExp(0);
 			union.setIcon("http://a2.qpic.cn/psb?/V123gJXv3aiMj6/80WTBdgeP3GoowD3vBhdlA1xmlyksgJQOl.sxKSE99c!/b/dAQAAAAAAAAA&bo=yQDcAAAAAAABBzU!&rf=viewer_4");
-			union.setId(1);
-			union.setLevelId(2);
+			union.setId(2);
+			union.setLevelId(1);
 			union.setTime(1000000000l);
-			union.setTotalNum(570);
-			switch (id%4) {
-			case 0:
-				union.setStatus("normal");
-				break;
-			case 1:
-				union.setStatus("approvalling");
-				break;
-			case 2:
-				union.setStatus("dismissed");
-				break;
-			case 3:
-				union.setStatus("unpassed");
-				break;
-			default:
-				break;
-			}
-			
+			union.setTotalNum(6);
+			union.setStatus("applying");
 			union.setType("综合类");
-			union.setActivityNum(5);
 			break;
 		default:
 			break;
