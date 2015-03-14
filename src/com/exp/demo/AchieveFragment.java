@@ -24,7 +24,6 @@ import android.widget.TextView;
 import com.androidquery.AQuery;
 import com.example.newhoyoo.AchievementDetail;
 import com.example.newhoyoo.R;
-import com.example.newhoyoo.test;
 import com.example.newhoyoo.adapter.CustomListViewAdapter;
 import com.huyoo.entity.EAchievement;
 import com.huyoo.entity.EPerson;
