@@ -14,7 +14,10 @@ import com.ryg.expandable.ui.CustomActionbar;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -65,32 +68,31 @@ public class UnionMemberList extends Activity{
 			public View getView(int position, View convertView,
 					ViewGroup parent) {
 				// TODO Auto-generated method stub
-				View v = super.getView(position, convertView, parent);
-				Toast.makeText(getApplicationContext(), v.getId()+"", 1).show();
-				
-				return v;
+				final View view = super.getView(position, convertView, parent);
+				view.findViewById(R.id.optionmenu_imageview).setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						ImageView v0 = (ImageView)v;
+						v0.setImageResource(R.drawable.bt_32_press);
+					}
+				});
+				return view;
 			}
 		};
 		ListView memberListView = (ListView)findViewById(R.id.union_member_listview);
 		memberListView.setAdapter(adapter);
 	}
-
-
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// TODO Auto-generated method stub
-		//return super.onCreateOptionsMenu(menu);
-		return false;
-	}
-
-	@Override
-	public void openOptionsMenu() {
-		// TODO Auto-generated method stub
-		super.openOptionsMenu();
-	}
-
 	public void back(){
 		this.finish();
 	}
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		// TODO Auto-generated method stub
+		super.onCreateContextMenu(menu, v, menuInfo);
+	}
+	
 }

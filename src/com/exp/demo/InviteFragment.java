@@ -80,8 +80,8 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 		no_union_textview = (TextView)getActivity().findViewById(R.id.no_union__invite_textview);
 		if(union != null && "normal".equals(union.getStatus())){
 			no_union_textview.setVisibility(View.GONE);
+			actionbar.setButton("发一个");
 			actionbar.setButtonVisibility(View.VISIBLE);
-			
 			mListView.setVisibility(View.VISIBLE);
 			
 			/** 下拉刷新，上拉加载 */

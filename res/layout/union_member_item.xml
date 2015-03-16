@@ -3,7 +3,7 @@
     android:id="@+id/union_member_linearlayout"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:background="@drawable/item_backgroud"
+    android:background="@color/white"
     android:descendantFocusability="blocksDescendants"
     android:orientation="horizontal"
     android:paddingBottom="6dp"
