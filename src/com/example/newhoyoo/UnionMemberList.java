@@ -18,10 +18,11 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class UnionMemberList extends Activity implements View.OnClickListener{
+public class UnionMemberList extends Activity{
 	AQuery aq;
 	EUnion union;
 
@@ -59,13 +60,23 @@ public class UnionMemberList extends Activity implements View.OnClickListener{
 				R.layout.union_member_item, 
 				new String[]{"icon","name","position","title","fans"},
 				new int[]{R.id.union_member_imageview,R.id.name_textview,R.id.position_textview,R.id.title_textview,R.id.fans_num_textview},
-				new String[]{"image","text","text","text","text"});
+				new String[]{"image","text","text","text","text"}){
+			@Override
+			public View getView(int position, View convertView,
+					ViewGroup parent) {
+				// TODO Auto-generated method stub
+				View v = super.getView(position, convertView, parent);
+				Toast.makeText(getApplicationContext(), v.getId()+"", 1).show();
+				
+				return v;
+			}
+		};
 		ListView memberListView = (ListView)findViewById(R.id.union_member_listview);
 		memberListView.setAdapter(adapter);
 	}
-	
-	
-	
+
+
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// TODO Auto-generated method stub
@@ -81,37 +92,5 @@ public class UnionMemberList extends Activity implements View.OnClickListener{
 
 	public void back(){
 		this.finish();
-	}
-	
-	class ClickableListViewAdapter extends CustomListViewAdapter{
-
-		public ClickableListViewAdapter(Context context,
-				List<HashMap<String, Object>> d, int res, String[] f, int[] t,
-				String[] op) {
-			super(context, d, res, f, t, op);
-			// TODO Auto-generated constructor stub
-		}
-
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			// TODO Auto-generated method stub
-			View v = super.getView(position, convertView, parent);
-			AQuery aq = new AQuery(v);
-			aq.id(R.id.optionmenu_imageview).clicked(this, "openMenu");
-			return v;
-			
-		}
-		
-		public void openMenu()
-		{
-			
-		}
-		
-	}
-
-	@Override
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		
 	}
 }

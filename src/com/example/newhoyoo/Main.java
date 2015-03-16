@@ -216,7 +216,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 			this.currentFragment = "itemHome";
 			actionbar.setTitleVisibility(View.GONE);
 			actionbar.setButtonVisibility(View.GONE);
-			actionbar.setImageResource(R.drawable.bt_01_nor);
+			actionbar.setImageResource(R.drawable.bt_01_selector);
 			itemHome.setBackgroundResource(R.drawable.left_item_selected_bg);
 			if (hooyofragment == null) {
 				hooyofragment = new HooyoFragment();
@@ -245,7 +245,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 		} else if (view == itemInvite) {
 			this.currentFragment = "itemInvite";
 			actionbar.setTitleVisibility(View.GONE);
-			actionbar.setImageResource(R.drawable.bt_08_nor_01);
+			actionbar.setImageResource(R.drawable.bt_08_selector);
 			actionbar.setButton("发一个");
 			Button btn = (Button)findViewById(R.id.actionbar_right);
 			final FragmentActivity target=this;
@@ -284,7 +284,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 		} else if (view == itemAssociation) {
 			this.currentFragment = "itemAssociation";
 			actionbar.setButtonVisibility(View.GONE);
-			actionbar.setImageResource(R.drawable.bt_15_nor_01);
+			actionbar.setImageResource(R.drawable.bt_15_selector);
 			itemAssociation.setBackgroundResource(R.drawable.left_item_selected_bg);
 			if(union!=null&&"normal".equals(union.getStatus()) )
 			{
@@ -360,7 +360,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 			this.currentFragment = "itemAchievements";
 			actionbar.setTitleVisibility(View.GONE);
 			actionbar.setButtonVisibility(View.GONE);
-			actionbar.setImageResource(R.drawable.d08);
+			actionbar.setImageResource(R.drawable.d08_selector);
 			itemAchievements.setBackgroundResource(R.drawable.left_item_selected_bg);
 			if (achievefragment == null) {
 				achievefragment = new AchieveFragment();
@@ -390,7 +390,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 			this.currentFragment = "itemMyself";
 			actionbar.setTitleVisibility(View.GONE);
 			actionbar.setButtonVisibility(View.GONE);
-			actionbar.setImageResource(R.drawable.bt_14_nor_01);
+			actionbar.setImageResource(R.drawable.bt_14_selector);
 			itemMyself.setBackgroundResource(R.drawable.left_item_selected_bg);
 			if (mineFragment == null) {
 				mineFragment = new MineFragment();
@@ -417,7 +417,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 			this.currentFragment = "itemSetting";
 			actionbar.setTitleVisibility(View.GONE);
 			actionbar.setButtonVisibility(View.GONE);
-			actionbar.setImageResource(R.drawable.bt_16_nor_01);
+			actionbar.setImageResource(R.drawable.bt_16_selector);
 			itemSetting.setBackgroundResource(R.drawable.left_item_selected_bg);
 			if (settingFragment == null) {
 				settingFragment = new SettingFragment();
