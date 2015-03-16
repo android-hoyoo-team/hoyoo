@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.huyoo.entity.EPerson;
+import com.huyoo.entity.RAttention;
 import com.huyoo.entity.RUnionPerson;
 
 /**
@@ -225,5 +226,27 @@ public class EPersonService {
 			
 		}
 		return ups;
+	}
+	
+	
+	public boolean saveAttention(RAttention attention){
+		
+		return true;
+	}
+	
+	public List<RAttention> getAttentionsByPersonId(int id){
+		List<RAttention> attentions = new ArrayList<RAttention>();
+		for(int i = 0;i<10;i++){
+			RAttention attention = new RAttention();
+			attention.setPersonIdFrom(id);
+			attention.setPersonIdTo(i);
+			attentions.add(attention);
+		}
+		return attentions;
+	}
+	
+	public boolean removeFriend(int id){
+		
+		return true;
 	}
 }

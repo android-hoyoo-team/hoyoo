@@ -32,11 +32,11 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginBottom="6dp"
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="6dp"
-                    android:layout_marginBottom="6dp"
                     android:orientation="vertical" >
- 
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" >
@@ -46,17 +46,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/user_name"
-                            android:textStyle="bold"
-                           />
+                            android:textStyle="bold" />
 
-                          <TextView
-                              android:id="@+id/sex_textview"
-                              android:layout_width="wrap_content"
-                              android:layout_height="wrap_content"
-                              android:textColor="@color/red"
-                              android:textStyle="bold"
-                              android:text="♀">
-                          </TextView>
+                        <TextView
+                            android:id="@+id/sex_textview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="♀"
+                            android:textColor="@color/red"
+                            android:textStyle="bold" >
+                        </TextView>
                     </LinearLayout>
 
                     <TextView
@@ -65,38 +64,40 @@
                         android:layout_height="wrap_content"
                         android:text="成就大师"
                         android:textSize="11sp" />
-
                 </LinearLayout>
-				<LinearLayout 
-				    android:layout_width="wrap_content"
-				    android:layout_height="match_parent"
-				    android:layout_weight="1"
-				    android:layout_marginTop="6dp">
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"
-                    android:text="公会:" />
 
-                <TextView
-                    android:id="@+id/union_textview"
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="6dp"
+                    android:layout_weight="1" >
 
-                <TextView
-                    android:id="@+id/union_position_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="7dp"	
-                    android:textColor="@drawable/red"/>
-			</LinearLayout>
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:text="公会:" />
+
+                    <TextView
+                        android:id="@+id/union_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/union_position_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:textColor="@drawable/red" />
+                </LinearLayout>
+
                 <ImageView
                     android:id="@+id/skip_to_detail_imageview"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:scaleType="centerInside"
                     android:layout_weight="0.2"
+                    android:scaleType="centerInside"
                     android:src="@drawable/bt_17_nor_01" />
             </LinearLayout>
 
@@ -112,7 +113,6 @@
                     android:background="@color/white"
                     android:orientation="vertical" >
 
-
                     <TextView
                         android:id="@+id/attention_textview"
                         android:layout_width="match_parent"
@@ -125,8 +125,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:textSize="10sp"
-                        android:text="关注" />
+                        android:text="关注"
+                        android:textSize="10sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -152,8 +152,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:textSize="10sp"
-                        android:text="粉丝" />
+                        android:text="粉丝"
+                        android:textSize="10sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -179,8 +179,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:textSize="10sp"
-                        android:text="成就" />
+                        android:text="成就"
+                        android:textSize="10sp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -195,8 +195,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:background="@color/white" >
+                android:background="@color/white"
+                android:gravity="center_vertical" >
 
                 <!-- android:background="@color/white" -->
 
@@ -204,15 +204,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                     android:gravity="center_vertical"
-                    android:layout_weight="1.08" >
+                    android:layout_weight="1.08"
+                    android:gravity="center_vertical" >
 
                     <TextView
                         android:id="@+id/textView12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/blue"
-                        android:text="成就值" />
+                        android:text="成就值"
+                        android:textColor="@color/blue" />
 
                     <SeekBar
                         android:id="@+id/seekBar1"
@@ -231,34 +231,34 @@
                         android:id="@+id/achievement_progress_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/blue"
-                        android:text="2730/3000" />
+                        android:text="2730/3000"
+                        android:textColor="@color/blue" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
-                android:layout_weight="1"
                 android:layout_marginTop="1dp"
-                android:gravity="center_vertical"
-                android:background="@color/white" >
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center_vertical" >
 
                 <!-- android:background="@color/white" -->
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                     android:layout_marginLeft="10dp"
-                    android:gravity="center_vertical"
-                    android:layout_weight="1.08" >
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1.08"
+                    android:gravity="center_vertical" >
 
                     <TextView
                         android:id="@+id/textView13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/red"
-                        android:text="疲劳值" />
+                        android:text="疲劳值"
+                        android:textColor="@color/red" />
 
                     <SeekBar
                         android:id="@+id/seekBar2"
@@ -277,8 +277,8 @@
                         android:id="@+id/vp_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/red"
-                        android:text="40/150" />
+                        android:text="40/150"
+                        android:textColor="@color/red" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -293,40 +293,49 @@
                 android:id="@+id/invitation_imagebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                 android:scaleType="fitXY"
-                android:background="@drawable/bt_22_nor_01" />
+                android:background="@drawable/bt_22_nor_01"
+                android:scaleType="fitXY" />
 
             <ImageButton
                 android:id="@+id/response_imagebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
-                 android:scaleType="fitXY"
-                android:background="@drawable/bt_21_nor_01" />
+                android:background="@drawable/bt_21_nor_01"
+                android:scaleType="fitXY" />
 
             <ImageButton
                 android:id="@+id/comment_imagebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
-                 android:scaleType="fitXY"
-                android:background="@drawable/bt_23_nor_01" />
+                android:background="@drawable/bt_23_nor_01"
+                android:scaleType="fitXY" />
 
             <ImageButton
                 android:id="@+id/good_imagebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
-                android:scaleType="fitXY"
-                android:background="@drawable/bt_24_nor_01" />
+                android:background="@drawable/bt_24_nor_01"
+                android:scaleType="fitXY" />
 
             <ImageButton
                 android:id="@+id/letter_imagebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
-                android:scaleType="fitXY"
-                android:background="@drawable/bt_25_nor_01" />
+                android:background="@drawable/bt_25_nor_01"
+                android:scaleType="fitXY" />
+
+            <ImageButton
+                android:id="@+id/friend_list_imagebutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/image1"
+                android:scaleType="fitXY" />
         </LinearLayout>
     </LinearLayout>
+
 </ScrollView>

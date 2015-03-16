@@ -57,7 +57,7 @@ public class MineFragment extends Fragment {
 				init();
 			}
 		});
-		
+
 		return rootView;
 	}
 
@@ -78,7 +78,7 @@ public class MineFragment extends Fragment {
 		person = Application.getLoginInfo().getPerson();
 		level = Application.getLoginInfo().getLevel();
 		union = Application.getLoginInfo().getUnion();
-		
+
 		this.aq.id(R.id.head_imageview).image(person.getIcon());
 		this.aq.id(R.id.name_textview).text(person.getName());
 		if("男".equals(person.getSex()))
@@ -115,6 +115,7 @@ public class MineFragment extends Fragment {
 		this.aq.id(R.id.good_imagebutton).clicked(this, "good");
 		this.aq.id(R.id.letter_imagebutton).background(R.drawable.image5);
 		this.aq.id(R.id.letter_imagebutton).clicked(this, "letter");
+		this.aq.id(R.id.friend_list_imagebutton).clicked(this,"friend");
 	}
 	public void skiptodetail() {
 		Intent intent = new Intent();
@@ -168,5 +169,10 @@ public class MineFragment extends Fragment {
 	public void letter()// 返回主界面
 	{
 
+	}
+	public void friend(){
+		Intent intent = new Intent();
+		intent.setClass(getActivity(), FriendsList.class);
+		getActivity().startActivity(intent);
 	}
 }

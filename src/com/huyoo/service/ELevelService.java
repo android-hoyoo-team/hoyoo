@@ -23,12 +23,18 @@ public class ELevelService {
 			level.setUpgradeExp(3000);
 			level.setType("person");
 		}
-		if(id == 2)
+		else if(id == 2)
 		{
 			level = new ELevel();
 			level.setName("超级工会");
 			level.setUpgradeExp(13000);
 			level.setType("union");
+		}
+		else{
+			level = new ELevel();
+			level.setName("其他等级");
+			level.setUpgradeExp(0);
+			level.setType("other");
 		}
 		return level;
 	}

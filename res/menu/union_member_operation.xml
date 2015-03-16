@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:id="@+id/item1" android:title="+关注"></item>
-    <item android:id="@+id/item2" android:title="发消息" android:menuCategory="secondary"></item>
-
+    <item android:id="@+id/item1" android:title="+关注"/>
+    <item android:id="@+id/item2" android:title="发消息"/>
+	<item android:id="@+id/item3" android:title="改等级"/>
+	<item android:id="@+id/item4" android:title="移除"/>
 </menu>

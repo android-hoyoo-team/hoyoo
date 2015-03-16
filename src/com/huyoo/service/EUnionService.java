@@ -60,7 +60,7 @@ public class EUnionService {
 		case 1:
 			union = new EUnion();
 			union.setName("STARS");
-			union.setChairmanId(2);
+			union.setChairmanId(1);
 			union.setCurrentExp(12100);
 			union.setIcon("http://a2.qpic.cn/psb?/V123gJXv3aiMj6/80WTBdgeP3GoowD3vBhdlA1xmlyksgJQOl.sxKSE99c!/b/dAQAAAAAAAAA&bo=yQDcAAAAAAABBzU!&rf=viewer_4");
 			union.setId(2);
@@ -134,5 +134,10 @@ public class EUnionService {
 	
 	public List<EUnion> getUnionsByPersonId(int personId){
 		return getUnions(null);
+	}
+	
+	public boolean removePersonFromUnion(int id){
+		
+		return true;
 	}
 }

@@ -73,5 +73,6 @@
     <string name="title_activity_union_member_list">UnionMemberList</string>
     <string name="title_activity_create_union">CreateUnion</string>
     <string name="title_activity_finish_create_union">FinishCreateUnion</string>
+    <string name="title_activity_friends_list">FriendsList</string>
 
 </resources>
