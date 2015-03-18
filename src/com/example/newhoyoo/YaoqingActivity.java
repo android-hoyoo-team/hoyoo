@@ -15,13 +15,17 @@
  */
 package com.example.newhoyoo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
+import com.example.newhoyoo.adapter.CommentListAdapter;
 import com.example.newhoyoo.adapter.InvitationListAdapter;
 import com.example.newhoyoo.adapter.InvitationListAdapter.ViewHolder;
+import com.huyoo.entity.EComment;
 import com.huyoo.entity.EPerson;
 import com.huyoo.global.Application;
 
@@ -38,11 +42,15 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 /**
@@ -51,6 +59,9 @@ import android.widget.TextView;
  * @author Saul Diaz <sefford@gmail.com>
  */
 public class YaoqingActivity extends Activity {
+	ListView listView;
+	CommentListAdapter commentListAdapter;
+	HashMap<String,Object> item;
 	float empty=0;
 	float full=0.1f;
 	float max;
@@ -84,7 +95,7 @@ public class YaoqingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yaoqing_list);
         Intent intent=getIntent();
-		HashMap<String,Object> item=(HashMap<String,Object>)intent.getSerializableExtra("item");
+		item=(HashMap<String,Object>)intent.getSerializableExtra("item");
 		person = Application.getPersonService().getEPersonById(Integer.parseInt(item.get("id").toString()));
 		Map<String, Object> res = InvitationListAdapter.changeItem(item);
 		holder =new ViewHolder();
@@ -93,8 +104,8 @@ public class YaoqingActivity extends Activity {
 		holder.issueTime = (TextView) findViewById(R.id.textView3);
 		holder.content = (TextView) findViewById(R.id.textView8);
 		holder.activityTime_date = (TextView) findViewById(R.id.textView10);
-		holder.activityTime_time = (TextView) findViewById(R.id.textView14);
-		holder.address = (TextView) findViewById(R.id.textView12);
+		holder.address = (TextView) findViewById(R.id.textView14);
+		holder.activityTime_time = (TextView) findViewById(R.id.textView12);
 		holder.info1 = (TextView) findViewById(R.id.textView15);
 		holder.info2 = (TextView) findViewById(R.id.textView16);
 		holder.progress = (ImageView) findViewById(R.id.iv_drawable);
@@ -127,8 +138,8 @@ public class YaoqingActivity extends Activity {
 
 		final CircularProgressDrawable  drawable = new CircularProgressDrawable(getResources().getDimensionPixelSize(R.dimen.drawable_ring_size),
 				getResources().getColor(android.R.color.darker_gray),
-				getResources().getColor(android.R.color.holo_red_dark),
-				getResources().getColor(android.R.color.holo_red_dark));
+				getResources().getColor(android.R.color.holo_red_light),
+				getResources().getColor(android.R.color.holo_red_light));
 		float p=(float) (currentNum/(maxNum+0.0));
 		drawable.setProgress(p);
 		drawable.setCircleScale(p);
@@ -190,6 +201,63 @@ public class YaoqingActivity extends Activity {
         button1.setOnClickListener(new Button1Listener());
         button2.setOnClickListener(new Button2Listener());
 //        btStyle2.setOnClickListener(listener);
+        
+        listView=(ListView)findViewById(R.id.listView1);
+        List<EComment> commentList=Application.getCommentService().getCommentByInvitationId(1);
+        List<Map<String, Object>> mapList=new ArrayList<Map<String,Object>>();
+        for (EComment eComment : commentList) {
+			Map<String, Object> map=new HashMap<String, Object>();
+			EPerson person=Application.getPersonService().getEPersonById(eComment.getPersonId());
+			map.put("commentId",eComment.getId());
+			map.put("content", eComment.getContent());
+			map.put("personUrl", person.getIcon());
+			map.put("personName", person.getName());
+			map.put("commentTime", eComment.getTime());
+			mapList.add(map);
+		}
+        commentListAdapter=new CommentListAdapter(this){
+
+			@Override
+			public View getView(final int position, View convertView, ViewGroup parent) {
+				// TODO Auto-generated method stub
+				
+				View v =super.getView(position, convertView, parent);
+				AQuery vAq=new AQuery(v);
+				vAq.id(R.id.comment_button).clicked(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						Intent intent=new Intent();
+						Map<String, Object> currentItem=(Map<String, Object>)commentListAdapter.getItem(position);
+						intent.putExtra("activityId", item.get("id").toString());
+						intent.putExtra("commentIdTo", currentItem.get("commentId").toString());
+						intent.putExtra("commentNameTo", currentItem.get("personName").toString());
+						intent.setClass(YaoqingActivity.this, Comment.class);
+						YaoqingActivity.this.startActivity(intent);
+					}
+				});
+				
+				
+				return v;
+			}
+        	
+        };
+        commentListAdapter.setCommentList(mapList);
+        listView.setAdapter(commentListAdapter);
+        
+//        listView.setOnItemClickListener(new OnItemClickListener() {
+//
+//			@Override
+//			public void onItemClick(AdapterView<?> parent, View view,
+//					int position, long id) {
+//				// TODO Auto-generated method stub
+//				Intent intent=new Intent();
+//				intent.setClass(YaoqingActivity.this, Comment.class);
+//				YaoqingActivity.this.startActivity(intent);
+//			}
+//        	
+//		});
     }
     
     class Button1Listener implements OnClickListener{
@@ -197,7 +265,11 @@ public class YaoqingActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			Intent intent=new Intent();
+			Intent intent=new Intent();			
+			intent.putExtra("id", item.get("id").toString());
+			intent.putExtra("personName", item.get("personName").toString());
+			intent.putExtra("personUrl", item.get("personUrl").toString());
+			intent.putExtra("content", item.get("content").toString());
 			intent.setClass(YaoqingActivity.this, InventTranspond.class);
 			YaoqingActivity.this.startActivity(intent);
 		}
@@ -209,6 +281,8 @@ public class YaoqingActivity extends Activity {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			Intent intent=new Intent();
+			intent.putExtra("activityId", item.get("id").toString());
+			intent.putExtra("commentIdTo", "");
 			intent.setClass(YaoqingActivity.this, Comment.class);
 			startActivity(intent);
 		}

@@ -13,9 +13,13 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -26,6 +30,7 @@ import android.widget.TextView;
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.example.newhoyoo.R;
+import com.example.newhoyoo.widget.FilterImageView;
 import com.huyoo.global.Application;
 import com.huyoo.utils.DateUtil;
 import com.huyoo.utils.GsonUtil;
@@ -126,8 +131,8 @@ public class InvitationListAdapter extends BaseAdapter{
 
 		final CircularProgressDrawable  drawable = new CircularProgressDrawable(convertView.getResources().getDimensionPixelSize(R.dimen.drawable_ring_size),
 				convertView.getResources().getColor(android.R.color.darker_gray),
-				convertView.getResources().getColor(android.R.color.holo_red_dark),
-				convertView.getResources().getColor(android.R.color.holo_red_dark));
+				convertView.getResources().getColor(android.R.color.holo_red_light),
+				convertView.getResources().getColor(android.R.color.holo_red_light));
 		float p=(float) (currentNum/(maxNum+0.0));
 		drawable.setProgress(p);
 		drawable.setCircleScale(p);
@@ -136,14 +141,23 @@ public class InvitationListAdapter extends BaseAdapter{
 //		tag.put("isJoin", isJoin);
 //		holder.progress.setTag(tag);
 		holder.progress.setImageDrawable(drawable);
-		holder.content.setOnClickListener(new OnClickListener() {
+//		holder.content.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				int vid=v.getId();
+//				if(vid==_holder.content.getId())
+//				{
+//					DispatchEvent.dispatchEvent(new DEvent<Map<String,Object>>("invitationListContentClick", item));
+//				}
+//				
+//			}
+//		});
+		convertView.setOnClickListener(new OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
-				int vid=v.getId();
-				if(vid==_holder.content.getId())
-				{
-					DispatchEvent.dispatchEvent(new DEvent<Map<String,Object>>("invitationListContentClick", item));
-				}
+				// TODO Auto-generated method stub
+				DispatchEvent.dispatchEvent(new DEvent<Map<String,Object>>("invitationListItemClick", item));
 			}
 		});
 		if(currentNum<maxNum||isJoin==1)
@@ -176,7 +190,10 @@ public class InvitationListAdapter extends BaseAdapter{
 	}
 	public static void addProgressListener(final ViewHolder _holder,final CircularProgressDrawable  drawable,final Context context,final Map<String,Object> item)
 	{
+		
+		
 		_holder.progress.setOnClickListener(new OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
 				int vid=v.getId();
@@ -209,13 +226,16 @@ public class InvitationListAdapter extends BaseAdapter{
 					else
 					{
 						drawable.setCircleScale_(drawable.getCircleScale()+0.1f);
+					
 						drawable.setProgress_(drawable.getProgress()+0.1f);
+						
 						item.put("isJoin", 1);
 						item.put("currentNum", Integer.parseInt(item.get("currentNum").toString())+1);
 						_holder.info1.setText(HAS_JOIN);
 						_holder.info2.setText(item.get("currentNum")+"/"+item.get("maxNum"));
 					}
 				}
+				
 			}
 		});
 	}

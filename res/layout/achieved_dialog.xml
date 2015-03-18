@@ -32,9 +32,10 @@
 
             <ImageView
                 android:id="@+id/dialog_frame"
-                android:layout_width="wrap_content"
+                android:layout_width="240dp"
                 android:layout_height="48dp"
                 android:src="@drawable/di_10_silver"
+                
                 />
 
             <LinearLayout

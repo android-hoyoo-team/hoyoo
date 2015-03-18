@@ -2,60 +2,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_grey"
-    android:fillViewport="true">
-<LinearLayout 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-     <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@color/red"
-            android:gravity="center_vertical" >
+    android:fillViewport="true" >
 
-            <ImageButton
-                android:id="@+id/pinglun_back"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <com.ryg.expandable.ui.CustomActionbar
+            android:id="@+id/comment_actionbar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" >
+        </com.ryg.expandable.ui.CustomActionbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/pinglun_content"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/white"
+                android:gravity="top"
+                android:hint="说点什么吧。。。："
+                android:paddingLeft="10dp"
+                android:textSize="12sp" />
+
+            <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bt_02_nor" />
-
-            <TextView
-                android:id="@+id/pinglun_title"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="发评论"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
-            <Button
-                android:id="@+id/release_button"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@color/red"
-                android:text="发布"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/white"/>
-        </RelativeLayout>
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:orientation="vertical"
-            >
-        <EditText 
-            android:id="@+id/pinglun_content"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:hint="回复 唐嫣："
-            android:gravity="top"
-            android:textSize="12sp"
-            android:paddingLeft="10dp"
-            android:background="@color/white"
-            />
-        <CheckBox 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="同时转发"/>
+                android:text="同时转发" />
         </LinearLayout>
-</LinearLayout>
+    </LinearLayout>
+
 </ScrollView>

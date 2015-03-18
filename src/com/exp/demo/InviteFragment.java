@@ -52,6 +52,7 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 	private Handler mHandler;
 //	private ArrayList<HashMap<String, Object>> dlist;
 	private ArrayList<Map<String, Object>> dlist;
+	
 //	int c=0;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -103,7 +104,7 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 								   								R.id.text_yaoq_address,R.id.canjia_progress});//0-18为普通布局//19~35为转发布局*/
 			
 			mListView.setAdapter(mAdapter2);
-			DispatchEvent.addEventListener("invitationListContentClick", new IMethod<Map<String,Object>>() {
+			DispatchEvent.addEventListener("invitationListItemClick", new IMethod<Map<String,Object>>() {
 
 				public void excute(DEvent<Map<String,Object>> event) {
 					Intent intent=new Intent();

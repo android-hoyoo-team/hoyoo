@@ -1,5 +1,7 @@
 package com.example.newhoyoo.widget;
 
+import com.example.newhoyoo.R;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -39,32 +41,38 @@ public class FilterImageView extends ImageView implements GestureDetector.OnGest
 	 *   设置滤镜
 	 */
 	private void setFilter() {
+//		this.setBackgroundColor(Color.GRAY);
+		this.setColorFilter(R.color.background_grey);
 		//先获取设置的src图片
-		Drawable drawable=getDrawable();
-		//当src图片为Null，获取背景图片
-		if (drawable==null) {
-			drawable=getBackground();
-		}
-		if(drawable!=null){
-			//设置滤镜
-//			drawable.setColorFilter(Color.GRAY,PorterDuff.Mode.MULTIPLY);
-			drawable.setColorFilter(Color.GRAY,PorterDuff.Mode.XOR);
-		}
+//		Drawable drawable=getDrawable();
+//		//当src图片为Null，获取背景图片
+//		if (drawable==null) {
+//			drawable=getBackground();
+//		}
+//		if(drawable!=null){
+//			//设置滤镜
+////			drawable.setColorFilter(Color.GRAY,PorterDuff.Mode.MULTIPLY);
+//			drawable.setAlpha(128);
+////			drawable.setColorFilter(Color.GRAY,PorterDuff.Mode.XOR);
+//		}
 	}
 	/**  
 	 *   清除滤镜
 	 */
 	private void removeFilter() {
+		this.clearColorFilter();
+//		this.setBackgroundColor(Color.TRANSPARENT);
 		//先获取设置的src图片
-		Drawable drawable=getDrawable();
-		//当src图片为Null，获取背景图片
-		if (drawable==null) {
-			drawable=getBackground();
-		}
-		if(drawable!=null){
-			//清除滤镜
-			drawable.clearColorFilter();
-		}
+//		Drawable drawable=getDrawable();
+//		//当src图片为Null，获取背景图片
+//		if (drawable==null) {
+//			drawable=getBackground();
+//		}
+//		if(drawable!=null){
+//			//清除滤镜
+//			drawable.setAlpha(255);
+////			drawable.clearColorFilter();
+//		}
 	}
 
 	@Override
@@ -76,8 +84,7 @@ public class FilterImageView extends ImageView implements GestureDetector.OnGest
 
 	@Override
 	public void onShowPress(MotionEvent e) {
-		// TODO Auto-generated method stub
-
+		// TODO Auto-generated method stub		
 	}
 
 	@Override
@@ -91,6 +98,7 @@ public class FilterImageView extends ImageView implements GestureDetector.OnGest
 	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
 			float distanceY) {
 		// TODO Auto-generated method stub
+		removeFilter();
 		return false;
 	}
 
@@ -98,6 +106,7 @@ public class FilterImageView extends ImageView implements GestureDetector.OnGest
 	public void onLongPress(MotionEvent e) {
 		//长安时，手动触发长安事件
 		performLongClick();
+		removeFilter();
 	}
 
 	@Override
