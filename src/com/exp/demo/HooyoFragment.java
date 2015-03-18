@@ -13,7 +13,6 @@ import per.cz.event1_0.IMethod;
 import com.androidquery.AQuery;
 import com.example.newhoyoo.R;
 import com.example.newhoyoo.UnionNewsActivity;
-import com.example.newhoyoo.UnionNewsDetail;
 import com.example.newhoyoo.YaoqingActivity;
 import com.example.newhoyoo.adapter.CustomListViewAdapter;
 import com.example.newhoyoo.adapter.InvitationListAdapter02;
@@ -28,12 +27,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class HooyoFragment extends Fragment {

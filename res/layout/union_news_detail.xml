@@ -1,9 +1,0 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-   android:layout_height="match_parent"
-   android:layout_width="match_parent">
-   <TextView 
-       android:layout_height="match_parent"
-       android:layout_width="match_parent"
-       android:text="这里是公会新闻详情界面"/>
-</LinearLayout>
-

@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.ColorMatrixColorFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,9 +18,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.example.newhoyoo.AchievementDetail;
@@ -60,10 +63,8 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		person = Application.getLoginInfo().getPerson();
 		AQuery aq=new AQuery(getActivity());
 		aq.id(R.id.more).image("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/C5BA7EAC764C4E60A2C707AAD40BED37");
-		
-		
+
 		initLatest();
-		
 
 		initRecommend();
 
@@ -101,17 +102,33 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				
+				final ImageView iv =(ImageView)view.findViewById(R.id.img_list_item);
+				iv.setOnTouchListener(new View.OnTouchListener() {
+
+					// TODO Auto-generated method stub
+					public final float[] BT_SELECTED = new float[] { 1, 0, 0, 0, -50, 0, 1,  
+							0, 0, -50, 0, 0, 1, 0, -50, 0, 0, 0, 1, 0 };  
+					public final float[] BT_NOT_SELECTED = new float[] { 1, 0, 0, 0, 0, 0,  
+							1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0 };  
+
+					@Override  
+					public boolean onTouch(View v, MotionEvent event) {  
+						if (event.getAction() == MotionEvent.ACTION_DOWN) {  
+							iv.setColorFilter( new ColorMatrixColorFilter(BT_SELECTED) ) ;   
+						} else if (event.getAction() == MotionEvent.ACTION_UP) {  
+							iv.setColorFilter(new ColorMatrixColorFilter(BT_NOT_SELECTED)) ;   
+						}  
+						return true;  
+					}  
+				});
 				HashMap<String, Object> currentMap=(HashMap<String, Object>)latestAchievement.getItemAtPosition(position);
-//				Toast.makeText(getActivity(),position+"" , Toast.LENGTH_LONG).show();
-//				Toast.makeText(getActivity(),currentMap.get("id").toString()+"" , Toast.LENGTH_LONG).show();
 				Intent intent=new Intent();
 				intent.putExtra("id", currentMap.get("id").toString());
 				intent.setClass(getActivity(), AchievementDetail.class);
 				getActivity().startActivity(intent);
-				
+
 			}
-			
+
 		});
 	}
 	/**
@@ -143,16 +160,16 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 			@Override   
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,   
 					long arg3) {
-				
+
 				HashMap<String, Object> currentMap=(HashMap<String, Object>)myListView.getItemAtPosition(arg2);
-				
+
 				Intent intent=new Intent();
 				intent.putExtra("id", currentMap.get("id").toString());
 				intent.setClass(getActivity(), AchievementDetail.class);
 				getActivity().startActivity(intent);
 			}
 		});
-		
+
 	}
 	/**
 	 * 加载分类成就PinnedHeaderExpandableListView中的数据
@@ -199,7 +216,7 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		//finish();  
 	}
 	/**************************************************************/
-	
+
 	/**** 数据源   ** @author Administrator **/
 	class MyexpandableListAdapter extends BaseExpandableListAdapter {
 		private Context context;
@@ -310,9 +327,9 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 	@Override
 	public boolean onChildClick(ExpandableListView parent, View v,
 			int groupPosition, int childPosition, long id) {
-//		Toast.makeText(AchieveFragment.this.getActivity(),
-//				childList.get(groupPosition).get(childPosition).getId()+"", 1)
-//				.show();
+		//		Toast.makeText(AchieveFragment.this.getActivity(),
+		//				childList.get(groupPosition).get(childPosition).getId()+"", 1)
+		//				.show();
 		Intent intent=new Intent();
 		intent.putExtra("id", childList.get(groupPosition).get(childPosition).getId()+"");
 		intent.setClass(getActivity(), AchievementDetail.class);
