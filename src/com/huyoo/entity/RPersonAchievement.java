@@ -5,6 +5,7 @@ public class RPersonAchievement {
 	private int personId;
 	private int achievementId;
 	private long time;
+	private int currentProgress;
 	public int getId() {
 		return id;
 	}
@@ -28,6 +29,12 @@ public class RPersonAchievement {
 	}
 	public void setTime(long time) {
 		this.time = time;
+	}
+	public int getCurrentProgress() {
+		return currentProgress;
+	}
+	public void setCurrentProgress(int currentProgress) {
+		this.currentProgress = currentProgress;
 	}
 	
 }

@@ -14,6 +14,7 @@ public class EAchievement implements Serializable{
 	private String description;
 	private String icon;
 	private String addition;
+	private int totalProgress;
 	public int getId() {
 		return id;
 	}
@@ -55,6 +56,12 @@ public class EAchievement implements Serializable{
 	}
 	public void setAddition(String addition) {
 		this.addition = addition;
+	}
+	public int getTotalProgress() {
+		return totalProgress;
+	}
+	public void setTotalProgress(int totalProgress) {
+		this.totalProgress = totalProgress;
 	}
 	
 }

@@ -4,6 +4,7 @@ import per.cz.event1_0.DEvent;
 import per.cz.event1_0.DispatchEvent;
 import per.cz.event1_0.IMethod;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -31,6 +32,7 @@ import com.huyoo.entity.ELevel;
 import com.huyoo.entity.EPerson;
 import com.huyoo.entity.EUnion;
 import com.huyoo.global.Application;
+import com.huyoo.global.DatabaseHelper;
 import com.huyoo.service.ELevelService;
 import com.huyoo.service.EPersonService;
 import com.huyoo.service.EUnionService;
@@ -83,7 +85,11 @@ public class Main extends FragmentActivity implements OnClickListener {
 		actionbar = (CustomActionbar)findViewById(R.id.main_actionbar);
 		ImageView image = (ImageView)findViewById(R.id.actionbar_left);
 		image.setClickable(true);
-
+		
+		DatabaseHelper databaseHelper = new DatabaseHelper(this, "Test");
+		
+		SQLiteDatabase db = databaseHelper.getReadableDatabase();
+		
 		initView();
 		image.setOnClickListener(new OnClickListener() {
 
