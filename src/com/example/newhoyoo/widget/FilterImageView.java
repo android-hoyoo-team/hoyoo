@@ -42,8 +42,14 @@ public class FilterImageView extends ImageView implements GestureDetector.OnGest
 	 */
 	private void setFilter() {
 //		this.setBackgroundColor(Color.GRAY);
-		this.setColorFilter(R.color.background_grey);
+//		this.setColorFilter(R.color.background_grey);
+		this.setColorFilter(Color.GRAY,PorterDuff.Mode.MULTIPLY);
 		//先获取设置的src图片
+		Drawable drawable=getBackground();
+		//当src图片为Null，获取背景图片
+		if (drawable!=null) {
+			drawable.setColorFilter(Color.GRAY,PorterDuff.Mode.MULTIPLY);
+		}
 //		Drawable drawable=getDrawable();
 //		//当src图片为Null，获取背景图片
 //		if (drawable==null) {
@@ -61,6 +67,11 @@ public class FilterImageView extends ImageView implements GestureDetector.OnGest
 	 */
 	private void removeFilter() {
 		this.clearColorFilter();
+		Drawable drawable=getBackground();
+		//当src图片为Null，获取背景图片
+		if (drawable!=null) {
+			drawable.clearColorFilter();
+		}
 //		this.setBackgroundColor(Color.TRANSPARENT);
 		//先获取设置的src图片
 //		Drawable drawable=getDrawable();

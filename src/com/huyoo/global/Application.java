@@ -27,7 +27,6 @@ public class Application {
 	private static LoginInfo loginInfo;
 	
 	private static EArticleService articleService;
-
 	
 	/**
 	 * 获取EUnionService单例

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.huyoo.entity.EInvitation;
+import com.huyoo.entity.RInvitationLike;
 
 public class EInvitationService {
 
@@ -171,7 +172,7 @@ public class EInvitationService {
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
 		Map<String ,Object> m7=new HashMap<String, Object>();
-		m7.put("id", 1);
+		m7.put("id", 8);
 		m7.put("personName", "张三");
 		m7.put("personLevel", "塔基大师");
 		m7.put("issueTime", 1425545750006l);
@@ -227,6 +228,53 @@ public class EInvitationService {
 		}		
 		return resultList;
 	}
+	
+	public List<RInvitationLike> getInvitationLikes(int invitationId){
+		List<RInvitationLike> likeList=new ArrayList<RInvitationLike>();
+		List<RInvitationLike> result=new ArrayList<RInvitationLike>();
+		RInvitationLike like=new RInvitationLike();
+		like.setId(1);
+		like.setInvitationId(1);
+		like.setPersonId(1);
+		like.setTime(1426691396756l);
+		likeList.add(like);
+		RInvitationLike like1=new RInvitationLike();
+		like1.setId(2);
+		like1.setInvitationId(1);
+		like1.setPersonId(2);
+		like1.setTime(1426691396756l);
+		likeList.add(like1);
+		RInvitationLike like2=new RInvitationLike();
+		like2.setId(3);
+		like2.setInvitationId(1);
+		like2.setPersonId(3);
+		like2.setTime(1426691396756l);
+		likeList.add(like2);
+		RInvitationLike like3=new RInvitationLike();
+		like3.setId(4);
+		like3.setInvitationId(2);
+		like3.setPersonId(1);
+		like3.setTime(1426691396756l);
+		likeList.add(like3);
+		RInvitationLike like4=new RInvitationLike();
+		like4.setId(5);
+		like4.setInvitationId(1);
+		like4.setPersonId(4);
+		like4.setTime(1426691396756l);
+		likeList.add(like4);
+		RInvitationLike like5=new RInvitationLike();
+		like5.setId(6);
+		like5.setInvitationId(3);
+		like5.setPersonId(1);
+		like5.setTime(1426691396756l);
+		likeList.add(like5);
+		for (RInvitationLike rInvitationLike : likeList) {
+			if(rInvitationLike.getInvitationId()==invitationId)
+				result.add(rInvitationLike);
+		}
+		return result;
+	}
+	
 //	/**
 //	 * @author clu
 //	 * 获取list中第fromNum到toNum的数据（不包含toNum）
