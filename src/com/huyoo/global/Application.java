@@ -28,7 +28,9 @@ public class Application {
 	
 	private static EArticleService articleService;
 
+	private static DatabaseHelper databaseHelper;
 	
+	private static AchievementDispatcher achievementDispatcher;
 	/**
 	 * 获取EUnionService单例
 	 * 
@@ -158,5 +160,17 @@ public class Application {
 			return loginInfo;
 		}
 		return null;
+	}
+	public static DatabaseHelper getDatabaseHelper() {
+		return databaseHelper;
+	}
+	public static void setDatabaseHelper(DatabaseHelper databaseHelper) {
+		Application.databaseHelper = databaseHelper;
+	}
+	public static AchievementDispatcher getAchievementDispatcher(){
+		if(achievementDispatcher==null){
+			achievementDispatcher = new AchievementDispatcher();
+		}
+		return achievementDispatcher;
 	}
 }
