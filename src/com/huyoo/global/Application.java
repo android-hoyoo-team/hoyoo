@@ -27,7 +27,6 @@ public class Application {
 	private static LoginInfo loginInfo;
 	
 	private static EArticleService articleService;
-
 	private static DatabaseHelper databaseHelper;
 	
 	private static AchievementDispatcher achievementDispatcher;
