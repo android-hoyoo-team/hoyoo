@@ -40,14 +40,14 @@ public class LoginPassword extends Activity {
 		setContentView(R.layout.login);
 		this.aq=new AQuery(this);
 		this.aq.id(R.id.password_imageview).clicked(this, "login");
-		DispatchEvent.addEventListener("message", new IMethod<String>() {
-
-			@Override
-			public void excute(DEvent<String> event) {
-				// TODO Auto-generated method stub
-				Toast.makeText(getApplicationContext(), event.getTarget().toString(), Toast.LENGTH_LONG).show();
-			}
-		});
+//		DispatchEvent.addEventListener("message", new IMethod<String>() {
+//
+//			@Override
+//			public void excute(DEvent<String> event) {
+//				// TODO Auto-generated method stub
+//				Toast.makeText(getApplicationContext(), event.getTarget().toString(), Toast.LENGTH_LONG).show();
+//			}
+//		});
 	}
 	public void login(){
 		String password = this.aq.id(R.id.password_edittext).getText().toString().trim();
