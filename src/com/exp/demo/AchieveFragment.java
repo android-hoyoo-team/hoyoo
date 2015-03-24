@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import per.cz.event1_0.DEvent;
+import per.cz.event1_0.DispatchEvent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.ColorMatrixColorFilter;
@@ -30,6 +32,7 @@ import com.example.newhoyoo.R;
 import com.example.newhoyoo.adapter.CustomListViewAdapter;
 import com.huyoo.entity.EAchievement;
 import com.huyoo.entity.EPerson;
+import com.huyoo.global.Achievement;
 import com.huyoo.global.Application;
 import com.ryg.expandable.ui.HorizontalListView;
 import com.ryg.expandable.ui.PinnedHeaderExpandableListView;
@@ -69,7 +72,8 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		initRecommend();
 
 		initExpandableListView();
-
+		
+		Achievement.enterAchievement();
 	}
 	/***************************************************************/
 	/*加载数据*/

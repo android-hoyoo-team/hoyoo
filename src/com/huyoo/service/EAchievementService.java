@@ -4,24 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import per.cz.event1_0.DEvent;
+import per.cz.event1_0.DispatchEvent;
+
 import com.huyoo.entity.EAchievement;
+import com.huyoo.entity.RPersonAchievement;
 
 public class EAchievementService {
-	
+
 	public List<EAchievement> getEAchievements(Map<String,Object> params)
 	{
 		List<EAchievement> achievements = new ArrayList<EAchievement>();
-//		for(int i= 0 ;i < 10; i++)
-//		{
-//			EAchievement ac = new EAchievement();
-//			ac.setDescription("这里是成就 的具体说明这");
-//			ac.setExp(10);
-//			ac.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B09EEE5C385D4C46B1A7F48B4EE6619A");
-//			ac.setId(i);
-//			ac.setName("有车有房");
-//			ac.setType("person");
-//			achievements.add(ac);
-//		}
+		//		for(int i= 0 ;i < 10; i++)
+		//		{
+		//			EAchievement ac = new EAchievement();
+		//			ac.setDescription("这里是成就 的具体说明这");
+		//			ac.setExp(10);
+		//			ac.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B09EEE5C385D4C46B1A7F48B4EE6619A");
+		//			ac.setId(i);
+		//			ac.setName("有车有房");
+		//			ac.setType("person");
+		//			achievements.add(ac);
+		//		}
 		EAchievement eAchieviment1=new EAchievement();
 		eAchieviment1.setAddition("首次登录HoYoo");
 		eAchieviment1.setDescription("千呼万唤终于等到了你");
@@ -30,6 +34,7 @@ public class EAchievementService {
 		eAchieviment1.setId(1);
 		eAchieviment1.setName("你可来了！");
 		eAchieviment1.setType("软件综合");
+		eAchieviment1.setTotalProgress(1);
 		achievements.add(eAchieviment1);
 		EAchievement eAchieviment2=new EAchievement();
 		eAchieviment2.setAddition("上传自己的头像");
@@ -57,6 +62,7 @@ public class EAchievementService {
 		eAchieviment4.setId(4);
 		eAchieviment4.setName("漫漫长路");
 		eAchieviment4.setType("软件综合");
+		eAchieviment4.setTotalProgress(1);
 		achievements.add(eAchieviment4);
 		EAchievement eAchieviment5=new EAchievement();
 		eAchieviment5.setAddition("第一次关注别人");
@@ -96,7 +102,7 @@ public class EAchievementService {
 		achievements.add(eAchieviment8);
 		return achievements;
 	}
-	
+
 	public EAchievement getEAchievementById(int id)
 	{
 		List<EAchievement> achievements=getEAchievements(null);
@@ -107,13 +113,13 @@ public class EAchievementService {
 		}
 		return null;
 	}
-	
+
 	public	List<EAchievement> getEAchievementsByPersonId(int personId)
 	{
 		List<EAchievement> achievements=new ArrayList<EAchievement>();
 		return achievements;
 	}
-	
+
 	public List<EAchievement> getLastestEAchievements(int personId,int num)
 	{
 		EAchievement ac = new EAchievement();
@@ -124,89 +130,89 @@ public class EAchievementService {
 		ac.setName("更多");
 		ac.setType("综合类");
 		List<EAchievement> achievements = getEAchievements(null).subList(0, num);
-//		achievements.add(ac);
+		//		achievements.add(ac);
 		return achievements;
 	}
-	
+
 	public List<EAchievement> getRecommendEAchievements(int personId,int num) {
-		
+
 		return getEAchievements(null).subList(0, num);
 	}
-	
+
 	public List<EAchievement> getRelativeAchievements(int achievementId){
 		List<EAchievement> resultList=new ArrayList<EAchievement>();
 		resultList=getEAchievements(null);
 		return resultList;
 	}
-	
+
 	public List<EAchievement> getEAchievementsByType(int person,String type){
 		List<EAchievement> achievements = new ArrayList<EAchievement>();
 		switch (type) {
 		case "社交类":
-//			for(int i = 0 ;i < 10;i++)
-//			{
-//				EAchievement ac = new EAchievement();
-//				ac.setDescription("这里是成就 的具体说明这");
-//				ac.setExp(10);
-//				ac.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B09EEE5C385D4C46B1A7F48B4EE6619A");
-//				ac.setId(i);
-//				ac.setName("社交"+i);
-//				ac.setType("社交类");
-//				achievements.add(ac);
-//			}
-//			break;
+			//			for(int i = 0 ;i < 10;i++)
+			//			{
+			//				EAchievement ac = new EAchievement();
+			//				ac.setDescription("这里是成就 的具体说明这");
+			//				ac.setExp(10);
+			//				ac.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B09EEE5C385D4C46B1A7F48B4EE6619A");
+			//				ac.setId(i);
+			//				ac.setName("社交"+i);
+			//				ac.setType("社交类");
+			//				achievements.add(ac);
+			//			}
+			//			break;
 		case "娱乐类":
-//			for(int i = 0 ;i < 7;i++)
-//			{
-//				EAchievement ac = new EAchievement();
-//				ac.setDescription("这里是成就 的具体说明这");
-//				ac.setExp(10);
-//				ac.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B09EEE5C385D4C46B1A7F48B4EE6619A");
-//				ac.setId(i);
-//				ac.setName("娱乐"+i);
-//				ac.setType("娱乐类");
-//				achievements.add(ac);
-//			}
-//			break;
+			//			for(int i = 0 ;i < 7;i++)
+			//			{
+			//				EAchievement ac = new EAchievement();
+			//				ac.setDescription("这里是成就 的具体说明这");
+			//				ac.setExp(10);
+			//				ac.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B09EEE5C385D4C46B1A7F48B4EE6619A");
+			//				ac.setId(i);
+			//				ac.setName("娱乐"+i);
+			//				ac.setType("娱乐类");
+			//				achievements.add(ac);
+			//			}
+			//			break;
 		case "竞技类":
-//			for(int i = 0 ;i < 12;i++)
-//			{
-//				EAchievement ac = new EAchievement();
-//				ac.setDescription("这里是成就 的具体说明这");
-//				ac.setExp(10);
-//				ac.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B09EEE5C385D4C46B1A7F48B4EE6619A");
-//				ac.setId(i);
-//				ac.setName("竞技"+i);
-//				ac.setType("person");
-//				achievements.add(ac);
-//			}
-//			break;
+			//			for(int i = 0 ;i < 12;i++)
+			//			{
+			//				EAchievement ac = new EAchievement();
+			//				ac.setDescription("这里是成就 的具体说明这");
+			//				ac.setExp(10);
+			//				ac.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B09EEE5C385D4C46B1A7F48B4EE6619A");
+			//				ac.setId(i);
+			//				ac.setName("竞技"+i);
+			//				ac.setType("person");
+			//				achievements.add(ac);
+			//			}
+			//			break;
 		case "探索类":
-//			for(int i = 0 ;i < 10;i++)
-//			{
-//				EAchievement ac = new EAchievement();
-//				ac.setDescription("这里是成就 的具体说明这");
-//				ac.setExp(10);
-//				ac.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B09EEE5C385D4C46B1A7F48B4EE6619A");
-//				ac.setId(i);
-//				ac.setName("探索"+i);
-//				ac.setType("探索类");
-//				achievements.add(ac);
-//			}
-//			break;
+			//			for(int i = 0 ;i < 10;i++)
+			//			{
+			//				EAchievement ac = new EAchievement();
+			//				ac.setDescription("这里是成就 的具体说明这");
+			//				ac.setExp(10);
+			//				ac.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B09EEE5C385D4C46B1A7F48B4EE6619A");
+			//				ac.setId(i);
+			//				ac.setName("探索"+i);
+			//				ac.setType("探索类");
+			//				achievements.add(ac);
+			//			}
+			//			break;
 
 		case "综合类":
-//			for(int i = 0 ;i < 10;i++)
-//			{
-//				EAchievement ac = new EAchievement();
-//				ac.setDescription("这里是成就 的具体说明这");
-//				ac.setExp(10);
-//				ac.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B09EEE5C385D4C46B1A7F48B4EE6619A");
-//				ac.setId(i);
-//				ac.setName("综合"+i);
-//				ac.setType("综合类");
-//				achievements.add(ac);
-//			}
+			//			for(int i = 0 ;i < 10;i++)
+			//			{
+			//				EAchievement ac = new EAchievement();
+			//				ac.setDescription("这里是成就 的具体说明这");
+			//				ac.setExp(10);
+			//				ac.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B09EEE5C385D4C46B1A7F48B4EE6619A");
+			//				ac.setId(i);
+			//				ac.setName("综合"+i);
+			//				ac.setType("综合类");
+			//				achievements.add(ac);
+			//			}
 			achievements=getEAchievements(null);
 			break;
 		}
