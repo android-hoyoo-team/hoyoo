@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,14 +29,17 @@ import com.exp.demo.ResideMenuItem;
 import com.exp.demo.SettingFragment;
 import com.exp.demo.HooyoFragment;
 import com.huyoo.bean.LoginInfo;
+import com.huyoo.bean.Message;
 import com.huyoo.entity.ELevel;
 import com.huyoo.entity.EPerson;
 import com.huyoo.entity.EUnion;
 import com.huyoo.global.Application;
 import com.huyoo.global.DatabaseHelper;
+import com.huyoo.message.MessageService;
 import com.huyoo.service.ELevelService;
 import com.huyoo.service.EPersonService;
 import com.huyoo.service.EUnionService;
+import com.huyoo.utils.Utils;
 import com.ryg.expandable.ui.CustomActionbar;
 
 public class Main extends FragmentActivity implements OnClickListener {
@@ -89,7 +93,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 		DatabaseHelper databaseHelper = new DatabaseHelper(this, "Test");
 		
 		SQLiteDatabase db = databaseHelper.getReadableDatabase();
-		
+
 		initView();
 		image.setOnClickListener(new OnClickListener() {
 
@@ -119,6 +123,9 @@ public class Main extends FragmentActivity implements OnClickListener {
 				loadData();
 			}
 		});
+		Message message = new Message();
+		message.setType("achievement");
+		DispatchEvent.dispatchEvent(new DEvent<Message>("message",message ));
 	}
 
 	public void initView() {
