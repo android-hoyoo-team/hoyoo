@@ -26,6 +26,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.huyoo.bean.Message;
+import com.huyoo.entity.EAchievement;
 import com.huyoo.entity.EPerson;
 import com.huyoo.global.Achievement;
 import com.huyoo.global.AchievementDispatcher;
@@ -40,11 +42,12 @@ public class LoginPassword extends Activity {
 		setContentView(R.layout.login);
 		this.aq=new AQuery(this);
 		this.aq.id(R.id.password_imageview).clicked(this, "login");
-		DispatchEvent.addEventListener("message", new IMethod<String>() {
+		DispatchEvent.addEventListener("message", new IMethod<Message<EAchievement>>() {
 
 			@Override
-			public void excute(DEvent<String> event) {
+			public void excute(DEvent<Message<EAchievement>> event) {
 				// TODO Auto-generated method stub
+				EAchievement achievement = (EAchievement)event.getTarget().getInfo();
 				Toast.makeText(getApplicationContext(), event.getTarget().toString(), Toast.LENGTH_LONG).show();
 			}
 		});
