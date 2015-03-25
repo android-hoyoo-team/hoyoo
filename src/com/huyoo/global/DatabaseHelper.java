@@ -1,6 +1,8 @@
 package com.huyoo.global;
 
 
+import java.util.Date;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -687,7 +689,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	}
 	public void initPersonAchievement(){
+		ContentValues pa1 = new ContentValues();
+		pa1.put("personId",1);
+		pa1.put("achievementId",1);
+		pa1.put("time",new Date().getTime());
+		pa1.put("currentProgress", 1);
+		this.db.insert("RPersonAchievement", null, pa1);
 
+		ContentValues pa2 = new ContentValues();
+		pa2.put("personId",1);
+		pa2.put("achievementId",2);
+		pa2.put("time",new Date().getTime());
+		pa2.put("currentProgress", 1);
+		this.db.insert("RPersonAchievement", null, pa2);
+		ContentValues pa3 = new ContentValues();
+		pa3.put("personId",1);
+		pa3.put("achievementId",3);
+		pa3.put("time",new Date().getTime());
+		pa3.put("currentProgress", 1);
+		this.db.insert("RPersonAchievement", null, pa3);
+		ContentValues pa4 = new ContentValues();
+		pa4.put("personId",1);
+		pa4.put("achievementId",1);
+		pa4.put("time",new Date().getTime());
+		pa4.put("currentProgress", 1);
+		this.db.insert("RPersonAchievement", null, pa4);
 
 	}
 	public void initUnionApplication(){
