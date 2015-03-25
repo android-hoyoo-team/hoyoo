@@ -178,7 +178,7 @@ public class InvitationListAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				DispatchEvent.dispatchEvent(new DEvent<Map<String,Object>>("invitationListItemClick", item));
+				DispatchEvent.dispatchEvent(new DEvent<Integer>("invitationListItemClick", Integer.parseInt(item.get("id").toString())));
 			}
 		});
 		addProgressListener(holder,drawable,context,item);

@@ -98,7 +98,7 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 	ImageListAdapter imageAdapter;
 	ListView listView;
 	CommentListAdapter commentListAdapter;
-	HashMap<String, Object> item;
+	Map<String, Object> item;
 	float empty = 0;
 	float full = 0.1f;
 	float max;
@@ -107,7 +107,7 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 	ImageButton imgB1, imgB2, imgB3, imgB4;
 	Button button1, button2;
 	FilterImageView button3;
-	private EPerson person;
+//	private EPerson person;
 	private ViewHolder holder;
 	// Views
 	ImageView ivDrawable;
@@ -165,9 +165,11 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_yaoqing_list);
 		Intent intent = getIntent();
-		item = (HashMap<String, Object>) intent.getSerializableExtra("item");
-		person = Application.getPersonService().getEPersonById(
-				Integer.parseInt(item.get("id").toString()));
+//		item = (HashMap<String, Object>) intent.getSerializableExtra("id");
+		Integer id=(Integer) intent.getSerializableExtra("id");
+		 item = Application.getInvitationService().getInvitationMapById(id);
+//		person = Application.getPersonService().getEPersonById(
+//				Integer.parseInt(item.get("id").toString()));
 
 		Map<String, Object> res = InvitationListAdapter.changeItem(item);
 		holder = new ViewHolder();

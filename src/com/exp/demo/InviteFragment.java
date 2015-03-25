@@ -104,13 +104,13 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 								   								R.id.text_yaoq_address,R.id.canjia_progress});//0-18为普通布局//19~35为转发布局*/
 			
 			mListView.setAdapter(mAdapter2);
-			DispatchEvent.addEventListener("invitationListItemClick", new IMethod<Map<String,Object>>() {
+			DispatchEvent.addEventListener("invitationListItemClick", new IMethod<Integer>() {
 
-				public void excute(DEvent<Map<String,Object>> event) {
+				public void excute(DEvent<Integer> event) {
 					Intent intent=new Intent();
 //					intent.putExtra("type", "公会新闻");
-					HashMap<String, Object> item = (HashMap<String, Object>) event.getTarget();
-					intent.putExtra("item", item);
+					Integer id = event.getTarget();
+					intent.putExtra("id", id);
 //					intent.setClass(getActivity(), UnionNewsActivity.class);
 					intent.setClass(getActivity(), YaoqingActivity.class);
 					getActivity().startActivity(intent);

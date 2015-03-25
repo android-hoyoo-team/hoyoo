@@ -1,5 +1,8 @@
 package com.huyoo.message;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.Application;
 import android.content.Intent;
 import android.util.Log;
@@ -35,13 +38,19 @@ public class MessageService {
 //					EAchievement achievement = com.huyoo.global.Application.getAchievementService().getEAchievementById(1);
 //					Utils.getAchievementDialog(appContext,achievement).show();
 //					Toast.makeText(appContext, Utils.getTopActivity(appContext).getClassName(),Toast.LENGTH_LONG).show();
-					Intent intent=new Intent();
+					final Intent intent=new Intent();
 					intent.putExtra("id", achievement.getId());
 					intent.putExtra("achievement", achievement);
 //					intent.setComponent(Utils.getTopActivity(appContext));
 					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					intent.setClassName("com.example.newhoyoo", "com.example.newhoyoo.AchievementDialog");
-					appContext.startActivity(intent);
+					TimerTask task = new TimerTask(){    
+						     public void run(){    
+						    	 appContext.startActivity(intent);
+						     }    
+						 };    
+						 Timer timer = new Timer();  
+						 timer.schedule(task, 1000); 
 				}
 			}
 		});
