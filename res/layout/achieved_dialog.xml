@@ -2,16 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#0000" >
+    android:background="@color/alpha_00" >
 
     <LinearLayout
+        android:id="@+id/dialog_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" 
-        android:id="@+id/dialog_group"
+        android:background="@color/background_grey"
+        android:orientation="vertical"
         android:paddingBottom="8dp"
-        android:paddingTop="2dp"
-        android:background="@color/LightGray">
+        android:paddingTop="2dp" >
 
         <TextView
             android:layout_width="match_parent"
@@ -27,16 +27,13 @@
             <ImageView
                 android:id="@+id/dialog_achievement_icon"
                 android:layout_width="48dp"
-                android:layout_height="48dp"
-                />
+                android:layout_height="48dp" />
 
             <ImageView
                 android:id="@+id/dialog_frame"
                 android:layout_width="240dp"
                 android:layout_height="48dp"
-                android:src="@drawable/di_10_silver"
-                
-                />
+                android:src="@drawable/di_10_silver" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -48,10 +45,9 @@
                     android:id="@+id/dialog_achievement_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="skaldjfa" 
-                    android:textSize="9sp"
                     android:layout_gravity="center"
-                    />
+                    android:text="skaldjfa"
+                    android:textSize="9sp" />
 
                 <TextView
                     android:id="@+id/dialog_achievement_addition"
@@ -75,20 +71,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/dialog_group"
-        android:layout_marginTop="-10dp"
+        android:layout_marginTop="-12dp"
         android:background="@color/transparent"
         android:gravity="center"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        >
 
-	<ImageView 
-	    
-	    android:id="@+id/dialog_close"
-	    android:src="@drawable/dialog_close_button"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_centerHorizontal="true"
-	  	
-	  	/>
-	</LinearLayout>
+        <ImageView
+            android:id="@+id/dialog_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/dialog_close_button" />
+    </LinearLayout>
 
 </RelativeLayout>

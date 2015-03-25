@@ -64,6 +64,8 @@ public class AchievementDetail extends Activity {
 		// 判断是否有完成该成就
 		RelativeLayout dialog = (RelativeLayout) getLayoutInflater().inflate(
 				R.layout.achieved_dialog, null);
+		dialog.setBackgroundColor(getResources().getColor(R.color.red));
+		dialog.setBackgroundResource(R.color.blue);	
 		AQuery dialogAq = new AQuery(dialog);
 		dialogAq.id(R.id.dialog_achievement_name).text(achievement.getName());
 		dialogAq.id(R.id.dialog_achievement_addition).text(
