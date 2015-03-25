@@ -85,11 +85,6 @@ public class Main extends FragmentActivity implements OnClickListener {
 		actionbar = (CustomActionbar)findViewById(R.id.main_actionbar);
 		ImageView image = (ImageView)findViewById(R.id.actionbar_left);
 		image.setClickable(true);
-		
-		DatabaseHelper databaseHelper = new DatabaseHelper(this, "Test");
-		
-		SQLiteDatabase db = databaseHelper.getReadableDatabase();
-		
 		initView();
 		image.setOnClickListener(new OnClickListener() {
 
@@ -119,6 +114,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 				loadData();
 			}
 		});
+		
 	}
 
 	public void initView() {

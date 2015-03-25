@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.huyoo.bean.LoginInfo;
 import com.huyoo.entity.EPerson;
+import com.huyoo.entity.RPersonAchievement;
 import com.huyoo.service.EAchievementService;
 import com.huyoo.service.EArticleService;
 import com.huyoo.service.ECommentService;
@@ -14,6 +15,7 @@ import com.huyoo.service.ELevelService;
 //import com.huyoo.service.EMessageService;
 import com.huyoo.service.EPersonService;
 import com.huyoo.service.EUnionService;
+import com.huyoo.service.RPersonAchievementService;
 
 public class Application {
 
@@ -22,12 +24,16 @@ public class Application {
 	private static ECommentService commentService;
 	private static EUnionService unionService;
 	private static ELevelService levelService;
-//	private static EMessageService messageService;
+	//	private static EMessageService messageService;
 	private static EInvitationService invitationService;
 	private static LoginInfo loginInfo;
-	
+
 	private static EArticleService articleService;
-	
+	private static DatabaseHelper databaseHelper;
+
+	private static AchievementDispatcher achievementDispatcher;
+
+	private static RPersonAchievementService personAchievementService;
 	/**
 	 * 获取EUnionService单例
 	 * 
@@ -73,13 +79,13 @@ public class Application {
 			commentService = new ECommentService();
 		return commentService;
 	}
-	
-//	public static EMessageService getMessageService() {
-//		if (messageService == null)
-//			messageService = new EMessageService();
-//		return messageService;
-//	}
-	
+
+	//	public static EMessageService getMessageService() {
+	//		if (messageService == null)
+	//			messageService = new EMessageService();
+	//		return messageService;
+	//	}
+
 	/**
 	 * 获取EInvitationService 单例
 	 * @return
@@ -124,9 +130,9 @@ public class Application {
 	 * @return
 	 */
 	public static LoginInfo getLoginInfo() {
-//		Map<String,Object> map = new HashMap<String, Object>();
-//		map.put("phoneNum", "18888888888");
-	//	return login(null, false);
+		//		Map<String,Object> map = new HashMap<String, Object>();
+		//		map.put("phoneNum", "18888888888");
+		//	return login(null, false);
 		return loginInfo;
 	}
 	/**
@@ -157,5 +163,22 @@ public class Application {
 			return loginInfo;
 		}
 		return null;
+	}
+	public static DatabaseHelper getDatabaseHelper() {
+		return databaseHelper;
+	}
+	public static void setDatabaseHelper(DatabaseHelper databaseHelper) {
+		Application.databaseHelper = databaseHelper;
+	}
+	public static AchievementDispatcher getAchievementDispatcher(){
+		if(achievementDispatcher==null){
+			achievementDispatcher = new AchievementDispatcher();
+		}
+		return achievementDispatcher;
+	}
+	public static RPersonAchievementService getPersonAchievementService() {
+		if(personAchievementService==null)
+			personAchievementService = new RPersonAchievementService();
+		return personAchievementService;
 	}
 }

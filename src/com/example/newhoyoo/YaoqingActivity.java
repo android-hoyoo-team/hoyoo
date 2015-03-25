@@ -31,6 +31,7 @@ import com.example.newhoyoo.adapter.ImageListAdapter;
 import com.example.newhoyoo.adapter.InvitationListAdapter;
 import com.example.newhoyoo.adapter.InvitationListAdapter.ViewHolder;
 import com.example.newhoyoo.widget.FilterImageView;
+import com.huyoo.bean.Message;
 import com.huyoo.entity.EComment;
 import com.huyoo.entity.EPerson;
 import com.huyoo.entity.RInvitationLike;
@@ -409,6 +410,9 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 		// }
 		//
 		// });
+		Message message = new Message();
+		message.setType("achievement");
+		DispatchEvent.dispatchEvent(new DEvent<Message>("message",message ));
 	}
 
 	class Button1Listener implements OnClickListener {
