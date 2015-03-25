@@ -8,6 +8,7 @@ import com.androidquery.AQuery;
 import com.example.newhoyoo.adapter.CustomListViewAdapter;
 import com.huyoo.entity.EAchievement;
 import com.huyoo.global.Application;
+import com.huyoo.utils.Utils;
 import com.ryg.expandable.ui.CustomActionbar;
 import com.ryg.expandable.ui.HorizontalListView;
 
@@ -55,31 +56,29 @@ public class AchievementDetail extends Activity {
 		aq.id(R.id.achievement_icon).image(achievement.getIcon());// 公会图片
 		loadAchievementDetail(achievement);// 公会详情
 		aq.id(R.id.achievement_exp_icon)
-				.image(getExpIcon(achievement.getExp()));
+				.image(AchievementDialog.getExpIcon(achievement.getExp()));
 		// loadExpIcon(achievement.getExp());//经验图片
 		loadTips("", "2015.9.6", "2016.1.1");// 注
 		aq.id(R.id.actionbar_left).clicked(this, "clickActionbarLeft");
 		initRelativeAchievement();
 
 		// 判断是否有完成该成就
-		RelativeLayout dialog = (RelativeLayout) getLayoutInflater().inflate(
-				R.layout.achieved_dialog, null);
-		dialog.setBackgroundColor(getResources().getColor(R.color.red));
-		dialog.setBackgroundResource(R.color.blue);	
-		AQuery dialogAq = new AQuery(dialog);
-		dialogAq.id(R.id.dialog_achievement_name).text(achievement.getName());
-		dialogAq.id(R.id.dialog_achievement_addition).text(
-				achievement.getAddition());
-		dialogAq.id(R.id.dialog_achievement_icon).image(achievement.getIcon());
-		dialogAq.id(R.id.dialog_score_icon).image(
-				getExpIcon(achievement.getExp()));
-		dialogAq.id(R.id.dialog_frame)
-				.image(getFrameIcon(achievement.getExp()));
-		dialogAq.id(R.id.dialog_close).clicked(this, "closeDialog");
-
-		alertDialog = new AlertDialog.Builder(this).setView(dialog).create();
-		alertDialog.setCanceledOnTouchOutside(false);
-		alertDialog.show();
+//		RelativeLayout dialog = (RelativeLayout) getLayoutInflater().inflate(
+//				R.layout.achieved_dialog, null);
+//		AQuery dialogAq = new AQuery(dialog);
+//		dialogAq.id(R.id.dialog_achievement_name).text(achievement.getName());
+//		dialogAq.id(R.id.dialog_achievement_addition).text(
+//				achievement.getAddition());
+//		dialogAq.id(R.id.dialog_achievement_icon).image(achievement.getIcon());
+//		dialogAq.id(R.id.dialog_score_icon).image(
+//				getExpIcon(achievement.getExp()));
+//		dialogAq.id(R.id.dialog_frame)
+//				.image(getFrameIcon(achievement.getExp()));
+//		dialogAq.id(R.id.dialog_close).clicked(this, "closeDialog");
+//
+//		alertDialog = new AlertDialog.Builder(this).setView(dialog).create();
+//		alertDialog.setCanceledOnTouchOutside(false);
+//		alertDialog.show();
 		// dialog.setBackgroundColor(getResources().getColor(R.color.transparent));
 
 		// AlertDialog alertDialog=new
@@ -167,75 +166,6 @@ public class AchievementDetail extends Activity {
 		tips.loadDataWithBaseURL(null, sb.toString(), "text/html", "utf-8",
 				null);
 	}
-
-	public String getExpIcon(int exp) {
-		switch (exp) {
-		case 5:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/82F9609DD2B745A884785FE2A4F2CC78";
-		case 10:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/625FCD5676DC47378A319B9F0A528F8D";
-
-		case 15:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/14C1584D8B3F44F492240419B1DC779F";
-
-		case 20:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/E9BB88AEF2A44A1EA02CD7B909D9350B";
-
-		case 25:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/B48E94AB98644723B51E8608BE72B778";
-
-		case 30:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/FED61598254745848F7C1927110DB41D";
-
-		case 35:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/8B52BC9D4C6A4F93BB4FC0E7EA0E6DE1";
-
-		case 40:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/0DDCBAD751AF4C43B94A8C39FDCF0E0E";
-
-		case 45:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/BD5D1AB6F7A64835B513650A75638236";
-
-		case 50:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/BF977AB1BD3B475DACC95FA1F1A70277";
-
-		case 100:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/F27E546172894FE6A4D48C6AD6BB097F";
-
-		case 150:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/A900A16C081B412AA2D85CDBBD3D7D09";
-
-		case 200:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/077484B7DCBF478E8375311524400BE9";
-
-		default:
-			return null;
-		}
-	}
-
-	public String getFrameIcon(int exp) {
-		switch (exp) {
-		case 5:
-		case 10:
-		case 15:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/DEE431711AA941E4A4690D3C6AD32AAA";
-		case 20:
-		case 25:
-		case 30:
-		case 35:
-		case 40:
-		case 45:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4C8A93F145614815B19D487F945C2A0C";
-		case 50:
-		case 100:
-		case 150:
-		case 200:
-			return "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7244556409B942C2A4482F934EF3B137";
-		default:
-			return null;
-		}
-	}
-
 	public void clickActionbarLeft() {
 		finish();
 	}
