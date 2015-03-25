@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -20,36 +21,6 @@ import com.huyoo.global.DatabaseHelper;
  *
  */
 public class EPersonService {
-
-//	/**
-//	 * 
-//	 * @param param
-//	 * @return
-//	 */
-//	public List<EPerson> getPersons(Map<String,Object> params)
-//	{
-//		List<EPerson> persons = new ArrayList<EPerson>();
-//		for(int i = 0;i<20;i++)
-//		{
-//			EPerson person = new EPerson();
-//			person.setId(i+1);
-//			person.setName("王昆"+i);
-//			person.setLevelId(1);
-//			person.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/9855C5331E004040B1A5D6C9D8483108");
-//			person.setSex("男");
-//			person.setSchool("蚌埠学院");
-//			person.setDepartment("计算机");
-//			person.setBirthday(10000000000l);
-//			person.setPhoneNum("18888888888");
-//			person.setPosition("学生会主席");
-//			person.setUnionId(i+1);
-//			person.setVp(80);
-//			person.setCurrentExp(2730);
-//			persons.add(person);
-//		}
-//		//		}
-//		return persons;
-//	}
 
 	public List<EPerson> getPersons(Map<String,Object> params){
 		List<EPerson> persons = new ArrayList<EPerson>();
@@ -86,7 +57,7 @@ public class EPersonService {
 			int vp = cursor.getInt(cursor.getColumnIndex("vp"));
 			String icon = cursor.getString(cursor.getColumnIndex("icon"));
 			int currentExp = cursor.getInt(cursor.getColumnIndex("currentExp"));
-			
+
 			EPerson person = new EPerson();
 			person.setId(id);
 			person.setName(name);
@@ -105,23 +76,6 @@ public class EPersonService {
 		}
 		return persons;
 	}
-
-//	/**
-//	 * 
-//	 * @param id
-//	 * @return
-//	 */
-//	public EPerson getEPersonById(int id)
-//	{
-//
-//		for(int i = 0;i<getPersons(null).size();i++){
-//			if(id == getPersons(null).get(i).getId()){
-//				return getPersons(null).get(i);
-//			}
-//		}
-//		return getPersons(null).get(0);
-//	}
-	
 	public EPerson getEPersonById(int id){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("id", id);
@@ -147,84 +101,61 @@ public class EPersonService {
 		if(persons!=null&&persons.size()>0)return persons.get(0);
 		return null;
 	}
-	
-//	public EPerson getEPersonByPhoneNum(String phoneNum)
-//	{
-//		EPerson person = new EPerson();
-//		switch (phoneNum) {
-//		case "10000":
-//			//正常状态，有工会
-//			person.setId(1);
-//			person.setName("王昆");
-//			person.setLevelId(1);
-//			person.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/9855C5331E004040B1A5D6C9D8483108");
-//			person.setSex("男");
-//			person.setSchool("蚌埠学院");
-//			person.setDepartment("计算机");
-//			person.setBirthday(10000000000l);
-//			person.setPhoneNum(phoneNum);
-//			person.setPosition("学生会主席");
-//			person.setUnionId(1);
-//			person.setVp(80);
-//			person.setCurrentExp(2730);
-//			break;
-//		case "10001":
-//			//无工会，无申请，无邀请
-//			person.setId(2);
-//			person.setName("吕高昂");
-//			person.setLevelId(1);
-//			person.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/8AF5E330B6E245BAAAFC8078BC8A9D91");
-//			person.setSex("男");
-//			person.setSchool("蚌埠学院");
-//			person.setDepartment("计算机");
-//			person.setBirthday(10000000000l);
-//			person.setPhoneNum(phoneNum);
-//			person.setPosition("学生会主席");
-//			person.setVp(80);
-//			person.setCurrentExp(2730);
-//			break;
-//		case "10002":
-//			//无工会,有申请
-//			person.setId(3);
-//			person.setName("何磊");
-//			person.setLevelId(1);
-//			person.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/51DD76FE9A8349DFA47BEAD61C91E523");
-//			person.setSex("男");
-//			person.setSchool("蚌埠学院");
-//			person.setDepartment("计算机");
-//			person.setBirthday(10000000000l);
-//			person.setPhoneNum(phoneNum);
-//			person.setPosition("学生会主席");
-//			person.setVp(80);
-//			person.setCurrentExp(2730);
-//			break;
-//		case "10003":
-//			//无工会,有申请
-//			person.setId(4);
-//			person.setName("莫小千");
-//			person.setLevelId(1);
-//			person.setIcon("http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/948552F5DB63434AA0F970301A675FDB");
-//			person.setSex("女");
-//			person.setSchool("蚌埠学院");
-//			person.setDepartment("计算机");
-//			person.setBirthday(10000000000l);
-//			person.setPhoneNum(phoneNum);
-//			person.setPosition("学生会主席");
-//			person.setVp(80);
-//			person.setCurrentExp(2730);
-//			break;
-//		default:
-//			break;
-//		}
-//		return person;
-//		//		Map<String,Object> params = new HashMap<String, Object>();
-//		//		params.put("phoneNum", phoneNum);
-//		//		List<EPerson> persons = this.getPersons(params);
-//		//		if(persons!=null&&persons.size()>0)
-//		//			return persons.get(0);
-//		//		return null; 
-//	}
 
+	/*=========================================================================*/
+	public List<RAttention> getAttentions(Map<String,Object> params){
+		List<RAttention> attentions = new ArrayList<RAttention>();
+		DatabaseHelper helper =	Application.getDatabaseHelper();
+		SQLiteDatabase db = helper.getReadableDatabase();
+		StringBuffer sb = new StringBuffer();
+		List<String> selectionArgs = new ArrayList<String>();
+		String sql = "select * from RAttention where 1=1";
+		if(params!=null){
+			if(params.get("id")!=null){
+				sb.append(" and id=?");
+				selectionArgs.add(params.get("id").toString());
+			}
+			if(params.get("personIdFrom")!=null)
+			{
+				sb.append(" and personIdFrom=?");
+				selectionArgs.add(params.get("personIdFrom").toString());
+			}
+			if(params.get("personIdTo")!=null)
+			{
+				sb.append(" and personIdTo=?");
+				selectionArgs.add(params.get("personIdTo").toString());
+			}
+		}
+		sql += sb.toString();
+		String[] args = new String[selectionArgs.size()];
+		Cursor cursor = db.rawQuery(sql,selectionArgs.toArray(args));
+		while (cursor.moveToNext()) {
+			int id = cursor.getInt(cursor.getColumnIndex("id"));
+			int personIdFrom = cursor.getInt(cursor.getColumnIndex("personIdFrom"));
+			int personIdTo = cursor.getInt(cursor.getColumnIndex("personIdTo"));
+			long time = cursor.getLong(cursor.getColumnIndex("time"));
+
+			RAttention attention = new RAttention();
+			attention.setId(id);
+			attention.setPersonIdFrom(personIdFrom);
+			attention.setPersonIdTo(personIdTo);
+			attention.setTime(time);
+			attentions.add(attention);
+		}
+		return attentions;
+	}
+
+	public List<RAttention> getAttentionFrom(int id){
+		Map<String,Object> params = new HashMap<String, Object>();
+		params.put("personIdFrom", id);
+		return getAttentions(params);
+	}
+
+	public List<RAttention> getAttentionTo(int id){
+		Map<String,Object> params = new HashMap<String, Object>();
+		params.put("personIdTo", id);
+		return getAttentions(params);
+	}
 	/**
 	 * 通过id获取的关注数，也就是其关注别人的数量
 	 * @param personId
@@ -232,7 +163,7 @@ public class EPersonService {
 	 */
 	public int getFocusCount(int id)
 	{
-		return 220;
+		return getAttentionFrom(id).size();
 	}
 	/**
 	 * 通过id获取被关注数，也就是其粉丝数
@@ -241,8 +172,9 @@ public class EPersonService {
 	 */
 	public int getFansCount(int id)
 	{
-		return 880;
+		return getAttentionTo(id).size();
 	}
+
 
 	/**
 	 * 通过id获取其好友列表，满足好友的条件是，既被他关注，也关注了他的。
@@ -250,79 +182,107 @@ public class EPersonService {
 	 * @return
 	 */
 	public List<EPerson> getFriends(int id)
-	{
-
-		return getPersons(null);
+	{ 
+		List<EPerson> persons = new ArrayList<EPerson>();
+		List<RAttention> fans = getAttentionTo(id);
+		List<RAttention> focus = getAttentionFrom(id);
+		if(fans!=null&&fans.size()>0&&focus!=null&&focus.size()>0){
+			for(RAttention fan:fans){
+				for(RAttention f:focus){
+					if(fan.getPersonIdFrom() == f.getPersonIdTo()){
+						EPerson person = getEPersonById(fan.getPersonIdFrom());
+						if(person!=null)persons.add(person);
+					}
+				}
+			}
+		}
+		return persons;
+	}
+	public long saveAttention(RAttention attention){
+		DatabaseHelper helper = Application.getDatabaseHelper();
+		SQLiteDatabase db = helper.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put("personIdTo", attention.getPersonIdTo());
+		cv.put("personIdFrom", attention.getPersonIdFrom());
+		cv.put("time", attention.getTime());
+		return db.insert("RAttention", null, cv);
+	}
+	public long removeFriend(int id){
+		DatabaseHelper helper = Application.getDatabaseHelper();
+		SQLiteDatabase db = helper.getWritableDatabase();
+		return db.delete("RAttention", "personIdTo=? adn personIdFrom=?", new String[]{id+"",Application.getLoginInfo().getPerson().getId()+""});
 	}
 
+
+	/*================================================================================*/
+	public List<RUnionPerson> getUnionPersons(Map<String,Object> params){
+		List<RUnionPerson> rups = new ArrayList<RUnionPerson>();
+		DatabaseHelper helper =	Application.getDatabaseHelper();
+		SQLiteDatabase db = helper.getReadableDatabase();
+		StringBuffer sb = new StringBuffer();
+		List<String> selectionArgs = new ArrayList<String>();
+		String sql = "select * from RUnionPerson where 1=1";
+		if(params!=null){
+			if(params.get("id")!=null){
+				sb.append(" and id=?");
+				selectionArgs.add(params.get("id").toString());
+			}
+			if(params.get("unionId")!=null)
+			{
+				sb.append(" and unionId=?");
+				selectionArgs.add(params.get("unionId").toString());
+			}
+			if(params.get("personId")!=null)
+			{
+				sb.append(" and personId=?");
+				selectionArgs.add(params.get("personId").toString());
+			}
+			if(params.get("status")!=null)
+			{
+				sb.append(" and status=?");
+				selectionArgs.add(params.get("status").toString());
+			}
+
+		}
+		sql += sb.toString();
+		String[] args = new String[selectionArgs.size()];
+		Cursor cursor = db.rawQuery(sql,selectionArgs.toArray(args));
+		while (cursor.moveToNext()) {
+			int id = cursor.getInt(cursor.getColumnIndex("id"));
+			int personId = cursor.getInt(cursor.getColumnIndex("personId"));
+			int unionId = cursor.getInt(cursor.getColumnIndex("unionId"));
+			long time = cursor.getLong(cursor.getColumnIndex("time"));
+			String status = cursor.getString(cursor.getColumnIndex("status"));
+			RUnionPerson up = new RUnionPerson();
+			up.setId(id);
+			up.setUnionId(unionId);
+			up.setPersonId(personId);
+			up.setTime(time);
+			up.setStatus(status);
+			rups.add(up);
+		}
+		return rups;
+	}
+
+	public List<RUnionPerson> getUnionPersonByPersonId(int personId){
+		Map<String,Object> params = new HashMap<String, Object>();
+		params.put("personId", personId);
+		params.put("status", "in");
+		return getUnionPersons(params);
+	}
 	public List<EPerson> getPersonsByUnionId(int unionId)
 	{
-		return getPersons(null);
-	}
-
-
-	public List<RUnionPerson> getUnionPerson(int personId){
-		List<RUnionPerson> ups = new ArrayList<RUnionPerson>();
-
-		if(personId == 1){
-			RUnionPerson up1 = new RUnionPerson();
-			up1.setUnionId(1);
-			up1.setPersonId(1);
-			up1.setStatus("in");
-			RUnionPerson up2 = new RUnionPerson();
-			up2.setUnionId(2);
-			up2.setPersonId(1);
-			up2.setStatus("out");
-			RUnionPerson up3 = new RUnionPerson();
-			up3.setUnionId(3);
-			up3.setPersonId(1);
-			up3.setStatus("out");
-			ups.add(up1);
-			ups.add(up2);
-			ups.add(up3);
+		List<EPerson> persons = new ArrayList<EPerson>();
+		Map<String,Object> params = new HashMap<String, Object>();
+		params.put("unionId", unionId);
+		params.put("status", "in");
+		List<RUnionPerson> ups = getUnionPersons(params);
+		if(ups!=null&&ups.size()>0){
+			for (RUnionPerson up : ups) {
+				EPerson person =getEPersonById(up.getPersonId());
+				if(person!=null)persons.add(person);
+			}
 		}
-		if(personId == 2){
-			RUnionPerson up1 = new RUnionPerson();
-			up1.setUnionId(1);
-			up1.setPersonId(2);
-			up1.setStatus("out");
-			RUnionPerson up2 = new RUnionPerson();
-			up2.setUnionId(2);
-			up2.setPersonId(2);
-			up2.setStatus("in");
-			RUnionPerson up3 = new RUnionPerson();
-			up3.setUnionId(3);
-			up3.setPersonId(2);
-			up3.setStatus("out");
-			ups.add(up1);
-			ups.add(up2);
-			ups.add(up3);
-		}
-		if(personId == 3){
-
-		}
-		return ups;
-	}
-
-
-	public boolean saveAttention(RAttention attention){
-
-		return true;
-	}
-
-	public List<RAttention> getAttentionsByPersonId(int id){
-		List<RAttention> attentions = new ArrayList<RAttention>();
-		for(int i = 0;i<10;i++){
-			RAttention attention = new RAttention();
-			attention.setPersonIdFrom(id);
-			attention.setPersonIdTo(i);
-			attentions.add(attention);
-		}
-		return attentions;
-	}
-
-	public boolean removeFriend(int id){
-
-		return true;
+		return persons;
 	}
 }

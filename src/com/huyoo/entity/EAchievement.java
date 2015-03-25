@@ -15,6 +15,7 @@ public class EAchievement implements Serializable{
 	private String icon;
 	private String addition;
 	private int totalProgress;
+	private String expensionPack;
 	public int getId() {
 		return id;
 	}
@@ -62,6 +63,12 @@ public class EAchievement implements Serializable{
 	}
 	public void setTotalProgress(int totalProgress) {
 		this.totalProgress = totalProgress;
+	}
+	public String getExpensionPack() {
+		return expensionPack;
+	}
+	public void setExpensionPack(String expensionPack) {
+		this.expensionPack = expensionPack;
 	}
 	
 }

@@ -131,7 +131,7 @@ public class CreateUnion extends Activity{
 			int id = Integer.parseInt(it.next());
 			up.setPersonId(id);
 			up.setUnionId(unionId);
-			up.setStatus("approvalling");
+			up.setStatus("applying");
 			up.setTime(new Date().getTime());
 			ups.add(up);
 		}

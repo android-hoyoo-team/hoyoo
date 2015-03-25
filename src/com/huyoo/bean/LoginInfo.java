@@ -25,7 +25,7 @@ public class LoginInfo {
 	 */
 	public EUnion getUnion() {
 			Map<String,EUnion> map = new HashMap<String,EUnion>();
-			List<RUnionPerson> ups = Application.getPersonService().getUnionPerson(this.getPerson().getId());
+			List<RUnionPerson> ups = Application.getPersonService().getUnionPersonByPersonId(this.getPerson().getId());
 			for(RUnionPerson up:ups){
 				if("in".equals(up.getStatus())){
 					union = Application.getUnionService().getEUnionByID(up.getUnionId());

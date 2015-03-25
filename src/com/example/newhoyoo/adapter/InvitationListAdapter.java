@@ -8,10 +8,12 @@ import java.util.Map;
 
 import per.cz.event1_0.DEvent;
 import per.cz.event1_0.DispatchEvent;
+import per.cz.event1_0.IMethod;
 import main.java.com.sefford.circularprogressdrawable.sample.CircularProgressDrawable;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -26,11 +28,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.example.newhoyoo.R;
+import com.example.newhoyoo.YaoqingActivity;
 import com.example.newhoyoo.widget.FilterImageView;
+import com.huyoo.bean.Result;
+import com.huyoo.entity.EInvitation;
 import com.huyoo.global.Application;
 import com.huyoo.utils.DateUtil;
 import com.huyoo.utils.GsonUtil;
@@ -127,7 +133,7 @@ public class InvitationListAdapter extends BaseAdapter{
 		holder.info1.setText(res.get("info1").toString());
 		holder.info2.setText(res.get("info2").toString());
 		int currentNum =Integer.parseInt(res.get("currentNum").toString());
-		final int maxNum =Integer.parseInt(res.get("maxNum").toString());
+		int maxNum =Integer.parseInt(res.get("maxNum").toString());
 
 		final CircularProgressDrawable  drawable = new CircularProgressDrawable(convertView.getResources().getDimensionPixelSize(R.dimen.drawable_ring_size),
 				convertView.getResources().getColor(android.R.color.darker_gray),
@@ -152,6 +158,21 @@ public class InvitationListAdapter extends BaseAdapter{
 //				
 //			}
 //		});
+		IMethod<Integer> method = new IMethod<Integer>() {
+			
+			public void excute(DEvent<Integer> event) {
+				 Integer id = event.getTarget();
+				 Map<String, Object> map0 = Application.getInvitationService().getInvitationMapById(id);
+				 Map<String,Object> map=changeItem(map0);
+				 int currentNum =Integer.parseInt(map.get("currentNum").toString());
+				 int maxNum =Integer.parseInt(map.get("maxNum").toString());
+				 drawable.setCircleScale_((float) (currentNum/(maxNum+0.0)));
+				 drawable.setProgress_((float) (currentNum/(maxNum+0.0)));
+				 _holder.info1.setText(map.get("info1").toString());
+				 _holder.info2.setText(map.get("info2").toString());
+			}
+		};
+		DispatchEvent.addEventListener("join_invitation_event"+item.get("id"), method);
 		convertView.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -160,10 +181,7 @@ public class InvitationListAdapter extends BaseAdapter{
 				DispatchEvent.dispatchEvent(new DEvent<Map<String,Object>>("invitationListItemClick", item));
 			}
 		});
-		if(currentNum<maxNum||isJoin==1)
-		{
-			addProgressListener(holder,drawable,context,item);
-		}
+		addProgressListener(holder,drawable,context,item);
 		/**为Button添加点击事件*/             
 		//        holder.bt.setOnClickListener(new OnClickListener() {
 		//            @Override
@@ -199,8 +217,10 @@ public class InvitationListAdapter extends BaseAdapter{
 				int vid=v.getId();
 				if(vid==_holder.progress.getId())
 				{
+					int id =Integer.parseInt(item.get("id").toString());
+					 final Map<String, Object> invitationMapById = Application.getInvitationService().getInvitationMapById(id);
 //				Map<String,Object> tag = (Map<String,Object>) holder.progress.getTag();
-					int jo=item.get("isJoin")==null?0:Integer.parseInt(item.get("isJoin").toString());
+					int jo=invitationMapById.get("isJoin")==null?0:Integer.parseInt(invitationMapById.get("isJoin").toString());
 					if(jo==1)
 					{
 						new AlertDialog.Builder(context).setTitle("提示").setMessage("是否取消参与？")
@@ -213,26 +233,47 @@ public class InvitationListAdapter extends BaseAdapter{
 						.setPositiveButton("确定",new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog, int which) {
+								Result<Map<String,Object>> joinInvitationMapById = Application.getInvitationService().joinInvitationById(Integer.parseInt(invitationMapById.get("id").toString()),false);
+								Map<String, Object> map = joinInvitationMapById.getResult();
+								if(joinInvitationMapById.getStatus().equals("success"))
+								{
+									int currentNum =Integer.parseInt(map.get("currentNum").toString());
+									int maxNum =Integer.parseInt(map.get("maxNum").toString());
+									drawable.setCircleScale_((float) (currentNum/(maxNum+0.0)));
+									drawable.setProgress_((float) (currentNum/(maxNum+0.0)));
+									_holder.info1.setText(TO_JOIN);
+									_holder.info2.setText(currentNum+"/"+maxNum);
+									//添加改变事件
+									DispatchEvent.dispatchEvent(new DEvent<Integer>("join_invitation_event"+map.get("id"), Integer.parseInt(map.get("id").toString())));
+									
+								}
+								else
+								{
+									Toast.makeText(context, joinInvitationMapById.getMessage(), Toast.LENGTH_LONG).show();
+								}
 								//保存修改
-								item.put("isJoin", 0);
-								item.put("currentNum", Integer.parseInt(item.get("currentNum").toString())-1);
-								drawable.setCircleScale_(drawable.getCircleScale()-0.1f);
-								drawable.setProgress_(drawable.getProgress()-0.1f);
-								_holder.info1.setText(TO_JOIN);
-								_holder.info2.setText(item.get("currentNum")+"/"+item.get("maxNum"));
 							}
 						}).show();
 					}
 					else
 					{
-						drawable.setCircleScale_(drawable.getCircleScale()+0.1f);
-					
-						drawable.setProgress_(drawable.getProgress()+0.1f);
-						
-						item.put("isJoin", 1);
-						item.put("currentNum", Integer.parseInt(item.get("currentNum").toString())+1);
-						_holder.info1.setText(HAS_JOIN);
-						_holder.info2.setText(item.get("currentNum")+"/"+item.get("maxNum"));
+						Result<Map<String, Object>> joinInvitationById = Application.getInvitationService().joinInvitationById(Integer.parseInt(item.get("id").toString()),true);
+						Map<String, Object> map = joinInvitationById.getResult();
+						if(joinInvitationById.getStatus().equals("success"))
+						{
+							int currentNum =Integer.parseInt(map.get("currentNum").toString());
+							int maxNum =Integer.parseInt(map.get("maxNum").toString());
+							drawable.setCircleScale_((float) (currentNum/(maxNum+0.0)));
+							drawable.setProgress_((float) (currentNum/(maxNum+0.0)));
+							_holder.info1.setText(HAS_JOIN);
+							_holder.info2.setText(currentNum+"/"+maxNum);
+							
+							DispatchEvent.dispatchEvent(new DEvent<Integer>("join_invitation_event"+map.get("id"), Integer.parseInt(map.get("id").toString())));
+						}
+						else
+						{
+							Toast.makeText(context, joinInvitationById.getMessage(), Toast.LENGTH_LONG).show();
+						}
 					}
 				}
 				

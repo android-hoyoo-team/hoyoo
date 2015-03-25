@@ -1,7 +1,5 @@
 package com.huyoo.global;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -34,8 +32,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			//dropTable();
 			//EAchievement
 			db.execSQL("CREATE TABLE IF NOT EXISTS EACHIEVEMENT"+
-					"(id INTEGER,name TEXT,exp INTEGER,type　TEXT,description TEXT,icon TEXT,addition TEXT,"
-					+ "totalProgress INTEGER)");
+					"(id INTEGER,name TEXT,exp INTEGER,type TEXT,description TEXT,icon TEXT,addition TEXT,"
+					+ "totalProgress INTEGER,expensionPack TEXT)");
 			//EArticle
 			db.execSQL("CREATE TABLE IF NOT EXISTS EARTICLE"+
 					"(id INTEGER,personId INTEGER,time INTEGER,title TEXT,content TEXT,icon TEXT,hits INTEGER,type TEXT)");
@@ -66,6 +64,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			//RAttention
 			db.execSQL("CREATE TABLE IF NOT EXISTS RATTENTION"+
 					"(id INTEGER PRIMARY KEY AUTOINCREMENT,personIdFrom INTEGER,personIdTo INTEGER,time INTEGER)");
+			//RInvitationLike
+			db.execSQL("CREATE TABLE IF NOT EXISTS RINVITATIONLIKE"+
+					"(id INTEGER PRIMARY KEY AUTOINCREMENT,invitationId INTEGER,personId INTEGER,time INTEGER)");
+
 			//RInvitationPerson
 			db.execSQL("CREATE TABLE IF NOT EXISTS RINVITATIONPERSON"+
 					"(id INTEGER PRIMARY KEY AUTOINCREMENT,personId INTEGER,time INTEGER,content TEXT,invitationId INTEGER,coomentIdTo INTEGER)");
@@ -99,6 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		initLevel();
 		initPerson();
 		initUnion();
+		initUnionPerson();
 	}
 
 	public void dropTable(){
@@ -142,6 +145,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		a1.put("exp", 20);
 		a1.put("icon", "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/A7CD0734EBCC440BA9DFF1CE45B988DD");
 		a1.put("totalProgress", 1);
+		a1.put("type", "综合类");
+		a1.put("expensionPack", "病毒入侵");
 		this.db.insert("EAchievement", null, a1);
 		ContentValues a2 = new ContentValues();
 		a2.put("id", 2);
@@ -151,6 +156,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		a2.put("exp", 10);
 		a2.put("icon", "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/8B36B19036A345F7AA165614D9D8FE10");
 		a2.put("totalProgress", 1);
+		a2.put("type", "综合类");
+		a2.put("expensionPack", "病毒入侵");
 		this.db.insert("EAchievement", null, a2);
 		ContentValues a3 = new ContentValues();
 		a3.put("id", 3);
@@ -160,6 +167,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		a3.put("exp", 15);
 		a3.put("icon", "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/AC4B59CE5F194B23A4444FF26C12CC10");
 		a3.put("totalProgress", 1);
+		a3.put("type", "综合类");
+		a3.put("expensionPack", "病毒入侵");
 		this.db.insert("EAchievement", null, a3);
 		ContentValues a4 = new ContentValues();
 		a4.put("id", 4);
@@ -169,6 +178,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		a4.put("exp", 5);
 		a4.put("icon", "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/A7CD0734EBCC440BA9DFF1CE45B988DD");
 		a4.put("totalProgress", 1);
+		a4.put("type", "综合类");
+		a4.put("expensionPack", "病毒入侵");
 		this.db.insert("EAchievement", null, a4);
 
 		ContentValues a5 = new ContentValues();
@@ -179,6 +190,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		a5.put("exp", 5);
 		a5.put("icon", "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/8B36B19036A345F7AA165614D9D8FE10");
 		a5.put("totalProgress", 1);
+		a5.put("type", "综合类");
+		a5.put("expensionPack", "病毒入侵");
 		this.db.insert("EAchievement", null, a5);
 
 		ContentValues a6 = new ContentValues();
@@ -189,6 +202,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		a6.put("exp", 5);
 		a6.put("icon", "http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B09EEE5C385D4C46B1A7F48B4EE6619A");
 		a6.put("totalProgress", 1);
+		a6.put("type", "综合类");
+		a6.put("expensionPack", "病毒入侵");
 		this.db.insert("EAchievement", null, a6);
 		ContentValues a7 = new ContentValues();
 		a7.put("id", 7);
@@ -198,6 +213,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		a7.put("exp", 10);
 		a7.put("icon", "http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B09EEE5C385D4C46B1A7F48B4EE6619A");
 		a7.put("totalProgress", 1);
+		a7.put("type", "综合类");
+		a7.put("expensionPack", "病毒入侵");
 		this.db.insert("EAchievement", null, a7);
 		ContentValues a8 = new ContentValues();
 		a8.put("id", 8);
@@ -207,6 +224,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		a8.put("exp", 10);
 		a8.put("icon", "http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B09EEE5C385D4C46B1A7F48B4EE6619A");
 		a8.put("totalProgress", 1);
+		a8.put("type", "综合类");
+		a8.put("expensionPack", "病毒入侵");
 		this.db.insert("EAchievement", null, a8);
 	}
 
@@ -439,7 +458,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\","
 				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
-		
+
 		ContentValues in3 = new ContentValues();
 		in3.put("id", 3);
 		in3.put("personId", 1);
@@ -458,7 +477,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\","
 				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
-		
+
 		ContentValues in4 = new ContentValues();
 		in4.put("id", 4);
 		in4.put("personId", 1);
@@ -634,6 +653,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		ContentValues u1 = new ContentValues();
 		u1.put("id", 1);
 		u1.put("name", "STARS");
+		u1.put("chairmanId", 1);
 		u1.put("currentExp", 12100);
 		u1.put("icon", "http://a2.qpic.cn/psb?/V123gJXv3aiMj6/80WTBdgeP3GoowD3vBhdlA1xmlyksgJQOl.sxKSE99c!/b/dAQAAAAAAAAA&bo=yQDcAAAAAAABBzU!&rf=viewer_4");
 		u1.put("levelId", 2);
@@ -648,6 +668,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		u2.put("id", 2);
 		u2.put("name", "BlueSky");
 		u2.put("currentExp", 0);
+		u1.put("chairmanId", 2);
 		u2.put("icon", "http://a2.qpic.cn/psb?/V123gJXv3aiMj6/80WTBdgeP3GoowD3vBhdlA1xmlyksgJQOl.sxKSE99c!/b/dAQAAAAAAAAA&bo=yQDcAAAAAAABBzU!&rf=viewer_4");
 		u2.put("levelId", 2);
 		u2.put("time", 1000000000l);
@@ -666,8 +687,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	}
 	public void initPersonAchievement(){
-		
-		
+
+
 	}
 	public void initUnionApplication(){
 

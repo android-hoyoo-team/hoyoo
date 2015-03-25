@@ -15,7 +15,6 @@ import com.huyoo.service.ELevelService;
 //import com.huyoo.service.EMessageService;
 import com.huyoo.service.EPersonService;
 import com.huyoo.service.EUnionService;
-import com.huyoo.service.RPersonAchievementService;
 
 public class Application {
 
@@ -33,7 +32,6 @@ public class Application {
 
 	private static AchievementDispatcher achievementDispatcher;
 
-	private static RPersonAchievementService personAchievementService;
 	/**
 	 * 获取EUnionService单例
 	 * 
@@ -175,10 +173,5 @@ public class Application {
 			achievementDispatcher = new AchievementDispatcher();
 		}
 		return achievementDispatcher;
-	}
-	public static RPersonAchievementService getPersonAchievementService() {
-		if(personAchievementService==null)
-			personAchievementService = new RPersonAchievementService();
-		return personAchievementService;
 	}
 }

@@ -188,7 +188,7 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 			Group group = new Group();
 			group.setTitle(titles[i]);
 			groupList.add(group);
-			List<EAchievement> childTemp = Application.getAchievementService().getEAchievementsByType(person.getId(), titles[i]);
+			List<EAchievement> childTemp = Application.getAchievementService().getEAchievementsByType(titles[i]);
 			childList.add(childTemp);
 		}
 		adapter = new MyexpandableListAdapter(getActivity());

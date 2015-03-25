@@ -48,7 +48,7 @@ public class UnionNewsList extends Activity {
 		mListView=(ListView)findViewById(R.id.union_news_listview);
 		mAdapter=new NewsListAdapter(this);
 		List<Map<String,Object>> mapList=new ArrayList<Map<String,Object>>();
-		mapList=Application.getArticleSercice().convertFromList(Application.getArticleSercice().getAllNews());
+		mapList=Application.getArticleSercice().convertFromList(Application.getArticleSercice().getUnionNews(Application.getLoginInfo().getUnion().getId()));
 		mAdapter.setNewsList(mapList);
 		mListView.setAdapter(mAdapter);
 		mListView.setOnItemClickListener(new OnItemClickListener() {

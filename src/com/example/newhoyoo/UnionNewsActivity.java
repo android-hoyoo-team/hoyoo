@@ -45,7 +45,6 @@ public class UnionNewsActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.union_news);
 		Intent intent=getIntent();
 		String type=intent.getStringExtra("type");
@@ -60,7 +59,7 @@ public class UnionNewsActivity extends Activity {
 		if("公会新闻".equals(type)){
 			
 			//根据传入的id获取新闻
-			EArticle news=Application.getArticleSercice().getNewsById(id);
+			EArticle news=Application.getArticleSercice().getArticleById(id);
 			
 			//根据获得的personId获取EPerson
 			EPerson person=Application.getPersonService().getEPersonById(news.getPersonId());
@@ -79,7 +78,7 @@ public class UnionNewsActivity extends Activity {
 		}
 		else{
 			//根据传入的id获取成功秘笈
-			EArticle tip=Application.getArticleSercice().getTipById(id);
+			EArticle tip=Application.getArticleSercice().getArticleById(id);
 			//根据获得的personId获取EPerson
 			EPerson person=Application.getPersonService().getEPersonById(tip.getPersonId());
 			//绑定数据

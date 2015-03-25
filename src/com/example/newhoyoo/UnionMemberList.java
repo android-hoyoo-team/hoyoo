@@ -76,7 +76,7 @@ public class UnionMemberList extends Activity{
 				final View view = super.getView(position, convertView, parent);
 				final int targetId =Integer.parseInt(((TextView)view.findViewById(R.id.id_textview)).getText().toString());
 				final String targetName = ((TextView)view.findViewById(R.id.name_textview)).getText().toString();
-				final List<RAttention> attentions = Application.getPersonService().getAttentionsByPersonId(person.getId());
+				final List<RAttention> attentions = Application.getPersonService().getAttentionFrom(person.getId());
 				view.findViewById(R.id.optionmenu_imageview).setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {

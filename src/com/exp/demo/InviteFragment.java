@@ -93,7 +93,7 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 			
 			mAdapter2 =new InvitationListAdapter(this.getActivity());
 			
-			mAdapter2.setInvitationList(Application.getInvitationService().getInvitationsMapByUnionId(Application.getLoginInfo().getLevel().getId(),0,5));
+			mAdapter2.setInvitationList(Application.getInvitationService().getInvitationsMapByUnionId(Application.getLoginInfo().getUnion().getId(),0,5,"hits"));
 					/*new MultiLayoutSimpleAdapter(InviteFragment.this.getActivity(), 
 													 getData(),
 													 new int[]{R.layout.invitation_item}, 

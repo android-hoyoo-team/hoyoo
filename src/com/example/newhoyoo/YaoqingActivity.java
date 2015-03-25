@@ -410,9 +410,9 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 		// }
 		//
 		// });
-		Message message = new Message();
-		message.setType("achievement");
-		DispatchEvent.dispatchEvent(new DEvent<Message>("message",message ));
+//		Message message = new Message();
+//		message.setType("achievement");
+//		DispatchEvent.dispatchEvent(new DEvent<Message>("message",message ));
 	}
 
 	class Button1Listener implements OnClickListener {
@@ -626,15 +626,18 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 //		float y = viewflipper.getY();
 		int barHeight=bar.getHeight();
 		int height = viewflipper.getHeight();
-		if(e1.getY()<barHeight+height && e2.getY()<barHeight+height && e1.getY()>barHeight &&e2.getY()>barHeight){
-			if (e1.getX() - e2.getX() > FLIP_DISTANCE) {
+		if(e1!=null&&e2!=null)
+		{
+			if(e1.getY()<barHeight+height && e2.getY()<barHeight+height && e1.getY()>barHeight &&e2.getY()>barHeight){
+				if (e1.getX() - e2.getX() > FLIP_DISTANCE) {
 //				change((index0+1+viewflipper.getChildCount())%viewflipper.getChildCount());
-				change(-1);
-				return true;
-			} else if (e2.getX() - e1.getX() > FLIP_DISTANCE) {
+					change(-1);
+					return true;
+				} else if (e2.getX() - e1.getX() > FLIP_DISTANCE) {
 //				change((index0-1+viewflipper.getChildCount())%viewflipper.getChildCount());
-				change(-2);
-				return true;
+					change(-2);
+					return true;
+				}
 			}
 		}
 		return false;
