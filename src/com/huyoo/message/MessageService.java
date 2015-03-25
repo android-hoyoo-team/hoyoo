@@ -25,20 +25,19 @@ public class MessageService {
 	}
 	private MessageService(final Application appContext)
 	{
-		Log.d("hjl", "MessageService init");
 		DispatchEvent.addEventListener("message", new IMethod<Message>() {
 			@Override
 			public void excute(DEvent<Message> e) {
-				Message target = e.getTarget();
-				Log.d("hjl",target.getType() );
-				if(target.getType().equals("achievement"))
+				Message<EAchievement> target = e.getTarget();
+				EAchievement achievement = target.getInfo();
+				if(target.getType().equals("achievement")&&achievement!=null)
 				{
-					Log.d("hjl", "achievement");
 //					EAchievement achievement = com.huyoo.global.Application.getAchievementService().getEAchievementById(1);
 //					Utils.getAchievementDialog(appContext,achievement).show();
 //					Toast.makeText(appContext, Utils.getTopActivity(appContext).getClassName(),Toast.LENGTH_LONG).show();
 					Intent intent=new Intent();
-					intent.putExtra("id", 1+"");
+					intent.putExtra("id", achievement.getId());
+					intent.putExtra("achievement", achievement);
 //					intent.setComponent(Utils.getTopActivity(appContext));
 					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					intent.setClassName("com.example.newhoyoo", "com.example.newhoyoo.AchievementDialog");

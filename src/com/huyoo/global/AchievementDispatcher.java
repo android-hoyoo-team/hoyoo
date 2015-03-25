@@ -55,7 +55,10 @@ public class AchievementDispatcher {
 					personAchievementService.updatePersonAchievement(rpa);
 				}
 				if(rpa.getCurrentProgress() == achievementService.getEAchievementById(achievementId).getTotalProgress()){
-					DispatchEvent.dispatchEvent(new DEvent("message", "您获得了成就【"+achievementService.getEAchievementById(achievementId).getName()+"】"));
+					Message message = new Message();
+					message.setType("achievement");
+					DispatchEvent.dispatchEvent(new DEvent<Message>("message",message ));
+//					DispatchEvent.dispatchEvent(new DEvent("message", "您获得了成就【"+achievementService.getEAchievementById(achievementId).getName()+"】"));
 				}
 			}
 		};

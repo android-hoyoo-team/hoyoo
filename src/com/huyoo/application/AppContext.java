@@ -52,6 +52,7 @@ public class AppContext extends Application {
 		super.onCreate();
 		Log.d("hjl", "app");
 		messageService = MessageService.getInstance(this);
+		com.huyoo.global.Application.getLoginInfo();
 		//注册App异常崩溃处理器
 //		Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler());
 //		JPushInterface.setDebugMode(true);

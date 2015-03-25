@@ -1,5 +1,7 @@
 package com.example.newhoyoo;
 
+import java.io.Serializable;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,8 +26,9 @@ public class AchievementDialog extends Activity {
 				R.layout.achieved_dialog, null);
 		Intent intent = getIntent();
 		aq = new AQuery(this);
-		achievement = Application.getAchievementService().getEAchievementById(
-				Integer.parseInt(intent.getStringExtra("id").toString()));
+//		achievement = Application.getAchievementService().getEAchievementById(
+//				Integer.parseInt(intent.getStringExtra("id").toString()));
+		achievement = (EAchievement) intent.getSerializableExtra("achievement");
 //		AlertDialog alertDialog = new AlertDialog.Builder(context).setView(dialog).create();
 		aq.id(R.id.dialog_achievement_name).text(achievement.getName());
 		aq.id(R.id.dialog_achievement_addition).text(
