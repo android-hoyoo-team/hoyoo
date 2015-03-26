@@ -258,7 +258,7 @@ public class EPersonService {
 	public long removeFriend(int id){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getWritableDatabase();
-		return db.delete("RAttention", "personIdTo=? adn personIdFrom=?", new String[]{id+"",Application.getLoginInfo().getPerson().getId()+""});
+		return db.delete("RAttention", "personIdTo=? and personIdFrom=?", new String[]{id+"",Application.getLoginInfo().getPerson().getId()+""});
 	}
 
 
