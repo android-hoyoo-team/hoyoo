@@ -34,33 +34,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			//dropTable();
 			//EAchievement
 			db.execSQL("CREATE TABLE IF NOT EXISTS EACHIEVEMENT"+
-					"(id INTEGER,name TEXT,exp INTEGER,type TEXT,description TEXT,icon TEXT,addition TEXT,"
+					"(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,exp INTEGER,type TEXT,description TEXT,icon TEXT,addition TEXT,"
 					+ "totalProgress INTEGER,expensionPack TEXT)");
 			//EArticle
 			db.execSQL("CREATE TABLE IF NOT EXISTS EARTICLE"+
-					"(id INTEGER,personId INTEGER,time INTEGER,title TEXT,content TEXT,icon TEXT,hits INTEGER,type TEXT)");
+					"(id INTEGER PRIMARY KEY AUTOINCREMENT,personId INTEGER,time INTEGER,title TEXT,content TEXT,icon TEXT,hits INTEGER,type TEXT)");
 			//EComment
 			db.execSQL("CREATE TABLE IF NOT EXISTS ECOMMENT"+
-					"(id INTEGER,personId INTEGER,time INTEGER,content TEXT,invitationId INTEGER,commentIdTo INTEGER)");
+					"(id INTEGER PRIMARY KEY AUTOINCREMENT,personId INTEGER,time INTEGER,content TEXT,invitationId INTEGER,commentIdTo INTEGER)");
 			//EInvitation
 			db.execSQL("CREATE TABLE IF NOT EXISTS EINVITATION"+
-					"(id INTEGER,personId INTEGER,activityTime INTEGER,title TEXT,content TEXT,address TEXT,"
+					"(id INTEGER PRIMARY KEY AUTOINCREMENT,personId INTEGER,activityTime INTEGER,title TEXT,content TEXT,address TEXT,"
 					+ "maxNum INTEGER,currentNum INTEGER,forwardIdFrom INTEGER,originalId INTEGER,status TEXT,issueTime INTEGER,"
 					+ "icons TEXT,hits TEXT)");
 			//ELetter
 			db.execSQL("CREATE TABLE IF NOT EXISTS ELETTER"+
-					"(id INTEGER,personIdTo INTEGER,title TEXT,content TEXT,time INTEGER,statusFrom TEXT"
+					"(id INTEGER PRIMARY KEY AUTOINCREMENT,personIdTo INTEGER,title TEXT,content TEXT,time INTEGER,statusFrom TEXT"
 					+ "statusTo TEXT)");
 			//ELevel
 			db.execSQL("CREATE TABLE IF NOT EXISTS ELEVEL"+
-					"(id INTEGER,name TEXT,upgradeExp INTEGER,type TEXT)");
+					"(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,upgradeExp INTEGER,type TEXT)");
 			//EPerson
 			db.execSQL("CREATE TABLE IF NOT EXISTS EPERSON"+
-					"(id INTEGER,name TEXT,sex TEXT,school TEXT,department TEXT,birthday INTEGER,"
+					"(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,sex TEXT,school TEXT,department TEXT,birthday INTEGER,"
 					+ "phoneNum TEXT,position TEXT,password TEXT,levelId INTEGER, vp INTEGER,icon TEXT,currentExp INTEGER)");
 			//EUnion
 			db.execSQL("CREATE TABLE IF NOT EXISTS EUNION"+
-					"(id INTEGER,name TEXT,chairmanId INTEGER,levelId INTEGER,type TEXT,totalNum INTEGER,"
+					"(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT,chairmanId INTEGER,levelId INTEGER,type TEXT,totalNum INTEGER,"
 					+ "icon TEXT,time INTEGER,currentExp INTEGER,activityNum INTEGER,status TEXT)");
 
 			//RAttention
