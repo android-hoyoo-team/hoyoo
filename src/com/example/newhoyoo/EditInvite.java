@@ -20,11 +20,12 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TimePicker;
 
 public class EditInvite extends Activity implements OnTouchListener{
 	private ImageButton leftImageButton;
-	private Button issueButton;
+	private ImageButton issueButton;
 	private ImageButton addImageButton;
 	private ImageButton deleteImageButton;
 	private ImageButton timeImageButton;
@@ -53,7 +54,7 @@ public class EditInvite extends Activity implements OnTouchListener{
 
 		date_edittext = (EditText)findViewById(R.id.date_edittext);
 		time_edittext = (EditText)findViewById(R.id.time_edittext);
-		issueButton=(Button)findViewById(R.id.issueButoon);
+		issueButton=(ImageButton)findViewById(R.id.issueButoon);
 		addImageButton=(ImageButton)findViewById(R.id.addImageButton);
 		deleteImageButton=(ImageButton)findViewById(R.id.deleteImageButton);
 		timeImageButton=(ImageButton)findViewById(R.id.timeImageButton);

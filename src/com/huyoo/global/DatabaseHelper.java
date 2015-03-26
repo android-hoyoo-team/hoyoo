@@ -570,9 +570,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 		ContentValues coin23 = new ContentValues();	
 		coin23.put("id", 22);
-		coin23.put("personId", 1);
+		coin23.put("personId", 3);
 		coin23.put("time",1426583209941l);
-		coin23.put("content", "恩，求同行");
+		coin23.put("content", "求同行");
 		coin23.put("invitationId", 6);
 		coin23.put("commentIdTo", 0);
 		this.db.insert("EComment", null, coin23);
