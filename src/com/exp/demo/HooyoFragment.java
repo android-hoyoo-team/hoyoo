@@ -109,7 +109,8 @@ public class HooyoFragment extends Fragment {
 					Intent intent=new Intent();
 					HashMap<String,Object> item = (HashMap<String, Object>)myListView2.getItemAtPosition(arg2);
 					intent.setClass(getActivity(),YaoqingActivity.class);
-					intent.putExtra("item", item);
+					
+					intent.putExtra("id", Integer.parseInt(item.get("id").toString()));
 					getActivity().startActivity(intent);
 				}
 			});   

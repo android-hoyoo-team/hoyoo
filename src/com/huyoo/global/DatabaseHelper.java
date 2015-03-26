@@ -443,38 +443,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\","
 				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
 		ContentValues in2 = new ContentValues();
-		in2.put("id", 2);
-		in2.put("personId", 1);
-		in2.put("activityTime", 1425546750006l);
+		in2.put("id", 2); 
+		in2.put("personId", 2); 
 		in2.put("title", "");
-		in2.put("content", "2015 痛仰乐队《愿爱无忧》全国巡演 无锡站");
-		in2.put("address", "无锡 南长区 N1955南下塘文化创意园9号楼");
-		in2.put("maxNum", 50);
-		in2.put("currentNum", 15);
+		in2.put("issueTime", 1425545750006l); 
+		in2.put("activityTime", 1425546750006l); 
+		in2.put("content", "2015“我的手艺”首届中华手作创意嘉年华暨全国手工艺品创意品大型巡回展销会"); 
+		in2.put("address", "江苏省无锡市清明桥古运河景区南长街"); 
+		in2.put("currentNum", 15); 
+		in2.put("maxNum", 30); 
+		in2.put("hits", 234); 
 		in2.put("forwardIdFrom", 0);
 		in2.put("originalId", 0);
 		in2.put("status","");
-		in2.put("issueTime", 1425545750006l);
-		in2.put("hits", 123);
 		in2.put("icons", "[\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\","
 				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
 
 		ContentValues in3 = new ContentValues();
-		in3.put("id", 3);
-		in3.put("personId", 1);
-		in3.put("activityTime", 1425546750006l);
+		
+		in3.put("id", 3); 
+		in3.put("personId", 2); 
 		in3.put("title", "");
-		in3.put("content", "2015 痛仰乐队《愿爱无忧》全国巡演 无锡站");
-		in3.put("address", "无锡 南长区 N1955南下塘文化创意园9号楼");
-		in3.put("maxNum", 50);
-		in3.put("currentNum", 15);
+		in3.put("issueTime", 1425545750006l); 
+		in3.put("activityTime", 1425546750006l); 
+		in3.put("content", "周一晚上过来玩"); 
+		in3.put("address", "你想到的地方1"); 
+		in3.put("currentNum", 15); 
+		in3.put("maxNum", 15); 
+		in3.put("hits", 345); 
 		in3.put("forwardIdFrom", 0);
 		in3.put("originalId", 0);
 		in3.put("status","");
-		in3.put("issueTime", 1425545750006l);
-		in3.put("hits", 123);
+		
 		in3.put("icons", "[\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\","
@@ -482,25 +484,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		ContentValues in4 = new ContentValues();
 		in4.put("id", 4);
-		in4.put("personId", 1);
+		in4.put("personId", 2);
 		in4.put("activityTime", 1425546750006l);
 		in4.put("title", "");
-		in4.put("content", "2015 痛仰乐队《愿爱无忧》全国巡演 无锡站");
-		in4.put("address", "无锡 南长区 N1955南下塘文化创意园9号楼");
-		in4.put("maxNum", 50);
-		in4.put("currentNum", 15);
+		in4.put("content", "周六晚上过来玩");
+		in4.put("address", "你想不到的地方");
+		in4.put("maxNum", 100);
+		in4.put("currentNum", 10);
 		in4.put("forwardIdFrom", 0);
 		in4.put("originalId", 0);
 		in4.put("status","");
 		in4.put("issueTime", 1425545750006l);
-		in4.put("hits", 123);
+		in4.put("hits", 1);
 		in4.put("icons", "[\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4A6544428E98469D90AA22C9C5A5219A\","+
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\","
 				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
 		ContentValues in5 = new ContentValues();
 		in5.put("id", 5);
-		in5.put("personId", 1);
+		in5.put("personId", 4);
 		in5.put("activityTime", 1425546750006l);
 		in5.put("title", "");
 		in5.put("content", "2015 痛仰乐队《愿爱无忧》全国巡演 无锡站");
@@ -518,13 +520,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
 		ContentValues in6 = new ContentValues();
 		in6.put("id", 6);
-		in6.put("personId", 1);
+		in6.put("personId", 5);
 		in6.put("activityTime", 1425546750006l);
 		in6.put("title", "");
-		in6.put("content", "2015 痛仰乐队《愿爱无忧》全国巡演 无锡站");
-		in6.put("address", "无锡 南长区 N1955南下塘文化创意园9号楼");
-		in6.put("maxNum", 50);
-		in6.put("currentNum", 15);
+		in6.put("content", "忧郁的慈禧 ——逃亡的路上可有星光照耀 .幸福大街2015年春季巡演无锡专场 ");
+		in6.put("address", "活塞 LIVE HOUSE");
+		in6.put("maxNum", 200);
+		in6.put("currentNum", 4);
 		in6.put("forwardIdFrom", 0);
 		in6.put("originalId", 0);
 		in6.put("status","");
@@ -536,13 +538,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
 		ContentValues in7 = new ContentValues();
 		in7.put("id", 7);
-		in7.put("personId", 1);
+		in7.put("personId", 6);
 		in7.put("activityTime", 1425546750006l);
 		in7.put("title", "");
-		in7.put("content", "2015 痛仰乐队《愿爱无忧》全国巡演 无锡站");
-		in7.put("address", "无锡 南长区 N1955南下塘文化创意园9号楼");
+		in7.put("content", "旅行是件经事儿，背上行囊走在青春与梦想的路上。 不要问我来自哪里， 不要问我为何孤身一人。 相遇，分开，把玩孤独，享受寂寞， 更明白自己是谁。 在一个人的旅途上， 我并不害怕");
+		in7.put("address", "无锡 滨湖区 雕刻时光 无锡");
 		in7.put("maxNum", 50);
-		in7.put("currentNum", 15);
+		in7.put("currentNum", 49);
 		in7.put("forwardIdFrom", 0);
 		in7.put("originalId", 0);
 		in7.put("status","");
@@ -553,14 +555,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/7F237BC82FB2493FAFF1C15360511255\","
 				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/387E04F85B414DF999B25DED8BEC0391\"]");
 		ContentValues in8 = new ContentValues();
-		in8.put("id", 2);
-		in8.put("personId", 1);
+		in8.put("id", 8);
+		in8.put("personId", 7);
 		in8.put("activityTime", 1425546750006l);
 		in8.put("title", "");
-		in8.put("content", "2015 痛仰乐队《愿爱无忧》全国巡演 无锡站");
-		in8.put("address", "无锡 南长区 N1955南下塘文化创意园9号楼");
-		in8.put("maxNum", 50);
-		in8.put("currentNum", 15);
+		in8.put("content", "无锡孤独症康复十周年“爱心券”义卖，帮助来自星星的孩子们");
+		in8.put("address", "无锡 无锡大剧院");
+		in8.put("maxNum", 30);
+		in8.put("currentNum", 30);
 		in8.put("forwardIdFrom", 0);
 		in8.put("originalId", 0);
 		in8.put("status","");
@@ -624,7 +626,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		p2.put("levelId", 1);
 		p2.put("icon", "http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/8AF5E330B6E245BAAAFC8078BC8A9D91");
 		p2.put("sex", "男");
-		p2.put("school", "蚌埠学院");
+		p2.put("school", "江南大学");
 		p2.put("department", "计算机");
 		p2.put("birthday", 10000000000l);
 		p2.put("phoneNum", "10001");
@@ -633,9 +635,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		p2.put("currentExp", 2730);
 		this.db.insert("EPerson", null, p2);
 
+		ContentValues p3 = new ContentValues();
+		p3.put("id", 3);
+		p3.put("name", "测试小张");
+		p3.put("levelId", 1);
+		p3.put("icon", "http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/9855C5331E004040B1A5D6C9D8483108");
+		p3.put("sex", "男");
+		p3.put("school", "斯坦福小学");
+		p3.put("department", "计算机");
+		p3.put("birthday", 10000000000l);
+		p3.put("phoneNum", "10000");
+		p3.put("password", "1");
+		p3.put("position", "学生会主席");
+		p3.put("vp", 80);
+		p3.put("currentExp", 1001);
+		this.db.insert("EPerson", null, p3);
 		for(int i=0;i<20;i++){
 			ContentValues cv = new ContentValues();
-			cv.put("id", i+3);
+			cv.put("id", i+4);
 			cv.put("name", "王昆"+i);
 			cv.put("levelId", 1);
 			cv.put("icon", "http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/51DD76FE9A8349DFA47BEAD61C91E523");
@@ -710,7 +727,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		this.db.insert("RPersonAchievement", null, pa3);
 		ContentValues pa4 = new ContentValues();
 		pa4.put("personId",1);
-		pa4.put("achievementId",1);
+		pa4.put("achievementId",4);
 		pa4.put("time",new Date().getTime());
 		pa4.put("currentProgress", 1);
 		this.db.insert("RPersonAchievement", null, pa4);
@@ -728,7 +745,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 		ContentValues up2 = new ContentValues();
 		up2.put("unionId", 2);
-		up2.put("personId", 3);
+		up2.put("personId", 2);
 		up2.put("status", "in");
 		this.db.insert("RUnionPerson", null, up2);
 

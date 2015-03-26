@@ -181,7 +181,7 @@ public class InvitationListAdapter extends BaseAdapter{
 				DispatchEvent.dispatchEvent(new DEvent<Integer>("invitationListItemClick", Integer.parseInt(item.get("id").toString())));
 			}
 		});
-		addProgressListener(holder,drawable,context,item);
+		addProgressListener(holder,context,Integer.parseInt(item.get("id").toString()));
 		/**为Button添加点击事件*/             
 		//        holder.bt.setOnClickListener(new OnClickListener() {
 		//            @Override
@@ -206,19 +206,18 @@ public class InvitationListAdapter extends BaseAdapter{
 
 		
 	}
-	public static void addProgressListener(final ViewHolder _holder,final CircularProgressDrawable  drawable,final Context context,final Map<String,Object> item)
+	public static void addProgressListener(final ViewHolder _holder,final Context context,final int invitationId)
 	{
-		
 		
 		_holder.progress.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+				final CircularProgressDrawable drawable = (CircularProgressDrawable) _holder.progress.getDrawable();
 				int vid=v.getId();
 				if(vid==_holder.progress.getId())
 				{
-					int id =Integer.parseInt(item.get("id").toString());
-					 final Map<String, Object> invitationMapById = Application.getInvitationService().getInvitationMapById(id);
+					 final Map<String, Object> invitationMapById = Application.getInvitationService().getInvitationMapById(invitationId);
 //				Map<String,Object> tag = (Map<String,Object>) holder.progress.getTag();
 					int jo=invitationMapById.get("isJoin")==null?0:Integer.parseInt(invitationMapById.get("isJoin").toString());
 					if(jo==1)
@@ -257,7 +256,7 @@ public class InvitationListAdapter extends BaseAdapter{
 					}
 					else
 					{
-						Result<Map<String, Object>> joinInvitationById = Application.getInvitationService().joinInvitationById(Integer.parseInt(item.get("id").toString()),true);
+						Result<Map<String, Object>> joinInvitationById = Application.getInvitationService().joinInvitationById(invitationId,true);
 						Map<String, Object> map = joinInvitationById.getResult();
 						if(joinInvitationById.getStatus().equals("success"))
 						{
