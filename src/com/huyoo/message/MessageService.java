@@ -33,6 +33,7 @@ public class MessageService {
 			public void excute(DEvent<Message> e) {
 				Message<EAchievement> target = e.getTarget();
 				EAchievement achievement = target.getInfo();
+				Log.d("huyoo", e.getType());
 				if(target.getType().equals("achievement")&&achievement!=null)
 				{
 //					EAchievement achievement = com.huyoo.global.Application.getAchievementService().getEAchievementById(1);

@@ -5,6 +5,7 @@ import java.util.Date;
 import per.cz.event1_0.DEvent;
 import per.cz.event1_0.DispatchEvent;
 import per.cz.event1_0.IMethod;
+import android.util.Log;
 
 import com.huyoo.entity.EAchievement;
 import com.huyoo.entity.RPersonAchievement;
@@ -30,10 +31,14 @@ public class AchievementDispatcher {
 				case "enterAchievement":
 					achievementId = 4;
 					break;
+				case "uploadHeader":
+					achievementId = 2;
+					break;
 				default:
 					break;
 				}
 				rpa = service.getPersonAchievementBy(personId, achievementId);
+				System.out.println(rpa==null);
 				if(rpa == null){
 					rpa = new RPersonAchievement();
 					rpa.setPersonId(personId);
@@ -59,5 +64,6 @@ public class AchievementDispatcher {
 		};
 		DispatchEvent.addEventListener("login",message);
 		DispatchEvent.addEventListener("enterAchievement",message);
+		DispatchEvent.addEventListener("uploadHeader",message);
 	}
 }

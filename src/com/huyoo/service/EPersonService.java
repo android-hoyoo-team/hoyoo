@@ -101,7 +101,27 @@ public class EPersonService {
 		if(persons!=null&&persons.size()>0)return persons.get(0);
 		return null;
 	}
-
+	
+	
+	public long updatePerson(EPerson person){
+		DatabaseHelper helper = Application.getDatabaseHelper();
+		SQLiteDatabase db = helper.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		
+		cv.put("name", person.getName());
+		cv.put("levelId", person.getLevelId());
+		cv.put("icon", person.getIcon());
+		cv.put("sex", person.getIcon());
+		cv.put("school", person.getSchool());
+		cv.put("department", person.getDepartment());
+		cv.put("birthday", person.getBirthday());
+		cv.put("phoneNum", person.getPhoneNum());
+		cv.put("password", person.getPassword());
+		cv.put("position",person.getPosition());
+		cv.put("vp",person.getVp());
+		cv.put("currentExp", person.getCurrentExp());
+		return db.update("EPerson", cv, "id=?", new String[]{person.getId()+""});
+	}
 	/*=========================================================================*/
 	public List<RAttention> getAttentions(Map<String,Object> params){
 		List<RAttention> attentions = new ArrayList<RAttention>();

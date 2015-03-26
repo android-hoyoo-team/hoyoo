@@ -10,4 +10,7 @@ public class Achievement {
 	public static void enterAchievement(){
 		DispatchEvent.dispatchEvent(new DEvent("enterAchievement", "message"));
 	}
+	public static void uploadHeader(){
+		DispatchEvent.dispatchEvent(new DEvent("uploadHeader", "message"));
+	}
 }

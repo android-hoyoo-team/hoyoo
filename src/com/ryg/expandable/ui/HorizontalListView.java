@@ -6,6 +6,7 @@ import java.util.Queue;
 import android.content.Context;  
 import android.database.DataSetObserver;  
 import android.graphics.Rect;  
+import android.os.Looper;
 import android.util.AttributeSet;  
 import android.view.GestureDetector;  
 import android.view.GestureDetector.OnGestureListener;  

@@ -1,5 +1,12 @@
 package com.example.newhoyoo;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -14,6 +21,7 @@ import com.androidquery.AQuery;
 import com.huyoo.entity.ELevel;
 import com.huyoo.entity.EPerson;
 import com.huyoo.entity.EUnion;
+import com.huyoo.global.Achievement;
 import com.huyoo.global.Application;
 import com.ryg.expandable.ui.CustomActionbar;
 
@@ -26,10 +34,16 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.InputType;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -86,9 +100,9 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 				init();
 			}
 		});
-		
+
 	}
-	
+
 	public void init(){
 		person = Application.getLoginInfo().getPerson();
 		union = Application.getLoginInfo().getUnion();
@@ -128,6 +142,7 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 
 		birthday_edittext = (EditText)findViewById(R.id.birthday_edittext);
 		birthday_edittext.setOnTouchListener(this);
+		this.aq.id(R.id.change_header_imageview).clicked(this, "changeHeader");
 	}
 
 	@Override
@@ -187,6 +202,43 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				//保存修改
+				BufferedOutputStream  outputStream= null;
+				boolean isChangeHeader = false;
+				try {
+					if(bitmap!=null){
+						File sdDir = null;
+						if(Environment.getExternalStorageState().equals((Environment.MEDIA_MOUNTED))){
+							sdDir = Environment.getExternalStorageDirectory();
+						}
+						String filePath = sdDir.toString()+"/image";
+
+						File file = new File(filePath);
+						if(!file.exists()){
+							file.mkdirs();
+						}
+						String path = filePath+"/"+new Date().getTime()+".png";
+						File imageFile = new File(path);
+						imageFile.createNewFile();
+						outputStream = new BufferedOutputStream(new FileOutputStream(imageFile));
+						bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+						person.setIcon(path);
+						isChangeHeader = true;
+					}
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println(e.toString());
+				}
+				finally{
+					try {
+						if(outputStream!=null)
+							outputStream.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+
+
 				String name = aq.id(R.id.name_edittext).getText().toString().trim();
 				String sex = (sexId == R.id.male_radio) ? "男" : "女";
 				String department = aq.id(R.id.school_edittext).getText().toString();
@@ -197,10 +249,40 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 				if(birthday!=0l)person.setBirthday(birthday);
 				person.setPhoneNum(phoneNum);
 				Application.getLoginInfo().setPerson(person);
+				long result =Application.getPersonService().updatePerson(person);
+				if(result!=-1&&isChangeHeader){
+					Achievement.uploadHeader();
+				}
 				DispatchEvent.dispatchEvent(new DEvent("personUpdateEvent","message"));
 			}
 		}).show();
 
+	}
+
+
+	public void changeHeader(){
+		Intent intent= new Intent();
+		intent.setType("image/*");
+		intent.setAction(Intent.ACTION_GET_CONTENT);
+		startActivityForResult(intent, 1);
+	}
+	Bitmap bitmap;
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		if (resultCode == RESULT_OK) {    
+			Uri uri = data.getData();    
+			ContentResolver cr = this.getContentResolver();    
+			try {    
+				bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));    
+				ImageView imageView = (ImageView) findViewById(R.id.head_imageview);    
+				/* 将Bitmap设定到ImageView */    
+				imageView.setImageBitmap(bitmap);    
+			} catch (FileNotFoundException e) {    
+				Log.e("Exception", e.getMessage(),e);    
+			}    
+		}    
+		super.onActivityResult(requestCode, resultCode, data);    
 	}
 	public void back()
 	{
