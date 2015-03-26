@@ -29,6 +29,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relative_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="148" >
@@ -40,18 +41,18 @@
         </ViewFlipper>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/linear_layout"
+            android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
-            android:background="#80808064" >
-            <TextView 
-                android:layout_width="60dp" 
-                android:layout_height="10dp"/>
+            android:background="#80808064" 
+            android:gravity="center_horizontal">
             <com.ryg.expandable.ui.HorizontalListView
                 android:id="@+id/image_view_list"              
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_centerHorizontal="true" >
+                android:layout_centerHorizontal="true" 
+                >
             </com.ryg.expandable.ui.HorizontalListView>
         </LinearLayout>
     </RelativeLayout>

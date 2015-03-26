@@ -591,8 +591,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		in1.put("status","");
 		in1.put("issueTime", 1425545750006l);
 		in1.put("hits", 123);
-		in1.put("icons", "[\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/EF1E6B7DDB694CCFB133EE7CA37E0A0D\","+
-				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/B252839B13484797AE1D0B7FA617DFC2\","+
+		in1.put("icons", "[\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/B252839B13484797AE1D0B7FA617DFC2\","+
 				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/D836B186E1DC4BD5A4E25FF62ED14C06\","
 				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/F50F722D3E404CC89A6694B8D1C88F46\"]");
 		ContentValues in2 = new ContentValues();
@@ -686,9 +685,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		in6.put("issueTime", 1425545750006l);
 		in6.put("hits", 123);
 		in6.put("icons", "[\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/A70CED51CA0B4764AA93913B2F69B789\","+
-				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/90234A7F9F6845D4A79E4D06E6E85381\","+
-				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/E4BD481D3FEC4051AC074D16E3A2FC5A\","
-				+"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/4018750C98324206B25A38CB7715FC82\"]");
+				"\"http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/E4BD481D3FEC4051AC074D16E3A2FC5A\"]");
 		ContentValues in7 = new ContentValues();
 		in7.put("id", 7);
 		in7.put("personId", 6);
