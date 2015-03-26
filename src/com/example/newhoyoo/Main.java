@@ -143,7 +143,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 		resideMenu.addMenuItem(itemAchievements);
 		resideMenu.addMenuItem(itemMyself);
 		resideMenu.addMenuItem(itemSetting);
-		resideMenu.addMenuItem(itemMessage);
+//		resideMenu.addMenuItem(itemMessage);
 
 		itemHome.setOnClickListener(this);
 		itemInvite.setOnClickListener(this);

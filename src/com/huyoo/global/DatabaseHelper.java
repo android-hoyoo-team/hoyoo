@@ -381,7 +381,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		coin2.put("id", 1);
 		coin2.put("personId", 1);
 		coin2.put("time",1426583209941l);
-		coin2.put("content", "来吧来吧来吧");
+		coin2.put("content", "这个乐队的歌很不错，我听过");
 		coin2.put("invitationId", 1);
 		coin2.put("commentIdTo", 0);
 		this.db.insert("EComment", null, coin2);
@@ -390,8 +390,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		coin3.put("id", 2);
 		coin3.put("personId", 2);
 		coin3.put("time",1426583209941l);
-		coin3.put("content", "棒棒哒");
-		coin3.put("invitationId", 1);
+		coin3.put("content", "很有意义的活动！");
+		coin3.put("invitationId", 2);
 		coin3.put("commentIdTo", 0);
 		this.db.insert("EComment", null, coin3);
 
@@ -399,28 +399,181 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		coin4.put("id", 3);
 		coin4.put("personId", 3);
 		coin4.put("time",1426583209941l);
-		coin4.put("content", "这个主意不错哦");
-		coin4.put("invitationId", 1);
+		coin4.put("content", "想去的地方。。。嗯~");
+		coin4.put("invitationId", 3);
 		coin4.put("commentIdTo", 0);
 		this.db.insert("EComment", null, coin4);
 
 		ContentValues coin5 = new ContentValues();
 		coin5.put("id", 4);
-		coin5.put("personId", 1);
+		coin5.put("personId", 4);
 		coin5.put("time",1426583209941l);
 		coin5.put("content", "不见不散");
-		coin5.put("invitationId", 1);
+		coin5.put("invitationId", 4);
 		coin5.put("commentIdTo", 0);
 		this.db.insert("EComment", null, coin5);
 
 		ContentValues coin6 = new ContentValues();
 		coin6.put("id", 5);
-		coin6.put("personId", 1);
+		coin6.put("personId", 5);
 		coin6.put("time",1426583209941l);
-		coin6.put("content", "给你32个赞");
-		coin6.put("invitationId", 1);
+		coin6.put("content", "哇塞~很酷的说，我要参加！");
+		coin6.put("invitationId", 5);
 		coin6.put("commentIdTo", 0);
 		this.db.insert("EComment", null, coin6);
+		
+		ContentValues coin7 = new ContentValues();
+		coin7.put("id", 6);
+		coin7.put("personId", 1);
+		coin7.put("time",1426583209941l);
+		coin7.put("content", "来吧来吧来吧");
+		coin7.put("invitationId", 6);
+		coin7.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin7);
+
+		ContentValues coin8 = new ContentValues();
+		coin8.put("id", 7);
+		coin8.put("personId", 2);
+		coin8.put("time",1426583209941l);
+		coin8.put("content", "棒棒哒");
+		coin8.put("invitationId", 7);
+		coin8.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin8);
+
+		ContentValues coin9 = new ContentValues();
+		coin9.put("id", 8);
+		coin9.put("personId", 3);
+		coin9.put("time",1426583209941l);
+		coin9.put("content", "让我们都献出自己的一份力量，很有意义的活动，大家多多报名");
+		coin9.put("invitationId", 8);
+		coin9.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin9);
+
+		ContentValues coin10 = new ContentValues();
+		coin10.put("id", 9);
+		coin10.put("personId", 4);
+		coin10.put("time",1426583209941l);
+		coin10.put("content", "不见不散");
+		coin10.put("invitationId", 1);
+		coin10.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin10);
+
+		ContentValues coin11 = new ContentValues();
+		coin11.put("id", 10);
+		coin11.put("personId", 5);
+		coin11.put("time",1426583209941l);
+		coin11.put("content", "给你32个赞");
+		coin11.put("invitationId", 2);
+		coin11.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin11);
+		
+		ContentValues coin12 = new ContentValues();
+		coin12.put("id", 11);
+		coin12.put("personId", 6);
+		coin12.put("time",1426583209941l);
+		coin12.put("content", "很期待");
+		coin12.put("invitationId", 2);
+		coin12.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin12);
+		
+		ContentValues coin13 = new ContentValues();
+		coin13.put("id", 12);
+		coin13.put("personId", 3);
+		coin13.put("time",1426583209941l);
+		coin13.put("content", "可以通过这种活动多认识些朋友，很好！");
+		coin13.put("invitationId", 4);
+		coin13.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin13);
+		
+		ContentValues coin14 = new ContentValues();
+		coin14.put("id", 13);
+		coin14.put("personId", 1);
+		coin14.put("time",1426583209941l);
+		coin14.put("content", "宅男宅女一起来玩，哈哈哈");
+		coin14.put("invitationId", 4);
+		coin14.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin14);
+		
+		ContentValues coin15 = new ContentValues();	
+		coin15.put("id", 14);
+		coin15.put("personId", 5);
+		coin15.put("time",1426583209941l);
+		coin15.put("content", "春天来了，一起去踏青吧~");
+		coin15.put("invitationId", 7);
+		coin15.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin15);
+		
+		ContentValues coin16 = new ContentValues();	
+		coin16.put("id", 15);
+		coin16.put("personId", 7);
+		coin16.put("time",1426583209941l);
+		coin16.put("content", "多出去玩玩也是极好的~");
+		coin16.put("invitationId", 7);
+		coin16.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin16);
+		
+		ContentValues coin17 = new ContentValues();	
+		coin17.put("id", 16);
+		coin17.put("personId", 7);
+		coin17.put("time",1426583209941l);
+		coin17.put("content", "如果能组织好的话，以后应该多有类似的活动！");
+		coin17.put("invitationId", 8);
+		coin17.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin17);
+		
+		ContentValues coin18 = new ContentValues();	
+		coin18.put("id", 17);
+		coin18.put("personId", 2);
+		coin18.put("time",1426583209941l);
+		coin18.put("content", "塞塞塞，一定很热闹。。。");
+		coin18.put("invitationId", 1);
+		coin18.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin18);
+		
+		ContentValues coin19 = new ContentValues();	
+		coin19.put("id", 18);
+		coin19.put("personId", 3);
+		coin19.put("time",1426583209941l);
+		coin19.put("content", "演唱会，没去过，去玩玩");
+		coin19.put("invitationId", 1);
+		coin19.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin19);
+		
+		ContentValues coin20 = new ContentValues();	
+		coin20.put("id", 19);
+		coin20.put("personId", 8);
+		coin20.put("time",1426583209941l);
+		coin20.put("content", "有么有一起去的，私信啊~");
+		coin20.put("invitationId", 1);
+		coin20.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin20);
+		
+		ContentValues coin21 = new ContentValues();	
+		coin21.put("id", 20);
+		coin21.put("personId", 8);
+		coin21.put("time",1426583209941l);
+		coin21.put("content", "不会的能去不，有没有教练的啊");
+		coin21.put("invitationId", 5);
+		coin21.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin21);
+		
+		ContentValues coin22 = new ContentValues();	
+		coin22.put("id", 21);
+		coin22.put("personId", 1);
+		coin22.put("time",1426583209941l);
+		coin22.put("content", "看起来很棒的样子。");
+		coin22.put("invitationId", 5);
+		coin22.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin22);
+		
+		ContentValues coin23 = new ContentValues();	
+		coin23.put("id", 22);
+		coin23.put("personId", 1);
+		coin23.put("time",1426583209941l);
+		coin23.put("content", "恩，求同行");
+		coin23.put("invitationId", 6);
+		coin23.put("commentIdTo", 0);
+		this.db.insert("EComment", null, coin23);
 	}
 
 	public void initInvitation(){

@@ -13,4 +13,7 @@ public class Achievement {
 	public static void uploadHeader(){
 		DispatchEvent.dispatchEvent(new DEvent("uploadHeader", "message"));
 	}
+	public static void joinInvitation() {
+		DispatchEvent.dispatchEvent(new DEvent("joinInvitation", "message"));
+	}
 }

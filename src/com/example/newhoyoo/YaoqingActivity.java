@@ -354,7 +354,7 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 
 		listView = (ListView) findViewById(R.id.listView1);
 		List<EComment> commentList = Application.getCommentService()
-				.getCommentByInvitationId(1);
+				.getCommentByInvitationId(id);
 		List<Map<String, Object>> mapList = new ArrayList<Map<String, Object>>();
 		for (EComment eComment : commentList) {
 			Map<String, Object> map = new HashMap<String, Object>();
