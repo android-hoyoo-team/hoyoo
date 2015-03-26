@@ -47,6 +47,7 @@ public class MessageService {
 					TimerTask task = new TimerTask(){    
 						     public void run(){    
 						    	 appContext.startActivity(intent);
+						    	 DispatchEvent.dispatchEvent(new DEvent<Object>("获得成就",""));
 						     }    
 						 };    
 						 Timer timer = new Timer();  

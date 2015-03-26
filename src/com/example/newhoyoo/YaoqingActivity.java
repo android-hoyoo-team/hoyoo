@@ -288,8 +288,8 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 		// holder.progress.setTag(tag);
 		holder.progress.setImageDrawable(drawable);
 		if (currentNum < maxNum || isJoin == 1) {
-			InvitationListAdapter.addProgressListener(holder, drawable, this,
-					item);
+			InvitationListAdapter.addProgressListener(holder, this,
+					id);
 		}
 
 		back = (ImageView) findViewById(R.id.yaoqing_back);

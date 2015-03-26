@@ -2,6 +2,7 @@ package com.exp.demo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import per.cz.event1_0.DEvent;
@@ -51,7 +52,6 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 	private InvitationListAdapter mAdapter2;
 	private Handler mHandler;
 //	private ArrayList<HashMap<String, Object>> dlist;
-	private ArrayList<Map<String, Object>> dlist;
 	
 //	int c=0;
 	
@@ -87,13 +87,12 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 			
 			/** 下拉刷新，上拉加载 */
 //			dlist = new ArrayList<HashMap<String, Object>>();
-			dlist = new ArrayList<Map<String, Object>>();
 			
 			mListView.setPullLoadEnable(true);// 设置让它上拉，FALSE为不让上拉，便不加载更多数据
-			
 			mAdapter2 =new InvitationListAdapter(this.getActivity());
+			loadNewData(count);
 			
-			mAdapter2.setInvitationList(Application.getInvitationService().getInvitationsMapByUnionId(Application.getLoginInfo().getUnion().getId(),0,5,"hits"));
+			mAdapter2.setInvitationList(list);
 					/*new MultiLayoutSimpleAdapter(InviteFragment.this.getActivity(), 
 													 getData(),
 													 new int[]{R.layout.invitation_item}, 
@@ -172,7 +171,10 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 			public void run() {
 //				getData();
 //				mListView.setAdapter(mAdapter1);
-				mListView.setAdapter(mAdapter2);
+				loadNewData(count);
+				mAdapter2.setInvitationList(list);
+				mAdapter2.notifyDataSetChanged();
+//				mListView.setAdapter(mAdapter2);
 				onLoad();
 			}
 		}, 2000);
@@ -185,14 +187,28 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 
 			@Override
 			public void run() {
-				//getData();
+				loadMoreData(count);
+				mAdapter2.setInvitationList(list);
 //				mAdapter1.notifyDataSetChanged();
 				mAdapter2.notifyDataSetChanged();
 				onLoad();
 			}
+
 		}, 2000);
 	}
 	
+	private void loadMoreData(int count) {
+		list = Application.getInvitationService().getInvitationsMapByUnionId(Application.getLoginInfo().getUnion().getId(),0,list.size()+count,"hits");
+		listIndex=list.size();
+	}
+	int listIndex=0;
+	int count=5;
+
+	private List<Map<String, Object>> list;
+	private void loadNewData(int count) {
+		list = Application.getInvitationService().getInvitationsMapByUnionId(Application.getLoginInfo().getUnion().getId(),0,count,"hits");
+		listIndex=list.size();
+	}
     @Override
 	public void onListItemClick(ListView l, View v, int position, long id){
         // TODO Auto-generated method stub

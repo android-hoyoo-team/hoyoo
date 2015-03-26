@@ -107,7 +107,9 @@ public class EAchievementService {
 		List<EAchievement> achievements = getEAchievements(null);
 		if(achievements!=null&&achievements.size()>0){
 			for (EAchievement eAchievement : achievements) {
-				if(eAchievement.getTotalProgress()>getPersonAchievementBy(personId, eAchievement.getId()).getCurrentProgress()){
+				RPersonAchievement personAchievementBy = getPersonAchievementBy(personId, eAchievement.getId());
+				
+				if(personAchievementBy!=null&&eAchievement.getTotalProgress()>personAchievementBy.getCurrentProgress()){
 					ras.add(eAchievement);
 					if(ras.size()==num)return ras;
 				}
@@ -163,7 +165,8 @@ public class EAchievementService {
 		}
 		sql += sb.toString();
 		String[] args = new String[selectionArgs.size()];
-		Cursor cursor = db.rawQuery(sql,selectionArgs.toArray(args));
+		String[] array = selectionArgs.toArray(args);
+		Cursor cursor = db.rawQuery(sql,array);
 		while(cursor.moveToNext()){
 			int id = cursor.getInt(cursor.getColumnIndex("id"));
 			int personId = cursor.getInt(cursor.getColumnIndex("personId"));

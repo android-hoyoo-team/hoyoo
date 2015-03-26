@@ -15,6 +15,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.huyoo.bean.Result;
 import com.huyoo.entity.EInvitation;
 import com.huyoo.entity.EPerson;
+import com.huyoo.entity.EUnion;
 import com.huyoo.entity.RInvitationLike;
 import com.huyoo.entity.RInvitationPerson;
 import com.huyoo.global.Application;
@@ -134,8 +135,10 @@ public class EInvitationService {
 		params.put("forwardIdFrom", from);
 		List<EInvitation> invitations = getInvitations(params);
 		if(invitations!=null&&invitations.size()>0){
-			for (EInvitation invitation : invitations) {
-				if(Application.getUnionService().getUnionByPersonId(invitation.getPersonId()).getId()==unionId){
+			for (int i=0;i<invitations.size();i++) {
+				EInvitation invitation =invitations.get(i);
+				EUnion unionByPersonId = Application.getUnionService().getUnionByPersonId(invitation.getPersonId());
+				if(unionByPersonId!=null&&unionByPersonId.getId()==unionId){
 					Map<String,Object> inMap = new HashMap<String, Object>();
 					EPerson person  =  Application.getPersonService().getEPersonById(invitation.getPersonId());
 					inMap.put("id", invitation.getId());
@@ -157,6 +160,10 @@ public class EInvitationService {
 					inMap.put("hits", invitation.getHits());
 					inMap.put("icons", invitation.getIcons());
 					inMaps.add(inMap);
+					if(inMaps.size()>=size)
+					{
+						break;
+					}
 				}
 			}
 		}
@@ -220,7 +227,8 @@ public class EInvitationService {
 		}
 		sql += sb.toString();
 		String[] args = new String[selectionArgs.size()];
-		Cursor cursor = db.rawQuery(sql,selectionArgs.toArray(args));
+		String[] array = selectionArgs.toArray(args);
+		Cursor cursor = db.rawQuery(sql,array);
 		while(cursor.moveToNext()){
 			int id = cursor.getInt(cursor.getColumnIndex("id"));
 			int personId = cursor.getInt(cursor.getColumnIndex("personId"));
@@ -328,7 +336,7 @@ public class EInvitationService {
 				res.setStatus("success");
 			}
 		}
-		res.setResult(in);
+		res.setResult(getInvitationMapById(id));
 		return res;
 	}
 	/**

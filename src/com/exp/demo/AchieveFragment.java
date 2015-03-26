@@ -6,6 +6,7 @@ import java.util.List;
 
 import per.cz.event1_0.DEvent;
 import per.cz.event1_0.DispatchEvent;
+import per.cz.event1_0.IMethod;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.ColorMatrixColorFilter;
@@ -74,6 +75,14 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 		initExpandableListView();
 		
 		Achievement.enterAchievement();
+		 //DispatchEvent.dispatchEvent(new DEvent<Object>("获得成就",""));
+		 DispatchEvent.addEventListener("获得成就", new IMethod<Object>() {
+
+			@Override
+			public void excute(DEvent<Object> event) {
+				initLatest();
+			}
+		});
 	}
 	/***************************************************************/
 	/*加载数据*/
