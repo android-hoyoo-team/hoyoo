@@ -93,6 +93,9 @@ public class UnionMemberList extends Activity{
 								}
 							}
 						}
+						if(Application.getLoginInfo().getPerson().getId() == targetId){
+							pop.getMenu().getItem(0).setVisible(false);
+						}
 						if(person.getId() != union.getChairmanId()){
 							pop.getMenu().getItem(2).setVisible(false);
 							pop.getMenu().getItem(3).setVisible(false);
@@ -120,6 +123,7 @@ public class UnionMemberList extends Activity{
 									attention.setPersonIdTo(targetId);
 									attention.setTime(new Date().getTime());
 									Application.getPersonService().saveAttention(attention);
+									init();
 									break;
 								case R.id.item2:
 									Toast.makeText(getApplicationContext(), "前往发消息界面，尚未完成，敬请期待", Toast.LENGTH_LONG).show();

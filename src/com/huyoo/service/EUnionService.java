@@ -155,8 +155,11 @@ public class EUnionService {
 //		return getUnions(null);
 //	}
 
-	public boolean removePersonFromUnion(int id){
-
-		return true;
+	public long removePersonFromUnion(int id){
+		DatabaseHelper helper = Application.getDatabaseHelper();
+		SQLiteDatabase db = helper.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put("status","out");
+		return db.update("RUnionPerson", cv, "personId=? and unionId=?",new String[]{id+"",Application.getLoginInfo().getUnion().getId()+""});
 	}
 }

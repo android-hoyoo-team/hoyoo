@@ -91,7 +91,18 @@ public class EPersonService {
 	 */
 	public List<EPerson> getEPersonsByUnionId(int unionId)
 	{
-		return getPersons(null);
+		List<EPerson> persons = new ArrayList<EPerson>();
+		Map<String,Object> params = new HashMap<String, Object>();
+		params.put("status", "in");
+		params.put("unionId", unionId);
+		List<RUnionPerson> ups = getUnionPersons(params);
+		if(ups!=null&&ups.size()>0){
+			for (RUnionPerson up : ups) {
+				EPerson person = getEPersonById(up.getPersonId());
+				if(person!=null)persons.add(person);
+			}
+		}
+		return persons;
 	}
 
 	public EPerson getEPersonByPhoneNum(String phoneNum){
@@ -102,12 +113,29 @@ public class EPersonService {
 		return null;
 	}
 	
+	public long addPerson(EPerson person){
+		DatabaseHelper helper = Application.getDatabaseHelper();
+		SQLiteDatabase db = helper.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put("name", person.getName());
+		cv.put("levelId", person.getLevelId());
+		cv.put("icon", person.getIcon());
+		cv.put("sex", person.getSex());
+		cv.put("school", person.getSchool());
+		cv.put("department", person.getDepartment());
+		cv.put("birthday", person.getBirthday());
+		cv.put("phoneNum", person.getPhoneNum());
+		cv.put("password", person.getPassword());
+		cv.put("position",person.getPosition());
+		cv.put("vp",person.getVp());
+		cv.put("currentExp", person.getCurrentExp());
+		return db.insert("EPerson", null, cv);
+	}
 	
 	public long updatePerson(EPerson person){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		
 		cv.put("name", person.getName());
 		cv.put("levelId", person.getLevelId());
 		cv.put("icon", person.getIcon());
