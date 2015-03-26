@@ -360,6 +360,7 @@ public class AppContext extends Application {
 
 	private final static String ALBUM_PATH = Environment
 			.getExternalStorageDirectory() + "/earnto/";
+	
 	/**
 	 * 保存文件
 	 * 
@@ -367,7 +368,7 @@ public class AppContext extends Application {
 	 * @param fileName
 	 * @throws IOException
 	 */
-	public static void saveFile(Bitmap bitmap, String fileName)
+	public static String saveFile(Bitmap bitmap, String fileName)
 			throws IOException {
 		File dirFile = new File(ALBUM_PATH);
 		if (!dirFile.exists()) {
@@ -379,6 +380,7 @@ public class AppContext extends Application {
 		bitmap.compress(Bitmap.CompressFormat.PNG, 100, bos);
 		bos.flush();
 		bos.close();
+		return ALBUM_PATH + fileName;
 	}
 
 

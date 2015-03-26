@@ -54,7 +54,7 @@ public class EInvitationService {
 			String status = cursor.getString(cursor.getColumnIndex("status"));
 			long issueTime = cursor.getLong(cursor.getColumnIndex("issueTime"));
 			String icons = cursor.getString(cursor.getColumnIndex("icons"));
-			String hits = cursor.getString(cursor.getColumnIndex("hits"));
+			int hits = cursor.getInt(cursor.getColumnIndex("hits"));
 			EInvitation invitation = new EInvitation();
 			invitation.setId(id);
 			invitation.setPersonId(personId);
@@ -135,6 +135,39 @@ public class EInvitationService {
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("forwardIdFrom", from);
 		List<EInvitation> invitations = getInvitations(params);
+		switch (sortBy) {
+		case "issueTime":
+			Collections.sort(invitations, new Comparator<EInvitation>(){
+
+				@Override
+				public int compare(EInvitation lhs, EInvitation rhs) {
+					// TODO Auto-generated method stub
+					if(lhs.getIssueTime()<rhs.getIssueTime())
+						return 1;
+					else if(lhs.getIssueTime()>rhs.getIssueTime())
+						return -1;
+					return 0;
+				}
+			});
+			break;
+		case "hits":
+			Collections.sort(invitations, new Comparator<EInvitation>(){
+
+				@Override
+				public int compare(EInvitation lhs, EInvitation rhs) {
+					// TODO Auto-generated method stub
+					if(lhs.getHits()<rhs.getHits())
+						return 1;
+					else if(lhs.getHits()>rhs.getHits())
+						return -1;
+					return 0;
+				}
+			});
+			break;
+		default:
+			break;
+		}
+		
 		if(invitations!=null&&invitations.size()>0){
 			for (int i=0;i<invitations.size();i++) {
 				EInvitation invitation =invitations.get(i);
@@ -168,38 +201,7 @@ public class EInvitationService {
 				}
 			}
 		}
-		switch (sortBy) {
-		case "issueTime":
-			Collections.sort(inMaps, new Comparator<Map<String,Object>>(){
-
-				@Override
-				public int compare(Map<String, Object> lhs, Map<String, Object> rhs) {
-					// TODO Auto-generated method stub
-					if(Long.parseLong(lhs.get("issueTime").toString())<Long.parseLong(rhs.get("issueTime").toString()))
-						return 1;
-					else if(Long.parseLong(lhs.get("issueTime").toString())>Long.parseLong(rhs.get("issueTime").toString()))
-						return -1;
-					return 0;
-				}
-			});
-			break;
-		case "hits":
-			Collections.sort(inMaps, new Comparator<Map<String,Object>>(){
-
-				@Override
-				public int compare(Map<String, Object> lhs, Map<String, Object> rhs) {
-					// TODO Auto-generated method stub
-					if(Long.parseLong(lhs.get("hits").toString())<Long.parseLong(rhs.get("hits").toString()))
-						return 1;
-					else if(Long.parseLong(lhs.get("hits").toString())>Long.parseLong(rhs.get("hits").toString()))
-						return -1;
-					return 0;
-				}
-			});
-			break;
-		default:
-			break;
-		}
+		
 		return inMaps;
 	}
 
@@ -343,13 +345,23 @@ public class EInvitationService {
 	}
 	/**
 	 * @author clu
-	 * 获取最新的邀请
+	 * 获取工会最新的邀请
 	 * @param num
 	 * @param unionId
 	 * @return
 	 */
-	public List<Map<String,Object>> getTopInvitation(int num,int unionId){
+	public List<Map<String,Object>> getLeastInvitationsByUnionId(int num,int unionId){
 		return getInvitationsMapByUnionId(unionId,0,num,"issueTime");
+	}
+	/**
+	 * @author hjl
+	 * 获取工会最热门信息
+	 * @param num
+	 * @param unionId
+	 * @return
+	 */
+	public List<Map<String,Object>> getHotInvitationsByUnionId(int num,int unionId){
+		return getInvitationsMapByUnionId(unionId,0,num,"hits");
 	}
 
 

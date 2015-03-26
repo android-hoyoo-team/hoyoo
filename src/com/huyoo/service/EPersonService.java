@@ -111,7 +111,7 @@ public class EPersonService {
 		cv.put("name", person.getName());
 		cv.put("levelId", person.getLevelId());
 		cv.put("icon", person.getIcon());
-		cv.put("sex", person.getIcon());
+		cv.put("sex", person.getSex());
 		cv.put("school", person.getSchool());
 		cv.put("department", person.getDepartment());
 		cv.put("birthday", person.getBirthday());

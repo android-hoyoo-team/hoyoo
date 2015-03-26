@@ -3,6 +3,9 @@ package com.example.newhoyoo;
 import per.cz.event1_0.DEvent;
 import per.cz.event1_0.DispatchEvent;
 import per.cz.event1_0.IMethod;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -10,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,6 +31,7 @@ import com.exp.demo.ResideMenu;
 import com.exp.demo.ResideMenuItem;
 import com.exp.demo.SettingFragment;
 import com.exp.demo.HooyoFragment;
+import com.huyoo.application.AppContext;
 import com.huyoo.bean.LoginInfo;
 import com.huyoo.entity.ELevel;
 import com.huyoo.entity.EPerson;
@@ -65,7 +70,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 	private AchieveFragment achievefragment;
 
 	private FragmentManager fragmentManager;
-	
+
 	public static String currentFragment;
 
 	CustomActionbar actionbar;
@@ -114,7 +119,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 				loadData();
 			}
 		});
-		
+
 	}
 
 	public void initView() {
@@ -496,8 +501,34 @@ public class Main extends FragmentActivity implements OnClickListener {
 			transaction.hide(noUnionFragment);
 		}
 	}
-	//	private Fragment getUnionFragment(){
-	//		
-	//		return unionFragment!=null?unionFragment:noUnionFragment;
-	//	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {  
+		// TODO Auto-generated method stub  
+		if(keyCode==KeyEvent.KEYCODE_BACK&&event.getRepeatCount()==0){  
+			//需要处理  
+			AlertDialog dialog = new AlertDialog.Builder(this).setTitle("提示").setMessage("您确定退出huyoo吗？")
+					.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							Intent intent = new Intent();
+							intent.setClass(Main.this, LoginPhoneNum.class);
+							Main.this.startActivity(intent);
+							System.exit(0);
+						}
+					}).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							dialog.cancel();
+						}
+					}).create();
+			dialog.show();
+			return true;  
+		}  
+		return false;
+	}  
 }
