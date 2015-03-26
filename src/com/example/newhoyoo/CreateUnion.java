@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -49,7 +50,7 @@ import com.ryg.expandable.ui.HorizontalListView;
 
 public class CreateUnion extends Activity{
 	AQuery aq ;
-	public HashMap<String, HashMap<String,Object>> selectedMap;
+	public HashMap<String, Map<String,Object>> selectedMap;
 	public String[] type = {"综合类","休闲类","竞技类","娱乐类"};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class CreateUnion extends Activity{
 		this.aq.id(R.id.union_type_spinner).adapter(adapter);
 
 		this.aq.id(R.id.add_friends_imageview).clicked(this, "addFriends");
-		this.selectedMap = new HashMap<String, HashMap<String,Object>>();
+		this.selectedMap = new HashMap<String, Map<String,Object>>();
 		this.aq.id(R.id.notice_textview).clicked(this, "notice");
 		this.aq.id(R.id.has_read_checkbox).clicked(this, "hasRead");
 		this.aq.id(R.id.apply_button).clicked(this, "apply");
@@ -203,7 +204,7 @@ public class CreateUnion extends Activity{
 		linearLayoutMain.setLayoutParams(new LayoutParams(  
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));  
 		ListView listView = new ListView(this);
-		final List<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();//建立一个数组存储listview上显示的数据  
+		final List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();//建立一个数组存储listview上显示的数据  
 		for (int i = 0; i < friends.size(); i++) {//initData为一个list类型的数据源  
 			HashMap<String, Object> map = new HashMap<String, Object>();  
 			EPerson person = friends.get(i);
@@ -261,8 +262,8 @@ public class CreateUnion extends Activity{
 					friendsListView.setVisibility(View.GONE);
 				}
 				else{
-					List<HashMap<String, Object>> selectedList = new ArrayList<HashMap<String,Object>>();
-					for(HashMap<String, Object> map:selectedMap.values()){
+					List<Map<String, Object>> selectedList = new ArrayList<Map<String,Object>>();
+					for(Map<String, Object> map:selectedMap.values()){
 						selectedList.add(map);
 					}
 					LayoutParams params = friendsListView.getLayoutParams();

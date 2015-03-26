@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.example.newhoyoo.adapter.CustomListViewAdapter;
 import com.huyoo.entity.EPerson;
@@ -33,7 +34,7 @@ import android.os.Build;
 public class FriendsList extends Activity {
 
 	EPerson person;
-	List<HashMap<String,Object>> data;
+	List<Map<String,Object>> data;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,7 +60,7 @@ public class FriendsList extends Activity {
 		List<EPerson> friends = Application.getPersonService().getFriends(person.getId());
 		ListView friends_listview  = (ListView)findViewById(R.id.friends_listview);
 		TextView no_friends_textview = (TextView)findViewById(R.id.no_friends_textview);
-		data = new ArrayList<HashMap<String,Object>>();
+		data = new ArrayList<Map<String,Object>>();
 		if(friends!=null&&friends.size()>0){
 			no_friends_textview.setVisibility(View.GONE);
 			friends_listview.setVisibility(View.VISIBLE);

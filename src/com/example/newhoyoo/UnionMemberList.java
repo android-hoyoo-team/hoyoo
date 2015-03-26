@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -51,7 +52,7 @@ public class UnionMemberList extends Activity{
 		person = Application.getLoginInfo().getPerson();
 		union = Application.getLoginInfo().getUnion();
 		List<EPerson> members = Application.getPersonService().getEPersonsByUnionId(union.getId());
-		List<HashMap<String,Object>> membersList = new ArrayList<HashMap<String,Object>>();
+		List<Map<String,Object>> membersList = new ArrayList<Map<String,Object>>();
 		for(int i = 0 ;i < members.size();i++){
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			EPerson person = members.get(i);

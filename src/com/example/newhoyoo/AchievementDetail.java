@@ -3,6 +3,7 @@ package com.example.newhoyoo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.androidquery.AQuery;
 import com.example.newhoyoo.adapter.CustomListViewAdapter;
@@ -115,7 +116,7 @@ public class AchievementDetail extends Activity {
 
 	public void initRelativeAchievement() {
 		relativeListView = (HorizontalListView) findViewById(R.id.relative_achievement);
-		List<HashMap<String, Object>> relativeList = new ArrayList<HashMap<String, Object>>();
+		List<Map<String, Object>> relativeList = new ArrayList<Map<String, Object>>();
 		List<EAchievement> list = Application.getAchievementService()
 				.getRelativeAchievements(achievement.getId());
 		for (int i = 0; i < list.size(); i++) {

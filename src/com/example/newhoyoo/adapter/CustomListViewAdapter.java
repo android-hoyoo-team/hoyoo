@@ -1,47 +1,39 @@
 package com.example.newhoyoo.adapter;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SimpleAdapter;
+import android.widget.BaseAdapter;
 
 import com.androidquery.AQuery;
 
-public class CustomListViewAdapter extends SimpleAdapter{
+public class CustomListViewAdapter extends BaseAdapter{
 
 	private LayoutInflater inflater = null;
-	private List<HashMap<String,Object>> data;
+	private List<Map<String,Object>> data;
 	private String[] from;
 	private int[] to;
 	private String[] operation;
 	private int resource;
 
 	public CustomListViewAdapter(Context context,
-			List<HashMap<String, Object>> d, int res,
+			List<Map<String, Object>> d, int res,
 			String[] f, int[] t,String[] op) {
-		super(context, d, res, f, t);
-		data = d;
+//		super(context, d, res, f, t);
+		this.data=d;
 		from = f;
 		to = t;
 		operation = op;
 		resource = res;
 		inflater = LayoutInflater.from(context);
 	}
-
-	@Override
-	public int getCount() {
-		// TODO Auto-generated method stub
-		return data.size();
-	}
-
-	@Override
-	public Object getItem(int position) {
-		// TODO Auto-generated method stub
-		return data.get(position);
+	public void setData(List<Map<String, Object>> d)
+	{
+		this.data=d;
 	}
 
 	@Override
@@ -55,8 +47,7 @@ public class CustomListViewAdapter extends SimpleAdapter{
 		// TODO Auto-generated method stub
 		View v= inflater.inflate(resource, null);
 		AQuery aq = new AQuery(v);
-		HashMap<String,Object> d = new HashMap<String, Object>();
-		d = data.get(position);
+		Map<String,Object> d = (Map<String, Object>) getItem(position);
 		for(int i = 0 ; i < to.length ; i++){
 			switch(operation[i])
 			{
@@ -75,5 +66,19 @@ public class CustomListViewAdapter extends SimpleAdapter{
 			}
 		}
 		return v;
+	}
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		if(data!=null)
+			return this.data.size();
+		return 0;
+	}
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		if(this.data.size()>0)
+			return this.data.get(position);
+		return null;
 	}
 }

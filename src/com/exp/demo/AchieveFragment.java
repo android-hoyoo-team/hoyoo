@@ -3,6 +3,7 @@ package com.exp.demo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import per.cz.event1_0.DEvent;
 import per.cz.event1_0.DispatchEvent;
@@ -74,25 +75,33 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 
 		initExpandableListView();
 		
-		Achievement.enterAchievement();
 		 //DispatchEvent.dispatchEvent(new DEvent<Object>("获得成就",""));
 		 DispatchEvent.addEventListener("获得成就", new IMethod<Object>() {
 
 			@Override
 			public void excute(DEvent<Object> event) {
-				initLatest();
+				refreshLatest();
+				refreshRecommendList();
 			}
 		});
+		 Achievement.enterAchievement();
 	}
-	/***************************************************************/
-	/*加载数据*/
-	/**
-	 * 加载最新完成成就 HorizontalListView中的数据
-	 */
-	public void initLatest(){
-		List<EAchievement> achievements = Application.getAchievementService().getLastestEAchievements(person.getId(), 4);
-		latestAchievement = (HorizontalListView)getActivity().findViewById(R.id.horizon_listview);
-		ArrayList<HashMap<String,Object>> latestList=new ArrayList<HashMap<String,Object>>();  
+	public void refreshLatest()
+	{
+		List<Map<String, Object>> latestList=getLatest(person.getId(), 4);  
+		latestListViewAdapter.setData(latestList);
+		latestListViewAdapter.notifyDataSetChanged();
+	}
+	public void refreshRecommendList()
+	{
+		List<Map<String, Object>> recommendList=getRecommendList(person.getId(), 4);  
+		recommendListViewAdapter.setData(recommendList);
+		recommendListViewAdapter.notifyDataSetChanged();
+	}
+	public List<Map<String, Object>> getLatest(int personId,int num)
+	{
+		List<EAchievement> achievements = Application.getAchievementService().getLastestEAchievements(personId, num);
+		List<Map<String,Object>> latestList=new ArrayList<Map<String,Object>>();  
 		for(int i = 0;i < achievements.size();i++)
 		{
 			HashMap<String, Object> map=new HashMap<String,Object>(); 
@@ -101,6 +110,16 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 			map.put("id", achievements.get(i).getId());//用于传递点击id
 			latestList.add(map);
 		}
+		return latestList;
+	}
+	/***************************************************************/
+	/*加载数据*/
+	/**
+	 * 加载最新完成成就 HorizontalListView中的数据
+	 */
+	public void initLatest(){
+		latestAchievement = (HorizontalListView)getActivity().findViewById(R.id.horizon_listview);
+		List<Map<String, Object>> latestList=getLatest(person.getId(), 4);  
 		latestListViewAdapter = new CustomListViewAdapter(getActivity(), 
 				latestList,
 				R.layout.horizontal_list_item,
@@ -143,14 +162,12 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 			}
 
 		});
+//		latestListViewAdapter.notifyDataSetChanged();
 	}
-	/**
-	 * 加载成就推荐的listview
-	 */
-	public void initRecommend(){
-		myListView=(ListView)getActivity().findViewById(R.id.recommend_achievement_listview);
-		ArrayList<HashMap<String,Object>> recommendList=new ArrayList<HashMap<String,Object>>();  
-		List<EAchievement> achievements = Application.getAchievementService().getRecommendEAchievements(person.getId(), 4);
+	public List<Map<String, Object>> getRecommendList(int personId,int num)
+	{
+		List<Map<String,Object>> recommendList=new ArrayList<Map<String,Object>>();  
+		List<EAchievement> achievements = Application.getAchievementService().getRecommendEAchievements(personId, num);
 		for (EAchievement achievement : achievements) {
 			HashMap<String,Object> map = new HashMap<String, Object>();
 			map.put("image", achievement.getIcon());
@@ -159,6 +176,14 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 			map.put("id", achievement.getId());
 			recommendList.add(map);
 		}
+		return recommendList;
+	}
+	/**
+	 * 加载成就推荐的listview
+	 */
+	public void initRecommend(){
+		myListView=(ListView)getActivity().findViewById(R.id.recommend_achievement_listview);
+		List<Map<String,Object>> recommendList=getRecommendList(person.getId(), 4);  
 
 		recommendListViewAdapter = new CustomListViewAdapter(getActivity(), 
 				recommendList, 
