@@ -744,14 +744,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public void initLevel(){
 		ContentValues lvl1 = new ContentValues();
 		lvl1.put("id", 1);
-		lvl1.put("name", "成就魔导师");
+		lvl1.put("name", "1级");
 		lvl1.put("upgradeExp", 3000);
 		lvl1.put("type", "person");
 		this.db.insert("ELevel", null, lvl1);
 
 		ContentValues lvl2 = new ContentValues();
 		lvl2.put("id", 2);
-		lvl2.put("name", "超级工会");
+		lvl2.put("name", "6级公会");
 		lvl2.put("upgradeExp", 13000);
 		lvl2.put("type", "union");
 		this.db.insert("ELevel", null, lvl2);
