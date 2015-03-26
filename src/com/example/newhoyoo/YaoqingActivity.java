@@ -240,7 +240,6 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 		// }
 		// }
 		horizontalList = (HorizontalListView) findViewById(R.id.image_view_list);
-		int width0=((LinearLayout)findViewById(R.id.linear_layout)).getWidth();
 		int width=getResources().getDimensionPixelOffset(R.dimen.horizon_width)*invitationIcons.size()+getResources().getDimensionPixelOffset(R.dimen.horizon_margin);
 		LayoutParams lp = horizontalList.getLayoutParams();
 		lp.width=width;		
