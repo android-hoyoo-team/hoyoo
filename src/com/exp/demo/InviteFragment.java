@@ -198,7 +198,7 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 	}
 	
 	private void loadMoreData(int count) {
-		list = Application.getInvitationService().getInvitationsMapByUnionId(Application.getLoginInfo().getUnion().getId(),0,list.size()+count,"hits");
+		list = Application.getInvitationService().getInvitationsMapByUnionId(Application.getLoginInfo().getUnion().getId(),0,list.size()+count,"issueTime");
 		listIndex=list.size();
 	}
 	int listIndex=0;
@@ -206,7 +206,7 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 
 	private List<Map<String, Object>> list;
 	private void loadNewData(int count) {
-		list = Application.getInvitationService().getInvitationsMapByUnionId(Application.getLoginInfo().getUnion().getId(),0,count,"hits");
+		list = Application.getInvitationService().getInvitationsMapByUnionId(Application.getLoginInfo().getUnion().getId(),0,count,"issueTime");
 		listIndex=list.size();
 	}
     @Override

@@ -79,9 +79,13 @@ public class EArticleService {
 
 	public List<EArticle> getUnionArticles(String type,String sortBy,int num,int unionId){
 		List<EArticle> uns = new ArrayList<EArticle>();
+		
+		Map<String,Object> params = new HashMap<String, Object>();
+		params.put("type", type);
+		List<EArticle> articles = getArticles(params);
 		switch (sortBy) {
 		case "time":
-			Collections.sort(uns, new Comparator<EArticle>() {
+			Collections.sort(articles, new Comparator<EArticle>() {
 
 				@Override
 				public int compare(EArticle lhs, EArticle rhs) {
@@ -95,7 +99,7 @@ public class EArticleService {
 			});
 			break;
 		case "hits":
-			Collections.sort(uns, new Comparator<EArticle>() {
+			Collections.sort(articles, new Comparator<EArticle>() {
 
 				@Override
 				public int compare(EArticle lhs, EArticle rhs) {
@@ -111,9 +115,6 @@ public class EArticleService {
 		default:
 			break;
 		}
-		Map<String,Object> params = new HashMap<String, Object>();
-		params.put("type", type);
-		List<EArticle> articles = getArticles(params);
 		if(articles!=null&&articles.size()>0){
 			for (EArticle eArticle : articles) {
 				if(Application.getUnionService().getUnionByPersonId(eArticle.getPersonId()).getId() == unionId){

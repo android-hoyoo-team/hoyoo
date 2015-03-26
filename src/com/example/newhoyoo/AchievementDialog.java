@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.androidquery.AQuery;

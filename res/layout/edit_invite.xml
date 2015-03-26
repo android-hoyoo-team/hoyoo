@@ -23,13 +23,11 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="17sp"/>
-        <Button 
+        <ImageButton 
             android:id="@+id/issueButoon"
             android:layout_height="match_parent"
             android:layout_width="wrap_content"
-            android:background="@color/red"
-            android:text="发布"
-            android:textColor="@color/white"
+            android:background="@drawable/issue_imageview"            
             android:layout_alignRight="@id/titleTextView"/>
         
     </RelativeLayout>
