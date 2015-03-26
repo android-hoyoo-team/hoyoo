@@ -18,6 +18,7 @@ import per.cz.event1_0.DispatchEvent;
 import per.cz.event1_0.IMethod;
 
 import com.androidquery.AQuery;
+import com.huyoo.application.AppContext;
 import com.huyoo.entity.ELevel;
 import com.huyoo.entity.EPerson;
 import com.huyoo.entity.EUnion;
@@ -202,42 +203,18 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				//保存修改
-				BufferedOutputStream  outputStream= null;
 				boolean isChangeHeader = false;
-				try {
-					if(bitmap!=null){
-						File sdDir = null;
-						if(Environment.getExternalStorageState().equals((Environment.MEDIA_MOUNTED))){
-							sdDir = Environment.getExternalStorageDirectory();
-						}
-						String filePath = sdDir.toString()+"/image";
-
-						File file = new File(filePath);
-						if(!file.exists()){
-							file.mkdirs();
-						}
-						String path = filePath+"/"+new Date().getTime()+".png";
-						File imageFile = new File(path);
-						imageFile.createNewFile();
-						outputStream = new BufferedOutputStream(new FileOutputStream(imageFile));
-						bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
-						person.setIcon(path);
-						isChangeHeader = true;
-					}
-				} catch (Exception e) {
-					// TODO: handle exception
-					System.out.println(e.toString());
-				}
-				finally{
+				if(bitmap!=null){
+					String path = null;
 					try {
-						if(outputStream!=null)
-							outputStream.close();
+						path = AppContext.saveFile(bitmap, new Date().getTime()+".png");
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					person.setIcon(path);
+					isChangeHeader = true;
 				}
-
 
 				String name = aq.id(R.id.name_edittext).getText().toString().trim();
 				String sex = (sexId == R.id.male_radio) ? "男" : "女";

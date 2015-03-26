@@ -32,7 +32,7 @@ public class LoginPhoneNum extends Activity {
 		Intent intent = new Intent();
 		String phoneNum = this.aq.id(R.id.phonenum_edittext).getText().toString().trim();
 		intent.putExtra("phoneNum",phoneNum);
-		getApplicationContext().deleteDatabase("hoyoo");
+		//getApplicationContext().deleteDatabase("hoyoo");
 		Application.setDatabaseHelper(new DatabaseHelper(getApplicationContext(), "hoyoo"));
 		EPerson person = Application.getPersonService().getEPersonByPhoneNum(phoneNum);
 		if(person!=null){

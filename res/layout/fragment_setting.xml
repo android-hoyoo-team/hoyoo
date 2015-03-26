@@ -9,6 +9,6 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="设置" />
+        android:text="退出并删除数据库" />
 
 </LinearLayout>
