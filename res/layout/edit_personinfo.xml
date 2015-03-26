@@ -44,7 +44,7 @@
                     android:text="更换头像" />
 
                 <ImageView
-                    android:id="@+id/imageView2"
+                    android:id="@+id/change_header_imageview"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="0.12"
