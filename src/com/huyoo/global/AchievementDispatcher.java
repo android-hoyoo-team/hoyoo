@@ -34,6 +34,9 @@ public class AchievementDispatcher {
 				case "uploadHeader":
 					achievementId = 2;
 					break;
+				case "joinInvitation":
+					achievementId = 3;
+					break;
 				default:
 					break;
 				}
@@ -65,5 +68,6 @@ public class AchievementDispatcher {
 		DispatchEvent.addEventListener("login",message);
 		DispatchEvent.addEventListener("enterAchievement",message);
 		DispatchEvent.addEventListener("uploadHeader",message);
+		DispatchEvent.addEventListener("joinInvitation",message);
 	}
 }

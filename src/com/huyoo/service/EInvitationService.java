@@ -18,6 +18,7 @@ import com.huyoo.entity.EPerson;
 import com.huyoo.entity.EUnion;
 import com.huyoo.entity.RInvitationLike;
 import com.huyoo.entity.RInvitationPerson;
+import com.huyoo.global.Achievement;
 import com.huyoo.global.Application;
 import com.huyoo.global.DatabaseHelper;
 
@@ -311,6 +312,7 @@ public class EInvitationService {
 					//					in.put("isJoin", 1);
 					//					in.put("currentNum", currentNum+1);
 					res.setStatus("success");
+					Achievement.joinInvitation();
 				}
 			}
 		}
@@ -318,7 +320,7 @@ public class EInvitationService {
 		{
 			if((""+0).equals(in.get("isJoin")+""))
 			{
-				res.setMessage("你没有参见");
+				res.setMessage("你没有参与");
 				res.setStatus("error");
 			}
 			else 
