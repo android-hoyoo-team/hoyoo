@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@drawable/d08a" android:state_pressed="true"/>
-    <item android:drawable="@drawable/d08"/>
+    <item android:drawable="@drawable/bt_36_press" android:state_pressed="true"/>
+    <item android:drawable="@drawable/bt_36_nor"/>
 
 </selector>
