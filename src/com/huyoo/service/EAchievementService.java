@@ -107,7 +107,9 @@ public class EAchievementService {
 		List<EAchievement> achievements = getEAchievements(null);
 		if(achievements!=null&&achievements.size()>0){
 			for (EAchievement eAchievement : achievements) {
-				if(eAchievement.getTotalProgress()>getPersonAchievementBy(personId, eAchievement.getId()).getCurrentProgress()){
+				RPersonAchievement personAchievement = getPersonAchievementBy(personId, eAchievement.getId());
+				if(personAchievement==null||eAchievement.getTotalProgress()>personAchievement.getCurrentProgress())
+				{
 					ras.add(eAchievement);
 					if(ras.size()==num)return ras;
 				}
