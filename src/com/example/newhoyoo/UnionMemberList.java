@@ -76,6 +76,7 @@ public class UnionMemberList extends Activity{
 				// TODO Auto-generated method stub
 				final View view = super.getView(position, convertView, parent);
 				final int targetId =Integer.parseInt(((TextView)view.findViewById(R.id.id_textview)).getText().toString());
+				if(Application.getLoginInfo().getPerson().getId() == targetId)return view;
 				final String targetName = ((TextView)view.findViewById(R.id.name_textview)).getText().toString();
 				final List<RAttention> attentions = Application.getPersonService().getAttentionFrom(person.getId());
 				view.findViewById(R.id.optionmenu_imageview).setOnClickListener(new OnClickListener() {
@@ -92,9 +93,6 @@ public class UnionMemberList extends Activity{
 									pop.getMenu().getItem(0).setVisible(false);
 								}
 							}
-						}
-						if(Application.getLoginInfo().getPerson().getId() == targetId){
-							pop.getMenu().getItem(0).setVisible(false);
 						}
 						if(person.getId() != union.getChairmanId()){
 							pop.getMenu().getItem(2).setVisible(false);
@@ -122,7 +120,7 @@ public class UnionMemberList extends Activity{
 									attention.setPersonIdFrom(person.getId());
 									attention.setPersonIdTo(targetId);
 									attention.setTime(new Date().getTime());
-									Application.getPersonService().saveAttention(attention);
+									Application.getPersonService().addAttention(attention);
 									init();
 									break;
 								case R.id.item2:

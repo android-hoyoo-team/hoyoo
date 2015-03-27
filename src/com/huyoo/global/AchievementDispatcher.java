@@ -37,11 +37,16 @@ public class AchievementDispatcher {
 				case "joinInvitation":
 					achievementId = 3;
 					break;
+				case "payAttention":
+					achievementId = 5;
+					break;
+				case "haveFriend":
+					achievementId = 6;
+					break;
 				default:
 					break;
 				}
 				rpa = service.getPersonAchievementBy(personId, achievementId);
-				System.out.println(rpa==null);
 				if(rpa == null){
 					rpa = new RPersonAchievement();
 					rpa.setPersonId(personId);
@@ -69,5 +74,7 @@ public class AchievementDispatcher {
 		DispatchEvent.addEventListener("enterAchievement",message);
 		DispatchEvent.addEventListener("uploadHeader",message);
 		DispatchEvent.addEventListener("joinInvitation",message);
+		DispatchEvent.addEventListener("payAttention",message);
+		DispatchEvent.addEventListener("haveFriend",message);
 	}
 }

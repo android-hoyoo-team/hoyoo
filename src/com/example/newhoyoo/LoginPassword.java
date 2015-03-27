@@ -1,11 +1,14 @@
 package com.example.newhoyoo;
 
 
+import java.util.List;
+
 import com.androidquery.AQuery;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
 import com.huyoo.entity.EPerson;
 import com.huyoo.global.Achievement;
 import com.huyoo.global.AchievementDispatcher;
@@ -29,6 +32,8 @@ public class LoginPassword extends Activity {
 		if(person!=null&&password.equals(person.getPassword())){
 			Application.login(phoneNum);
 			Achievement.login();
+			List<EPerson> friends = Application.getPersonService().getFriends(Application.getLoginInfo().getPerson().getId());
+			if(friends!=null&&friends.size()>0)Achievement.haveFriend();
 			intent.setClass(LoginPassword.this, Main.class);
 			startActivity(intent);
 		}

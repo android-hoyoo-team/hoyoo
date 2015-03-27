@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.huyoo.entity.EPerson;
 import com.huyoo.entity.RAttention;
 import com.huyoo.entity.RUnionPerson;
+import com.huyoo.global.Achievement;
 import com.huyoo.global.Application;
 import com.huyoo.global.DatabaseHelper;
 
@@ -246,14 +247,20 @@ public class EPersonService {
 		}
 		return persons;
 	}
-	public long saveAttention(RAttention attention){
+	public long addAttention(RAttention attention){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getWritableDatabase();
 		ContentValues cv = new ContentValues();
 		cv.put("personIdTo", attention.getPersonIdTo());
 		cv.put("personIdFrom", attention.getPersonIdFrom());
 		cv.put("time", attention.getTime());
-		return db.insert("RAttention", null, cv);
+		long result = db.insert("RAttention", null, cv);
+		if(result!=-1)Achievement.payAttention();
+		Map<String,Object> params = new HashMap<String, Object>();
+		params.put("personIdTo",attention.getPersonIdFrom());
+		params.put("personIdFrom",attention.getPersonIdTo());
+		if(getAttentions(params)!=null&&getAttentions(params).size()>0)Achievement.haveFriend();
+		return result;
 	}
 	public long removeFriend(int id){
 		DatabaseHelper helper = Application.getDatabaseHelper();
