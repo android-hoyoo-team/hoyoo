@@ -146,7 +146,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		a1.put("addition", "首次登陆HoYoo");
 		a1.put("description", "千呼万唤终于等到了你");
 		a1.put("exp", 20);
-		a1.put("icon", "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/A7CD0734EBCC440BA9DFF1CE45B988DD");
+		a1.put("icon", "http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/5CB33506984A4ABCAD0A0D898148F3F8");
 		a1.put("totalProgress", 1);
 		a1.put("type", "综合类");
 		a1.put("expensionPack", "病毒入侵");
@@ -157,7 +157,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		a2.put("addition", "上传自己的头像");
 		a2.put("description", "此处应该有自拍");
 		a2.put("exp", 10);
-		a2.put("icon", "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/8B36B19036A345F7AA165614D9D8FE10");
+		a2.put("icon", "http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/6B41D92E68E144CA8B10F2120D971D62");
 		a2.put("totalProgress", 1);
 		a2.put("type", "综合类");
 		a2.put("expensionPack", "病毒入侵");
@@ -168,7 +168,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		a3.put("addition", "第一次发布或者参与一次邀请");
 		a3.put("description", "");
 		a3.put("exp", 15);
-		a3.put("icon", "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/AC4B59CE5F194B23A4444FF26C12CC10");
+		a3.put("icon", "http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/2F53E297598847A6A6366405984111E8");
 		a3.put("totalProgress", 1);
 		a3.put("type", "综合类");
 		a3.put("expensionPack", "病毒入侵");
@@ -179,7 +179,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		a4.put("addition", "第一次进入成就界面");
 		a4.put("description", "有无数的成就等着你完成");
 		a4.put("exp", 5);
-		a4.put("icon", "http://note.youdao.com/yws/public/resource/3d558236602029f163ba7cdab36a2e71/A7CD0734EBCC440BA9DFF1CE45B988DD");
+		a4.put("icon", "http://note.youdao.com/yws/public/resource/2344ca2b1fd08f2a39ddf152e5fa54ab/B2787DA6ADD842C1A30606C7AB21CA33");
 		a4.put("totalProgress", 1);
 		a4.put("type", "综合类");
 		a4.put("expensionPack", "病毒入侵");
