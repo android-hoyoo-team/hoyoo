@@ -1,7 +1,6 @@
 package com.example.newhoyoo;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,19 +8,14 @@ import java.util.Map;
 import com.example.newhoyoo.adapter.CustomListViewAdapter;
 import com.huyoo.entity.EPerson;
 import com.huyoo.entity.EUnion;
-import com.huyoo.entity.RAttention;
 import com.huyoo.global.Application;
 import com.ryg.expandable.ui.CustomActionbar;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
-import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +23,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Build;
-
+/**
+ * 好友列表界面.
+ * @author XF
+ *
+ */
 public class FriendsList extends Activity {
 
 	EPerson person;
@@ -137,7 +134,6 @@ public class FriendsList extends Activity {
 									default:
 										break;
 									}
-									//	v0.setImageResource(R.drawable.bt_32_nor);
 									return false;
 								}
 							});

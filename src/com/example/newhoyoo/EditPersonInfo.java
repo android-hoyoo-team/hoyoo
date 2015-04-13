@@ -1,17 +1,10 @@
 package com.example.newhoyoo;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 
 import per.cz.event1_0.DEvent;
 import per.cz.event1_0.DispatchEvent;
@@ -26,14 +19,9 @@ import com.huyoo.global.Achievement;
 import com.huyoo.global.Application;
 import com.ryg.expandable.ui.CustomActionbar;
 
-import main.java.com.sefford.circularprogressdrawable.sample.CircularProgressDrawable;
 import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ArgbEvaluator;
-import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
@@ -42,34 +30,20 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.InputType;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AnticipateInterpolator;
-import android.view.animation.CycleInterpolator;
-import android.view.animation.OvershootInterpolator;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RadioGroup;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 /**
- * Circular progress drawable demonstration
+ * 编辑个人信息界面，用以修改个人信息.
+ * @author XF
  *
- * @author Saul Diaz <sefford@gmail.com>
  */
 public class EditPersonInfo extends Activity implements View.OnTouchListener {
 	AQuery aq ;

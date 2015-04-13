@@ -1,6 +1,5 @@
 package com.exp.demo;
 
-import java.util.HashMap;
 
 import per.cz.event1_0.DEvent;
 import per.cz.event1_0.DispatchEvent;
@@ -12,7 +11,6 @@ import com.huyoo.entity.ELevel;
 import com.huyoo.entity.EPerson;
 import com.huyoo.entity.EUnion;
 import com.huyoo.global.Application;
-import com.huyoo.service.ELevelService;
 import com.huyoo.service.EPersonService;
 
 import android.os.Bundle;
@@ -21,11 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.content.Intent;
-import android.graphics.Color;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MineFragment extends Fragment {

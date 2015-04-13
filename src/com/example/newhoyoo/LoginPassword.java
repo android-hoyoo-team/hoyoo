@@ -8,12 +8,17 @@ import com.androidquery.AQuery;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.huyoo.entity.EPerson;
 import com.huyoo.global.Achievement;
 import com.huyoo.global.AchievementDispatcher;
 import com.huyoo.global.Application;
-
+/**
+ * 密码输入界面,输入正确进入主界面.
+ * @author XF
+ *
+ */
 public class LoginPassword extends Activity {
 	AQuery aq;
 	@Override
@@ -36,6 +41,9 @@ public class LoginPassword extends Activity {
 			if(friends!=null&&friends.size()>0)Achievement.haveFriend();
 			intent.setClass(LoginPassword.this, Main.class);
 			startActivity(intent);
+		}
+		else{
+			Toast.makeText(getApplicationContext(), "密码输入错误，请重新输入", Toast.LENGTH_LONG).show();
 		}
 	}
 }

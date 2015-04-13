@@ -18,6 +18,11 @@ import android.view.Window;
 import android.widget.EditText;
 import android.os.Build;
 
+/**
+ * 评论页面
+ * @author CL
+ *
+ */
 public class Comment extends Activity {
 	public CustomActionbar actionbar;
 	public EditText et;
@@ -25,7 +30,6 @@ public class Comment extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_comment);
 		Intent intent = getIntent();
 		et=(EditText) findViewById(R.id.pinglun_content);

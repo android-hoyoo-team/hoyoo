@@ -30,9 +30,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Circular progress drawable demonstration
+ * 个人信息页面,展示个人的详细信息
+ * @author XF
  *
- * @author Saul Diaz <sefford@gmail.com>
  */
 public class PersonInfo extends FragmentActivity {
 	AQuery aq ;

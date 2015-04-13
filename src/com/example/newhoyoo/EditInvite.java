@@ -23,13 +23,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TimePicker;
 
+/**
+ * 编辑邀请界面
+ * @author HJL
+ *
+ */
 public class EditInvite extends Activity implements OnTouchListener{
 	private ImageButton leftImageButton;
-	private ImageButton issueButton;
-	private ImageButton addImageButton;
-	private ImageButton deleteImageButton;
-	private ImageButton timeImageButton;
-	private ImageButton dateImageButton;
 
 	private EditText date_edittext;
 	private EditText time_edittext;
@@ -51,13 +51,6 @@ public class EditInvite extends Activity implements OnTouchListener{
 				target.finish();
 			}
 		});
-
-		date_edittext = (EditText)findViewById(R.id.date_edittext);
-		time_edittext = (EditText)findViewById(R.id.time_edittext);
-		issueButton=(ImageButton)findViewById(R.id.issueButoon);
-		addImageButton=(ImageButton)findViewById(R.id.addImageButton);
-		deleteImageButton=(ImageButton)findViewById(R.id.deleteImageButton);
-		timeImageButton=(ImageButton)findViewById(R.id.timeImageButton);
 
 		this.aq.id(R.id.dateImageButton).clicked(this, "pickDate");
 		this.aq.id(R.id.timeImageButton).clicked(this, "pickTime");

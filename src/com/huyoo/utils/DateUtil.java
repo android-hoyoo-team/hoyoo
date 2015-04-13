@@ -93,16 +93,6 @@ public class DateUtil {
 			}
 			return tag;
 		}
-		public static void main(String[] args) {
-//			Date start=DateUtil.str2Date("2014-11-15", "yyyy-MM-dd");
-//			Date end=DateUtil.str2Date("2014-12-15", "yyyy-MM-dd");
-//			while(start.before(end))
-//			{
-//				//System.out.println(DateUtil.date2Str(start));
-//				start.setDate(start.getDate()+1);
-//			}
-			//System.out.println(getWorkingDays(DateUtil.str2Date("2014-11-30 23:59:59"), true, DateUtil.str2Date("2014-12-7 23:59:59"), true));
-		}
 		public static String getTimeBeforeNow(long seconds){
 			String time=null;
 			seconds=seconds/1000;

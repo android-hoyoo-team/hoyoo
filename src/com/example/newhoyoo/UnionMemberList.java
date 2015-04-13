@@ -11,8 +11,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,7 +27,11 @@ import com.huyoo.entity.EUnion;
 import com.huyoo.entity.RAttention;
 import com.huyoo.global.Application;
 import com.ryg.expandable.ui.CustomActionbar;
-
+/**
+ * 公会成员列表界面.
+ * @author XF
+ *
+ */
 public class UnionMemberList extends Activity{
 	AQuery aq;
 	EUnion union;

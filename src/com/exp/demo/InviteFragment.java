@@ -1,7 +1,6 @@
 package com.exp.demo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +31,6 @@ import android.widget.TextView;
 
 import com.example.newhoyoo.Main;
 import com.example.newhoyoo.R;
-import com.example.newhoyoo.UnionNewsActivity;
 import com.example.newhoyoo.YaoqingActivity;
 import com.example.newhoyoo.adapter.InvitationListAdapter;
 import com.exp.demo.MultiLayoutSimpleAdapter.ViewBinder;
@@ -48,12 +46,8 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 	private XListView mListView;
 	
 	private TextView no_union_textview;
-//  SimpleAdapter mAdapter1;
 	private InvitationListAdapter mAdapter2;
 	private Handler mHandler;
-//	private ArrayList<HashMap<String, Object>> dlist;
-	
-//	int c=0;
 	
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_inviteview, container, false);
@@ -86,34 +80,21 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 			mListView.setVisibility(View.VISIBLE);
 			
 			/** 下拉刷新，上拉加载 */
-//			dlist = new ArrayList<HashMap<String, Object>>();
 			
 			mListView.setPullLoadEnable(true);// 设置让它上拉，FALSE为不让上拉，便不加载更多数据
 			mAdapter2 =new InvitationListAdapter(this.getActivity());
 			loadNewData(count);
 			
 			mAdapter2.setInvitationList(list);
-					/*new MultiLayoutSimpleAdapter(InviteFragment.this.getActivity(), 
-													 getData(),
-													 new int[]{R.layout.invitation_item}, 
-													 new String[] {"touxiang","name","faburiqi",
-									  				 			   "neirong","riqi","shijian","dizhi","jindu"}, //0-18为普通布局 //19为判断布局标记 //20-36为转发布局变量
-									  				 new int[] {R.id.image_us_photo, R.id.text_us_name,R.id.text_fabu_date,
-								   								R.id.text_yaoq_info,R.id.text_yaoq_date,R.id.text_yaoq_time,
-								   								R.id.text_yaoq_address,R.id.canjia_progress});//0-18为普通布局//19~35为转发布局*/
-			
 			mListView.setAdapter(mAdapter2);
 			DispatchEvent.addEventListener("invitationListItemClick", new IMethod<Integer>() {
 
 				public void excute(DEvent<Integer> event) {
 					Intent intent=new Intent();
-//					intent.putExtra("type", "公会新闻");
 					Integer id = event.getTarget();
 					intent.putExtra("id", id);
-//					intent.setClass(getActivity(), UnionNewsActivity.class);
 					intent.setClass(getActivity(), YaoqingActivity.class);
 					getActivity().startActivity(intent);
-//					startActivity(new Intent(getActivity(),YaoqingActivity.class));  
 				}
 			});
 			mListView.setXListViewListener(this);
@@ -125,35 +106,6 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 		}
 	}
 	
-	
-	/** 初始化本地数据 */
-//	String data[] = new String[] { "唐嫣  江南大学LIE桌游公会  会长  等级：大神", "10月18日", "周六晚上小伙伴们来蜗牛咖啡厅打狼人！有妹子！饮料免费，快快来呦~",
-//			"日期:2014年10月20日    星期日    时间:18:30-20:30", "地址:江南大学南门外-锦江之心-渔远庭2楼" ,"20","100","Y","30" };
-	
-//	private ArrayList<Map<String, Object>> getData() {
-////...........之后用从网络上获取的信息
-//		for (int i = 0; i < 6; i++) {
-//			Map<String, Object> map = new HashMap<String, Object>();
-//			map.put("touxiang", R.drawable.near_icon2);
-//			map.put("name", "唐嫣");
-//			map.put("faburiqi", "2014年10月18日 12:21");
-//			map.put("neirong", "周六晚上小伙伴们来蜗牛咖啡厅打狼人！有妹子！饮料免费，快快来呦~");
-//			map.put("riqi", "2014年11月11日");
-//			map.put("shijian", "11:11");
-//			map.put("dizhi", "江南大学南门外-锦江之心-渔远庭2楼");
-////			ImageView ivDrawable = (ImageView)getActivity().findViewById(R.id.canjia_progress);
-//
-//		      
-////		    ivDrawable.setImageDrawable(drawable);
-//		        Map jind=new HashMap<String, Object>();
-//		        jind.put("total", 20);
-//		        jind.put("comp", 10);
-//			map.put("jindu", jind);
-//		
-//			dlist.add(map);
-//		}
-//		return dlist;
-//	}
 
 	/** 停止刷新， */
 	private void onLoad() {
@@ -169,12 +121,9 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 
 			@Override
 			public void run() {
-//				getData();
-//				mListView.setAdapter(mAdapter1);
 				loadNewData(count);
 				mAdapter2.setInvitationList(list);
 				mAdapter2.notifyDataSetChanged();
-//				mListView.setAdapter(mAdapter2);
 				onLoad();
 			}
 		}, 2000);
@@ -189,7 +138,6 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 			public void run() {
 				loadMoreData(count);
 				mAdapter2.setInvitationList(list);
-//				mAdapter1.notifyDataSetChanged();
 				mAdapter2.notifyDataSetChanged();
 				onLoad();
 			}
@@ -380,18 +328,6 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 	            String dizhi2 = (String)dataSet.get(mFrom[6]);
 	            
 	            Map<String,Object> jindu = ( Map<String,Object>)dataSet.get(mFrom[7]);
-//	            int renshujindutiao2 =(Integer) dataSet.get(mFrom[6]);
-//	            String renshu2 = (String)dataSet.get(mFrom[7]);
-//	            String zongrenshu2 =(String)dataSet.get(mFrom[8]);
-//	            int tupian2_1 = (Integer) dataSet.get(mFrom[9]);
-//	            int tupian2_2 = (Integer) dataSet.get(mFrom[10]);
-//	            int tupian2_3 = (Integer) dataSet.get(mFrom[11]);
-//	            int tupian2_4 = (Integer) dataSet.get(mFrom[12]);
-	      //    int zhuanfa2 = (Integer) dataSet.get(mFrom[13]);
-	      //    int pinglun2 = (Integer) dataSet.get(mFrom[14]);
-//	            String canjia2 = (String) dataSet.get(mFrom[15]);            
-//	            String dianzan2 = (String) dataSet.get(mFrom[16]);
-//	            String dianzan_renshu = (String) dataSet.get(mFrom[18]);
 	            buttonViewHolder holder = (buttonViewHolder) view.getTag();
 	            //使用获取的数据对之前绑定的控件进行处理
 	            holder.touxiang.setImageDrawable(holder.touxiang.getResources().getDrawable(touxiang2));
@@ -413,60 +349,14 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 		        holder.jindu.setTag(drawable);
 	            holder.jindu.setImageDrawable(drawable);
 	            holder.jindu.setOnClickListener(new lvButtonListener(position,holder));
-//	            holder.renshujindutiao.setProgress(renshujindutiao2);
-//	            holder.renshu.setText(renshu2);
-//	            holder.zongrenshu.setText(zongrenshu2);
-//	            holder.tupian1.setImageDrawable(holder.tupian1.getResources().getDrawable(tupian2_1));
-//	            holder.tupian2.setImageDrawable(holder.tupian2.getResources().getDrawable(tupian2_2));
-//	            holder.tupian3.setImageDrawable(holder.tupian3.getResources().getDrawable(tupian2_3));
-//	            holder.tupian4.setImageDrawable(holder.tupian4.getResources().getDrawable(tupian2_4));
-//	            holder.tupian4.setImageDrawable(holder.tupian4.getResources().getDrawable(tupian2_4));
-	 //         holder.zhuanfa.setBackgroundDrawable(holder.zhuanfa.getResources().getDrawable(zhuanfa2));
-	 //         holder.pinglun.setBackgroundDrawable(holder.pinglun.getResources().getDrawable(pinglun2));
-//	            holder.canjia.setText(canjia2);
-//	            if(canjia2=="参加")
-//	            {
-//	            	holder.canjia.setTextColor(Color.BLACK);
-//	            }else
-//	            {
-//	            	holder.canjia.setTextColor(Color.RED);
-//	            }
-	 //         holder.dianzan.setImageDrawable(holder.dianzan.getResources().getDrawable(dianzan2));  
-//	            if(dianzan2=="Y")
-//	            {
-//	            	holder.dianzan.setVisibility(0x00000000);
-//	            	holder.dianzan2.setVisibility(0x00000008);
-//	            	holder.dianzan_renshu.setVisibility(0x00000008);
-//	            }else
-//	            {
-//	            	holder.dianzan.setVisibility(0x00000008);
-//	            	holder.dianzan2.setVisibility(0x00000000);
-//	            	holder.dianzan_renshu.setVisibility(0x00000000);	
-//	            	holder.dianzan_renshu.setText(dianzan_renshu);
-//	            }
-//	            
-//	            //点击事件监听
-//	            
 	            holder.neirong.setOnClickListener(new lvButtonListener(position,holder));
-//	            holder.tupian2.setOnClickListener(new lvButtonListener(position));
-//	            holder.tupian3.setOnClickListener(new lvButtonListener(position));
-//	            holder.tupian4.setOnClickListener(new lvButtonListener(position));
-//	            
-//	            holder.zhuanfa.setOnClickListener(new lvButtonListener(position));
-//	            holder.pinglun.setOnClickListener(new lvButtonListener(position));
-//	            holder.canjia.setOnClickListener(new lvButtonListener(position));
-//	            holder.dianzan.setOnClickListener(new lvButtonListener(position)); 
-//	            holder.dianzan2.setOnClickListener(new lvButtonListener(position)); 
-	            
 	        }        
 	    }
 	    
 	    class lvButtonListener implements OnClickListener {
-	        private int position2;
 	        buttonViewHolder holder;
 
 	        lvButtonListener(int pos, buttonViewHolder h) {
-	            position2 = pos;
 	            holder=h;
 	        }
 	        
@@ -477,8 +367,6 @@ public class InviteFragment extends ListFragment implements IXListViewListener {
 	            if(vid==holder.neirong.getId())
 	            {
 	            	 startActivity(new Intent(getActivity(),YaoqingActivity.class));  
-//	                 getActivity().finish(); 
-	            	//skip_tupian();
 	            }
 	            if(vid==holder.jindu.getId())
 	            {

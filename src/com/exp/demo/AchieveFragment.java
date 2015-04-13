@@ -26,7 +26,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.example.newhoyoo.AchievementDetail;
@@ -365,9 +364,6 @@ OnHeaderUpdateListener, OnGiveUpTouchEventListener {
 	@Override
 	public boolean onChildClick(ExpandableListView parent, View v,
 			int groupPosition, int childPosition, long id) {
-		//		Toast.makeText(AchieveFragment.this.getActivity(),
-		//				childList.get(groupPosition).get(childPosition).getId()+"", 1)
-		//				.show();
 		Intent intent=new Intent();
 		intent.putExtra("id", childList.get(groupPosition).get(childPosition).getId()+"");
 		intent.setClass(getActivity(), AchievementDetail.class);

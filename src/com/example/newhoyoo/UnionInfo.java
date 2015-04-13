@@ -28,7 +28,11 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import android.os.Build;
-
+/**
+ * 公会信息界面,展示公会的详细信息.
+ * @author XF
+ *
+ */
 public class UnionInfo extends Activity {
 	
 	AQuery aq;

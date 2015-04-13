@@ -48,6 +48,11 @@ import com.huyoo.global.Application;
 import com.ryg.expandable.ui.CustomActionbar;
 import com.ryg.expandable.ui.HorizontalListView;
 
+/**
+ * 公会创建页面
+ * @author XF
+ *
+ */
 public class CreateUnion extends Activity{
 	AQuery aq ;
 	public HashMap<String, Map<String,Object>> selectedMap;
@@ -110,8 +115,6 @@ public class CreateUnion extends Activity{
 
 	public void apply(){
 		//如果申请公会表中已经存在了该用户的申请，且申请还未批复，或者申请已批复，即已拥有公会，则不能提交申请
-		Toast.makeText(getApplicationContext(),this.aq.id(R.id.union_type_spinner).getSelectedItem().toString(), 1).show();
-
 		//提交申请后，向EUnion添加一条数据
 		EUnion union = new EUnion();
 		union.setChairmanId(Application.getLoginInfo().getPerson().getId());

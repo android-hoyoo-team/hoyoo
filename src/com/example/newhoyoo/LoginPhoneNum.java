@@ -16,7 +16,11 @@ import android.view.View;
 import com.huyoo.entity.EPerson;
 import com.huyoo.global.Application;
 import com.huyoo.global.DatabaseHelper;
-
+/**
+ * 登陆页面,输入电话号码,如果是老用户,进入输入密码界面;否则,进入注册界面.
+ * @author XF
+ *
+ */
 public class LoginPhoneNum extends Activity {
 	AQuery aq;
 

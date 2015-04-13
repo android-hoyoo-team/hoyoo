@@ -14,14 +14,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
+/**
+ * 注册页面
+ * @author XF
+ *
+ */
 public class Signup extends Activity {
 	AQuery aq=new AQuery(this);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) { 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.signup);
-		//this.aq.id(R.id.phonesign).clicked(this,"phonesignClick");
 		this.aq.id(R.id.signaccount).clicked(this,"signaccountClick");
 		Intent intent = getIntent();
 		String phoneNum = intent.getStringExtra("phoneNum"); //获取从第一个界面传递来的电话号码
@@ -31,13 +34,9 @@ public class Signup extends Activity {
 		this.aq.id(R.id.getverifycode).clicked(this,"checkSecurityCode");
 	}
 	/**
-	 * 再次判断是否为老用户,请求服务器http://192.168.0.112:4000/？
 	 * @param view
 	 */
 	public void phonesignClick(View view){
-		//String phoneNum = this.aq.id(R.id.phonenumsign).getText().toString();
-		//EPerson person = Application.getPersonService().getEPersonByPhoneNum(phoneNum);
-		//	if(person!=null)
 
 
 	}

@@ -43,6 +43,11 @@ import com.huyoo.service.EPersonService;
 import com.huyoo.service.EUnionService;
 import com.ryg.expandable.ui.CustomActionbar;
 
+/***
+ * 主界面，通过ResizeMenu进行fragement的切换
+ * @author XF
+ *
+ */
 public class Main extends FragmentActivity implements OnClickListener {
 
 	private ResideMenu resideMenu;
@@ -103,6 +108,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 		//setTabSelection(itemAssociation);
 		loadData();
 		setTabSelection(itemHome);
+		//注册一个监听，以响应个人信息更改，以便重新加载修改好后的个人信息.
 		DispatchEvent.addEventListener("personUpdateEvent", new IMethod<String>() {
 
 			@Override
@@ -111,6 +117,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 				loadData();
 			}
 		});
+		//注册一个监听，以响应公会状态改变，以便重新加载修改好后的公会信息.
 		DispatchEvent.addEventListener("unionStatusChanged", new IMethod<String>() {
 
 			@Override

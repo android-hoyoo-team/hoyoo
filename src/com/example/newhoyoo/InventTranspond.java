@@ -17,6 +17,11 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.os.Build;
 
+/**
+ * 邀请转发页面
+ * @author HJL
+ *
+ */
 public class InventTranspond extends Activity {
 	public CustomActionbar actionbar;
 	public Intent intent;
@@ -28,7 +33,6 @@ public class InventTranspond extends Activity {
 		intent=getIntent();
 		actionbar=(CustomActionbar)findViewById(R.id.transpond_actionbar);
 		AQuery aq = new AQuery(this);
-//		aq.id(R.id.invent_back).clicked(this, "back");
 		actionbar.setImageResource(R.drawable.back_image_button);
 		actionbar.setTitle("转发邀请");
 		actionbar.setButton("发布");
@@ -51,12 +55,5 @@ public class InventTranspond extends Activity {
 		aq.id(R.id.head_imageview_01).image(intent.getStringExtra("personUrl"));
 		aq.id(R.id.name).text("@"+intent.getStringExtra("personName"));
 		aq.id(R.id.content).text(intent.getStringExtra("content"));
-//		aq.id(R.id.release_button).clicked(this, "release");
 	}
-//	public void back(){
-//		this.finish();
-//	}
-//	public void release(){
-//		
-//	}
 }

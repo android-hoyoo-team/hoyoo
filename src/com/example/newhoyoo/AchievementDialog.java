@@ -1,19 +1,19 @@
 package com.example.newhoyoo;
 
-import java.io.Serializable;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.androidquery.AQuery;
 import com.huyoo.entity.EAchievement;
-import com.huyoo.global.Application;
-
+/**
+ * 成就弹出框,当完成成就时，弹出此页面.
+ * @author HJL
+ *
+ */
 public class AchievementDialog extends Activity {
 	AQuery aq;
 	EAchievement achievement;

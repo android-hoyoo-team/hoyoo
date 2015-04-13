@@ -142,22 +142,7 @@ public class InvitationListAdapter extends BaseAdapter{
 		float p=(float) (currentNum/(maxNum+0.0));
 		drawable.setProgress(p);
 		drawable.setCircleScale(p);
-//		final Map<String,Integer> tag=new HashMap<String, Integer>();
-//		tag.put("progress", drawable);
-//		tag.put("isJoin", isJoin);
-//		holder.progress.setTag(tag);
 		holder.progress.setImageDrawable(drawable);
-//		holder.content.setOnClickListener(new OnClickListener() {
-//			@Override
-//			public void onClick(View v) {
-//				int vid=v.getId();
-//				if(vid==_holder.content.getId())
-//				{
-//					DispatchEvent.dispatchEvent(new DEvent<Map<String,Object>>("invitationListContentClick", item));
-//				}
-//				
-//			}
-//		});
 		IMethod<Integer> method = new IMethod<Integer>() {
 			
 			public void excute(DEvent<Integer> event) {
@@ -183,12 +168,6 @@ public class InvitationListAdapter extends BaseAdapter{
 		});
 		addProgressListener(holder,context,Integer.parseInt(item.get("id").toString()));
 		/**为Button添加点击事件*/             
-		//        holder.bt.setOnClickListener(new OnClickListener() {
-		//            @Override
-		//            publicvoid onClick(View v) {
-		//                Log.v("MyListViewBase", "你点击了按钮" + position);//打印Button的点击信息                    
-		//            }
-		//        });
 		return convertView;
 	}
 	public final static class ViewHolder{
@@ -351,12 +330,4 @@ public class InvitationListAdapter extends BaseAdapter{
 		res.put("icons", ls);
 		return res;
 	}
-//	@Override
-//	public Filter getFilter() {
-//		 if (mFilter == null) {
-//	            mFilter = new SimpleFilter();
-//	        }
-//	        return mFilter;
-//	}
-
 }
