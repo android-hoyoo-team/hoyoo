@@ -18,7 +18,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class InviteList extends Activity{
+public class UnionInviteList extends Activity{
 
 	private XListView mine_list;
 	private TextView no_invite_textview;
@@ -29,7 +29,7 @@ public class InviteList extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.invite_list);
+		setContentView(R.layout.invite_union_list);
 		leftImageButton=(ImageButton)findViewById(R.id.image_button_left);
 		leftImageButton.setOnClickListener(new OnClickListener() {
 
@@ -38,14 +38,14 @@ public class InviteList extends Activity{
 				finish();
 			}
 		});
-		personId = getIntent().getIntExtra("personId", 0);
-		if(personId==0)
+		unionId = getIntent().getIntExtra("unionId", 0);
+		if(unionId==0)
 		{
-			Toast.makeText(this, "该用户不存在", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "该公会不存在", Toast.LENGTH_LONG).show();
 			return;
 		}
 		TextView invite_list_title=(TextView) findViewById(R.id.invite_list_title);
-		invite_list_title.setText("我的邀请");
+		invite_list_title.setText("公会邀请");
 		mine_list = (XListView) findViewById(R.id.mine_list);
 		no_invite_textview = (TextView)findViewById(R.id.you_no_invite_textview);
 		if(true)
@@ -90,12 +90,12 @@ public class InviteList extends Activity{
 		}
 	}
 	private void loadMoreData(int count) {
-		list_data = Application.getInvitationService().getInvitationMapsByPersonId(personId,0,list_data.size()+count,"issueTime");
+		list_data = Application.getInvitationService().getInvitationsMapByUnionId(unionId,0,list_data.size()+count,"issueTime");
 		listIndex=list_data.size();
 	}
 	int listIndex=0;
 	int count=5;
-	private int personId;
+	private int unionId;
 
 
 }

@@ -27,7 +27,11 @@ import android.view.WindowId;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.RelativeLayout;
-
+/**
+ * 成就细节页面,展示成就的详细信息.
+ * @author CL
+ *
+ */
 public class AchievementDetail extends Activity {
 	AQuery aq;
 	HorizontalListView relativeListView;

@@ -1,25 +1,18 @@
 package com.example.newhoyoo;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import com.androidquery.AQuery;
 import com.ryg.expandable.ui.CustomActionbar;
 
 import android.app.Activity;
-import android.app.ActionBar;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.text.format.Time;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.DigitalClock;
-import android.os.Build;
-
+/**
+ * 公会创建完成后,显示审批倒计时页面.
+ * @author XF
+ *
+ */
 public class FinishCreateUnion extends Activity {
 	AQuery aq;
 	@Override

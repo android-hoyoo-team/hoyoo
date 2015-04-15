@@ -21,13 +21,4 @@ public class People {
     public void setAge(int age) {
         this.age = age;
     }
-/*
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-*/
 }

@@ -20,6 +20,11 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+/**
+ * 评论列表适配器
+ * @author HJL
+ *
+ */
 public class CommentListAdapter extends BaseAdapter {
 	private List<Map<String, Object>> adapterList=new ArrayList<Map<String,Object>>();
 	private LayoutInflater mInflater;
@@ -60,15 +65,6 @@ public class CommentListAdapter extends BaseAdapter {
 		aq.id(R.id.comment_content).text(map.get("content").toString());
 		String commentDate=DateUtil.date2Str(new Date(Long.parseLong(map.get("commentTime").toString())), "yyyy-MM-dd HH:mm:ss");
 		aq.id(R.id.comment_time).text(commentDate);
-//		aq.id(R.id.comment_button).clicked(new OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				Intent intent=new Intent();
-//				intent.setClass(YaoqingActivity.this, Comment.class);
-//			}
-//		});
 		return convertView;
 	}
 

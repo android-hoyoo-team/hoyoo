@@ -13,7 +13,7 @@
         android:padding="5dp"
         android:paddingBottom="8dp"
         android:paddingTop="2dp"
-        android:background="@color/LightGray">
+        android:background="@drawable/bg_03">
 
         <TextView
             android:layout_width="match_parent"

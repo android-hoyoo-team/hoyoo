@@ -1,129 +1,96 @@
 package com.example.newhoyoo;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
 
 import org.json.JSONObject;
 
-import cn.bmob.v3.listener.SaveListener;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxStatus;
-import com.huyoo.middle.HuyooUser;
+import com.huyoo.entity.EPerson;
+import com.huyoo.global.Application;
 
 import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.telephony.SmsManager;
-import android.telephony.TelephonyManager;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
-
+/**
+ * 注册页面
+ * @author XF
+ *
+ */
 public class Signup extends Activity {
 	AQuery aq=new AQuery(this);
-	private Loginloadingfragment loginloadingfragment;
-	private FragmentManager fragmentManager;
-	private static String security_code=null;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) { 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.signup);
-		this.aq.id(R.id.phonesign).clicked(this,"phonesignClick");
 		this.aq.id(R.id.signaccount).clicked(this,"signaccountClick");
 		Intent intent = getIntent();
 		String phoneNum = intent.getStringExtra("phoneNum"); //获取从第一个界面传递来的电话号码
-		this.aq.id(R.id.phonenumsign).text(phoneNum);
-		EditText et=(EditText)findViewById(R.id.passwordsign_text);
-		if(et.hasFocus()){//检测密码的格式，必须是8位以上的。
-			this.aq.id(R.id.testtext).text("getfocus!");
-			this.aq.id(R.id.passwordsign_text).textChanged(this, "checkformat");
-		}else{
-			this.aq.id(R.id.testtext).text("lostfocus!");
-		}
-
-		this.aq.id(R.id.security_codesign).clicked(this,"security_codesignClick");
+		this.aq.id(R.id.phoneNum_edittext).text(phoneNum);
+		this.aq.id(R.id.phoneNum_edittext).textChanged(this, "checkPhoneNum");
+		this.aq.id(R.id.password_edittext).textChanged(this, "checkPassword");
+		this.aq.id(R.id.getverifycode).clicked(this,"checkSecurityCode");
 	}
 	/**
-	 * 再次判断是否为老用户,请求服务器http://192.168.0.112:4000/？
 	 * @param view
 	 */
 	public void phonesignClick(View view){
-		//Toast.makeText(getApplicationContext(), "1111111", Toast.LENGTH_LONG).show();
-		//        this.aq.id(R.id.sendpwd).background(R.color.buttonEffect);
-		//       // String pwd = this.aq.id(R.id.password_text).getText().toString();
-		//        //String url = myApp.web("api/user?username=" + pwd);
-		//        String username=this.aq.id(R.id.phonenumsign).getText().toString();
-		//        String url = MyApp.web("api/user?username=" + username);
-		//        aq.ajax(url,JSONObject.class, this, "loginloadingCallback");
+
+
 	}
 
 	//向注册手机发送验证码
 	public void security_codesignClick(View view){
-		String phonenum = this.aq.id(R.id.phonenumsign).getText().toString();
-		SmsManager smsManager = SmsManager.getDefault();
-		Random random = new Random();
-		security_code = random.nextInt(10)+""+random.nextInt(10)+""+random.nextInt(10)+""+random.nextInt(10)
-				+""+random.nextInt(10)+""+random.nextInt(10);
-		smsManager.sendTextMessage(phonenum, null, "您好，您正在注册NewHuyoo的验证码是:"+security_code+".", null, null);
+		Toast.makeText(getApplicationContext(), "验证码功能暂未开放，敬请期待", Toast.LENGTH_LONG).show();
+	}
+
+	public boolean checkPhoneNum(){
+		String phoneNum = this.aq.id(R.id.phoneNum_edittext).getText().toString().trim();
+		EPerson person = Application.getPersonService().getEPersonByPhoneNum(phoneNum);
+		if(person == null) return true;
+		else{
+			this.aq.id(R.id.testtext).text("该手机号码已被注册！");
+			return false;
+		}
+	}
+	public boolean checkPassword(){
+		String password = this.aq.id(R.id.password_edittext).getText().toString().trim();
+		if(password==null||"".equals(password)){
+			this.aq.id(R.id.testtext).text("密码不能为空!");
+			return false;
+		}else if(password.length()<8)
+		{
+			this.aq.id(R.id.testtext).text("密码不能为空!");
+			return false;
+		}
+		if(password!=null&&password.length()>=8)return true;
+		else{
+			return false;
+		}
+	}
+	public boolean checkSecurityCode(){
+		return true;
 	}
 	public void signaccountClick(View view){
-		String username = this.aq.id(R.id.phonenumsign).getText().toString();
-		String password = this.aq.id(R.id.passwordsign_text).getText().toString();
-		String securitycode = this.aq.id(R.id.security_code).getText().toString();
-		if(securitycode==null||"".equals(securitycode)||!securitycode.equals(security_code))
-		{
-			Toast.makeText(getApplicationContext(), "验证码输入不正确！", Toast.LENGTH_LONG).show();
-			return;
-		}
-		HuyooUser user = new HuyooUser();
-		user.setUsername(username);
-		user.setPassword(password);
-		user.signUp(this, new SaveListener() {
-			@Override
-			public void onSuccess() {
-				// TODO Auto-generated method stub
-				Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_SHORT).show();
-				Intent intent = getIntent();
+		if(checkPhoneNum()&&checkPassword()&&checkSecurityCode()){
+			String phoneNum = this.aq.id(R.id.phoneNum_edittext).getText().toString();
+			String password = this.aq.id(R.id.password_edittext).getText().toString();
+			EPerson person = new EPerson();
+			person.setPhoneNum(phoneNum);
+			person.setPassword(password);
+			long result = Application.getPersonService().addPerson(person);
+			if(result!=-1){
+				Application.login(phoneNum);
+				Intent intent = new Intent();
 				intent.setClass(Signup.this, Main.class);
-				Signup.this.startActivity(intent);
-				security_code=null;
+				startActivity(intent);
+			}else{
+				Toast.makeText(getApplicationContext(), "注册未成功，请检查信息是否完整、正确！", Toast.LENGTH_LONG).show();
 			}
-
-			@Override
-			public void onFailure(int arg0, String msg) {
-				// TODO Auto-generated method stub
-				Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-				security_code=null;
-			}
-		});
-
-		/*  this.aq.id(R.id.sendpwd).background(R.color.buttonEffect);
-        this.aq.id(R.id.linearLayout1).visibility(View.GONE);
-
-        fragmentManager = getFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-		if (loginloadingfragment == null) {
-			loginloadingfragment = new loginloadingfragment();
-			transaction.add(R.id.content, loginloadingfragment);
-		} else {
-			transaction.show(loginloadingfragment);
 		}
-		transaction.commit();
 
-        this.aq.id(R.id.testtext).text("I can work!");
-        String pwd = this.aq.id(R.id.password_text).getText().toString();
-        String url = myApp.web("api/user?username=" + pwd);
-        aq.ajax(url,JSONObject.class, this, "loginloadingCallback");*/
 	}
 
 	public void loginloadingCallback(String url, JSONObject json, AjaxStatus status){

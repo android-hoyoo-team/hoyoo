@@ -50,11 +50,9 @@ public class ImageListAdapter extends BaseAdapter {
 		if(convertView==null)
 		{
 			
-			// TODO Auto-generated method stub
 			convertView=mInflater.inflate(R.layout.invitation_image_item, null);
 			AQuery aq=new AQuery(convertView);
 			String icon=(String)getItem(position);
-//		Map<String, Object> map=(Map<String, Object>)getItem(position);
 			aq.id(R.id.image_item).image(icon).clicked(new OnClickListener() {
 				
 				@Override

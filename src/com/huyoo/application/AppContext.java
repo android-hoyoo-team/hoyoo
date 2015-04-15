@@ -55,12 +55,6 @@ public class AppContext extends Application {
 		messageService = MessageService.getInstance(this);
 		AchievementDispatcher.initDispatcher();
 		//注册App异常崩溃处理器
-//		Thread.setDefaultUncaughtExceptionHandler(AppException.getAppExceptionHandler());
-//		JPushInterface.setDebugMode(true);
-//		JPushInterface.init(this);
-//		ShareSDK.initSDK(this);
-
-
 	}
 
 	/**

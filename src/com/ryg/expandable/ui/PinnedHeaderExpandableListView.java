@@ -37,7 +37,11 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ExpandableListView;
 import android.widget.AbsListView.OnScrollListener;
-
+/**
+ * 带header，可缩放的listview
+ * @author Administrator
+ *
+ */
 public class PinnedHeaderExpandableListView extends ExpandableListView implements OnScrollListener {
     private static final String TAG = "PinnedHeaderExpandableListView";
     private static final boolean DEBUG = true;

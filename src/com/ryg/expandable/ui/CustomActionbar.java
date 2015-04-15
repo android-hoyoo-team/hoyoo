@@ -1,11 +1,9 @@
 package com.ryg.expandable.ui;
 
 
-import com.androidquery.AQuery;
 import com.example.newhoyoo.R;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +11,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
+/**
+ * 自定义actionbar
+ * @author XF
+ *
+ */
 public class CustomActionbar extends LinearLayout implements View.OnClickListener{
 
 	private ImageView leftImage;

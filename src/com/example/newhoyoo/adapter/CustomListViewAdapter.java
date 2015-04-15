@@ -11,6 +11,11 @@ import android.widget.BaseAdapter;
 
 import com.androidquery.AQuery;
 
+/**
+ * 自定义可以加载网络图片的listview的适配器，使用AQuery实现
+ * @author XF
+ *
+ */
 public class CustomListViewAdapter extends BaseAdapter{
 
 	private LayoutInflater inflater = null;
@@ -23,7 +28,6 @@ public class CustomListViewAdapter extends BaseAdapter{
 	public CustomListViewAdapter(Context context,
 			List<Map<String, Object>> d, int res,
 			String[] f, int[] t,String[] op) {
-//		super(context, d, res, f, t);
 		this.data=d;
 		from = f;
 		to = t;

@@ -16,4 +16,10 @@ public class Achievement {
 	public static void joinInvitation() {
 		DispatchEvent.dispatchEvent(new DEvent("joinInvitation", "message"));
 	}
+	public static void payAttention() {
+		DispatchEvent.dispatchEvent(new DEvent("payAttention", "message"));
+	}
+	public static void haveFriend() {
+		DispatchEvent.dispatchEvent(new DEvent("haveFriend", "message"));
+	}
 }

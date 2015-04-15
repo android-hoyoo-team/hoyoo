@@ -98,7 +98,7 @@ public class HooyoFragment extends Fragment {
 
 			no_union_textview_02.setVisibility(View.GONE);
 			myListView2.setVisibility(View.VISIBLE);
-			final List<Map<String, Object>> programeList2 = Application.getInvitationService().getHotInvitationsByUnionId(4, Application.getLoginInfo().getUnion().getId());
+			final List<Map<String, Object>> programeList2 = Application.getInvitationService().getHotInvitationMapsByUnionId(4, Application.getLoginInfo().getUnion().getId());
 			mAdapter02=new InvitationListAdapter02(this.getActivity());
 			mAdapter02.setInvitationList(programeList2);
 			myListView2.setAdapter(mAdapter02);

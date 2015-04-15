@@ -28,14 +28,6 @@ import com.google.gson.annotations.Expose;
  */  
 public class GsonUtil {  
 
-//	private static Gson gson = null;  
-//
-//	static {  
-//		if (gson == null) {  
-//			gson = new Gson();  
-//		}  
-//	}  
-
 	private GsonUtil() {  
 
 	}  
