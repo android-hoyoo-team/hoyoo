@@ -17,6 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+/**
+ *用于主页中 热门邀请的 列表
+ */
 public class InvitationListAdapter02 extends BaseAdapter {
 	private List<Map<String,Object>> invitationList=new ArrayList<Map<String,Object>>();
 	private LayoutInflater mInflater;
@@ -58,6 +61,7 @@ public class InvitationListAdapter02 extends BaseAdapter {
 		aq=new AQuery(convertView);
 		final Map<String, Object> item=(Map<String, Object>)getItem(position);
 		if(item.get("icons")!=null){
+			//解析图片
 			List<String> image=(List<String>)GsonUtil.jsonToList(item.get("icons").toString());
 			aq.id(R.id.imageview_item).image(image.get(0));
 		}
