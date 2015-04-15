@@ -22,6 +22,11 @@ import android.content.Intent;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+/**
+ * 个人信息fragment
+ * @author XF
+ *
+ */
 public class MineFragment extends Fragment {
 	SeekBar seekbar1;
 	SeekBar seekbar2;
@@ -67,7 +72,9 @@ public class MineFragment extends Fragment {
 		this.aq.id(R.id.skip_to_detail_imageview).image(R.drawable.skip_to_detail_image);
 		this.aq.id(R.id.skip_to_detail_imageview).clicked(this, "skiptodetail");
 	}
-
+	/**
+	 * 初始化个人信息fragment
+	 */
 	public void init(){
 		person = Application.getLoginInfo().getPerson();
 		level = Application.getLoginInfo().getLevel();
@@ -89,7 +96,7 @@ public class MineFragment extends Fragment {
 		this.aq.id(R.id.achievement_textview).text(person.getCurrentExp()+"");
 		this.aq.id(R.id.achievement_progress_textview).text(person.getCurrentExp()+"/"+level.getUpgradeExp());
 		this.aq.id(R.id.vp_textview).text(person.getVp()+"/"+150);
-
+		//进度条
 		seekbar1 = (SeekBar) getActivity().findViewById(R.id.seekBar1);
 		seekbar1.setEnabled(false);
 		seekbar1.setMax(level.getUpgradeExp());

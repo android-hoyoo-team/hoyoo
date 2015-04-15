@@ -24,7 +24,7 @@ public class CreateUnionCondition extends Activity {
 		actionbar.setImageResource(R.drawable.bt_15_01_selector);
 		actionbar.setTitle("创建工会");
 		actionbar.setButtonVisibility(View.GONE);
-		if(true)//判断是否符合创建公会的条件,如果符合,显示"您已经达到了所有创建公会所必须的条件",并使创建公会的按钮可以点击;否则显示原因，并使按钮不能点击.
+		if(verifyCondition())//判断是否符合创建公会的条件,如果符合,显示"您已经达到了所有创建公会所必须的条件",并使创建公会的按钮可以点击;否则显示原因，并使按钮不能点击.
 		{
 			this.aq.id(R.id.union_condition_textview).text("您已经达到了所有创建公会所必须的条件");
 			this.aq.id(R.id.create_union_button).checked(true);
@@ -35,7 +35,9 @@ public class CreateUnionCondition extends Activity {
 		}
 		this.aq.id(R.id.actionbar_left).clicked(this,"back");
 	}
-
+	public boolean verifyCondition(){
+		return true;
+	}
 	public void back(){
 		this.finish();
 	}
