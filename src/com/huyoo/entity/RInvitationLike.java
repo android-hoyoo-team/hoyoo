@@ -1,5 +1,10 @@
 package com.huyoo.entity;
 
+/**
+ * 邀请点赞类
+ * @author CLu
+ *
+ */
 public class RInvitationLike {
 	private int id;
 	private int invitationId;

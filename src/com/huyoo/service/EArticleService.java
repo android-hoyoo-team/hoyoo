@@ -20,12 +20,17 @@ import com.huyoo.global.Application;
 import com.huyoo.global.DatabaseHelper;
 
 /**
- * 
+ * 成就秘笈 与 工会新闻  服务类
  * @author HJL 20150302
  * 
  */
 public class EArticleService {
 
+	/**
+	 * 根据参数获取 
+	 * @param params
+	 * @return
+	 */
 	public List<EArticle> getArticles(Map<String,Object> params){
 		List<EArticle> articles = new ArrayList<EArticle>();
 		DatabaseHelper helper = Application.getDatabaseHelper();
@@ -69,6 +74,10 @@ public class EArticleService {
 		return articles;
 	}
 
+	/**根据id获取
+	 * @param id
+	 * @return
+	 */
 	public EArticle getArticleById(int id){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("id", id);
@@ -77,6 +86,14 @@ public class EArticleService {
 		return null;
 	}
 
+	/**
+	 * 根据类型 排序 数量 以及工会id获取
+	 * @param type  公会新闻  成功秘笈
+	 * @param sortBy time hits
+	 * @param num
+	 * @param unionId
+	 * @return
+	 */
 	public List<EArticle> getUnionArticles(String type,String sortBy,int num,int unionId){
 		List<EArticle> uns = new ArrayList<EArticle>();
 		
@@ -125,18 +142,46 @@ public class EArticleService {
 		}
 		return uns;
 	}
+	/**获取工会最新新闻
+	 * @param num
+	 * @param unionId
+	 * @return
+	 */
 	public List<EArticle> getTopUnionNews(int num,int unionId){
 		return getUnionArticles("公会新闻","time",num,unionId);
 	}
+	/**
+	 * 获取工会热点新闻
+	 * @param num
+	 * @param unionId
+	 * @return
+	 */
 	public List<EArticle> getHotUnionNews(int num, int unionId) {
 		return getUnionArticles("公会新闻","hits",num,unionId);
 	}
+	/**
+	 * 获取工会成功秘笈
+	 * @param num
+	 * @param unionId
+	 * @return
+	 */
 	public List<EArticle> getTopTips(int num, int unionId){
 		return getUnionArticles("成功秘笈","time",num,unionId);
 	}
+	/**
+	 * 获取工会成就
+	 * @param num
+	 * @param unionId
+	 * @return
+	 */
 	public List<EArticle> getHotTips(int num, int unionId) {
 		return getUnionArticles("成功秘笈","hits",num,unionId);
 	}
+	/**
+	 * 获取所有工会新闻
+	 * @param unionId
+	 * @return
+	 */
 	public List<EArticle> getUnionNews(int unionId){
 		return getUnionArticles("公会新闻", "time", -1, unionId);
 	}

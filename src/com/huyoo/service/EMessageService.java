@@ -5,6 +5,11 @@ import java.util.Map;
 
 import com.huyoo.entity.EMessage;
 
+/**
+ * 消息服务
+ * @author XF
+ *
+ */
 public class EMessageService {
 	public List<EMessage> getMessages(Map<String,Object> params){
 		return null;

@@ -22,8 +22,18 @@ import com.huyoo.global.Achievement;
 import com.huyoo.global.Application;
 import com.huyoo.global.DatabaseHelper;
 
+/**
+ * 邀请服务
+ * @author HJL
+ *
+ */
 public class EInvitationService {
 
+	/**
+	 * 根据参数获取服务
+	 * @param params
+	 * @return
+	 */
 	public List<EInvitation> getInvitations(Map<String,Object> params){
 		List<EInvitation> invitations = new ArrayList<EInvitation>();
 		DatabaseHelper helper = Application.getDatabaseHelper();
@@ -75,6 +85,11 @@ public class EInvitationService {
 		return invitations;
 	}
 
+	/**
+	 * 根据id获取
+	 * @param id
+	 * @return
+	 */
 	public EInvitation getInvitationById(int id){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("id", id);
@@ -83,6 +98,11 @@ public class EInvitationService {
 		return null;
 	}
 
+	/**
+	 * 更新邀请
+	 * @param invitation
+	 * @return
+	 */
 	private long updateInvitation(EInvitation invitation){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db  = helper.getWritableDatabase();
@@ -102,6 +122,11 @@ public class EInvitationService {
 		cv.put("icons", invitation.getIcons());
 		return db.update("EInvitation", cv, "id = ?", new String[]{invitation.getId()+""});
 	}
+	/**
+	 * 根据id获取
+	 * @param id
+	 * @return
+	 */
 	public Map<String,Object> getInvitationMapById(int id){
 		EInvitation invitation = getInvitationById(id);
 		if(invitation!=null)
@@ -130,6 +155,14 @@ public class EInvitationService {
 		}
 		return null;
 	}
+	/**
+	 * 获取personId发布的 邀请 相关的信息，包括 用户时候参与 ，参与人数 等信息
+	 * @param personId 
+	 * @param from
+	 * @param size
+	 * @param sortBy
+	 * @return
+	 */
 	public List<Map<String,Object>> getInvitationMapsByPersonId(int personId,int from ,int size,String sortBy){
 		List<Map<String,Object>> inMaps = new ArrayList<Map<String,Object>>();
 		Map<String,Object> params = new HashMap<String, Object>();
@@ -203,6 +236,14 @@ public class EInvitationService {
 		
 		return inMaps;
 	}
+	/**
+	 * 获取 unionId发布的 邀请信息 
+	 * @param unionId
+	 * @param from
+	 * @param size
+	 * @param sortBy
+	 * @return
+	 */
 	public List<Map<String,Object>> getInvitationsMapByUnionId(int unionId,int from ,int size,String sortBy){
 		List<Map<String,Object>> inMaps = new ArrayList<Map<String,Object>>();
 		Map<String,Object> params = new HashMap<String, Object>();
@@ -280,6 +321,11 @@ public class EInvitationService {
 
 	/*=====================================================================================*/
 
+	/**
+	 * 获取 参与邀请的类
+	 * @param params
+	 * @return
+	 */
 	private List<RInvitationPerson> getInvitationPersons(Map<String,Object> params){
 		List<RInvitationPerson> invitationPersons = new ArrayList<RInvitationPerson>();
 		DatabaseHelper helper = Application.getDatabaseHelper();
@@ -320,6 +366,12 @@ public class EInvitationService {
 		return invitationPersons;
 	}
 
+	/**
+	 * 根据 邀请id、用户id，获取邀请关系 
+	 * @param invitationId
+	 * @param personId
+	 * @return
+	 */
 	private RInvitationPerson getInvitationPersonBy(int invitationId,int personId){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("invitationId", invitationId);
@@ -329,6 +381,11 @@ public class EInvitationService {
 		return null;
 	}
 
+	/**
+	 * 用户参与邀请
+	 * @param invitationPerson
+	 * @return
+	 */
 	private long addInvitationPerson(RInvitationPerson invitationPerson){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getWritableDatabase();
@@ -338,6 +395,11 @@ public class EInvitationService {
 		cv.put("time", invitationPerson.getTime());
 		return db.insert("RInvitationPerson", null, cv);
 	}
+	/**
+	 * 发布邀请
+	 * @param invitation
+	 * @return
+	 */
 	public Result<EInvitation> publishInvitation(EInvitation invitation){
 		Result<EInvitation>  res =new Result<EInvitation>();
 		DatabaseHelper helper = Application.getDatabaseHelper();
@@ -358,11 +420,22 @@ public class EInvitationService {
 		return res;
 		
 	}
+	/**
+	 * 删除邀请
+	 * @param id
+	 * @return
+	 */
 	private long deleteInvitationPerson(int id){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getWritableDatabase();
 		return db.delete("RInvitationPerson", "id=?", new String[]{id+""});
 	}
+	/**
+	 * 参与邀请
+	 * @param id
+	 * @param join true 表示参加 ，false 表示 不参加
+	 * @return
+	 */
 	public Result<Map<String,Object>> joinInvitationById(int id,boolean join)
 	{
 		//List<Map<String,Object>> l = getInvitationsMapByUnionId();
@@ -459,6 +532,11 @@ public class EInvitationService {
 
 
 	/*=============================================================================*/
+	/**
+	 * 获取邀请点赞
+	 * @param params
+	 * @return
+	 */
 	public List<RInvitationLike> getInvitationLikes(Map<String,Object> params){
 		List<RInvitationLike> invitationLikes = new ArrayList<RInvitationLike>();
 		DatabaseHelper helper = Application.getDatabaseHelper();
@@ -498,6 +576,11 @@ public class EInvitationService {
 		return invitationLikes;
 	}
 
+	/**
+	 * 根据id获取邀请的点赞
+	 * @param invitationId
+	 * @return
+	 */
 	public List<RInvitationLike> getInvitationLikesByInvitationId(int invitationId){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("invitationId", invitationId);

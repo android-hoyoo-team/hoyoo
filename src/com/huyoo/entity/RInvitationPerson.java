@@ -1,5 +1,10 @@
 package com.huyoo.entity;
 
+/**
+ * 参与邀请 类
+ * @author XF
+ *
+ */
 public class RInvitationPerson {
 
 	private int id;

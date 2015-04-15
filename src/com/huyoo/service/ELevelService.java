@@ -15,12 +15,17 @@ import com.huyoo.global.Application;
 import com.huyoo.global.DatabaseHelper;
 
 /**
- * 
+ * 等级服务
  * @author HJL 20150302
  *
  */
 public class ELevelService {
 	
+	/**
+	 * 根据参数获取等级
+	 * @param params
+	 * @return
+	 */
 	public List<ELevel> getLevels(Map<String,Object> params){
 		List<ELevel> levels = new ArrayList<ELevel>();
 		DatabaseHelper helper = Application.getDatabaseHelper();
@@ -53,6 +58,11 @@ public class ELevelService {
 	}
 	
 	
+	/**
+	 * 根据id获取等级信息
+	 * @param id
+	 * @return
+	 */
 	public ELevel getELevelByID(int id)
 	{
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -61,6 +71,10 @@ public class ELevelService {
 		if(levels!=null&&levels.size()>0)return levels.get(0);
 		return null;
 	}
+	/**
+	 * 获取等级信息
+	 * @return
+	 */
 	public List<ELevel> getAllELevels()
 	{
 		return null;
