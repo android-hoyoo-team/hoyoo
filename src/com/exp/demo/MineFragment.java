@@ -1,6 +1,8 @@
 package com.exp.demo;
 
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import per.cz.event1_0.DEvent;
 import per.cz.event1_0.DispatchEvent;
@@ -149,6 +151,13 @@ public class MineFragment extends Fragment {
 
 	public void myinvited()// 返回主界面
 	{
+		Intent intent=new Intent();
+		intent.putExtra("personId", Application.getLoginInfo().getPerson().getId());
+//		intent.setComponent(Utils.getTopActivity(appContext));
+//		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		intent.setClass(getActivity(),InviteList.class);
+		getActivity().startActivity(intent);
+//			 DispatchEvent.dispatchEvent(new DEvent<Object>("获得成就",""));
 	}
 
 	public void respond()// 返回主界面
