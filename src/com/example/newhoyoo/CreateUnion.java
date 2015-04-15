@@ -199,7 +199,9 @@ public class CreateUnion extends Activity{
 		dialog.setCanceledOnTouchOutside(false);
 		dialog.show();
 	}
-
+	/**
+	 * 邀请好友
+	 */
 	public void addFriends(){
 		lostFocus();
 		List<EPerson> friends = Application.getPersonService().getFriends(Application.getLoginInfo().getPerson().getId());
@@ -313,6 +315,9 @@ public class CreateUnion extends Activity{
 		}    
 		super.onActivityResult(requestCode, resultCode, data);    
 	}
+	/**
+	 * 使公会名称edittext失去焦点，以触发验证公会名称
+	 */
 	public void lostFocus(){
 		EditText union_name_edittext = (EditText)findViewById(R.id.union_name_edittext);
 		InputMethodManager imm = (InputMethodManager)this.getSystemService(Context.INPUT_METHOD_SERVICE);

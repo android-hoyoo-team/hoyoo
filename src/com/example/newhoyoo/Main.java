@@ -49,7 +49,7 @@ import com.ryg.expandable.ui.CustomActionbar;
  *
  */
 public class Main extends FragmentActivity implements OnClickListener {
-
+	//侧滑栏
 	private ResideMenu resideMenu;
 	private ResideMenuItem itemHome;
 	private ResideMenuItem itemInvite;
@@ -128,7 +128,8 @@ public class Main extends FragmentActivity implements OnClickListener {
 		});
 
 	}
-
+	
+	//初始化侧滑栏
 	public void initView() {
 		resideMenu = new ResideMenu(this);
 		resideMenu.setBackground(R.drawable.back001);
@@ -160,7 +161,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 		itemSetting.setOnClickListener(this);
 		itemMessage.setOnClickListener(this);
 	}
-
+	
 	public void loadData()
 	{
 		loginInfo = Application.getLoginInfo();
@@ -221,7 +222,10 @@ public class Main extends FragmentActivity implements OnClickListener {
 			resideMenu.closeMenu();
 		}
 	}
-
+	/**
+	 * 给主界面添加fragment，并和ResizeMenu上的选项绑定，再根据不同的fragment设置actionbar
+	 * @param view
+	 */
 	private <T> void setTabSelection(View view) {
 		clearSelection();
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -303,6 +307,7 @@ public class Main extends FragmentActivity implements OnClickListener {
 			actionbar.setButtonVisibility(View.GONE);
 			actionbar.setImageResource(R.drawable.bt_15_selector);
 			itemAssociation.setBackgroundResource(R.drawable.left_item_selected_bg);
+			//如果有工会，而且公会的状态正常，当点击ResizeMenu上的公会时，进入UnionFragment;否则进入NoUnionFragment。
 			if(union!=null&&"normal".equals(union.getStatus()) )
 			{
 				/*************************************/
@@ -483,7 +488,10 @@ public class Main extends FragmentActivity implements OnClickListener {
 		itemSetting.setBackgroundResource(android.R.color.transparent);
 		itemSetting.setIcon(R.drawable.c006);
 	}
-
+	/**
+	 * 隐藏主页面中的特定fragment
+	 * @param transaction
+	 */
 	private void hideFragments(FragmentTransaction transaction) {
 		if (hooyofragment != null) {
 			transaction.hide(hooyofragment);
@@ -508,7 +516,9 @@ public class Main extends FragmentActivity implements OnClickListener {
 			transaction.hide(noUnionFragment);
 		}
 	}
-
+	/**
+	 *重写手机上的返回键。由于主页面是一级页面，当进入主页面(这里的主页面包括主页面的各个fragment)时，如果再按返回键，则相当于退出应用程序。
+	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {  
 		// TODO Auto-generated method stub  
