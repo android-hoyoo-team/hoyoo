@@ -11,7 +11,11 @@ import com.huyoo.entity.EAchievement;
 import com.huyoo.entity.RPersonAchievement;
 import com.huyoo.service.EAchievementService;
 import com.huyoo.bean.Message;;
-
+/**
+ * 监听事件，并处理。如果达到成就所需的条件，注册一个事件，以便处理。
+ * @author XF
+ *
+ */
 public class AchievementDispatcher {
 
 	public static void initDispatcher(){
@@ -70,11 +74,17 @@ public class AchievementDispatcher {
 				}
 			}
 		};
+		//监听login事件，当登录时会触发
 		DispatchEvent.addEventListener("login",message);
+		//监听进入成就页面的事件
 		DispatchEvent.addEventListener("enterAchievement",message);
+		//监听上传头像的事件
 		DispatchEvent.addEventListener("uploadHeader",message);
+		//监听参与要求的事件
 		DispatchEvent.addEventListener("joinInvitation",message);
+		//监听添加关注的事件
 		DispatchEvent.addEventListener("payAttention",message);
+		//监听拥有好友的事件
 		DispatchEvent.addEventListener("haveFriend",message);
 	}
 }

@@ -2,8 +2,13 @@ package com.huyoo.global;
 
 import per.cz.event1_0.DEvent;
 import per.cz.event1_0.DispatchEvent;
-
+/**
+ * 注册了成就相关的事件，以便监听。
+ * @author XF
+ *
+ */
 public class Achievement {
+	//注册登录事件，当登录的时候，会触发相应的监听。
 	public static void login(){
 		DispatchEvent.dispatchEvent(new DEvent("login", "message"));
 	}
