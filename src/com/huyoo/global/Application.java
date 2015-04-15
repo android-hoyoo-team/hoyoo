@@ -16,6 +16,10 @@ import com.huyoo.service.ELevelService;
 import com.huyoo.service.EPersonService;
 import com.huyoo.service.EUnionService;
 
+/**
+ *所有服务的单例类
+ *
+ */
 public class Application {
 
 	private static EPersonService personService;
@@ -122,9 +126,7 @@ public class Application {
 	}
 
 	/**
-	 * 
-	 * @param PhoneNum
-	 *            用户电话号码
+	 * 获取用户登录信息
 	 * @return
 	 */
 	public static LoginInfo getLoginInfo() {

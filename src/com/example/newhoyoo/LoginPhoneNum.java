@@ -30,14 +30,21 @@ public class LoginPhoneNum extends Activity {
 		aq=new AQuery(this);
 		setContentView(R.layout.activity_main);
 		//HuyooUtils.Init(this);//Bmob初始化
+		//点击事件
 		this.aq.id(R.id.send_phonenum_imageview).clicked(this,"sendPhoneNum");
 	}
+	//
 	public void sendPhoneNum(View view){
 		Intent intent = new Intent();
 		String phoneNum = this.aq.id(R.id.phonenum_edittext).getText().toString().trim();
 		intent.putExtra("phoneNum",phoneNum);
 		//getApplicationContext().deleteDatabase("hoyoo");
+		//*************************************************************************//
+		//用于初期版本中本地数据的初始化，后期换成服务器后 将该句代码注释
 		Application.setDatabaseHelper(new DatabaseHelper(getApplicationContext(), "hoyoo"));
+		//*************************************************************************//
+		
+		//根据用户手机号获取
 		EPerson person = Application.getPersonService().getEPersonByPhoneNum(phoneNum);
 		if(person!=null){
 			intent.setClass(this,LoginPassword.class);

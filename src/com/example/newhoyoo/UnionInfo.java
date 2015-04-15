@@ -36,7 +36,9 @@ import android.os.Build;
 public class UnionInfo extends Activity {
 	
 	AQuery aq;
+	//工会
 	EUnion union;
+	//等级
 	ELevel level;
 	 HashMap<String, Object> map1=new HashMap<String,Object>(); 
 	@Override
@@ -53,7 +55,9 @@ public class UnionInfo extends Activity {
 	}
 	
 	public void init(){
+		//当公会为空(还未查出公会信息)或者个人的公会id改变(更换公会)时，需要查询公会信息
 		union = Application.getLoginInfo().getUnion();
+		//根据id获取等级信息
 		level = Application.getLevelService().getELevelByID(union.getLevelId());
 		
 		this.aq.id(R.id.union_icon_imageview).image(union.getIcon());

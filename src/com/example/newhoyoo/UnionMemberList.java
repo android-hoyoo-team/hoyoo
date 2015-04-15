@@ -34,7 +34,9 @@ import com.ryg.expandable.ui.CustomActionbar;
  */
 public class UnionMemberList extends Activity{
 	AQuery aq;
+	//工会服务
 	EUnion union;
+	//用户服务
 	EPerson person;
 
 	@Override
@@ -53,8 +55,10 @@ public class UnionMemberList extends Activity{
 	public void init(){
 		person = Application.getLoginInfo().getPerson();
 		union = Application.getLoginInfo().getUnion();
+		//获取工会用户
 		List<EPerson> members = Application.getPersonService().getEPersonsByUnionId(union.getId());
 		List<Map<String,Object>> membersList = new ArrayList<Map<String,Object>>();
+		//获取membersList
 		for(int i = 0 ;i < members.size();i++){
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			EPerson person = members.get(i);
@@ -66,6 +70,7 @@ public class UnionMemberList extends Activity{
 			map.put("fans", Application.getPersonService().getFansCount(person.getId()));
 			membersList.add(map);
 		}
+		//成员列表adapter
 		CustomListViewAdapter adapter = new CustomListViewAdapter(this,
 				membersList,
 				R.layout.union_member_item, 
@@ -81,6 +86,7 @@ public class UnionMemberList extends Activity{
 				if(Application.getLoginInfo().getPerson().getId() == targetId)return view;
 				final String targetName = ((TextView)view.findViewById(R.id.name_textview)).getText().toString();
 				final List<RAttention> attentions = Application.getPersonService().getAttentionFrom(person.getId());
+				//关注，移除关注等 操作
 				view.findViewById(R.id.optionmenu_imageview).setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -166,6 +172,7 @@ public class UnionMemberList extends Activity{
 				return view;
 			}
 		};
+		//获取成员列表View
 		ListView memberListView = (ListView)findViewById(R.id.union_member_listview);
 		memberListView.setAdapter(adapter);
 	}

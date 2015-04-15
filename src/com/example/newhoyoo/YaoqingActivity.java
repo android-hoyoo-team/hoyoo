@@ -79,7 +79,7 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 /**
- * 邀请界面
+ * 单个邀请的显示页面
  * @author HJL
  *
  */
@@ -130,6 +130,12 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 		}
 	};
 
+	/**
+	 * 添加滚动图片
+	 * @param i
+	 * @param icon
+	 * @return
+	 */
 	private ImageView addImageView(int i, String icon) {
 		final ImageView image = new ImageView(this);
 		image.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -156,6 +162,7 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 		item = Application.getInvitationService().getInvitationMapById(id);
 
 		Map<String, Object> res = InvitationListAdapter.changeItem(item);
+		//邀请view的组件类
 		holder = new ViewHolder();
 		holder.personName = (TextView) findViewById(R.id.personName);
 		holder.personLevel = (TextView) findViewById(R.id.textView6);
@@ -174,10 +181,12 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 
 		if (invitationIcons != null && invitationIcons.size() > 0) {
 			for (int i = 0; i < invitationIcons.size(); i++) {
+				//添加滚动图片
 				viewflipper.addView(addImageView(i,invitationIcons.get(i)));
 
 			}
 		}
+		//添加滚动图片的点击监听事件
 		DispatchEvent.addEventListener("ImageListAdapterClick", new IMethod<Integer>() {
 
 			@Override
@@ -186,7 +195,7 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 			}
 		});
 
-
+		//资源加载
 		animations[0] = AnimationUtils.loadAnimation(this, R.anim.left_in);
 		animations[1] = AnimationUtils.loadAnimation(this, R.anim.left_out);
 		animations[2] = AnimationUtils.loadAnimation(this, R.anim.right_in);
@@ -201,6 +210,7 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 		horizontalList.setAdapter(imageAdapter);
 		aq = new AQuery(this);
 		String url = res.get("personUrl").toString();
+		//获取用户的图片
 		aq.ajax(url, Bitmap.class, new AjaxCallback<Bitmap>() {
 			@Override
 			public void callback(String url, Bitmap object,
@@ -224,7 +234,7 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 		holder.info2.setText(res.get("info2").toString());
 		int currentNum = Integer.parseInt(res.get("currentNum").toString());
 		final int maxNum = Integer.parseInt(res.get("maxNum").toString());
-
+		//添加邀请点击按钮
 		final CircularProgressDrawable drawable = new CircularProgressDrawable(
 				getResources()
 				.getDimensionPixelSize(R.dimen.drawable_ring_size),
@@ -242,6 +252,7 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 
 		back = (ImageView) findViewById(R.id.yaoqing_back);
 		final YaoqingActivity target = this;
+		//退出当前
 		back.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -256,7 +267,7 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 		button1 = (Button) findViewById(R.id.button1);
 		button2 = (Button) findViewById(R.id.button2);
 		button3 = (FilterImageView) findViewById(R.id.button3);
-
+		//获取点赞数量
 		likeList = Application.getInvitationService().getInvitationLikesByInvitationId(
 				Integer.parseInt(item.get("id").toString()));
 		showLikes();
@@ -279,6 +290,7 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 			map.put("commentTime", eComment.getTime());
 			mapList.add(map);
 		}
+		//回复列表Adapter
 		commentListAdapter = new CommentListAdapter(this) {
 
 			@Override
@@ -314,6 +326,12 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 
 	}
 
+	
+	/**
+	 * 转发 监听类
+	 * @author CLU
+	 *
+	 */
 	class Button1Listener implements OnClickListener {
 
 		@Override
@@ -330,6 +348,9 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 
 	}
 
+	/**
+	 *回复监听类
+	 */
 	class Button2Listener implements OnClickListener {
 
 		@Override
@@ -343,6 +364,9 @@ public class YaoqingActivity extends Activity implements OnGestureListener{
 		}
 	}
 
+	/**
+	 *点赞监听
+	 */
 	class Button3Listener implements OnClickListener {
 
 		@Override

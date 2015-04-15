@@ -18,9 +18,16 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * 工会邀请 ，邀请主页类似
+ * @author HJL
+ *
+ */
 public class UnionInviteList extends Activity{
 
+	//列表
 	private XListView mine_list;
+	//没有工会时显示的text
 	private TextView no_invite_textview;
 	private InvitationListAdapter mAdapter;
 	private List<Map<String, Object>> list_data=new ArrayList<Map<String, Object>>();

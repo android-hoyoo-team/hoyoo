@@ -46,6 +46,10 @@ public class Signup extends Activity {
 		Toast.makeText(getApplicationContext(), "验证码功能暂未开放，敬请期待", Toast.LENGTH_LONG).show();
 	}
 
+	/**
+	 * 检查手机号时候被注册
+	 * @return
+	 */
 	public boolean checkPhoneNum(){
 		String phoneNum = this.aq.id(R.id.phoneNum_edittext).getText().toString().trim();
 		EPerson person = Application.getPersonService().getEPersonByPhoneNum(phoneNum);
@@ -55,6 +59,7 @@ public class Signup extends Activity {
 			return false;
 		}
 	}
+	//密码检查，不能为空 、长度大于8
 	public boolean checkPassword(){
 		String password = this.aq.id(R.id.password_edittext).getText().toString().trim();
 		if(password==null||"".equals(password)){
@@ -70,10 +75,19 @@ public class Signup extends Activity {
 			return false;
 		}
 	}
+	/**
+	 * 检查安全码
+	 * @return
+	 */
 	public boolean checkSecurityCode(){
 		return true;
 	}
+	/**
+	 * 注册
+	 * @param view
+	 */
 	public void signaccountClick(View view){
+		//检查 手机号是否注册，检查密码，检查安全码
 		if(checkPhoneNum()&&checkPassword()&&checkSecurityCode()){
 			String phoneNum = this.aq.id(R.id.phoneNum_edittext).getText().toString();
 			String password = this.aq.id(R.id.password_edittext).getText().toString();
@@ -93,6 +107,12 @@ public class Signup extends Activity {
 
 	}
 
+	/**
+	 * 登陆Callback
+	 * @param url
+	 * @param json
+	 * @param status
+	 */
 	public void loginloadingCallback(String url, JSONObject json, AjaxStatus status){
 		//this.aq.id(R.id.linearLayout1).visibility(View.GONE);   TEXT SUCCESS!//
 		if(json == null){

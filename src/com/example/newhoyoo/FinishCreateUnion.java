@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 /**
- * 公会创建完成后,显示审批倒计时页面.
+ * 公会创建完成后,显示审批倒计时页面.先模拟效果
  * @author XF
  *
  */
@@ -20,11 +20,13 @@ public class FinishCreateUnion extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_finish_create_union);
 		aq = new AQuery(this);
+		//actionbar
 		CustomActionbar actionbar = (CustomActionbar)findViewById(R.id.create_union_actionbar);
 		actionbar.setTitle("创建工会");
 		actionbar.setButtonVisibility(View.GONE);
 		this.aq.id(R.id.actionbar_left).clicked(this, "back");
 		long total = 24*60*60*1000;
+		//24小时倒计时
 		new CountDownTimer(total,1000) {
 			
 			@Override
@@ -44,6 +46,7 @@ public class FinishCreateUnion extends Activity {
 			}
 		}.start();
 	}
+	//返回上一层
 	public void back(){
 		this.finish();
 	}

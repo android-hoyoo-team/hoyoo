@@ -67,6 +67,7 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 		this.aq.id(R.id.actionbar_right).clicked(this, "edit");
 		this.aq.id(R.id.imageView2).clicked(this, "changemypic");
 		init();
+		//添加工会信息更新的事件处理，重新初始化用户编辑界面，当工会信息更改实时 当前页面应该随之改变
 		DispatchEvent.addEventListener("unionStatusChanged", new IMethod<String>() {
 
 			@Override
@@ -79,12 +80,16 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 	}
 
 	public void init(){
+		//通过全局服务Application获取当前登陆的用户信息
 		person = Application.getLoginInfo().getPerson();
+		//通过全局服务Application获取当前登陆的用户工会信息
 		union = Application.getLoginInfo().getUnion();
+		//通过全局服务Application获取当前登陆的用户等级信息
 		level = Application.getLoginInfo().getLevel();
 
 		this.aq.id(R.id.head_imageview).image(person.getIcon());
 		this.aq.id(R.id.name_edittext).text(person.getName());
+		//性别设置
 		if("男".equals(person.getSex()))
 		{
 			this.aq.id(R.id.male_radio).checked(true);
@@ -96,7 +101,9 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 			sexId = R.id.female_radio;
 		}
 		this.aq.id(R.id.school_edittext).text(person.getDepartment());
+		//生日设置
 		this.aq.id(R.id.birthday_edittext).text(new SimpleDateFormat("yyyy-MM-dd").format(new Date(person.getBirthday())));
+		//电话设置
 		this.aq.id(R.id.phonenum_edittext).text(person.getPhoneNum());
 		if(union!=null&&"normal".equals(union.getStatus())){
 			this.aq.id(R.id.union_textview).text(union.getName());
@@ -116,23 +123,27 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 		});
 
 		birthday_edittext = (EditText)findViewById(R.id.birthday_edittext);
+		//添加touch监听
 		birthday_edittext.setOnTouchListener(this);
 		this.aq.id(R.id.change_header_imageview).clicked(this, "changeHeader");
 	}
 
 	@Override
+	//更改生日的touch事件
 	public boolean onTouch(View v, MotionEvent event) {
-		// TODO Auto-generated method stub
 		if(event.getAction() == MotionEvent.ACTION_DOWN && v.getId() == R.id.birthday_edittext)
 		{
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			View view = View.inflate(this, R.layout.date_picker_dialog, null);
+			//datePicker 选择时间
 			final DatePicker datePicker = (DatePicker)view.findViewById(R.id.date_picker);
 			builder.setView(view);
 
 			Calendar cal = Calendar.getInstance();
 			cal.setTimeInMillis(System.currentTimeMillis());
+			//设置时间
 			datePicker.init(cal.get(Calendar.YEAR),cal.get( Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), null);
+			//约束设置的最大时间
 			datePicker.setMaxDate(new Date().getTime());
 			final int inType = birthday_edittext.getInputType(); 
 			birthday_edittext.setInputType(InputType.TYPE_NULL); 
@@ -141,6 +152,7 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 			birthday_edittext.setSelection(birthday_edittext.getText().length()); 
 
 			builder.setTitle("请选择日期"); 
+			//日期选择弹出框
 			builder.setPositiveButton("确  定", new DialogInterface.OnClickListener() { 
 
 				@Override 
@@ -163,7 +175,7 @@ public class EditPersonInfo extends Activity implements View.OnTouchListener {
 
 		return true;
 	}
-
+	//完成编辑
 	public void edit()
 	{
 		new AlertDialog.Builder(this).setTitle("提示").setMessage("您确定保存更改吗？")

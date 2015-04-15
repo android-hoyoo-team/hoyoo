@@ -36,14 +36,21 @@ public class AchievementDialog extends Activity {
 		aq.id(R.id.dialog_achievement_addition).text(
 				achievement.getAddition());
 		aq.id(R.id.dialog_achievement_icon).image(achievement.getIcon());
+		//后期同服务器获取成就信息RPersonAchievement 加以填充
 		aq.id(R.id.dialog_score_icon).image(
 				getExpIcon(achievement.getExp()));
+		//设置弹出框
 		aq.id(R.id.dialog_frame)
 				.image(getFrameIcon(achievement.getExp()));
 		aq.id(R.id.dialog_close).clicked(this, "finish");
 	}
 
 
+	/**
+	 * 获取成就图标
+	 * @param exp
+	 * @return
+	 */
 	public static String getExpIcon(int exp) {
 		switch (exp) {
 		case 5:
@@ -88,6 +95,11 @@ public class AchievementDialog extends Activity {
 			return null;
 		}
 	}
+	/**
+	 * 获取弹出框icon
+	 * @param exp
+	 * @return
+	 */
 	public static String getFrameIcon(int exp) {
 		switch (exp) {
 		case 5:

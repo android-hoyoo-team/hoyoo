@@ -8,7 +8,9 @@ import per.cz.event1_0.DispatchEvent;
  *
  */
 public class Achievement {
-	//注册登录事件，当登录的时候，会触发相应的监听。
+	/**
+	 * 注册登录事件，当登录的时候，会触发相应的监听。
+	 */
 	public static void login(){
 		DispatchEvent.dispatchEvent(new DEvent("login", "message"));
 	}

@@ -33,6 +33,7 @@ public class Comment extends Activity {
 		setContentView(R.layout.activity_comment);
 		Intent intent = getIntent();
 		et=(EditText) findViewById(R.id.pinglun_content);
+		//页面头部actionbar
 		actionbar = (CustomActionbar) findViewById(R.id.comment_actionbar);
 		actionbar.setImageResource(R.drawable.back_image_button);
 		actionbar.setTitle("发评论");

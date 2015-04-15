@@ -35,6 +35,11 @@ public class CreateUnionCondition extends Activity {
 		}
 		this.aq.id(R.id.actionbar_left).clicked(this,"back");
 	}
+	/**
+	 * 判断是否符合创建公会的条件,如果符合,显示"您已经达到了所有创建公会所必须的条件",并使创建公会的按钮可以点击;否则显示原因，并使按钮不能点击.
+	 * <br>后期添加其他条件
+	 * @return
+	 */
 	public boolean verifyCondition(){
 		return true;
 	}

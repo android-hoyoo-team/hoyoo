@@ -2,6 +2,9 @@ package com.huyoo.entity;
 
 import java.io.Serializable;
 
+/**
+ *工会实体类
+ */
 public class EUnion implements Serializable{
 	/**
 	 * 
