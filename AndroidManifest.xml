@@ -82,6 +82,8 @@
             android:name="com.example.newhoyoo.CreateUnionCondition"
             android:label="@string/title_activity_create_union" >
         </activity>
+        <activity android:name="com.example.newhoyoo.InviteList" />
+        <activity android:name="com.example.newhoyoo.UnionInviteList" />
         <activity android:name="com.example.newhoyoo.AchievementDetail" />
         <activity android:name="com.example.newhoyoo.AchievementDialog"
             android:theme="@style/TransparenceTheme" />

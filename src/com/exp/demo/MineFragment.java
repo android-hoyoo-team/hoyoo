@@ -1,8 +1,5 @@
 package com.exp.demo;
 
-import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import per.cz.event1_0.DEvent;
 import per.cz.event1_0.DispatchEvent;
@@ -14,7 +11,6 @@ import com.huyoo.entity.ELevel;
 import com.huyoo.entity.EPerson;
 import com.huyoo.entity.EUnion;
 import com.huyoo.global.Application;
-import com.huyoo.service.ELevelService;
 import com.huyoo.service.EPersonService;
 
 import android.os.Bundle;
@@ -23,11 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.content.Intent;
-import android.graphics.Color;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -124,6 +116,8 @@ public class MineFragment extends Fragment {
 		this.aq.id(R.id.good_imagebutton).clicked(this, "good");
 		this.aq.id(R.id.letter_imagebutton).background(R.drawable.image5);
 		this.aq.id(R.id.letter_imagebutton).clicked(this, "letter");
+		this.aq.id(R.id.friend_list_imagebutton).background(R.drawable.image6);
+		
 		this.aq.id(R.id.friend_list_imagebutton).clicked(this,"friend");
 	}
 	public void skiptodetail() {
@@ -158,13 +152,6 @@ public class MineFragment extends Fragment {
 
 	public void myinvited()// 返回主界面
 	{
-		Intent intent=new Intent();
-		intent.putExtra("personId", Application.getLoginInfo().getPerson().getId());
-//		intent.setComponent(Utils.getTopActivity(appContext));
-//		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		intent.setClass(getActivity(),InviteList.class);
-		getActivity().startActivity(intent);
-//			 DispatchEvent.dispatchEvent(new DEvent<Object>("获得成就",""));
 	}
 
 	public void respond()// 返回主界面

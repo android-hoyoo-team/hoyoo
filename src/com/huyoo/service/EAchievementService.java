@@ -19,8 +19,18 @@ import com.huyoo.entity.RPersonAchievement;
 import com.huyoo.global.Application;
 import com.huyoo.global.DatabaseHelper;
 
+/**
+ * 处理成就的服务 后期直接替换成相应的后台服务
+ * @author HJL
+ *
+ */
 public class EAchievementService {
 
+	/**
+	 * 根据参数获取相应的参数
+	 * @param params
+	 * @return
+	 */
 	public List<EAchievement> getEAchievements(Map<String,Object> params){
 		List<EAchievement> achievements = new ArrayList<EAchievement>();
 		DatabaseHelper helper = Application.getDatabaseHelper();
