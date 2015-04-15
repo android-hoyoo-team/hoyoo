@@ -117,6 +117,7 @@ public class MineFragment extends Fragment {
 		this.aq.id(R.id.letter_imagebutton).background(R.drawable.image5);
 		this.aq.id(R.id.letter_imagebutton).clicked(this, "letter");
 		this.aq.id(R.id.friend_list_imagebutton).background(R.drawable.image6);
+		
 		this.aq.id(R.id.friend_list_imagebutton).clicked(this,"friend");
 	}
 	public void skiptodetail() {
