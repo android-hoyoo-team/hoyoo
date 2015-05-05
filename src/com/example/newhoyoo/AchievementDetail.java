@@ -138,6 +138,10 @@ public class AchievementDetail extends Activity {
 		relativeListView.setAdapter(mAdapter);
 	}
 
+	/**
+	 * 通过EAchievement获取 webView可以显示的 成就信息
+	 * @param achievement
+	 */
 	public void loadAchievementDetail(EAchievement achievement) {
 		achievementDetail = (WebView) findViewById(R.id.achievement_detail);
 		StringBuilder sb = new StringBuilder();

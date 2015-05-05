@@ -19,12 +19,17 @@ import com.huyoo.global.Application;
 import com.huyoo.global.DatabaseHelper;
 
 /**
- * 
- * @author HJL 20150302
+ * 工会服务
+ * @author XF 20150302
  *
  */
 public class EUnionService {
 
+	/**
+	 * 获取工会
+	 * @param params
+	 * @return
+	 */
 	public List<EUnion> getUnions(Map<String,Object> params){
 		List<EUnion> unions = new ArrayList<EUnion>();
 		DatabaseHelper helper = Application.getDatabaseHelper();
@@ -74,6 +79,11 @@ public class EUnionService {
 		return unions;
 	}
 
+	/**
+	 * 根据id获取工会
+	 * @param id
+	 * @return
+	 */
 	public EUnion getEUnionByID(int id)
 	{
 		Map<String,Object> params = new HashMap<String, Object>();
@@ -83,6 +93,11 @@ public class EUnionService {
 		return null;
 	}
 
+	/**
+	 * 获取用户所在工会
+	 * @param personId
+	 * @return
+	 */
 	public EUnion getUnionByPersonId(int personId){
 		List<RUnionPerson> ups = Application.getPersonService().getUnionPersonByPersonId(personId);
 		if(ups!=null&&ups.size()>0){
@@ -94,6 +109,10 @@ public class EUnionService {
 		return null;
 	}
 
+	/**
+	 * 所有工会
+	 * @return
+	 */
 	public List<EUnion> getAllEUnion()
 	{
 		return getUnions(null);
@@ -123,6 +142,11 @@ public class EUnionService {
 	}
 
 
+	/**
+	 * 保存工会
+	 * @param union
+	 * @return
+	 */
 	public int saveUnion(EUnion union){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getWritableDatabase();
@@ -155,6 +179,11 @@ public class EUnionService {
 //		return getUnions(null);
 //	}
 
+	/**
+	 * 从工会移除 用户 
+	 * @param id
+	 * @return
+	 */
 	public long removePersonFromUnion(int id){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getWritableDatabase();

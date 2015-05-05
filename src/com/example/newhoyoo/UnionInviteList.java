@@ -19,25 +19,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- *主页邀请列表，目前获取的是工会的邀请，和工会页面中的工会邀请获取的信息一致，后期应根据具体需求进行更改
- * 此类在使用时需要 通过intent 传入"personId"这个参数
+ * 工会邀请 ，邀请主页类似
+ * @author HJL
+ *
  */
-public class InviteList extends Activity{
+public class UnionInviteList extends Activity{
 
+	//列表
 	private XListView mine_list;
-	//如果用户没有加入任何工会的时候会显示 这个text
+	//没有工会时显示的text
 	private TextView no_invite_textview;
 	private InvitationListAdapter mAdapter;
 	private List<Map<String, Object>> list_data=new ArrayList<Map<String, Object>>();
 	private Handler mHandler;
-	//返回按钮
 	private ImageButton leftImageButton;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.invite_list);
+		setContentView(R.layout.invite_union_list);
 		leftImageButton=(ImageButton)findViewById(R.id.image_button_left);
-		//返回，结束当前activity
 		leftImageButton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -45,14 +45,14 @@ public class InviteList extends Activity{
 				finish();
 			}
 		});
-		personId = getIntent().getIntExtra("personId", 0);
-		if(personId==0)
+		unionId = getIntent().getIntExtra("unionId", 0);
+		if(unionId==0)
 		{
-			Toast.makeText(this, "该用户不存在", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "该公会不存在", Toast.LENGTH_LONG).show();
 			return;
 		}
 		TextView invite_list_title=(TextView) findViewById(R.id.invite_list_title);
-		invite_list_title.setText("我的邀请");
+		invite_list_title.setText("公会邀请");
 		mine_list = (XListView) findViewById(R.id.mine_list);
 		no_invite_textview = (TextView)findViewById(R.id.you_no_invite_textview);
 		if(true)
@@ -96,17 +96,13 @@ public class InviteList extends Activity{
 			
 		}
 	}
-	/**
-	 * 延迟加载更多邀请
-	 * @param count
-	 */
 	private void loadMoreData(int count) {
-		list_data = Application.getInvitationService().getInvitationMapsByPersonId(personId,0,list_data.size()+count,"issueTime");
+		list_data = Application.getInvitationService().getInvitationsMapByUnionId(unionId,0,list_data.size()+count,"issueTime");
 		listIndex=list_data.size();
 	}
 	int listIndex=0;
 	int count=5;
-	private int personId;
+	private int unionId;
 
 
 }

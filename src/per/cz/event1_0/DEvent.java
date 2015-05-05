@@ -1,5 +1,11 @@
 package per.cz.event1_0;
 
+/**
+ * 事件类，用于接收事件
+ * @author HJL
+ *
+ * @param <T>
+ */
 public class DEvent<T>
 {
 	private final String type;

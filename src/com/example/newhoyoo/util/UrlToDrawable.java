@@ -4,6 +4,9 @@ import java.net.URL;
 
 import android.graphics.drawable.Drawable;
 
+/**
+ *将网路图片变为 Drawable
+ */
 public class UrlToDrawable {
 	public static Drawable loadImageFromNetwork(String imageUrl){
 		Drawable drawable=null;

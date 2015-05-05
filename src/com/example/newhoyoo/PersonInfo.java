@@ -39,8 +39,6 @@ public class PersonInfo extends FragmentActivity {
 
 	Button btStyle2;
 
-	Animator currentAnimation;
-
 	EPerson person;
 	EUnion union;
 	ELevel level;
@@ -50,14 +48,16 @@ public class PersonInfo extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		aq = new AQuery(this);
 		setContentView(R.layout.person_info);
-		
+		//添加Actionbar 详细信息与编辑按钮
 		CustomActionbar actionbar = (CustomActionbar)findViewById(R.id.personinfo_actionbar);
 		actionbar.setTitle("详细信息");
 		actionbar.setButton("编辑");
+		//添加点击事件
 		this.aq.id(R.id.actionbar_left).clicked(this, "back");
 		this.aq.id(R.id.actionbar_right).clicked(this, "edit");
 
 		init();
+		//添加用户跟新成功的事件监听
 		DispatchEvent.addEventListener("personUpdateEvent", new IMethod<String>() {
 
 			@Override
@@ -65,7 +65,7 @@ public class PersonInfo extends FragmentActivity {
 				init();
 			}
 		});
-		
+		//添加工会状态改变的事件监听
 		DispatchEvent.addEventListener("unionStatusChanged", new IMethod<String>() {
 
 			@Override
@@ -93,13 +93,14 @@ public class PersonInfo extends FragmentActivity {
 		}
 		this.aq.id(R.id.text_achievelvl).text(level.getName());
 	}
-	
+	//Actionbar的编辑按钮事件处理
 	public void edit()
 	{
 		Intent intent = getIntent();
 		intent.setClass(PersonInfo.this,EditPersonInfo.class);
 		this.startActivity(intent);
 	}
+	//返回事件处理
 	public void back()
 	{
 		this.finish();

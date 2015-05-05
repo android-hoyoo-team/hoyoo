@@ -17,12 +17,17 @@ import com.huyoo.global.Application;
 import com.huyoo.global.DatabaseHelper;
 
 /**
- * 
+ * 用户服务
  * @author xufei 20150302
  *
  */
 public class EPersonService {
 
+	/**
+	 * 根据参数获取用户信息
+	 * @param params
+	 * @return
+	 */
 	public List<EPerson> getPersons(Map<String,Object> params){
 		List<EPerson> persons = new ArrayList<EPerson>();
 		DatabaseHelper helper =	Application.getDatabaseHelper();
@@ -77,6 +82,11 @@ public class EPersonService {
 		}
 		return persons;
 	}
+	/**
+	 * 根据用户id获取
+	 * @param id
+	 * @return
+	 */
 	public EPerson getEPersonById(int id){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("id", id);
@@ -86,7 +96,7 @@ public class EPersonService {
 	}
 
 	/**
-	 * 
+	 * 获取工会用户
 	 * @param unionId
 	 * @return
 	 */
@@ -106,6 +116,11 @@ public class EPersonService {
 		return persons;
 	}
 
+	/**
+	 * 根据用户手机号获取
+	 * @param phoneNum
+	 * @return
+	 */
 	public EPerson getEPersonByPhoneNum(String phoneNum){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("phoneNum", phoneNum);
@@ -114,6 +129,11 @@ public class EPersonService {
 		return null;
 	}
 	
+	/**
+	 * 添加用户
+	 * @param person
+	 * @return
+	 */
 	public long addPerson(EPerson person){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getWritableDatabase();
@@ -133,6 +153,11 @@ public class EPersonService {
 		return db.insert("EPerson", null, cv);
 	}
 	
+	/**
+	 * 更新用户
+	 * @param person
+	 * @return
+	 */
 	public long updatePerson(EPerson person){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getWritableDatabase();
@@ -152,6 +177,11 @@ public class EPersonService {
 		return db.update("EPerson", cv, "id=?", new String[]{person.getId()+""});
 	}
 	/*=========================================================================*/
+	/**
+	 * 获取用户关注
+	 * @param params
+	 * @return
+	 */
 	public List<RAttention> getAttentions(Map<String,Object> params){
 		List<RAttention> attentions = new ArrayList<RAttention>();
 		DatabaseHelper helper =	Application.getDatabaseHelper();
@@ -194,12 +224,22 @@ public class EPersonService {
 		return attentions;
 	}
 
+	/**
+	 * 获取来自于用户id的关注信息
+	 * @param id
+	 * @return
+	 */
 	public List<RAttention> getAttentionFrom(int id){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("personIdFrom", id);
 		return getAttentions(params);
 	}
 
+	/**
+	 * 获取关注id的所有关注
+	 * @param id
+	 * @return
+	 */
 	public List<RAttention> getAttentionTo(int id){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("personIdTo", id);
@@ -247,6 +287,11 @@ public class EPersonService {
 		}
 		return persons;
 	}
+	/**
+	 * 添加关注
+	 * @param attention
+	 * @return
+	 */
 	public long addAttention(RAttention attention){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getWritableDatabase();
@@ -262,6 +307,11 @@ public class EPersonService {
 		if(getAttentions(params)!=null&&getAttentions(params).size()>0)Achievement.haveFriend();
 		return result;
 	}
+	/**
+	 * 移除好友：移除关注与被关注
+	 * @param id
+	 * @return
+	 */
 	public long removeFriend(int id){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getWritableDatabase();
@@ -270,6 +320,11 @@ public class EPersonService {
 
 
 	/*================================================================================*/
+	/**
+	 * 获取公户成员
+	 * @param params
+	 * @return
+	 */
 	public List<RUnionPerson> getUnionPersons(Map<String,Object> params){
 		List<RUnionPerson> rups = new ArrayList<RUnionPerson>();
 		DatabaseHelper helper =	Application.getDatabaseHelper();
@@ -319,12 +374,22 @@ public class EPersonService {
 		return rups;
 	}
 
+	/**
+	 * 获取personId所在工会的工会成员
+	 * @param personId
+	 * @return
+	 */
 	public List<RUnionPerson> getUnionPersonByPersonId(int personId){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("personId", personId);
 		params.put("status", "in");
 		return getUnionPersons(params);
 	}
+	/**
+	 * 获取 工会的成员，根据工会id
+	 * @param unionId
+	 * @return
+	 */
 	public List<EPerson> getPersonsByUnionId(int unionId)
 	{
 		List<EPerson> persons = new ArrayList<EPerson>();

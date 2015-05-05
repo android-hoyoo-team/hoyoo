@@ -1,5 +1,10 @@
 package com.huyoo.entity;
 
+/**
+ * 人与成就的关系类
+ * @author hjl
+ *
+ */
 public class RPersonAchievement {
 	private int id;
 	private int personId;

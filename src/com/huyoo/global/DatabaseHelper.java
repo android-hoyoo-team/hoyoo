@@ -2,7 +2,11 @@ package com.huyoo.global;
 
 
 import java.util.Date;
+import java.util.Map;
 import java.util.Random;
+
+import com.huyoo.entity.EInvitation;
+import com.huyoo.utils.GsonUtil;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -577,7 +581,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		coin23.put("commentIdTo", 0);
 		this.db.insert("EComment", null, coin23);
 	}
-
+	public long insertInvitation(EInvitation in)
+	{
+		try{
+			 
+			ContentValues in8 = new ContentValues();
+			//		in8.put("id", 8);
+			in8.put("personId", in.getPersonId());
+			in8.put("activityTime", in.getActivityTime());
+			in8.put("title", in.getTitle());
+			in8.put("content", in.getContent());
+			in8.put("address", in.getAddress());
+			in8.put("maxNum", in.getMaxNum());
+			in8.put("currentNum", in.getCurrentNum());
+			in8.put("forwardIdFrom", in.getForwardIdFrom());
+			in8.put("originalId", in.getOriginalId());
+			in8.put("status",in.getStatus());
+			in8.put("issueTime", in.getIssueTime());
+			in8.put("hits", in.getHits());
+			in8.put("icons", in.getIcons());
+			long insert = this.getReadableDatabase().insert("EInvitation", null, in8);
+			return insert;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			return -1;
+		}
+	}
 	public void initInvitation(){
 		ContentValues in1 = new ContentValues();
 		in1.put("id", 1);

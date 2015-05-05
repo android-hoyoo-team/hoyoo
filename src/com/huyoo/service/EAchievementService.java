@@ -19,8 +19,18 @@ import com.huyoo.entity.RPersonAchievement;
 import com.huyoo.global.Application;
 import com.huyoo.global.DatabaseHelper;
 
+/**
+ * 处理成就的服务 后期直接替换成相应的后台服务
+ * @author HJL
+ *
+ */
 public class EAchievementService {
 
+	/**
+	 * 根据参数获取相应的成就
+	 * @param params
+	 * @return
+	 */
 	public List<EAchievement> getEAchievements(Map<String,Object> params){
 		List<EAchievement> achievements = new ArrayList<EAchievement>();
 		DatabaseHelper helper = Application.getDatabaseHelper();
@@ -72,6 +82,11 @@ public class EAchievementService {
 	}
 
 
+	/**
+	 * 根据成就id获取成就
+	 * @param id
+	 * @return
+	 */
 	public EAchievement getEAchievementById(int id)
 	{
 		Map<String,Object> params = new HashMap<String, Object>();
@@ -80,6 +95,11 @@ public class EAchievementService {
 		if(achievements!=null&&achievements.size()>0)return achievements.get(0);
 		return null;
 	}
+	/**
+	 * 根据用户id获取成就
+	 * @param personId
+	 * @return
+	 */
 	public	List<EAchievement> getEAchievementsByPersonId(int personId)
 	{
 		List<EAchievement> achievements = new ArrayList<EAchievement>();
@@ -95,6 +115,12 @@ public class EAchievementService {
 		return achievements;
 	}
 
+	/**
+	 * 获取最新成就
+	 * @param personId 用户id 
+	 * @param num 数量
+	 * @return
+	 */
 	public List<EAchievement> getLastestEAchievements(int personId,int num){
 		List<EAchievement> achievements = getEAchievementsByPersonId(personId);
 		if(achievements == null)return null;
@@ -102,6 +128,12 @@ public class EAchievementService {
 		return achievements.subList(0, num);
 	}
 
+	/**
+	 * 获取推荐完成的成绩
+	 * @param personId 用户
+	 * @param num 数量
+	 * @return
+	 */
 	public List<EAchievement> getRecommendEAchievements(int personId,int num) {
 		List<EAchievement> ras = new ArrayList<EAchievement>();
 		List<EAchievement> achievements = getEAchievements(null);
@@ -118,6 +150,11 @@ public class EAchievementService {
 		return ras;
 	}
 	
+	/**
+	 * 根据 成就id 获取其相关成就
+	 * @param id 
+	 * @return
+	 */
 	public List<EAchievement> getRelativeAchievements(int id){
 		List<EAchievement> ras = new ArrayList<EAchievement>();
 		EAchievement achievement = getEAchievementById(id);
@@ -136,12 +173,22 @@ public class EAchievementService {
 		return ras;
 	}
 
+	/**
+	 * 按照类别获取
+	 * @param type 类别
+	 * @return
+	 */
 	public List<EAchievement> getEAchievementsByType(String type){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("type", type);
 		return getEAchievements(params);
 	}
 	/*=============================================================================================*/
+	/**
+	 * 获取人的成就关系
+	 * @param params 参数类表
+	 * @return
+	 */
 	public List<RPersonAchievement> getPersonAchievements(Map<String,Object> params){
 		List<RPersonAchievement> rpas = new ArrayList<RPersonAchievement>();
 		DatabaseHelper helper = Application.getDatabaseHelper();
@@ -183,6 +230,12 @@ public class EAchievementService {
 		return rpas;
 	}
 
+	/**
+	 * 根据用户id 获取人成就关系 
+	 * @param personId
+	 * @param isSortByTime
+	 * @return
+	 */
 	public List<RPersonAchievement> getPersonAchievementByPersonId(int personId,boolean isSortByTime){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("personId", personId);
@@ -206,6 +259,12 @@ public class EAchievementService {
 		return rpas;
 	}
 
+	/**
+	 * 根据 用户id 成就id 获取 唯一成就关系 
+	 * @param personId
+	 * @param achievementId
+	 * @return
+	 */
 	public RPersonAchievement getPersonAchievementBy(int personId,int achievementId){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("personId", personId);
@@ -215,6 +274,11 @@ public class EAchievementService {
 		return null;
 	}
 
+	/**
+	 * 获得成就
+	 * @param rpa
+	 * @return
+	 */
 	public long addPersonAchievement(RPersonAchievement rpa){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getWritableDatabase();
@@ -225,6 +289,11 @@ public class EAchievementService {
 		cv.put("time", rpa.getTime());
 		return db.insert("RPersonAchievement", null, cv);
 	}
+	/**
+	 * 更新用户成就
+	 * @param rpa
+	 * @return
+	 */
 	public long updatePersonAchievement(RPersonAchievement rpa){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getWritableDatabase();

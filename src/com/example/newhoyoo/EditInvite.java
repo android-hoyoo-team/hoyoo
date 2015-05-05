@@ -24,7 +24,7 @@ import android.widget.ImageView;
 import android.widget.TimePicker;
 
 /**
- * 编辑邀请界面
+ * 发布邀请界面
  * @author HJL
  *
  */
@@ -42,6 +42,7 @@ public class EditInvite extends Activity implements OnTouchListener{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.edit_invite);
 		this.aq = new AQuery(this);
+		//返回按钮
 		leftImageButton=(ImageButton)findViewById(R.id.leftImageButton);
 		final EditInvite target=this;
 		leftImageButton.setOnClickListener(new OnClickListener() {
@@ -51,8 +52,9 @@ public class EditInvite extends Activity implements OnTouchListener{
 				target.finish();
 			}
 		});
-
+		//选择日期
 		this.aq.id(R.id.dateImageButton).clicked(this, "pickDate");
+		//选择时间
 		this.aq.id(R.id.timeImageButton).clicked(this, "pickTime");
 		date_edittext.setOnTouchListener(this);
 		time_edittext.setOnTouchListener(this);

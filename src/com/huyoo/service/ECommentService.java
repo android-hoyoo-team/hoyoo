@@ -13,8 +13,18 @@ import com.huyoo.entity.ELevel;
 import com.huyoo.global.Application;
 import com.huyoo.global.DatabaseHelper;
 
+/**
+ * 评论服务类
+ * @author HJL
+ *
+ */
 public class ECommentService {
 
+	/**
+	 * 根据参数获取
+	 * @param params
+	 * @return
+	 */
 	public List<EComment> getEComments(Map<String,Object> params)
 	{
 		List<EComment> comments = new ArrayList<EComment>();
@@ -55,6 +65,11 @@ public class ECommentService {
 		return comments;
 	}
 	
+	/**
+	 * 获取邀请的评论
+	 * @param invitationId 邀请id
+	 * @return
+	 */
 	public List<EComment> getCommentByInvitationId(int invitationId){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("invitationId", invitationId);

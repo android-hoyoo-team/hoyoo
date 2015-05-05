@@ -15,6 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+/**
+ *工会新闻列表适配
+ */
 public class NewsListAdapter extends BaseAdapter {
 	private List<Map<String, Object>> newsList = new ArrayList<Map<String, Object>>();
 	private LayoutInflater mInflater;

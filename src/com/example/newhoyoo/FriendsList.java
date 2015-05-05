@@ -31,16 +31,19 @@ import android.widget.Toast;
 public class FriendsList extends Activity {
 
 	EPerson person;
+	//存放CustomListViewAdapter中的数据
 	List<Map<String,Object>> data;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_friends_list);
+		//actionbar
 		CustomActionbar actionbar = (CustomActionbar)findViewById(R.id.friends_list_actionbar);
 		actionbar.setImageResource(R.drawable.bt_14_selector);
 		actionbar.setTitleVisibility(View.VISIBLE);
 		actionbar.setTitle("好友列表");
 		actionbar.setButtonVisibility(View.GONE);
+		//返回按钮
 		actionbar.findViewById(R.id.actionbar_left).setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -54,6 +57,7 @@ public class FriendsList extends Activity {
 
 	public void init(){
 		person = Application.getLoginInfo().getPerson();
+		//通过id获取其好友列表，满足好友的条件是，既被他关注，也关注了他的。
 		List<EPerson> friends = Application.getPersonService().getFriends(person.getId());
 		ListView friends_listview  = (ListView)findViewById(R.id.friends_listview);
 		TextView no_friends_textview = (TextView)findViewById(R.id.no_friends_textview);
@@ -63,13 +67,16 @@ public class FriendsList extends Activity {
 			friends_listview.setVisibility(View.VISIBLE);
 			for (EPerson person : friends) {
 				HashMap<String,Object> map = new HashMap<String, Object>();
+				//获取用户所在工会
 				EUnion union = Application.getUnionService().getUnionByPersonId(person.getId());
 				map.put("id",person.getId());
 				map.put("icon", person.getIcon());
 				map.put("name", person.getName());
 				if(union!=null&&"normal".equals(union.getStatus()))map.put("uName",union.getName());
 				else map.put("uName", "暂无公会");
+				//根据id获取等级信息
 				map.put("title", Application.getLevelService().getELevelByID(person.getLevelId()).getName());
+				//获取粉丝
 				map.put("fans",Application.getPersonService().getFansCount(person.getId()));
 				data.add(map);
 			}

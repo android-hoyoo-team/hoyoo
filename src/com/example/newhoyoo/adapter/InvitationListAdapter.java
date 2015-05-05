@@ -41,6 +41,9 @@ import com.huyoo.global.Application;
 import com.huyoo.utils.DateUtil;
 import com.huyoo.utils.GsonUtil;
 
+/**
+ *邀请列表的适配 用于 公户邀请列表 ，邀请主页
+ */
 public class InvitationListAdapter extends BaseAdapter{
 	public final static String HAS_JOIN="已参加";
 	public final static String HAS_FULL="人数已满";

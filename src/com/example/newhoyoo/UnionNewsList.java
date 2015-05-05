@@ -25,7 +25,9 @@ import android.widget.ListView;
  *
  */
 public class UnionNewsList extends Activity {
+	//最新新闻Adapter
 	NewsListAdapter mAdapter;
+	//新闻列表View
 	ListView mListView;
 	AQuery aq=new AQuery(this);
 	CustomActionbar actionbar;
@@ -44,6 +46,7 @@ public class UnionNewsList extends Activity {
 		mapList=Application.getArticleSercice().convertFromList(Application.getArticleSercice().getUnionNews(Application.getLoginInfo().getUnion().getId()));
 		mAdapter.setNewsList(mapList);
 		mListView.setAdapter(mAdapter);
+		//添加点击事件
 		mListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -62,6 +65,9 @@ public class UnionNewsList extends Activity {
 		});
 		
 	}
+	/**
+	 *返回按钮事件，结束当前activity
+	 */
 	class BackListener implements android.view.View.OnClickListener{
 
 		@Override

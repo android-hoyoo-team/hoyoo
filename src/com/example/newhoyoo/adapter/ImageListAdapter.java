@@ -16,6 +16,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+/**
+ *图片列表的Adapter 用户邀请滚动图片的位置
+ */
 public class ImageListAdapter extends BaseAdapter {
 	private List<String> iconList;
 	private LayoutInflater mInflater;

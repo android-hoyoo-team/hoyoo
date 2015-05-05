@@ -22,8 +22,18 @@ import com.huyoo.global.Achievement;
 import com.huyoo.global.Application;
 import com.huyoo.global.DatabaseHelper;
 
+/**
+ * 邀请服务
+ * @author HJL
+ *
+ */
 public class EInvitationService {
 
+	/**
+	 * 根据参数获取服务
+	 * @param params
+	 * @return
+	 */
 	public List<EInvitation> getInvitations(Map<String,Object> params){
 		List<EInvitation> invitations = new ArrayList<EInvitation>();
 		DatabaseHelper helper = Application.getDatabaseHelper();
@@ -75,6 +85,11 @@ public class EInvitationService {
 		return invitations;
 	}
 
+	/**
+	 * 根据id获取
+	 * @param id
+	 * @return
+	 */
 	public EInvitation getInvitationById(int id){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("id", id);
@@ -83,7 +98,12 @@ public class EInvitationService {
 		return null;
 	}
 
-	public long updateInvitation(EInvitation invitation){
+	/**
+	 * 更新邀请
+	 * @param invitation
+	 * @return
+	 */
+	private long updateInvitation(EInvitation invitation){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db  = helper.getWritableDatabase();
 		ContentValues cv = new ContentValues();
@@ -102,6 +122,11 @@ public class EInvitationService {
 		cv.put("icons", invitation.getIcons());
 		return db.update("EInvitation", cv, "id = ?", new String[]{invitation.getId()+""});
 	}
+	/**
+	 * 根据id获取
+	 * @param id
+	 * @return
+	 */
 	public Map<String,Object> getInvitationMapById(int id){
 		EInvitation invitation = getInvitationById(id);
 		if(invitation!=null)
@@ -119,7 +144,7 @@ public class EInvitationService {
 			inMap.put("address", invitation.getAddress());
 			inMap.put("currentNum", invitation.getCurrentNum());
 			inMap.put("maxNum", invitation.getMaxNum());
-			if(getInvitationPersonBy(invitation.getId(),person.getId())!=null){
+			if(getInvitationPersonBy(invitation.getId(),Application.getLoginInfo().getPerson().getId())!=null){
 				inMap.put("isJoin","1");
 			}else{
 				inMap.put("isJoin","0");
@@ -130,7 +155,15 @@ public class EInvitationService {
 		}
 		return null;
 	}
-	public List<Map<String,Object>> getInvitationsMapByUnionId(int unionId,int from ,int size,String sortBy){
+	/**
+	 * 获取personId发布的 邀请 相关的信息，包括 用户时候参与 ，参与人数 等信息
+	 * @param personId 
+	 * @param from
+	 * @param size
+	 * @param sortBy
+	 * @return
+	 */
+	public List<Map<String,Object>> getInvitationMapsByPersonId(int personId,int from ,int size,String sortBy){
 		List<Map<String,Object>> inMaps = new ArrayList<Map<String,Object>>();
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("forwardIdFrom", from);
@@ -138,7 +171,7 @@ public class EInvitationService {
 		switch (sortBy) {
 		case "issueTime":
 			Collections.sort(invitations, new Comparator<EInvitation>(){
-
+				
 				@Override
 				public int compare(EInvitation lhs, EInvitation rhs) {
 					// TODO Auto-generated method stub
@@ -152,7 +185,88 @@ public class EInvitationService {
 			break;
 		case "hits":
 			Collections.sort(invitations, new Comparator<EInvitation>(){
-
+				
+				@Override
+				public int compare(EInvitation lhs, EInvitation rhs) {
+					// TODO Auto-generated method stub
+					if(lhs.getHits()<rhs.getHits())
+						return 1;
+					else if(lhs.getHits()>rhs.getHits())
+						return -1;
+					return 0;
+				}
+			});
+			break;
+		default:
+			break;
+		}
+		
+		if(invitations!=null&&invitations.size()>0){
+			for (int i=0;i<invitations.size();i++) {
+				EInvitation invitation =invitations.get(i);
+				if(invitation.getPersonId()==personId){
+					Map<String,Object> inMap = new HashMap<String, Object>();
+					EPerson person  =  Application.getPersonService().getEPersonById(invitation.getPersonId());
+					inMap.put("id", invitation.getId());
+					inMap.put("personId", person.getId());
+					inMap.put("personName", person.getName());
+					inMap.put("personLevel", Application.getLevelService().getELevelByID(person.getLevelId()).getName());
+					inMap.put("issueTime", invitation.getIssueTime());
+					inMap.put("activityTime", invitation.getActivityTime());
+					inMap.put("personUrl", person.getIcon());
+					inMap.put("content", invitation.getContent());
+					inMap.put("address", invitation.getAddress());
+					inMap.put("currentNum", invitation.getCurrentNum());
+					inMap.put("maxNum", invitation.getMaxNum());
+					if(getInvitationPersonBy(invitation.getId(),Application.getLoginInfo().getPerson().getId())!=null){
+						inMap.put("isJoin","1");
+					}else{
+						inMap.put("isJoin","0");
+					}
+					inMap.put("hits", invitation.getHits());
+					inMap.put("icons", invitation.getIcons());
+					inMaps.add(inMap);
+					if(inMaps.size()>=size)
+					{
+						break;
+					}
+				}
+			}
+		}
+		
+		return inMaps;
+	}
+	/**
+	 * 获取 unionId发布的 邀请信息 
+	 * @param unionId
+	 * @param from
+	 * @param size
+	 * @param sortBy
+	 * @return
+	 */
+	public List<Map<String,Object>> getInvitationsMapByUnionId(int unionId,int from ,int size,String sortBy){
+		List<Map<String,Object>> inMaps = new ArrayList<Map<String,Object>>();
+		Map<String,Object> params = new HashMap<String, Object>();
+		params.put("forwardIdFrom", from);
+		List<EInvitation> invitations = getInvitations(params);
+		switch (sortBy) {
+		case "issueTime":
+			Collections.sort(invitations, new Comparator<EInvitation>(){
+				
+				@Override
+				public int compare(EInvitation lhs, EInvitation rhs) {
+					// TODO Auto-generated method stub
+					if(lhs.getIssueTime()<rhs.getIssueTime())
+						return 1;
+					else if(lhs.getIssueTime()>rhs.getIssueTime())
+						return -1;
+					return 0;
+				}
+			});
+			break;
+		case "hits":
+			Collections.sort(invitations, new Comparator<EInvitation>(){
+				
 				@Override
 				public int compare(EInvitation lhs, EInvitation rhs) {
 					// TODO Auto-generated method stub
@@ -186,7 +300,7 @@ public class EInvitationService {
 					inMap.put("address", invitation.getAddress());
 					inMap.put("currentNum", invitation.getCurrentNum());
 					inMap.put("maxNum", invitation.getMaxNum());
-					if(getInvitationPersonBy(invitation.getId(),person.getId())!=null){
+					if(getInvitationPersonBy(invitation.getId(),Application.getLoginInfo().getPerson().getId())!=null){
 						inMap.put("isJoin","1");
 					}else{
 						inMap.put("isJoin","0");
@@ -207,7 +321,12 @@ public class EInvitationService {
 
 	/*=====================================================================================*/
 
-	public List<RInvitationPerson> getInvitationPersons(Map<String,Object> params){
+	/**
+	 * 获取 参与邀请的类
+	 * @param params
+	 * @return
+	 */
+	private List<RInvitationPerson> getInvitationPersons(Map<String,Object> params){
 		List<RInvitationPerson> invitationPersons = new ArrayList<RInvitationPerson>();
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getReadableDatabase();
@@ -247,7 +366,13 @@ public class EInvitationService {
 		return invitationPersons;
 	}
 
-	public RInvitationPerson getInvitationPersonBy(int invitationId,int personId){
+	/**
+	 * 根据 邀请id、用户id，获取邀请关系 
+	 * @param invitationId
+	 * @param personId
+	 * @return
+	 */
+	private RInvitationPerson getInvitationPersonBy(int invitationId,int personId){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("invitationId", invitationId);
 		params.put("personId", personId);
@@ -256,7 +381,12 @@ public class EInvitationService {
 		return null;
 	}
 
-	public long addInvitationPerson(RInvitationPerson invitationPerson){
+	/**
+	 * 用户参与邀请
+	 * @param invitationPerson
+	 * @return
+	 */
+	private long addInvitationPerson(RInvitationPerson invitationPerson){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getWritableDatabase();
 		ContentValues cv = new ContentValues();
@@ -265,11 +395,47 @@ public class EInvitationService {
 		cv.put("time", invitationPerson.getTime());
 		return db.insert("RInvitationPerson", null, cv);
 	}
-	public long deleteInvitationPerson(int id){
+	/**
+	 * 发布邀请
+	 * @param invitation
+	 * @return
+	 */
+	public Result<EInvitation> publishInvitation(EInvitation invitation){
+		Result<EInvitation>  res =new Result<EInvitation>();
+		DatabaseHelper helper = Application.getDatabaseHelper();
+		long insertInvitation = helper.insertInvitation(invitation);
+		if(insertInvitation>0)
+		{
+			EInvitation invitationById = this.getInvitationById((int) insertInvitation);
+			if(invitationById!=null)
+			{
+				res.setMessage("success");
+				res.setStatus("success");
+				res.setResult(invitationById);
+				return res;
+			}
+		}
+		res.setMessage("保存失败");
+		res.setStatus("error");
+		return res;
+		
+	}
+	/**
+	 * 删除邀请
+	 * @param id
+	 * @return
+	 */
+	private long deleteInvitationPerson(int id){
 		DatabaseHelper helper = Application.getDatabaseHelper();
 		SQLiteDatabase db = helper.getWritableDatabase();
 		return db.delete("RInvitationPerson", "id=?", new String[]{id+""});
 	}
+	/**
+	 * 参与邀请
+	 * @param id
+	 * @param join true 表示参加 ，false 表示 不参加
+	 * @return
+	 */
 	public Result<Map<String,Object>> joinInvitationById(int id,boolean join)
 	{
 		//List<Map<String,Object>> l = getInvitationsMapByUnionId();
@@ -302,7 +468,7 @@ public class EInvitationService {
 				{
 					RInvitationPerson invitationPerson = new RInvitationPerson();
 					invitationPerson.setInvitationId(Integer.parseInt(in.get("id").toString()));
-					invitationPerson.setPersonId(Integer.parseInt(in.get("personId").toString()));
+					invitationPerson.setPersonId(Application.getLoginInfo().getPerson().getId());
 					invitationPerson.setTime(new Date().getTime());
 					addInvitationPerson(invitationPerson);
 
@@ -329,7 +495,7 @@ public class EInvitationService {
 			{
 				int maxNum=Integer.parseInt(in.get("maxNum")==null||in.get("maxNum").toString().trim().equals("")?"0":in.get("maxNum").toString());
 				int currentNum=Integer.parseInt(in.get("currentNum")==null||in.get("currentNum").toString().trim().equals("")?"0":in.get("currentNum").toString());
-				RInvitationPerson invitationPerson = getInvitationPersonBy(Integer.parseInt(in.get("id").toString()), Integer.parseInt(in.get("personId").toString()));
+				RInvitationPerson invitationPerson = getInvitationPersonBy(Integer.parseInt(in.get("id").toString()), Application.getLoginInfo().getPerson().getId());
 				if(invitationPerson!=null)
 					deleteInvitationPerson(invitationPerson.getId());
 				EInvitation invitation = getInvitationById(Integer.parseInt(in.get("id").toString()));
@@ -360,12 +526,17 @@ public class EInvitationService {
 	 * @param unionId
 	 * @return
 	 */
-	public List<Map<String,Object>> getHotInvitationsByUnionId(int num,int unionId){
+	public List<Map<String,Object>> getHotInvitationMapsByUnionId(int num,int unionId){
 		return getInvitationsMapByUnionId(unionId,0,num,"hits");
 	}
 
 
 	/*=============================================================================*/
+	/**
+	 * 获取邀请点赞
+	 * @param params
+	 * @return
+	 */
 	public List<RInvitationLike> getInvitationLikes(Map<String,Object> params){
 		List<RInvitationLike> invitationLikes = new ArrayList<RInvitationLike>();
 		DatabaseHelper helper = Application.getDatabaseHelper();
@@ -405,6 +576,11 @@ public class EInvitationService {
 		return invitationLikes;
 	}
 
+	/**
+	 * 根据id获取邀请的点赞
+	 * @param invitationId
+	 * @return
+	 */
 	public List<RInvitationLike> getInvitationLikesByInvitationId(int invitationId){
 		Map<String,Object> params = new HashMap<String, Object>();
 		params.put("invitationId", invitationId);

@@ -13,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+/**
+ *登陆等待
+ */
 public class Loginloadingfragment extends Fragment {
 	/*Dynamically*/
 	ProgressBar mProgressBar;

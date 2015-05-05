@@ -81,6 +81,11 @@ public class UnionNewsActivity extends Activity {
 		}
 
 	}
+	/**
+	 * 给要通过webView显示的内用 加上 html标签
+	 * @param content
+	 * @return
+	 */
 	public String loadWebView(String content){
 		StringBuilder sb=new StringBuilder();
 		sb.append("<html><head><style type=\"text/css\"> * {background-color: #dbdcdc !important;font-size: 12px !important;}</style></head><body style=\"font-size=10\">");

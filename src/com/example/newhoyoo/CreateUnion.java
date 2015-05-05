@@ -56,12 +56,14 @@ import com.ryg.expandable.ui.HorizontalListView;
 public class CreateUnion extends Activity{
 	AQuery aq ;
 	public HashMap<String, Map<String,Object>> selectedMap;
+	//工会类别
 	public String[] type = {"综合类","休闲类","竞技类","娱乐类"};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_union);
 		this.aq = new AQuery(this);
+		//页面头部 actionbar
 		CustomActionbar actionbar = (CustomActionbar)findViewById(R.id.create_union_actionbar);
 		actionbar.setImageResource(R.drawable.back_image_button);
 		actionbar.setTitle("创建公会");
@@ -70,7 +72,7 @@ public class CreateUnion extends Activity{
 		this.aq.id(R.id.add_logo_imagebutton).clicked(this, "addLogo");
 		ArrayAdapter<String> adapter  = new ArrayAdapter<>(this, R.layout.item_union_type,type);
 		this.aq.id(R.id.union_type_spinner).adapter(adapter);
-
+		//添加好友
 		this.aq.id(R.id.add_friends_imageview).clicked(this, "addFriends");
 		this.selectedMap = new HashMap<String, Map<String,Object>>();
 		this.aq.id(R.id.notice_textview).clicked(this, "notice");
@@ -87,7 +89,7 @@ public class CreateUnion extends Activity{
 				}
 			}
 		});
-
+		//工会类别 列表 Spinner
 		Spinner spinner = (Spinner)findViewById(R.id.union_type_spinner);
 		spinner.setOnTouchListener(new OnTouchListener() {
 
