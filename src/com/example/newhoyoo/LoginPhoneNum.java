@@ -7,10 +7,13 @@ package com.example.newhoyoo;
 import com.androidquery.AQuery;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.huyoo.entity.EPerson;
@@ -46,4 +49,30 @@ public class LoginPhoneNum extends Activity {
 		}
 		startActivity(intent);
 	}
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {  
+		// TODO Auto-generated method stub  
+		if(keyCode==KeyEvent.KEYCODE_BACK&&event.getRepeatCount()==0){  
+			//需要处理  
+			AlertDialog dialog = new AlertDialog.Builder(this).setTitle("提示").setMessage("您确定退出huyoo吗？")
+					.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							System.exit(0);
+						}
+					}).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							dialog.cancel();
+						}
+					}).create();
+			dialog.show();
+			return true;  
+		}  
+		return false;
+	}  
 }
